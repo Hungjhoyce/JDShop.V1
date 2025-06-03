@@ -883,11 +883,11 @@
         const addToCartBtn = document.querySelector('.add-to-cart');
         const originalText = addToCartBtn.innerHTML;
         
-        // Show loading state
+
         addToCartBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang xử lý...';
         addToCartBtn.disabled = true;
         
-        // Send AJAX request to add to cart
+
         fetch('/Orders/AddToCart', {
             method: 'POST',
             headers: {
@@ -902,7 +902,6 @@
                 if (typeof updateCartCount === 'function') {
                     updateCartCount();
                 }
-                // Redirect to shopping cart page after successful addition
                 setTimeout(() => {
                     window.location.href = '/Products/ShoppingCart';
                 }, 1000);
@@ -921,7 +920,7 @@
         });
     }
 
-    // Quantity input validation
+
     document.getElementById('quantity').addEventListener('change', function() {
         const value = parseInt(this.value);
         if (value < 1) this.value = 1;
