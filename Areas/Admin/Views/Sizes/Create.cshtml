@@ -1,35 +1,677 @@
-﻿@model JDshop.Models.Size
+﻿@* @model JDshop.Models.Size *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Create"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>THÊM</h1> *@
+
+@* <h4>Size</h4> *@
+@* <hr /> *@
+@* <div class="row"> *@
+@*     <div class="col-md-4"> *@
+@*         <form asp-action="Create"> *@
+@*             <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Size1" class="control-label">Size</label> *@
+@*                 <input asp-for="Size1" class="form-control" /> *@
+@*                 <span asp-validation-for="Size1" class="text-danger"></span> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <button type="submit" class="btn btn-gradient-primary me-2">Thêm mới</button> *@
+@*                 <a asp-action="Index" class="btn btn-light">Trở về</a> *@
+@*             </div> *@
+@*         </form> *@
+@*     </div> *@
+@* </div> *@
+
+@* @section Scripts { *@
+@*     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} *@
+@* } *@
+
+
+
+
+
+@model JDshop.Models.Size
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Thêm kích thước mới";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>THÊM</h1>
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-<h4>Size</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Size1" class="control-label">Size</label>
-                <input asp-for="Size1" class="form-control" />
-                <span asp-validation-for="Size1" class="text-danger"></span>
+    .create-page {
+        padding: 2rem;
+        margin: 0 auto;
+    }
+
+    .page-header {
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 0.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .page-subtitle {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin: 0;
+    }
+
+    
+
+    .create-container {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 2rem;
+    }
+
+    .form-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        height: fit-content;
+    }
+
+    .preview-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        height: fit-content;
+        position: sticky;
+        top: 2rem;
+    }
+
+    .form-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    .form-icon {
+        width: 48px;
+        height: 48px;
+        background: #10b981;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .form-info {
+        flex: 1;
+    }
+
+    .form-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 0.25rem 0;
+    }
+
+    .form-description {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin: 0;
+    }
+
+    .validation-summary {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        color: #dc2626;
+        font-size: 0.875rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #1d1d1f;
+        font-size: 0.875rem;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+        background-color: #fff;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #007aff;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+
+        .form-control.is-invalid {
+            border-color: #dc2626;
+        }
+
+    .text-danger {
+        color: #dc2626;
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    .category-tabs {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        background: #f3f4f6;
+        padding: 0.25rem;
+        border-radius: 8px;
+    }
+
+    .category-tab {
+        flex: 1;
+        padding: 0.5rem 1rem;
+        border: none;
+        background: transparent;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+    }
+
+        .category-tab.active {
+            background: white;
+            color: #007aff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+    .size-suggestions {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .size-suggestion {
+        padding: 0.5rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-weight: 500;
+        background: white;
+    }
+
+        .size-suggestion:hover {
+            border-color: #007aff;
+            background: #f0f9ff;
+            transform: translateY(-1px);
+        }
+
+        .size-suggestion.selected {
+            border-color: #007aff;
+            background: #007aff;
+            color: white;
+        }
+
+    .help-text {
+        font-size: 0.75rem;
+        color: #86868b;
+        margin-top: 0.25rem;
+    }
+
+    .suggestion-section {
+        background: #f0f9ff;
+        border: 1px solid #bae6fd;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .suggestion-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #0369a1;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .suggestion-text {
+        color: #0369a1;
+        font-size: 0.75rem;
+    }
+
+    .preview-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .preview-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 0.5rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .preview-subtitle {
+        font-size: 0.875rem;
+        color: #86868b;
+    }
+
+    .size-preview {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin: 0 auto 1.5rem;
+        border: 4px solid #e5e7eb;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .size-info {
+        text-align: center;
+    }
+
+    .size-name {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 0.5rem;
+    }
+
+    .size-category {
+        background: #f0f9ff;
+        color: #0369a1;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        border: 1px solid #bae6fd;
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+
+    .quick-add-section {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .quick-add-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .quick-add-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .quick-add-btn {
+        padding: 0.5rem 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        background: white;
+        cursor: pointer;
+        font-size: 0.75rem;
+        transition: all 0.2s;
+        text-align: left;
+    }
+
+        .quick-add-btn:hover {
+            border-color: #007aff;
+            background: #f0f9ff;
+        }
+
+    .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #f3f4f6;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-cancel {
+        background: #f5f5f7;
+        color: #1d1d1f;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-cancel:hover {
+            background: #e8e8ed;
+            border-color: #9ca3af;
+        }
+
+    .btn-create {
+        background: #10b981;
+        color: white;
+    }
+
+        .btn-create:hover {
+            background: #059669;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+</style>
+
+<div class="create-page">
+
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">
+                <i class="fas fa-plus"></i>
+                Thêm kích thước mới
+            </h1>
+            <p class="page-subtitle">Tạo kích thước mới cho hệ thống quản lý sản phẩm</p>
+        </div>
+    </div>
+
+    <div class="create-container">
+        <!-- Form Card -->
+        <div class="form-card">
+            <div class="form-header">
+                <div class="form-icon">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="form-info">
+                    <h3 class="form-title">Thông tin kích thước</h3>
+                    <p class="form-description">Nhập tên kích thước mới</p>
+                </div>
             </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-gradient-primary me-2">Thêm mới</button>
-                <a asp-action="Index" class="btn btn-light">Trở về</a>
+
+            <!-- Suggestion -->
+            <div class="suggestion-section">
+                <div class="suggestion-header">
+                    <i class="fas fa-lightbulb"></i>
+                    Gợi ý
+                </div>
+                <div class="suggestion-text">
+                    Chọn loại kích thước phù hợp và sử dụng các gợi ý có sẵn để tạo nhanh
+                </div>
             </div>
-        </form>
+
+            <form asp-action="Create" id="createForm">
+                <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+                <div class="form-group">
+                    <label asp-for="Size1" class="form-label">
+                        <i class="fas fa-expand-arrows-alt me-1"></i>
+                        Kích thước
+                    </label>
+                    <input asp-for="Size1" class="form-control" placeholder="Nhập kích thước..." id="sizeInput" />
+                    <span asp-validation-for="Size1" class="text-danger"></span>
+                    <div class="help-text">Tên kích thước sẽ hiển thị trong danh sách sản phẩm</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-layer-group me-1"></i>
+                        Chọn loại kích thước
+                    </label>
+                    <div class="category-tabs">
+                        <button type="button" class="category-tab active" data-category="clothing">Quần áo</button>
+                        <button type="button" class="category-tab" data-category="shoes">Giày dép</button>
+                        <button type="button" class="category-tab" data-category="custom">Tùy chỉnh</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-list me-1"></i>
+                        Kích thước gợi ý
+                    </label>
+                    <div class="size-suggestions" id="sizeSuggestions">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                    <div class="help-text">Nhấp vào kích thước để chọn nhanh</div>
+                </div>
+
+                <div class="action-buttons">
+                    <a asp-action="Index" class="btn btn-cancel">
+                        <i class="fas fa-arrow-left"></i>
+                        Hủy bỏ
+                    </a>
+
+                    <button type="submit" class="btn btn-create">
+                        <i class="fas fa-plus"></i>
+                        Tạo kích thước
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Preview Card -->
+        <div class="preview-card">
+            <div class="preview-header">
+                <h3 class="preview-title">
+                    <i class="fas fa-eye"></i>
+                    Xem trước
+                </h3>
+                <p class="preview-subtitle">Kích thước mới sẽ được tạo</p>
+            </div>
+
+            <div class="size-preview" id="sizePreview">?</div>
+
+            <div class="size-info">
+                <div class="size-name" id="previewName">Kích thước mới</div>
+                <div class="size-category" id="previewCategory">Quần áo</div>
+            </div>
+
+            <!-- Quick Add Section -->
+            <div class="quick-add-section">
+                <div class="quick-add-title">
+                    <i class="fas fa-magic"></i>
+                    Tạo nhanh
+                </div>
+                <div class="quick-add-buttons">
+                    <button type="button" class="quick-add-btn" onclick="createSizeSet('clothing')">
+                        Tạo bộ size quần áo (XS-XXL)
+                    </button>
+                    <button type="button" class="quick-add-btn" onclick="createSizeSet('shoes')">
+                        Tạo bộ size giày (35-45)
+                    </button>
+                    <button type="button" class="quick-add-btn" onclick="createSizeSet('basic')">
+                        Tạo size cơ bản (S, M, L)
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-@* <div>
-    <a asp-action="Index">Back to List</a>
-</div> *@
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sizeInput = document.getElementById('sizeInput');
+            const sizePreview = document.getElementById('sizePreview');
+            const previewName = document.getElementById('previewName');
+            const previewCategory = document.getElementById('previewCategory');
+            const sizeSuggestions = document.getElementById('sizeSuggestions');
+            const categoryTabs = document.querySelectorAll('.category-tab');
+
+            const sizeCategories = {
+                clothing: ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+                shoes: ['35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45'],
+                custom: ['Free Size', 'One Size', 'Adjustable', 'Universal']
+            };
+
+            // Initialize with clothing sizes
+            updateSizeSuggestions('clothing');
+
+            // Category tab switching
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    updateSizeSuggestions(this.getAttribute('data-category'));
+                });
+            });
+
+            // Update size suggestions based on category
+            function updateSizeSuggestions(category) {
+                sizeSuggestions.innerHTML = '';
+                sizeCategories[category].forEach(size => {
+                    const suggestion = document.createElement('div');
+                    suggestion.className = 'size-suggestion';
+                    suggestion.textContent = size;
+                    suggestion.addEventListener('click', function() {
+                        // Remove previous selection
+                        document.querySelectorAll('.size-suggestion').forEach(s => s.classList.remove('selected'));
+                        this.classList.add('selected');
+
+                        // Update input and preview
+                        sizeInput.value = size;
+                        updatePreview(size);
+                    });
+                    sizeSuggestions.appendChild(suggestion);
+                });
+            }
+
+            // Update preview when input changes
+            sizeInput.addEventListener('input', function() {
+                updatePreview(this.value);
+            });
+
+            function updatePreview(size) {
+                sizePreview.textContent = size || '?';
+                previewName.textContent = size ? `Size ${size}` : 'Kích thước mới';
+                previewCategory.textContent = getSizeCategory(size || '');
+            }
+
+            function getSizeCategory(size) {
+                const clothingSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
+                const shoeSizes = ['35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45'];
+
+                if (clothingSizes.includes(size.toUpperCase())) return 'Quần áo';
+                if (shoeSizes.includes(size)) return 'Giày dép';
+                if (/^\d+$/.test(size)) return 'Số';
+                return 'Tùy chỉnh';
+            }
+
+            // Quick create size sets
+            window.createSizeSet = function(type) {
+                if (!confirm('Bạn có muốn tạo bộ kích thước này không? Điều này sẽ tạo nhiều kích thước cùng lúc.')) {
+                    return;
+                }
+
+                let message = '';
+                switch(type) {
+                    case 'clothing':
+                        message = 'Sẽ tạo các size: XS, S, M, L, XL, XXL, XXXL';
+                        break;
+                    case 'shoes':
+                        message = 'Sẽ tạo các size: 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45';
+                        break;
+                    case 'basic':
+                        message = 'Sẽ tạo các size: S, M, L';
+                        break;
+                }
+
+                alert(`Tính năng tạo nhanh: ${message}\n\nVui lòng liên hệ admin để kích hoạt tính năng này.`);
+            };
+
+            // Form validation
+            document.getElementById('createForm').addEventListener('submit', function(e) {
+                const sizeValue = sizeInput.value.trim();
+
+                if (!sizeValue) {
+                    alert('Vui lòng nhập kích thước.');
+                    sizeInput.focus();
+                    e.preventDefault();
+                    return;
+                }
+
+                // Show loading state
+                const submitBtn = e.target.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Đang tạo...';
+                submitBtn.disabled = true;
+
+                // Reset button after 3 seconds if form doesn't submit
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 3000);
+            });
+
+            // Auto-focus input
+            sizeInput.focus();
+
+            // Auto-suggest based on common patterns
+            setTimeout(() => {
+                if (!sizeInput.value) {
+                    // Auto-select M as default
+                    const mSize = document.querySelector('.size-suggestion[textContent="M"]');
+                    if (mSize) {
+                        mSize.click();
+                    }
+                }
+            }, 500);
+        });
+    </script>
 }

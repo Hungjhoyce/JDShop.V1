@@ -1,92 +1,360 @@
-﻿@model IEnumerable<JDshop.Models.Order>
+﻿@* @model IEnumerable<JDshop.Models.Order> *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Index"; *@
+
+@* } *@
+@* <div class="page-header"> *@
+@*     <h3 style="font-family:Helvetica;" class="page-title"> ĐƠN ĐẶT HÀNG </h3> *@
+@*     <nav aria-label="breadcrumb"> *@
+
+@*     </nav> *@
+@* </div> *@
+
+@* <div class="col-lg-12 grid-margin stretch-card"> *@
+@*     <div class="card"> *@
+@*         <div class="card-body"> *@
+
+@*             <table class="table"> *@
+@*                 <thead> *@
+@*                     <tr> *@
+@*                         <th> *@
+@*                             Người đặt *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             Email *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             SĐT *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             Tổng tiền *@
+@*                         </th> *@
+
+@*                         <th> *@
+@*                             Ngày đặt *@
+@*                         </th> *@
+
+@*                         <th> *@
+@*                             Địa chỉ giao hàng *@
+@*                         </th> *@
+
+@*                         <th> *@
+@*                             Trạng thái *@
+@*                         </th> *@
+@*                         <th>Thao tác</th> *@
+@*                     </tr> *@
+@*                 </thead> *@
+@*                 <tbody> *@
+@*                     @foreach (var item in Model) *@
+@*                     { *@
+@*                         <tr> *@
+@*                             <td> *@
+@*                                 @item.Account?.FullName *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 @item.Account?.Email *@
+@*                             </td>  <td> *@
+@*                                 @item.Account?.Phone *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 @item.Total *@
+@*                             </td> *@
+
+
+@*                             <td> *@
+@*                                 @(item.CreateDay.HasValue *@
+@*                                     ? item.CreateDay.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN")) *@
+@*                                     : "") *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 @item?.Account?.Addresses.FirstOrDefault()?.Street , *@
+@*                                 @item?.Account?.Addresses.FirstOrDefault()?.Ward, *@
+@*                                 @item?.Account?.Addresses.FirstOrDefault()?.District, *@
+@*                                 @item?.Account?.Addresses.FirstOrDefault()?.City *@
+@*                             </td> *@
+
+
+@*                             <td>Hoàn thành </td> *@
+
+@*                             <td> *@
+@*                             </td> *@
+@*                         </tr> *@
+@*                     } *@
+@*                 </tbody> *@
+@*             </table> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+
+
+
+
+
+
+
+
+
+
+@model IEnumerable<JDshop.Models.Order>
 
 @{
-    ViewData["Title"] = "Index";
-
+    ViewData["Title"] = "Đơn hàng hoàn thành";
 }
-<div class="page-header">
-    <h3 style="font-family:Helvetica;" class="page-title"> ĐƠN ĐẶT HÀNG </h3>
-    <nav aria-label="breadcrumb">
 
-    </nav>
-</div>
+<div class="container-fluid py-4">
+    <!-- Header Section -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold text-success mb-0">ĐƠN HÀNG HOÀN THÀNH</h2>
+        </div>
+        <div class="d-flex">
+            <div class="input-group me-2" style="width: 300px;">
+                <input type="text" class="form-control" placeholder="Tìm kiếm theo tên, email..." id="searchOrder">
+                <button class="btn btn-success" type="button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="dropdown me-2">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-calendar me-1"></i> Thời gian
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                    <li><a class="dropdown-item" href="#">Hôm nay</a></li>
+                    <li><a class="dropdown-item" href="#">7 ngày qua</a></li>
+                    <li><a class="dropdown-item" href="#">30 ngày qua</a></li>
+                    <li><a class="dropdown-item" href="#">Tất cả</a></li>
+                </ul>
+            </div>
+            <button class="btn btn-primary" onclick="exportToExcel()">
+                <i class="fas fa-download me-1"></i> Xuất Excel
+            </button>
+        </div>
+    </div>
 
-<div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="mb-0">@Model.Count()</h4>
+                            <p class="mb-0">Đơn hoàn thành</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-check-circle fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="mb-0">@string.Format("{0:N0}", Model.Sum(x => x.Total)) đ</h4>
+                            <p class="mb-0">Tổng doanh thu</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-money-bill-wave fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="mb-0">@string.Format("{0:N0}", Model.Any() ? Model.Average(x => x.Total) : 0) đ</h4>
+                            <p class="mb-0">Giá trị TB/đơn</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-chart-line fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="mb-0">@Model.Where(x => x.CreateDay.HasValue && x.CreateDay.Value.Date == DateTime.Today).Count()</h4>
+                            <p class="mb-0">Hoàn thành hôm nay</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-calendar-day fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            Người đặt
-                        </th>
-                        <th>
-                            Email
-                        </th>
-                        <th>
-                            SĐT
-                        </th>
-                        <th>
-                            Tổng tiền
-                        </th>
-
-                        <th>
-                            Ngày đặt
-                        </th>
-
-                        <th>
-                            Địa chỉ giao hàng
-                        </th>
-
-                        <th>
-                            Trạng thái
-                        </th>
-                        <th>Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
+    <!-- Orders Table Card -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-white py-3">
+            <h5 class="mb-0"><i class="fas fa-list-check me-2 text-success"></i>Danh sách đơn hàng hoàn thành</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light">
                         <tr>
-                            <td>
-                                @item.Account?.FullName
-                            </td>
-                            <td>
-                                @item.Account?.Email
-                            </td>  <td>
-                                @item.Account?.Phone
-                            </td>
-                            <td>
-                                @item.Total
-                            </td>
-
-
-                            <td>
-                                @(item.CreateDay.HasValue
-                                    ? item.CreateDay.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN"))
-                                    : "")
-                            </td>
-                            @* <td>
-                                @item?.CreateDay
-                            </td> *@
-                            <td>
-                                @item?.Account?.Addresses.FirstOrDefault()?.Street ,
-                                @item?.Account?.Addresses.FirstOrDefault()?.Ward,
-                                @item?.Account?.Addresses.FirstOrDefault()?.District,
-                                @item?.Account?.Addresses.FirstOrDefault()?.City
-                            </td>
-
-
-                            <td>Hoàn thành </td>
-
-                            <td>
-                                @* <a asp-action="ConfimShip" asp-route-id="@item?.Id" class="btn btn-success mb-2"> Xác nhận đơn hàng</a> *@
-                            </td>
+                            <th class="py-3">Mã đơn</th>
+                            <th class="py-3">Khách hàng</th>
+                            <th class="py-3">Liên hệ</th>
+                            <th class="py-3">Tổng tiền</th>
+                            <th class="py-3">Ngày hoàn thành</th>
+                            <th class="py-3">Địa chỉ giao hàng</th>
+                            <th class="py-3">Trạng thái</th>
+                            <th class="py-3 text-center">Thao tác</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OrderByDescending(x => x.CreateDay))
+                        {
+                            <tr>
+                                <td>
+                                    <span class="fw-bold text-primary">#@item.Id</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar-sm bg-success-subtle text-success rounded-circle me-2 d-flex align-items-center justify-content-center">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0">@item.Account?.FullName</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <div class="small"><i class="fas fa-envelope me-1 text-muted"></i> @item.Account?.Email</div>
+                                        <div class="small"><i class="fas fa-phone me-1 text-muted"></i> @item.Account?.Phone</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="fw-bold text-success">@string.Format("{0:N0}", item.Total) đ</span>
+                                </td>
+                                <td>
+                                    <div>
+                                        <i class="fas fa-calendar me-1 text-muted"></i>
+                                        @(item.CreateDay.HasValue
+                                            ? item.CreateDay.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN"))
+                                            : "")
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="text-truncate d-inline-block" style="max-width: 200px;"
+                                          title="@item?.Account?.Addresses.FirstOrDefault()?.Street, @item?.Account?.Addresses.FirstOrDefault()?.Ward, @item?.Account?.Addresses.FirstOrDefault()?.District, @item?.Account?.Addresses.FirstOrDefault()?.City">
+                                        <i class="fas fa-map-marker-alt me-1 text-danger"></i>
+                                        @item?.Account?.Addresses.FirstOrDefault()?.Street,
+                                        @item?.Account?.Addresses.FirstOrDefault()?.Ward,
+                                        @item?.Account?.Addresses.FirstOrDefault()?.District,
+                                        @item?.Account?.Addresses.FirstOrDefault()?.City
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-success">
+                                        <i class="fas fa-check me-1"></i>Hoàn thành
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <a asp-action="OrderDetails" asp-route-id="@item?.Id" class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="tooltip" title="Xem chi tiết">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a asp-action="PrintInvoice" asp-route-id="@item?.Id" class="btn btn-sm btn-outline-success me-1" data-bs-toggle="tooltip" title="In hóa đơn">
+                                            <i class="fas fa-print"></i>
+                                        </a>
+                                        <a asp-action="DownloadInvoice" asp-route-id="@item?.Id" class="btn btn-sm btn-outline-info me-1" data-bs-toggle="tooltip" title="Tải hóa đơn">
+                                            <i class="fas fa-download"></i>
+                                        </a>
+                                        <button class="btn btn-sm btn-outline-warning" onclick="handleReturn(@item?.Id)" data-bs-toggle="tooltip" title="Xử lý trả hàng">
+                                            <i class="fas fa-undo"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer bg-white py-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <span class="text-muted">Hiển thị <strong>@Model.Count()</strong> đơn hàng hoàn thành</span>
+                </div>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination mb-0">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Return Modal -->
+<div class="modal fade" id="returnModal" tabindex="-1" aria-labelledby="returnModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="returnModalLabel">Xử lý trả hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có muốn xử lý yêu cầu trả hàng cho đơn hàng này không?</p>
+                <div class="mb-3">
+                    <label for="returnReason" class="form-label">Lý do trả hàng:</label>
+                    <textarea class="form-control" id="returnReason" rows="3" placeholder="Nhập lý do trả hàng..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-warning">Xử lý trả hàng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Initialize tooltips
+    document.addEventListener('DOMContentLoaded', function() {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+    });
+
+    // Handle return function
+    function handleReturn(orderId) {
+        $('#returnModal').modal('show');
+    }
+
+    // Export to Excel function
+    function exportToExcel() {
+        // Implement export functionality
+        alert('Chức năng xuất Excel sẽ được triển khai');
+    }
+</script>

@@ -1,28 +1,487 @@
-﻿@model JDshop.Models.Size
+﻿@* @model JDshop.Models.Size *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Details"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>XEM CHI TIẾT</h1> *@
+
+@* <div> *@
+@*     <h4>Size</h4> *@
+@*     <hr /> *@
+@*     <dl class="row"> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Size *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Size1) *@
+@*         </dd> *@
+@*     </dl> *@
+@* </div> *@
+@* <div> *@
+@*     <div style="float: left; padding-right:10px"> *@
+@*         <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Sửa</a> *@
+@*     </div> *@
+@*     <a class="btn btn-secondary" asp-action="Index">Quay Lại</a> *@
+@* </div> *@
+
+
+
+
+
+
+
+@model JDshop.Models.Size
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Chi tiết kích thước";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>XEM CHI TIẾT</h1>
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-<div>
-    <h4>Size</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            Size
-            @* @Html.DisplayNameFor(model => model.Size1) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Size1)
-        </dd>
-    </dl>
-</div>
-<div>
-    <div style="float: left; padding-right:10px">
-        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Sửa</a>
+    .details-page {
+        padding: 2rem;
+        margin: 0 auto;
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .page-subtitle {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin-top: 0.25rem;
+    }
+
+
+
+    .details-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+    }
+
+    .card-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem;
+        text-align: center;
+        color: white;
+    }
+
+    .size-preview {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        font-weight: 700;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+    }
+
+    .size-name {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .size-id {
+        font-size: 0.875rem;
+        opacity: 0.8;
+        margin-top: 0.5rem;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid #007aff;
+    }
+
+    .info-icon {
+        width: 40px;
+        height: 40px;
+        background: #007aff;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.125rem;
+    }
+
+    .info-content {
+        flex: 1;
+    }
+
+    .info-label {
+        font-size: 0.75rem;
+        color: #86868b;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.25rem;
+    }
+
+    .info-value {
+        font-size: 1rem;
+        color: #1d1d1f;
+        font-weight: 600;
+    }
+
+    .category-badge {
+        background: #f0f9ff;
+        color: #0369a1;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        border: 1px solid #bae6fd;
+    }
+
+    .size-variations {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .variations-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .size-scale {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .scale-size {
+        width: 48px;
+        height: 48px;
+        border-radius: 8px;
+        border: 2px solid #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+        background: white;
+    }
+
+        .scale-size.current {
+            border-color: #007aff;
+            background: #007aff;
+            color: white;
+            box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
+        }
+
+        .scale-size.smaller {
+            opacity: 0.6;
+            transform: scale(0.9);
+        }
+
+        .scale-size.larger {
+            opacity: 0.6;
+            transform: scale(1.1);
+        }
+
+    .usage-stats {
+        background: #f0f9ff;
+        border: 1px solid #bae6fd;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+
+    .usage-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #0369a1;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .usage-text {
+        color: #0369a1;
+        font-size: 0.875rem;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-primary {
+        background: #007aff;
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+        }
+
+    .btn-secondary {
+        background: #f5f5f7;
+        color: #1d1d1f !important;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-secondary:hover {
+            background: #e8e8ed;
+            border-color: #9ca3af;
+        }
+
+    .btn-danger {
+        background: #dc2626;
+        color: white;
+    }
+
+        .btn-danger:hover {
+            background: #b91c1c;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+
+   
+</style>
+
+<div class="details-page">
+   
+
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">
+                <i class="fas fa-eye"></i>
+                Chi tiết kích thước
+            </h1>
+            <p class="page-subtitle">Xem thông tin chi tiết về kích thước</p>
+        </div>
     </div>
-    <a class="btn btn-secondary" asp-action="Index">Quay Lại</a>
+
+    <div class="details-card">
+        <div class="card-header">
+            <div class="size-preview">
+                @Model.Size1
+            </div>
+            <h2 class="size-name">Size @Model.Size1</h2>
+            <div class="size-id">ID: #@Model.Id</div>
+        </div>
+
+        <div class="card-body">
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">Kích thước</div>
+                        <div class="info-value">@Model.Size1</div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">Phân loại</div>
+                        <div class="info-value">
+                            <span class="category-badge">@GetSizeCategory(Model.Size1)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">ID kích thước</div>
+                        <div class="info-value">#@Model.Id</div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">Mô tả</div>
+                        <div class="info-value">@GetSizeDescription(Model.Size1)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Size Scale -->
+            <div class="size-variations">
+                <h3 class="variations-title">
+                    <i class="fas fa-ruler"></i>
+                    Thang kích thước
+                </h3>
+                <div class="size-scale">
+                    @foreach (var size in GetSizeScale(Model.Size1))
+                    {
+                        <div class="scale-size @(size == Model.Size1 ? "current" : (GetSizeOrder(size) < GetSizeOrder(Model.Size1) ? "smaller" : "larger"))">
+                            @size
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Usage Statistics -->
+            <div class="usage-stats">
+                <div class="usage-header">
+                    <i class="fas fa-chart-bar"></i>
+                    Thống kê sử dụng
+                </div>
+                <div class="usage-text">
+                    Kích thước này đang được sử dụng trong hệ thống quản lý sản phẩm.
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    Quay lại
+                </a>
+
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">
+                    <i class="fas fa-edit"></i>
+                    Chỉnh sửa
+                </a>
+
+                <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">
+                    <i class="fas fa-trash"></i>
+                    Xóa
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
+
+@functions {
+    string GetSizeCategory(string size)
+    {
+        if (new[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" }.Contains(size.ToUpper()))
+            return "Quần áo";
+        if (new[] { "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45" }.Contains(size))
+            return "Giày dép";
+        if (size.All(char.IsDigit))
+            return "Số";
+        return "Khác";
+    }
+
+    string GetSizeDescription(string size)
+    {
+        var descriptions = new Dictionary<string, string>
+        {
+            {"XS", "Extra Small - Rất nhỏ"},
+            {"S", "Small - Nhỏ"},
+            {"M", "Medium - Vừa"},
+            {"L", "Large - Lớn"},
+            {"XL", "Extra Large - Rất lớn"},
+            {"XXL", "Double Extra Large"},
+            {"XXXL", "Triple Extra Large"}
+        };
+
+        return descriptions.ContainsKey(size.ToUpper()) ? descriptions[size.ToUpper()] : $"Kích thước {size}";
+    }
+
+    List<string> GetSizeScale(string currentSize)
+    {
+        var clothingSizes = new[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" };
+        var shoeSizes = new[] { "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45" };
+
+        if (clothingSizes.Contains(currentSize.ToUpper()))
+            return clothingSizes.ToList();
+        if (shoeSizes.Contains(currentSize))
+            return shoeSizes.ToList();
+
+        // For other sizes, show just the current size
+        return new List<string> { currentSize };
+    }
+
+    int GetSizeOrder(string size)
+    {
+        var clothingSizes = new[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" };
+        var shoeSizes = new[] { "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45" };
+
+        var clothingIndex = Array.IndexOf(clothingSizes, size.ToUpper());
+        if (clothingIndex >= 0) return clothingIndex;
+
+        var shoeIndex = Array.IndexOf(shoeSizes, size);
+        if (shoeIndex >= 0) return shoeIndex;
+
+        return 0;
+    }
+}

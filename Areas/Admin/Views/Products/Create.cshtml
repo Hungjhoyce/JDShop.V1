@@ -1,87 +1,474 @@
-﻿@model JDshop.Models.Product
+﻿@* @model JDshop.Models.Product *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Create"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>THÊM</h1> *@
+
+@* <h4>Sản phẩm</h4> *@
+@* <hr /> *@
+@* <div class="row"> *@
+@*     <div class="col-md-4"> *@
+@*         <form asp-action="Create" method="post" enctype="multipart/form-data"> *@
+@*             <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+
+@*             <div class="form-group  flex-grow-1 mx-4"> *@
+@*                 <div id="image-preview"> *@
+@*                     <div id="preview-container"></div> *@
+@*                     <br /> *@
+@*                     <label class="control-label"> Hình ảnh đại diện</label> *@
+@*                     <input type="file" name="fAvatars" class="form-control-file" onchange="previewImages(this)" multiple required /> *@
+@*                 </div> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Name" class="control-label">Tên sản phẩm</label> *@
+@*                 <input asp-for="Name" class="form-control" /> *@
+@*                 <span asp-validation-for="Name" class="text-danger"></span> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Description" class="control-label">Mô tả</label> *@
+@*                 <input asp-for="Description" class="form-control" /> *@
+@*                 <span asp-validation-for="Description" class="text-danger"></span> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Price" class="control-label">Đơn giá</label> *@
+@*                 <input asp-for="Price" class="form-control" /> *@
+@*                 <span asp-validation-for="Price" class="text-danger"></span> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label>Trạng Thái</label> *@
+@*                 <select class="form-control" asp-for="Status" placeholder="" required> *@
+@*                     <option value="1" selected>Hoạt động</option> *@
+@*                     <option value="2">Ngừng hoạt động</option> *@
+
+@*                 </select> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="ProductTypeId" class="control-label">Loại sản phẩm</label> *@
+@*                 <select asp-for="ProductTypeId" class ="form-control" asp-items="ViewBag.ProductTypeId"></select> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <button type="submit" class="btn btn-gradient-primary me-2">Thêm mới</button> *@
+@*                 <a asp-action="Index" class="btn btn-light">Trở về</a> *@
+@*             </div> *@
+@*         </form> *@
+@*     </div> *@
+@* </div> *@
+
+@* @section Scripts { *@
+@*     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} *@
+@* } *@
+@* <script> *@
+@*     function previewImages(input) { *@
+@*         var previewContainer = document.getElementById('preview-container'); *@
+@*         previewContainer.innerHTML = ''; *@
+@*         if (input.files) { *@
+@*             Array.from(input.files).forEach(file => { *@
+@*                 var reader = new FileReader(); *@
+@*                 reader.onload = function (e) { *@
+@*                     var img = document.createElement('img'); *@
+@*                     img.setAttribute('src', e.target.result); *@
+@*                     img.style.width = '200px'; *@
+@*                     img.style.height = '200px'; *@
+@*                     img.style.borderRadius = '20px'; *@
+@*                     img.style.display = 'block'; *@
+@*                     previewContainer.appendChild(img); *@
+@*                 } *@
+@*                 reader.readAsDataURL(file); *@
+@*             }); *@
+@*         } *@
+@*     }; *@
+@* </script> *@
+
+
+
+
+
+
+
+
+
+
+
+@model JDshop.Models.Product
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Thêm sản phẩm mới";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>THÊM</h1>
+<div class="container-fluid" style="background-color: #f5f5f5; min-height: 100vh; padding: 20px;">
+    <!-- Header -->
+    <div class="mb-4">
+        <h4 class="fw-bold text-dark mb-0">
+            <i class="fas fa-plus-circle me-2"></i>Thêm sản phẩm mới
+        </h4>
+    </div>
 
-<h4>Sản phẩm</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form asp-action="Create" method="post" enctype="multipart/form-data" id="productForm">
+        <div class="row">
+            <!-- Left Column - Product Information -->
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white py-3 border-bottom">
+                        <h6 class="mb-0 fw-bold text-dark">
+                            <i class="fas fa-info-circle me-2"></i>Thông tin sản phẩm
+                        </h6>
+                    </div>
+                    <div class="card-body p-4">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
 
-            <div class="form-group  flex-grow-1 mx-4">
-                <div id="image-preview">
-                    <div id="preview-container"></div>
-                    <br />
-                    <label class="control-label"> Hình ảnh đại diện</label>
-                    <input type="file" name="fAvatars" class="form-control-file" onchange="previewImages(this)" multiple required />
+                        <!-- Product Name -->
+                        <div class="mb-4">
+                            <label asp-for="Name" class="form-label fw-semibold text-dark">
+                                <i class="fas fa-tag me-1"></i>Tên sản phẩm <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="Name" class="form-control border-0 bg-light py-3" style="border-radius: 8px;" placeholder="Nhập tên sản phẩm..." />
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Product Description -->
+                        <div class="mb-4">
+                            <label asp-for="Description" class="form-label fw-semibold text-dark">
+                                <i class="fas fa-align-left me-1"></i>Mô tả sản phẩm
+                            </label>
+                            <textarea asp-for="Description" class="form-control border-0 bg-light" rows="4" style="border-radius: 8px;" placeholder="Nhập mô tả sản phẩm..."></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Price -->
+                        <div class="mb-4">
+                            <label asp-for="Price" class="form-label fw-semibold text-dark">
+                                <i class="fas fa-dollar-sign me-1"></i>Đơn giá <span class="text-danger">*</span>
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-0" style="border-radius: 8px 0 0 8px;">₫</span>
+                                <input asp-for="Price" class="form-control border-0 bg-light py-3" style="border-radius: 0 8px 8px 0;" placeholder="0" />
+                            </div>
+                            <span asp-validation-for="Price" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold text-dark">
+                                <i class="fas fa-toggle-on me-1"></i>Trạng thái <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-select border-0 bg-light py-3" asp-for="Status" style="border-radius: 8px;" required>
+                                <option value="">-- Chọn trạng thái --</option>
+                                <option value="1" selected>Đang hoạt động</option>
+                                <option value="2">Ngừng hoạt động</option>
+                            </select>
+                        </div>
+
+                        <!-- Product Type -->
+                        <div class="mb-4">
+                            <label asp-for="ProductTypeId" class="form-label fw-semibold text-dark">
+                                <i class="fas fa-layer-group me-1"></i>Loại sản phẩm <span class="text-danger">*</span>
+                            </label>
+                            <select asp-for="ProductTypeId" class="form-select border-0 bg-light py-3" asp-items="ViewBag.ProductTypeId" style="border-radius: 8px;">
+                                <option value="">-- Chọn loại sản phẩm --</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label">Tên sản phẩm</label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label">Mô tả</label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label">Đơn giá</label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label>Trạng Thái</label>
-                <select class="form-control" asp-for="Status" placeholder="" required>
-                    <option value="1" selected>Hoạt động</option>
-                    <option value="2">Ngừng hoạt động</option>
 
-                </select>
+            <!-- Right Column - Product Images -->
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white py-3 border-bottom">
+                        <h6 class="mb-0 fw-bold text-dark">
+                            <i class="fas fa-images me-2"></i>Hình ảnh sản phẩm
+                        </h6>
+                    </div>
+                    <div class="card-body p-4">
+                        <!-- Current Images Display (for new products, this will be empty initially) -->
+                        <div class="mb-4" id="current-images-section" style="display: none;">
+                            <h6 class="fw-semibold text-dark mb-3">Hình ảnh hiện tại</h6>
+                            <div id="current-images"></div>
+                        </div>
+
+                        <!-- Add New Images -->
+                        <div>
+                            <h6 class="fw-semibold text-dark mb-3">Thêm hình ảnh mới</h6>
+                            <div class="upload-area text-center p-4 mb-3" style="border: 2px dashed #dee2e6; border-radius: 8px; background-color: #f8f9fa; cursor: pointer;" onclick="document.getElementById('imageInput').click()">
+                                <div id="preview-container">
+                                    <div class="upload-placeholder">
+                                        <i class="fas fa-cloud-upload-alt fa-2x text-muted mb-2"></i>
+                                        <p class="text-muted mb-1">Nhấp để chọn hình ảnh</p>
+                                        <p class="text-muted small mb-0">hoặc kéo thả file vào đây</p>
+                                        <p class="text-muted small">Hỗ trợ: JPG, PNG, GIF (tối đa 5MB mỗi file)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="file" name="fAvatars" class="form-control d-none" onchange="previewImages(this)" multiple accept="image/*" id="imageInput" required />
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ProductTypeId" class="control-label">Loại sản phẩm</label>
-                <select asp-for="ProductTypeId" class ="form-control" asp-items="ViewBag.ProductTypeId"></select>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-gradient-primary me-2">Thêm mới</button>
-                <a asp-action="Index" class="btn btn-light">Trở về</a>
-            </div>
-        </form>
-    </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="d-flex gap-3 mt-4">
+            <button type="submit" class="btn btn-primary px-4 py-2" style="border-radius: 8px;">
+                <i class="fas fa-save me-2"></i>Lưu thay đổi
+            </button>
+            <button type="button" class="btn btn-outline-secondary px-4 py-2" style="border-radius: 8px;" onclick="previewProduct()">
+                <i class="fas fa-eye me-2"></i>Xem chi tiết
+            </button>
+            <a asp-action="Index" class="btn btn-outline-secondary px-4 py-2" style="border-radius: 8px;">
+                <i class="fas fa-arrow-left me-2"></i>Quay lại danh sách
+            </a>
+        </div>
+    </form>
 </div>
 
-@* <div>
-    <a asp-action="Index">Back to List</a>
-</div> *@
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
+
 <script>
     function previewImages(input) {
         var previewContainer = document.getElementById('preview-container');
-        previewContainer.innerHTML = '';
-        if (input.files) {
-            Array.from(input.files).forEach(file => {
+
+        if (input.files && input.files.length > 0) {
+            previewContainer.innerHTML = '';
+
+            // Create a grid container for images
+            var imageGrid = document.createElement('div');
+            imageGrid.className = 'd-flex flex-wrap gap-2 justify-content-center';
+
+            Array.from(input.files).forEach((file, index) => {
+                // Validate file type
+                if (!file.type.startsWith('image/')) {
+                    alert('Vui lòng chỉ chọn file hình ảnh!');
+                    return;
+                }
+
+                // Validate file size (5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('File ' + file.name + ' quá lớn. Vui lòng chọn file nhỏ hơn 5MB!');
+                    return;
+                }
+
                 var reader = new FileReader();
                 reader.onload = function (e) {
+                    var imageWrapper = document.createElement('div');
+                    imageWrapper.className = 'position-relative';
+
                     var img = document.createElement('img');
                     img.setAttribute('src', e.target.result);
-                    img.style.width = '200px';
-                    img.style.height = '200px';
-                    img.style.borderRadius = '20px';
-                    img.style.display = 'block';
-                    previewContainer.appendChild(img);
+                    img.className = 'img-thumbnail';
+                    img.style.width = '100px';
+                    img.style.height = '100px';
+                    img.style.objectFit = 'cover';
+                    img.style.borderRadius = '8px';
+
+                    var removeBtn = document.createElement('button');
+                    removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                    removeBtn.className = 'btn btn-danger btn-sm position-absolute top-0 end-0 rounded-circle';
+                    removeBtn.style.width = '25px';
+                    removeBtn.style.height = '25px';
+                    removeBtn.style.margin = '-5px';
+                    removeBtn.style.fontSize = '10px';
+                    removeBtn.type = 'button';
+                    removeBtn.onclick = function() {
+                        imageWrapper.remove();
+                        checkIfEmpty();
+                        // Reset file input to trigger change event properly
+                        var newInput = document.createElement('input');
+                        newInput.type = 'file';
+                        newInput.name = 'fAvatars';
+                        newInput.className = 'form-control d-none';
+                        newInput.multiple = true;
+                        newInput.accept = 'image/*';
+                        newInput.id = 'imageInput';
+                        newInput.onchange = function() { previewImages(this); };
+                        newInput.required = true;
+
+                        var oldInput = document.getElementById('imageInput');
+                        oldInput.parentNode.replaceChild(newInput, oldInput);
+                    };
+
+                    imageWrapper.appendChild(img);
+                    imageWrapper.appendChild(removeBtn);
+                    imageGrid.appendChild(imageWrapper);
                 }
                 reader.readAsDataURL(file);
             });
+
+            previewContainer.appendChild(imageGrid);
+
+            // Add file info
+            var fileInfo = document.createElement('div');
+            fileInfo.className = 'mt-2 text-center';
+            fileInfo.innerHTML = '<small class="text-muted">' + input.files.length + ' file(s) đã chọn</small>';
+            previewContainer.appendChild(fileInfo);
+
+        } else {
+            showUploadPlaceholder();
         }
-    };
+    }
+
+    function showUploadPlaceholder() {
+        var previewContainer = document.getElementById('preview-container');
+        previewContainer.innerHTML = `
+            <div class="upload-placeholder">
+                <i class="fas fa-cloud-upload-alt fa-2x text-muted mb-2"></i>
+                <p class="text-muted mb-1">Nhấp để chọn hình ảnh</p>
+                <p class="text-muted small mb-0">hoặc kéo thả file vào đây</p>
+                <p class="text-muted small">Hỗ trợ: JPG, PNG, GIF (tối đa 5MB mỗi file)</p>
+            </div>
+        `;
+    }
+
+    function checkIfEmpty() {
+        var previewContainer = document.getElementById('preview-container');
+        if (!previewContainer.querySelector('img')) {
+            showUploadPlaceholder();
+        }
+    }
+
+    function previewProduct() {
+        // Get form data
+        var name = document.querySelector('input[name="Name"]').value;
+        var description = document.querySelector('textarea[name="Description"]').value;
+        var price = document.querySelector('input[name="Price"]').value;
+        var status = document.querySelector('select[name="Status"]').value;
+        var productType = document.querySelector('select[name="ProductTypeId"]').value;
+
+        if (!name) {
+            alert('Vui lòng nhập tên sản phẩm!');
+            return;
+        }
+
+        // Create preview modal or alert
+        var statusText = status == '1' ? 'Đang hoạt động' : 'Ngừng hoạt động';
+        var productTypeText = document.querySelector('select[name="ProductTypeId"] option:checked').text;
+
+        var previewContent = `
+            Tên sản phẩm: ${name}
+            Mô tả: ${description || 'Chưa có mô tả'}
+            Đơn giá: ${price ? parseInt(price).toLocaleString() + ' VNĐ' : 'Chưa nhập giá'}
+            Trạng thái: ${statusText}
+            Loại sản phẩm: ${productTypeText}
+        `;
+
+        alert('Xem trước sản phẩm:\n\n' + previewContent);
+    }
+
+    // Drag and drop functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        var uploadArea = document.querySelector('.upload-area');
+        var fileInput = document.getElementById('imageInput');
+
+        if (uploadArea && fileInput) {
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, highlight, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, unhighlight, false);
+            });
+
+            function highlight(e) {
+                uploadArea.style.borderColor = '#007bff';
+                uploadArea.style.backgroundColor = '#e3f2fd';
+            }
+
+            function unhighlight(e) {
+                uploadArea.style.borderColor = '#dee2e6';
+                uploadArea.style.backgroundColor = '#f8f9fa';
+            }
+
+            uploadArea.addEventListener('drop', handleDrop, false);
+
+            function handleDrop(e) {
+                var dt = e.dataTransfer;
+                var files = dt.files;
+                fileInput.files = files;
+                previewImages(fileInput);
+            }
+        }
+    });
+
+    // Form validation before submit
+    document.getElementById('productForm').addEventListener('submit', function(e) {
+        var fileInput = document.getElementById('imageInput');
+
+        // Check if images are selected
+        if (!fileInput.files || fileInput.files.length === 0) {
+            e.preventDefault();
+            alert('Vui lòng thêm ít nhất một hình ảnh cho sản phẩm!');
+            return false;
+        }
+
+        // Check required fields
+        var name = document.querySelector('input[name="Name"]').value;
+        var price = document.querySelector('input[name="Price"]').value;
+        var status = document.querySelector('select[name="Status"]').value;
+        var productType = document.querySelector('select[name="ProductTypeId"]').value;
+
+        if (!name.trim()) {
+            e.preventDefault();
+            alert('Vui lòng nhập tên sản phẩm!');
+            return false;
+        }
+
+        if (!price || price <= 0) {
+            e.preventDefault();
+            alert('Vui lòng nhập đơn giá hợp lệ!');
+            return false;
+        }
+
+        if (!status) {
+            e.preventDefault();
+            alert('Vui lòng chọn trạng thái!');
+            return false;
+        }
+
+        if (!productType) {
+            e.preventDefault();
+            alert('Vui lòng chọn loại sản phẩm!');
+            return false;
+        }
+
+        return true;
+    });
 </script>
+
+<style>
+    .upload-area:hover {
+        border-color: #007bff !important;
+        background-color: #e3f2fd !important;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #86b7fe;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+
+    .btn:hover {
+        transform: translateY(-1px);
+        transition: all 0.3s ease;
+    }
+
+    .img-thumbnail:hover {
+        transform: scale(1.05);
+        transition: all 0.3s ease;
+    }
+</style>

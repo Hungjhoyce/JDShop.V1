@@ -1,67 +1,373 @@
-﻿@model JDshop.Models.ProductSizeColor
+﻿@* @model JDshop.Models.ProductSizeColor *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Delete"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>XOÁ SẢN PHẨM-MÀU-SIZE</h1> *@
+
+@* <h3>Bạn có chắc là muốn xóa không?</h3> *@
+@* <div> *@
+@*     <h4>Sản phẩm Màu Size</h4> *@
+@*     <hr /> *@
+@*     <dl class="row"> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Mã Code *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Code) *@
+@*         </dd> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Màu *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Color.Color1) *@
+@*         </dd> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Tên sản phẩm *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Product.Name) *@
+@*         </dd> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Số lượng *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.ProductInventory.Quantity) *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
+@*             Số lượng bán *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.ProductInventory.QuantitySold) *@
+@*         </dd> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Size *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Size.Size1) *@
+@*         </dd> *@
+@*     </dl> *@
+    
+@*     <div style="float: left; padding-right:10px"> *@
+@*         <a class="btn btn-secondary" asp-action="Index">Quay Lại</a> *@
+@*     </div> *@
+@*     <form asp-action="Delete"> *@
+
+@*         <input type="hidden" asp-for="Id" /> *@
+@*         <input type="submit" value="Xóa" class="btn btn-danger" /> *@
+@*     </form> *@
+@* </div> *@
+
+
+
+
+
+
+
+
+@model JDshop.Models.ProductSizeColor
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Xóa biến thể sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>XOÁ SẢN PHẨM-MÀU-SIZE</h1>
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-<h3>Bạn có chắc là muốn xóa không?</h3>
-<div>
-    <h4>Sản phẩm Màu Size</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            Mã Code
-            @* @Html.DisplayNameFor(model => model.Code) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Code)
-        </dd>
-        <dt class = "col-sm-2">
-            Màu
-            @* @Html.DisplayNameFor(model => model.Color) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Color.Color1)
-        </dd>
-        <dt class = "col-sm-2">
-            Tên sản phẩm
-            @* @Html.DisplayNameFor(model => model.Product) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Product.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            Số lượng
-            @* @Html.DisplayNameFor(model => model.ProductInventory) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductInventory.Quantity)
-        </dd>
-        <dt class="col-sm-2">
-            Số lượng bán
-            @* @Html.DisplayNameFor(model => model.ProductInventory) *@
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProductInventory.QuantitySold)
-        </dd>
-        <dt class = "col-sm-2">
-            Size
-            @* @Html.DisplayNameFor(model => model.Size) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Size.Size1)
-        </dd>
-    </dl>
-    
-    <div style="float: left; padding-right:10px">
-        <a class="btn btn-secondary" asp-action="Index">Quay Lại</a>
+    .delete-page {
+        padding: 2rem;
+        margin: 0 auto;
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+    }
+
+    .page-subtitle {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin: 0;
+    }
+
+    .warning-alert {
+        background-color: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .warning-icon {
+        color: #dc2626;
+        font-size: 1.125rem;
+    }
+
+    .warning-text {
+        color: #dc2626;
+        font-size: 0.875rem;
+        margin: 0;
+    }
+
+    .product-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .product-icon {
+        width: 48px;
+        height: 48px;
+        background: #8b5cf6;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .product-info {
+        flex: 1;
+    }
+
+    .product-name {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 0.25rem 0;
+    }
+
+    .product-description {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin: 0;
+    }
+
+    .product-details {
+        display: grid;
+        gap: 0.75rem;
+    }
+
+    .detail-row {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.5rem 0;
+    }
+
+    .detail-icon {
+        width: 20px;
+        color: #86868b;
+        font-size: 0.875rem;
+        text-align: center;
+    }
+
+    .detail-label {
+        font-size: 0.875rem;
+        color: #1d1d1f;
+        min-width: 120px;
+    }
+
+    .detail-value {
+        font-size: 0.875rem;
+        color: #1d1d1f;
+        flex: 1;
+    }
+
+    .status-badge {
+        background: #d1fae5;
+        color: #065f46;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .color-display {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .color-swatch {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 1px solid #d1d5db;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-cancel {
+        background: #f5f5f7;
+        color: #1d1d1f;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-cancel:hover {
+            background: #e8e8ed;
+        }
+
+    .btn-delete {
+        background: #dc2626;
+        color: white;
+    }
+
+        .btn-delete:hover {
+            background: #b91c1c;
+        }
+
+   
+</style>
+
+<div class="delete-page">
+    <div class="page-header">
+        <h1 class="page-title">Xóa biến thể sản phẩm</h1>
+        <p class="page-subtitle">Xác nhận xóa biến thể khỏi hệ thống</p>
     </div>
-    <form asp-action="Delete">
 
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Xóa" class="btn btn-danger" />
-    </form>
+    <div class="warning-alert">
+        <i class="fas fa-exclamation-triangle warning-icon"></i>
+        <p class="warning-text">Bạn có chắc chắn muốn xóa biến thể này? Hành động này không thể hoàn tác.</p>
+    </div>
+
+    <div class="product-card">
+        <div class="product-header">
+            <div class="product-icon">
+                <i class="fas fa-palette"></i>
+            </div>
+            <div class="product-info">
+                <h3 class="product-name">@(Model.Product?.Name ?? "Chưa có tên sản phẩm")</h3>
+                <p class="product-description">Thông tin biến thể sẽ bị xóa</p>
+            </div>
+        </div>
+
+        <div class="product-details">
+            <div class="detail-row">
+                <i class="fas fa-tag detail-icon"></i>
+                <span class="detail-label">Tên sản phẩm</span>
+                <span class="detail-value">@(Model.Product?.Name ?? "Chưa có tên")</span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-barcode detail-icon"></i>
+                <span class="detail-label">Mã code</span>
+                <span class="detail-value">@(Model.Code ?? "Chưa có mã")</span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-palette detail-icon"></i>
+                <span class="detail-label">Màu sắc</span>
+                <span class="detail-value">
+                    @if (!string.IsNullOrEmpty(Model.Color?.Color1))
+                    {
+                        <div class="color-display">
+                            <div class="color-swatch" style="background-color: @GetColorHex(Model.Color.Color1);"></div>
+                            @Model.Color.Color1
+                        </div>
+                    }
+                    else
+                    {
+                        <span>Chưa có màu</span>
+                    }
+                </span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-expand-arrows-alt detail-icon"></i>
+                <span class="detail-label">Kích thước</span>
+                <span class="detail-value">@(Model.Size?.Size1 ?? "Chưa có size")</span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-warehouse detail-icon"></i>
+                <span class="detail-label">Số lượng tồn</span>
+                <span class="detail-value">@(Model.ProductInventory?.Quantity ?? 0)</span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-chart-line detail-icon"></i>
+                <span class="detail-label">Trạng thái</span>
+                <span class="detail-value">
+                    <span class="status-badge">Hoạt động</span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <a asp-action="Index" class="btn btn-cancel">
+            <i class="fas fa-arrow-left"></i>
+            Hủy
+        </a>
+
+        <form asp-action="Delete" style="display: inline;">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa biến thể này không?')">
+                <i class="fas fa-trash"></i>
+                Xác nhận xóa
+            </button>
+        </form>
+    </div>
 </div>
+
+@functions {
+    string GetColorHex(string colorName)
+    {
+        var colorMap = new Dictionary<string, string>
+        {
+            {"đỏ", "#ff0000"}, {"xanh", "#0000ff"}, {"vàng", "#ffff00"},
+            {"đen", "#000000"}, {"trắng", "#ffffff"}, {"xám", "#808080"},
+            {"hồng", "#ffc0cb"}, {"tím", "#800080"}, {"cam", "#ffa500"},
+            {"nâu", "#a52a2a"}, {"xanh lá", "#008000"}
+        };
+
+        return colorMap.ContainsKey(colorName.ToLower()) ? colorMap[colorName.ToLower()] : "#cccccc";
+    }
+}

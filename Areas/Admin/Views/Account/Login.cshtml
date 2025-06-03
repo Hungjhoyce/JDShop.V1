@@ -1,65 +1,585 @@
-﻿@{
+﻿@* @{ *@
+@*     Layout = null; *@
+@*     ViewData["Title"] = "Login"; *@
+@* } *@
+@* <!DOCTYPE html> *@
+@* <html lang="en"> *@
+@* <head> *@
+@*     <!-- Required meta tags --> *@
+@*     <meta charset="utf-8"> *@
+@*     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> *@
+@*     <title>Login</title> *@
+@*     <!-- plugins:css --> *@
+@*     <link rel="stylesheet" href="~/LayoutAdmin/assets/vendors/mdi/css/materialdesignicons.min.css"> *@
+@*     <link rel="stylesheet" href="~/LayoutAdmin/assets/vendors/css/vendor.bundle.base.css"> *@
+@*     <link rel="stylesheet" href="~/LayoutAdmin/assets/css/style.css"> *@
+@*     <!-- End layout styles --> *@
+@*     <link rel="shortcut icon" href="~/LayoutAdmin/assets/images/favicon.ico" /> *@
+@* </head> *@
+@* <body> *@
+@*     <div class="container-scroller"> *@
+@*         <div class="container-fluid page-body-wrapper full-page-wrapper"> *@
+@*             <div class="content-wrapper d-flex align-items-center auth"> *@
+@*                 <div class="row flex-grow"> *@
+@*                     <div class="col-lg-4 mx-auto"> *@
+@*                         <div class="auth-form-light text-left p-5"> *@
+@*                            @*  <div class="brand-logo"> *@
+@*                                 <img src="~/LayoutAdmin/assets/images/logo.svg"> *@
+@*                             </div> *@
+@*                             <h4>Xin chào! Bắt đầu nào</h4> *@
+@*                             <h6 class="font-weight-light">Đăng nhập để tiếp tục</h6> *@
+@*                             <form class="pt-3" method="post" asp-action="Login"> *@
+@*                                 <div class="form-group"> *@
+@*                                     <input class="form-control form-control-lg" name="user" placeholder="Username" required> *@
+@*                                 </div> *@
+@*                                 <div class="form-group"> *@
+@*                                     <input type="password" class="form-control form-control-lg" name="pass" placeholder="Password" required> *@
+@*                                 </div> *@
+@*                                 <div class="mt-3"> *@
+@*                                     <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">ĐĂNG NHẬP</button> *@
+@*                                 </div> *@
+@*                                 <div class="my-2 d-flex justify-content-between align-items-center"> *@
+@*                                     <a href="#" class="auth-link text-black">Forgot password?</a> *@
+@*                                 </div> *@
+@*                             </form> *@
+@*                         </div> *@
+@*                     </div> *@
+@*                 </div> *@
+@*             </div> *@
+@*             <!-- content-wrapper ends --> *@
+@*         </div> *@
+@*         <!-- page-body-wrapper ends --> *@
+@*     </div> *@
+@*     <!-- container-scroller --> *@
+@*     <!-- plugins:js --> *@
+@*     <script src="~/LayoutAdmin/assets/vendors/js/vendor.bundle.base.js"></script> *@
+@*     <!-- endinject --> *@
+@*     <!-- Plugin js for this page --> *@
+@*     <!-- End plugin js for this page --> *@
+@*     <!-- inject:js --> *@
+@*     <script src="~/LayoutAdmin/assets/js/off-canvas.js"></script> *@
+@*     <script src="~/LayoutAdmin/assets/js/hoverable-collapse.js"></script> *@
+@*     <script src="~/LayoutAdmin/assets/js/misc.js"></script> *@
+@*     <!-- endinject -->  @await Component.InvokeAsync("Notyf"); *@
+@* </body> *@
+@* </html> *@
+
+
+
+
+
+
+
+
+
+@{
     Layout = null;
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Đăng nhập";
 }
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Login</title>
-    <!-- plugins:css -->
+    <title>Đăng nhập - Hệ thống quản lý</title>
     <link rel="stylesheet" href="~/LayoutAdmin/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="~/LayoutAdmin/assets/vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="~/LayoutAdmin/assets/css/style.css">
-    <!-- End layout styles -->
     <link rel="shortcut icon" href="~/LayoutAdmin/assets/images/favicon.ico" />
+
+    <style>
+        :root {
+            --primary-color: #4e73df;
+            --primary-dark: #3a5fc8;
+            --secondary-color: #858796;
+            --success-color: #1cc88a;
+            --info-color: #36b9cc;
+            --warning-color: #f6c23e;
+            --danger-color: #e74a3b;
+            --light-color: #f8f9fc;
+            --dark-color: #5a5c69;
+            --body-color: #f5f8fa;
+            --white-color: #fff;
+            --border-color: #e3e6f0;
+            --input-bg: #f8f9fc;
+            --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--body-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            display: flex;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            background-color: var(--white-color);
+            min-height: 600px;
+        }
+
+        .login-banner {
+            flex: 1;
+            background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white-color);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .login-banner::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-image: url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');
+                background-size: cover;
+                background-position: center;
+                opacity: 0.2;
+            }
+
+        .banner-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .banner-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .banner-text {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .banner-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .banner-features li {
+                margin-bottom: 1rem;
+                display: flex;
+                align-items: center;
+            }
+
+            .banner-features i {
+                margin-right: 0.5rem;
+                font-size: 1.2rem;
+                color: var(--warning-color);
+            }
+
+        .login-form-container {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white-color);
+            font-size: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .login-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .login-subtitle {
+            color: var(--secondary-color);
+            font-size: 1rem;
+        }
+
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-color);
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background-color: var(--input-bg);
+            transition: all 0.2s ease;
+        }
+
+            .form-control:focus {
+                outline: none;
+                border-color: var(--primary-color);
+                box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+                background-color: var(--white-color);
+            }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .input-with-icon {
+            padding-left: 2.5rem;
+        }
+
+        .password-toggle {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 1rem;
+            color: var(--secondary-color);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .form-check-input {
+            margin-right: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .form-check-label {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .forgot-password {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+            .forgot-password:hover {
+                color: var(--primary-dark);
+                text-decoration: underline;
+            }
+
+        .btn {
+            display: inline-block;
+            font-weight: 500;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 10px;
+            transition: all 0.15s ease-in-out;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            color: var(--white-color);
+            background: linear-gradient(to right, var(--primary-color), var(--info-color));
+            border: none;
+            box-shadow: var(--shadow-sm);
+        }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow);
+            }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+            .login-footer a {
+                color: var(--primary-color);
+                text-decoration: none;
+            }
+
+                .login-footer a:hover {
+                    text-decoration: underline;
+                }
+
+        .alert {
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid transparent;
+            border-radius: 10px;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+
+        .form-error {
+            color: var(--danger-color);
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+        }
+
+        .loading {
+            position: relative;
+            pointer-events: none;
+        }
+
+            .loading::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(255, 255, 255, 0.7);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 10px;
+            }
+
+            .loading .btn-primary {
+                background: var(--secondary-color);
+            }
+    </style>
 </head>
 <body>
-    <div class="container-scroller">
-        <div class="container-fluid page-body-wrapper full-page-wrapper">
-            <div class="content-wrapper d-flex align-items-center auth">
-                <div class="row flex-grow">
-                    <div class="col-lg-4 mx-auto">
-                        <div class="auth-form-light text-left p-5">
-                           @*  <div class="brand-logo">
-                                <img src="~/LayoutAdmin/assets/images/logo.svg">
-                            </div> *@
-                            <h4>Xin chào! Bắt đầu nào</h4>
-                            <h6 class="font-weight-light">Đăng nhập để tiếp tục</h6>
-                            <form class="pt-3" method="post" asp-action="Login">
-                                <div class="form-group">
-                                    <input class="form-control form-control-lg" name="user" placeholder="Username" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg" name="pass" placeholder="Password" required>
-                                </div>
-                                <div class="mt-3">
-                                    <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">ĐĂNG NHẬP</button>
-                                </div>
-                                <div class="my-2 d-flex justify-content-between align-items-center">
-                                    <a href="#" class="auth-link text-black">Forgot password?</a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+    <div class="login-container">
+        <!-- Left Banner Section -->
+        <div class="login-banner">
+            <div class="banner-content">
+                <h1 class="banner-title">Hệ thống quản lý</h1>
+                <p class="banner-text">Chào mừng bạn đến với hệ thống quản lý. Đăng nhập để truy cập vào trang quản trị.</p>
+                <ul class="banner-features">
+                    <li><i class="mdi mdi-check-circle"></i> Quản lý tài khoản người dùng</li>
+                    <li><i class="mdi mdi-check-circle"></i> Theo dõi và phân tích dữ liệu</li>
+                    <li><i class="mdi mdi-check-circle"></i> Bảo mật và an toàn thông tin</li>
+                    <li><i class="mdi mdi-check-circle"></i> Hỗ trợ kỹ thuật 24/7</li>
+                </ul>
             </div>
-            <!-- content-wrapper ends -->
         </div>
-        <!-- page-body-wrapper ends -->
+
+        <!-- Right Form Section -->
+        <div class="login-form-container">
+            <div class="login-header">
+                <div class="login-logo">
+                    <i class="mdi mdi-shield-account"></i>
+                </div>
+                <h2 class="login-title">Đăng nhập</h2>
+                <p class="login-subtitle">Vui lòng đăng nhập để tiếp tục</p>
+            </div>
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <i class="mdi mdi-alert-circle"></i> @TempData["ErrorMessage"]
+                </div>
+            }
+
+            <form class="login-form" method="post" asp-action="Login" id="loginForm">
+                <div class="form-group">
+                    <label for="username" class="form-label">Tên đăng nhập</label>
+                    <div class="input-group">
+                        <i class="mdi mdi-account input-icon"></i>
+                        <input type="text" id="username" name="user" class="form-control input-with-icon" placeholder="Nhập tên đăng nhập" required>
+                    </div>
+                    <div class="form-error username-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Mật khẩu</label>
+                    <div class="input-group">
+                        <i class="mdi mdi-lock input-icon"></i>
+                        <input type="password" id="password" name="pass" class="form-control input-with-icon" placeholder="Nhập mật khẩu" required>
+                        <button type="button" class="password-toggle" id="passwordToggle">
+                            <i class="mdi mdi-eye"></i>
+                        </button>
+                    </div>
+                    <div class="form-error password-error"></div>
+                </div>
+
+                <div class="form-actions">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
+                        <label class="form-check-label" for="rememberMe">Ghi nhớ đăng nhập</label>
+                    </div>
+                    <a href="#" class="forgot-password">Quên mật khẩu?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" id="loginButton">
+                    <i class="mdi mdi-login"></i> Đăng nhập
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p>&copy; @DateTime.Now.Year - Hệ thống quản lý | <a href="#">Trợ giúp</a> | <a href="#">Liên hệ</a></p>
+            </div>
+        </div>
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
+
     <script src="~/LayoutAdmin/assets/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="~/LayoutAdmin/assets/js/off-canvas.js"></script>
-    <script src="~/LayoutAdmin/assets/js/hoverable-collapse.js"></script>
-    <script src="~/LayoutAdmin/assets/js/misc.js"></script>
-    <!-- endinject -->  @await Component.InvokeAsync("Notyf");
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Password visibility toggle
+            var passwordField = document.getElementById('password');
+            var passwordToggle = document.getElementById('passwordToggle');
+
+            passwordToggle.addEventListener('click', function() {
+                var icon = this.querySelector('i');
+
+                if (passwordField.type === 'password') {
+                    passwordField.type = 'text';
+                    icon.classList.remove('mdi-eye');
+                    icon.classList.add('mdi-eye-off');
+                } else {
+                    passwordField.type = 'password';
+                    icon.classList.remove('mdi-eye-off');
+                    icon.classList.add('mdi-eye');
+                }
+            });
+
+            // Form validation
+            var loginForm = document.getElementById('loginForm');
+            var usernameInput = document.getElementById('username');
+            var passwordInput = document.getElementById('password');
+            var usernameError = document.querySelector('.username-error');
+            var passwordError = document.querySelector('.password-error');
+            var loginButton = document.getElementById('loginButton');
+
+            loginForm.addEventListener('submit', function(e) {
+                var isValid = true;
+
+                // Reset errors
+                usernameError.textContent = '';
+                passwordError.textContent = '';
+
+                // Validate username
+                if (!usernameInput.value.trim()) {
+                    usernameError.textContent = 'Vui lòng nhập tên đăng nhập';
+                    isValid = false;
+                }
+
+                // Validate password
+                if (!passwordInput.value.trim()) {
+                    passwordError.textContent = 'Vui lòng nhập mật khẩu';
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    e.preventDefault();
+                    return;
+                }
+
+                // Show loading state
+                loginButton.innerHTML = '<i class="mdi mdi-loading mdi-spin"></i> Đang đăng nhập...';
+                loginForm.classList.add('loading');
+            });
+
+            // Input focus effects
+            var inputs = document.querySelectorAll('.form-control');
+
+            inputs.forEach(function(input) {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.boxShadow = '0 0 0 0.2rem rgba(78, 115, 223, 0.25)';
+                });
+
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.boxShadow = 'none';
+                });
+            });
+        });
+    </script>
+
+    @await Component.InvokeAsync("Notyf")
 </body>
 </html>

@@ -1,78 +1,741 @@
-﻿@model JDshop.Models.News
+﻿@* @model JDshop.Models.News *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Edit"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>CHỈNH SỬA</h1> *@
+
+@* <h4>Tin tức</h4> *@
+@* <hr /> *@
+@* <div class="row"> *@
+@*     <div class="col-md-4"> *@
+@*         <form asp-action="Edit" method="post" enctype="multipart/form-data"> *@
+@*             <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+@*             <input type="hidden" asp-for="Id" /> *@
+@*             <input type="hidden" asp-for="Status" /> *@
+@*             <div class="form-group flex-grow-1 mx-4"> *@
+@*                 <div id="previewImages" class="d-flex flex-wrap gap-2 mb-3"> *@
+@*                     <img src="@Url.Content("~/contents/Images/News/" + Model.Images)" style="width: 200px; height: 200px; border-radius: 20px;" alt="Existing Image"> *@
+@*                 </div> *@
+@*                 <label class="control-label">Hình ảnh đại diện</label> *@
+@*                 <input type="file" name="fAvatars" id="imageUpload" class="form-control-file" onchange="previewFiles(event)" /> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Title" class="control-label">Tên Blog</label> *@
+@*                 <input asp-for="Title" class="form-control" /> *@
+@*                 <span asp-validation-for="Title" class="text-danger"></span> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Content" class="control-label">Nội dung</label> *@
+@*                 <textarea asp-for="Content" class="form-control" id="summernote"></textarea> *@
+@*                 <span asp-validation-for="Content" class="text-danger"></span> *@
+@*             </div> *@
+         
+@*             <div class="form-group"> *@
+@*                 <a asp-action="Index" class="btn btn-light">Trở về</a> *@
+@*                 <button type="submit" class="btn btn-gradient-primary me-2">Sửa</button> *@
+@*             </div> *@
+@*         </form> *@
+@*     </div> *@
+@* </div> *@
+
+@* @section Scripts { *@
+@*     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} *@
+@*     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.js"></script> *@
+@*     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.css" rel="stylesheet" /> *@
+@*     <script> *@
+@*         $(document).ready(function() { *@
+@*             $('#summernote').summernote({ *@
+@*                 height: 200 // set height *@
+@*             }); *@
+@*         }); *@
+@*     </script> *@
+@* } *@
+@* <script> *@
+@*     const previewFiles = (event) => { *@
+@*         const files = event.target.files; *@
+@*         const previewContainer = document.getElementById("previewImages"); *@
+@*         previewContainer.innerHTML = ""; // Xóa ảnh cũ *@
+
+@*         Array.from(files).forEach(file => { *@
+@*             const reader = new FileReader(); *@
+@*             reader.onload = function (e) { *@
+@*                 const img = document.createElement("img"); *@
+@*                 img.src = e.target.result; *@
+@*                 img.style = "width: 200px; height: 200px; border-radius: 20px; margin-right: 10px;"; *@
+@*                 previewContainer.appendChild(img); *@
+@*             }; *@
+@*             reader.readAsDataURL(file); *@
+@*         }); *@
+@*     }; *@
+  
+@* </script> *@
+
+
+
+
+
+
+
+
+
+
+@model JDshop.Models.News
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Chỉnh sửa tin tức";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>CHỈNH SỬA</h1>
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-<h4>Tin tức</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <input type="hidden" asp-for="Status" />
-            <div class="form-group flex-grow-1 mx-4">
-                <div id="previewImages" class="d-flex flex-wrap gap-2 mb-3">
-                    <img src="@Url.Content("~/contents/Images/News/" + Model.Images)" style="width: 200px; height: 200px; border-radius: 20px;" alt="Existing Image">
-                </div>
-                <label class="control-label">Hình ảnh đại diện</label>
-                <input type="file" name="fAvatars" id="imageUpload" class="form-control-file" onchange="previewFiles(event)" />
-            </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label">Tên Blog</label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Content" class="control-label">Nội dung</label>
-                <textarea asp-for="Content" class="form-control" id="summernote"></textarea>
-                <span asp-validation-for="Content" class="text-danger"></span>
-            </div>
-         
-            <div class="form-group">
-                <a asp-action="Index" class="btn btn-light">Trở về</a>
-                <button type="submit" class="btn btn-gradient-primary me-2">Sửa</button>
-            </div>
-        </form>
+    .main-container {
+        background-color: #f5f5f7;
+        min-height: 100vh;
+        padding: 2rem;
+    }
+
+    .header-section {
+        margin-bottom: 2rem;
+    }
+
+    .header-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .header-subtitle {
+        color: #86868b;
+        margin: 0.25rem 0 0 0;
+        font-size: 0.95rem;
+    }
+
+    .form-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+    }
+
+    .main-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        border: 1px solid #f0f0f0;
+        overflow: hidden;
+    }
+
+    .card-header {
+        background: #f9f9f9;
+        padding: 1.5rem;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+        .form-label.required::after {
+            content: " *";
+            color: #ff3b30;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+        background: white;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #007aff;
+            box-shadow: 0 0 0 3px rgba(0,122,255,0.1);
+        }
+
+        .form-control:invalid {
+            border-color: #ff3b30;
+        }
+
+    .form-hint {
+        color: #86868b;
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+    }
+
+    .validation-error {
+        color: #ff3b30;
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    .sidebar-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        border: 1px solid #f0f0f0;
+        overflow: hidden;
+        height: fit-content;
+    }
+
+    .sidebar-header {
+        background: #f0f8ff;
+        padding: 1.5rem;
+        border-bottom: 1px solid #007aff;
+    }
+
+    .sidebar-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #007aff;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .sidebar-body {
+        padding: 1.5rem;
+    }
+
+    .image-upload-container {
+        border: 2px dashed #d2d2d7;
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        margin-bottom: 1.5rem;
+    }
+
+        .image-upload-container:hover {
+            border-color: #007aff;
+            background: #f0f8ff;
+        }
+
+    .image-upload-icon {
+        font-size: 3rem;
+        color: #86868b;
+        margin-bottom: 1rem;
+    }
+
+    .image-upload-text {
+        color: #1d1d1f;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+
+    .image-upload-hint {
+        color: #86868b;
+        font-size: 0.8rem;
+    }
+
+    .image-preview-container {
+        margin-top: 1.5rem;
+    }
+
+    .image-preview {
+        width: 100%;
+        height: 200px;
+        border-radius: 8px;
+        object-fit: cover;
+        border: 1px solid #f0f0f0;
+    }
+
+    .status-toggle {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .toggle-label {
+        font-weight: 600;
+        color: #1d1d1f;
+        font-size: 0.9rem;
+    }
+
+    .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+    }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 24px;
+    }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+    input:checked + .toggle-slider {
+        background-color: #30d158;
+    }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+    .toggle-status {
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+        .toggle-status.active {
+            color: #30d158;
+        }
+
+        .toggle-status.inactive {
+            color: #ff3b30;
+        }
+
+    .actions-container {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        border: 1px solid #f0f0f0;
+        padding: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .actions-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 1rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-start;
+    }
+
+    .btn {
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 0.95rem;
+    }
+
+    .btn-primary {
+        background: #007aff;
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,122,255,0.3);
+            text-decoration: none;
+            color: white;
+        }
+
+    .btn-secondary {
+        background: #f0f0f0;
+        color: #1d1d1f !important;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+            text-decoration: none;
+            color: #1d1d1f;
+        }
+
+    .note-editor {
+        border-radius: 8px !important;
+        border-color: #d2d2d7 !important;
+    }
+
+        .note-editor.note-frame {
+            border: 1px solid #d2d2d7 !important;
+        }
+
+    .note-toolbar {
+        background: #f9f9f9 !important;
+        border-bottom: 1px solid #f0f0f0 !important;
+        border-radius: 8px 8px 0 0 !important;
+    }
+
+    .note-statusbar {
+        border-top: 1px solid #f0f0f0 !important;
+        background: #f9f9f9 !important;
+        border-radius: 0 0 8px 8px !important;
+    }
+
+    .note-btn {
+        border-color: #d2d2d7 !important;
+        background: white !important;
+    }
+
+        .note-btn:hover {
+            background: #f0f0f0 !important;
+        }
+
+
+
+    .loading {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+        .loading .btn-primary {
+            background: #86868b;
+        }
+
+    .file-input {
+        display: none;
+    }
+
+    .meta-info {
+        background: #f9f9f9;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .meta-title {
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 0.5rem 0;
+        font-size: 0.9rem;
+    }
+
+    .meta-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .meta-label {
+        color: #86868b;
+    }
+
+    .meta-value {
+        color: #1d1d1f;
+        font-weight: 500;
+    }
+</style>
+
+<div class="main-container">
+    <!-- Header Section -->
+    <div class="header-section">
+        
+
+        <h1 class="header-title">
+            <i class="mdi mdi-pencil"></i>
+            Chỉnh sửa tin tức
+        </h1>
+        <p class="header-subtitle">Cập nhật thông tin và nội dung bài viết</p>
     </div>
+
+    <form asp-action="Edit" method="post" enctype="multipart/form-data" id="editForm">
+        <div asp-validation-summary="ModelOnly" class="validation-error"></div>
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-container">
+            <!-- Main Content -->
+            <div class="main-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="mdi mdi-text-box"></i>
+                        Thông tin bài viết
+                    </h2>
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="Title" class="form-label required">Tiêu đề bài viết</label>
+                        <input asp-for="Title" class="form-control" placeholder="Nhập tiêu đề bài viết" required />
+                        <div class="form-hint">Tiêu đề nên ngắn gọn, hấp dẫn và mô tả chính xác nội dung</div>
+                        <span asp-validation-for="Title" class="validation-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Content" class="form-label required">Nội dung</label>
+                        <textarea asp-for="Content" class="form-control" id="summernote" required></textarea>
+                        <div class="form-hint">Sử dụng các công cụ định dạng để làm nội dung hấp dẫn hơn</div>
+                        <span asp-validation-for="Content" class="validation-error"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar-card">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title">
+                        <i class="mdi mdi-cog"></i>
+                        Cài đặt bài viết
+                    </h3>
+                </div>
+
+                <div class="sidebar-body">
+                    <!-- Status Toggle -->
+                    <div class="status-toggle">
+                        <span class="toggle-label">Trạng thái:</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="statusToggle" @(Model.Status.HasValue && Model.Status.Value ? "checked" : "") onchange="updateStatus()">
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span id="statusText" class="toggle-status @(Model.Status.HasValue && Model.Status.Value ? "active" : "inactive")">
+                            @(Model.Status.HasValue && Model.Status.Value ? "Hoạt động" : "Ngừng hoạt động")
+                        </span>
+                        <input type="hidden" asp-for="Status" id="statusInput" />
+                    </div>
+
+                    <!-- Image Upload -->
+                    <label class="form-label">Hình ảnh đại diện</label>
+                    <div class="image-upload-container" onclick="document.getElementById('imageUpload').click()">
+                        <div class="image-upload-icon">
+                            <i class="mdi mdi-cloud-upload"></i>
+                        </div>
+                        <div class="image-upload-text">Nhấp để tải lên hình ảnh</div>
+                        <div class="image-upload-hint">Hỗ trợ JPG, PNG, JPEG (Tối đa 5MB)</div>
+                        <input type="file" name="fAvatars" id="imageUpload" class="file-input" onchange="previewImage(event)" accept="image/*" />
+                    </div>
+
+                    <div class="image-preview-container" id="imagePreviewContainer">
+                        @if (!string.IsNullOrEmpty(Model.Images))
+                        {
+                            <img src="@Url.Content("~/contents/Images/News/" + Model.Images)"
+                                 class="image-preview"
+                                 id="imagePreview"
+                                 alt="Preview"
+                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjBGMEYwIi8+CjxwYXRoIGQ9Ik04NSA2NUgxMTVWMTM1SDg1Vjk1SDY1VjEzNUgzNVY2NUg2NVYxMDVIODVWNjVaIiBmaWxsPSIjODY4NjhCIi8+CjwvcmVjdD4KPC9zdmc+'" />
+                        }
+                    </div>
+
+                    <!-- Meta Information -->
+                    <div class="meta-info">
+                        <h4 class="meta-title">
+                            <i class="mdi mdi-information"></i>
+                            Thông tin bổ sung
+                        </h4>
+                        <div class="meta-item">
+                            <span class="meta-label">ID:</span>
+                            <span class="meta-value">@Model.Id</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Ngày tạo:</span>
+                            <span class="meta-value">@DateTime.Now.ToString("dd/MM/yyyy")</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Lần cập nhật:</span>
+                            <span class="meta-value">@DateTime.Now.ToString("dd/MM/yyyy HH:mm")</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions-container">
+            <h3 class="actions-title">
+                <i class="mdi mdi-content-save"></i>
+                Lưu thay đổi
+            </h3>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    <i class="mdi mdi-content-save"></i>
+                    Cập nhật
+                </button>
+                <a class="btn btn-secondary" asp-action="Index">
+                    <i class="mdi mdi-arrow-left"></i>
+                    Quay lại
+                </a>
+            </div>
+        </div>
+    </form>
 </div>
 
-@* <div>
-    <a asp-action="Index">Back to List</a>
-</div> *@
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.css" rel="stylesheet" />
     <script>
         $(document).ready(function() {
+            // Initialize Summernote with custom options
             $('#summernote').summernote({
-                height: 200 // set height
+                height: 300,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ],
+                placeholder: 'Viết nội dung bài viết tại đây...',
+                callbacks: {
+                    onImageUpload: function(files) {
+                        // Custom image upload handler if needed
+                        for (let i = 0; i < files.length; i++) {
+                            const file = files[i];
+                            if (file.size > 5 * 1024 * 1024) {
+                                alert('Kích thước file quá lớn. Tối đa 5MB.');
+                                return;
+                            }
+
+                            // Here you would typically upload to server
+                            // For now, just insert as base64
+                            const reader = new FileReader();
+                            reader.onloadend = function() {
+                                const img = document.createElement('img');
+                                img.src = reader.result;
+                                $('#summernote').summernote('insertNode', img);
+                            }
+                            reader.readAsDataURL(file);
+                        }
+                    }
+                }
             });
+
+            // Set initial status value
+            var statusValue = @(Model.Status.HasValue ? Model.Status.Value.ToString().ToLower() : "false");
+            document.getElementById('statusInput').value = statusValue;
+
+            // Add smooth animations
+            var cards = document.querySelectorAll('.main-card, .sidebar-card, .actions-container');
+            cards.forEach(function(card, index) {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+
+                setTimeout(function() {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // Preview uploaded image
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Kích thước file quá lớn. Tối đa 5MB.');
+                event.target.value = '';
+                return;
+            }
+
+            const reader = new FileReader();
+            const previewContainer = document.getElementById('imagePreviewContainer');
+
+            reader.onload = function(e) {
+                let img = document.getElementById('imagePreview');
+
+                if (!img) {
+                    img = document.createElement('img');
+                    img.id = 'imagePreview';
+                    img.className = 'image-preview';
+                    previewContainer.appendChild(img);
+                }
+
+                img.src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        // Update status toggle
+        function updateStatus() {
+            const toggle = document.getElementById('statusToggle');
+            const statusText = document.getElementById('statusText');
+            const statusInput = document.getElementById('statusInput');
+
+            if (toggle.checked) {
+                statusText.textContent = 'Hoạt động';
+                statusText.className = 'toggle-status active';
+                statusInput.value = 'true';
+            } else {
+                statusText.textContent = 'Ngừng hoạt động';
+                statusText.className = 'toggle-status inactive';
+                statusInput.value = 'false';
+            }
+        }
+
+        // Form submission
+        document.getElementById('editForm').addEventListener('submit', function(e) {
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerHTML = '<i class="mdi mdi-loading mdi-spin"></i> Đang cập nhật...';
+            submitBtn.disabled = true;
+            this.classList.add('loading');
         });
     </script>
 }
-<script>
-    const previewFiles = (event) => {
-        const files = event.target.files;
-        const previewContainer = document.getElementById("previewImages");
-        previewContainer.innerHTML = ""; // Xóa ảnh cũ
-
-        Array.from(files).forEach(file => {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const img = document.createElement("img");
-                img.src = e.target.result;
-                img.style = "width: 200px; height: 200px; border-radius: 20px; margin-right: 10px;";
-                previewContainer.appendChild(img);
-            };
-            reader.readAsDataURL(file);
-        });
-    };
-  
-</script>

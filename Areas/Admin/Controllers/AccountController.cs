@@ -14,7 +14,7 @@ using JDshop.Helper;
 namespace JDshop.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Nhân Viên")]
     public class AccountController : Controller
     {
         private JDshopDbContext _context; public static string? image;
@@ -189,17 +189,28 @@ namespace JDshop.Areas.Admin.Controllers
         {
             if (_context.Accounts == null)
             {
-                return Problem("Entity set 'WebMyPhamContext.Accounts'  is null.");
+                return Problem("Entity set 'JDshopDbContext.Accounts' is null.");
             }
-            var product = await _context.Accounts.FindAsync(id);
-            if (product != null)
+
+            var account = await _context.Accounts
+                .Include(a => a.Addresses) // nạp luôn các địa chỉ liên quan
+                .FirstOrDefaultAsync(a => a.Id == id);
+
+            if (account != null)
             {
-                _context.Accounts.Remove(product);
+                // Xóa tất cả các địa chỉ liên quan
+                _context.Addresses.RemoveRange(account.Addresses);
+
+                // Sau đó mới xóa tài khoản
+                _context.Accounts.Remove(account);
+
+                _notyfService.Success("Xóa thành công");
+                await _context.SaveChangesAsync();
             }
-            _notyfService.Success("Xóa thành công");
-            await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
+
 
         private bool AccountsExists(int id)
         {
@@ -305,12 +316,13 @@ namespace JDshop.Areas.Admin.Controllers
                 cudanUp.Birthday = account.Birthday;
                 cudanUp.Gender = account.Gender;
                 cudanUp.Status = account.Status;
+                cudanUp.RoleId = account.RoleId;
                 cudanUp.AccountTypeId = account.AccountTypeId;
                 cudanUp.UserName = account.UserName;
                 var ktemail = await _context.Accounts.FirstOrDefaultAsync(x => x.Id != account.Id && (x.Email == account.Email && x.UserName == account.UserName));
                 if (ktemail != null)
                 {
-                    ViewData["AccountTypeId"] = new SelectList(_context.AccountTypes, "Id", "Name");
+                    ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Name");
                     _notyfService.Error("Email hay tên đăng nhập đã tồn tại trong hệ thống!");
                     return View(account);
                 }
@@ -355,7 +367,7 @@ namespace JDshop.Areas.Admin.Controllers
         {
             if (_context.Accounts == null)
             {
-                return Problem("Entity set 'WebMyPhamContext.Accounts'  is null.");
+                return Problem("Entity set 'JDshopDbContext.Accounts'  is null.");
             }
             var product = await _context.Accounts.FindAsync(id);
             if (product != null)
@@ -383,49 +395,43 @@ namespace JDshop.Areas.Admin.Controllers
             var password = pass.ToMD5();
 
             // Kiểm tra tên đăng nhập và mật khẩu
-            var account = await _context.Accounts.Include(x => x.Addresses).FirstOrDefaultAsync(u => u.UserName == user && u.Password == password);
+            var account = await _context.Accounts.Include(x => x.Role).Include(x => x.Addresses).FirstOrDefaultAsync(u => u.UserName == user && u.Password == password);
 
             if (account == null)
             {
                 // Tên đăng nhập hoặc mật khẩu không đúng
                 _notyfService.Error("Thông tin đăng nhập không chính xác");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
             }
             if (account?.RoleId == 3)
             {
                 _notyfService.Error("Tài khoản của bạn là tài khoản người dùng");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
             }
             if (account.Status == 2)
             {
                 _notyfService.Error("Tài khoản đã bị khóa");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
             }
             if (account != null)
             {
                 // Lưu thông tin người dùng vào cookie xác thực
                 List<Claim> claims = new List<Claim>()
-                    {
-                        new Claim(ClaimTypes.Name, account.FullName),
-                        account.RoleId == 1 ? new Claim(ClaimTypes.Role, "Admin") : new Claim(ClaimTypes.Role, "NhanVien"),
-                        new Claim("UserName" , account.UserName),
-                        new Claim("Id" , account.Id.ToString()),
-                         new Claim("Avartar", "/contents/Images/Admin/" + account.Avartar) // Thêm đường dẫn đến ảnh đại diện vào claims
-                    };
-                //   Response.Cookies.Append("AnhDaiDien", "Images/GiaoVien/" + user.AnhDaiDien);
+                {
+                    new Claim(ClaimTypes.Name, account.FullName),
+                    // new Claim(ClaimTypes.Role, account.Role?.Name ?? "Nhân Viên"), // Ensure role is assigned correctly
+                    new Claim(ClaimTypes.Role, account.Role?.Name ?? ""), // Ensure role is assigned correctly
+                    new Claim("UserName", account.UserName),
+                    new Claim("Id", account.Id.ToString()),
+                    new Claim("Avartar", "/contents/Images/Admin/" + account.Avartar)
+                };
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var principal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-
                 _notyfService.Success("Đăng nhập thành công");
-                // Chuyển hướng đến trang chủ
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home", new { area = "Admin" });
             }
-            else
-            {
-                _notyfService.Warning("Tên đăng nhập hoặc mật khẩu không đúng");
-                return RedirectToAction("Index", "Home");
-            }
+            return RedirectToAction("Login", "Account");
         }
 
         [AllowAnonymous]

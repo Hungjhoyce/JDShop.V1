@@ -9,6 +9,8 @@ public partial class ProductType
 
     public int? CategoryId { get; set; }
 
+    public int? ProductId { get; set; }
+
     public string? Name { get; set; }
 
     public string? Description { get; set; }
@@ -20,4 +22,6 @@ public partial class ProductType
     public virtual Category? Category { get; set; }
 
     public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+
+    public virtual Product? Product { get; set; }
 }

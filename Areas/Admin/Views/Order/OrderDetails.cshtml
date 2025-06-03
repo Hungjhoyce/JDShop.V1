@@ -1,0 +1,121 @@
+@model JDshop.Models.Order
+
+@{
+    ViewData["Title"] = "Chi tiết đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Chi tiết đơn hàng #@Model.Id</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Thông tin khách hàng</h4>
+                            <dl class="row">
+                                <dt class="col-sm-4">Tên khách hàng:</dt>
+                                <dd class="col-sm-8">@(Model.Account?.FullName ?? "N/A")</dd>
+                                <dt class="col-sm-4">Email:</dt>
+                                <dd class="col-sm-8">@(Model.Account?.Email ?? "N/A")</dd>
+                                <dt class="col-sm-4">Số điện thoại:</dt>
+                                <dd class="col-sm-8">@(Model.Account?.Phone ?? "N/A")</dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Thông tin đơn hàng</h4>
+                            <dl class="row">
+                                <dt class="col-sm-4">Ngày đặt hàng:</dt>
+                                <dd class="col-sm-8">@(Model.CreateDay?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</dd>
+                                <dt class="col-sm-4">Tổng tiền:</dt>
+                                <dd class="col-sm-8">@(Model.Total?.ToString("N0") ?? "0") VNĐ</dd>
+                                <dt class="col-sm-4">Trạng thái:</dt>
+                                <dd class="col-sm-8">
+                                    @{
+                                        string status = Model.Status switch
+                                        {
+                                            0 => "Chờ xác nhận",
+                                            1 => "Đã xác nhận",
+                                            2 => "Đang giao hàng",
+                                            3 => "Đã giao hàng",
+                                            4 => "Đã hủy",
+                                            _ => "Không xác định"
+                                        };
+                                    }
+                                    @status
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <h4 class="mt-4">Chi tiết sản phẩm</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Size</th>
+                                    <th>Màu</th>
+                                    <th>Số lượng</th>
+                                    <th>Đơn giá</th>
+                                    <th>Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.OderItems)
+                                {
+                                    var product = item.ProductSizeColor?.Product;
+                                    var size = item.ProductSizeColor?.Size;
+                                    var color = item.ProductSizeColor?.Color;
+                                    var price = product?.Price ?? 0;
+
+                                    <tr>
+                                        <td>@(product?.Name ?? "N/A")</td>
+                                        <td>@(size?.Size1 ?? "N/A")</td>
+                                        <td>@(color?.Color1 ?? "N/A")</td>
+                                        <td>@item.Quantity</td>
+                                        <td>@(price.ToString("N0")) VNĐ</td>
+                                        <td>@((item.Quantity * price)?.ToString("N0")) VNĐ</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4 class="mt-4">Thông tin thanh toán</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Phương thức thanh toán</th>
+                                    <th>Số tiền</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thời gian</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var payment in Model.Payments)
+                                {
+                                    <tr>
+                                        <td>@payment.PaymentMethods?.Name</td>
+                                        <td>@payment.Amount?.ToString("N0") VNĐ</td>
+                                        <td>@(payment.Status == 1 ? "Đã thanh toán" : "Chưa thanh toán")</td>
+                                        <td>@payment.PaymentDate?.ToString("dd/MM/yyyy HH:mm")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mt-4">
+                        <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

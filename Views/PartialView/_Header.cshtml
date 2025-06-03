@@ -1,4 +1,4 @@
-﻿@{
+﻿@* @{
     var AvartarClaim = User.Claims.FirstOrDefault(c => c.Type == "Avartar");
     var Avartar = "";
     if (AvartarClaim != null)
@@ -111,5 +111,573 @@
     // Gọi hàm để cập nhật số lượng sản phẩm ngay khi trang được tải
     document.addEventListener('DOMContentLoaded', function() {
         updateCartCount(); // Gọi hàm ngay khi trang được tải
+    });
+</script> *@
+
+
+
+
+
+@{
+    var AvartarClaim = User.Claims.FirstOrDefault(c => c.Type == "Avartar");
+    var Avartar = "";
+    if (AvartarClaim != null)
+    { Avartar = AvartarClaim.Value; }
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Top Header */
+    .top-header {
+        background: #4F46E5;
+        color: white;
+        padding: 8px 0;
+        font-size: 14px;
+    }
+
+    .top-header .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .contact-info {
+        display: flex;
+        gap: 20px;
+    }
+
+    .contact-info span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .shipping-notice {
+        font-weight: 500;
+    }
+
+    /* Main Header */
+    .main-header {
+        background: white;
+        padding: 15px 0;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        position: relative;
+        z-index: 1000;
+    }
+
+    .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Logo */
+    .header__logo a {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4F46E5;
+        text-decoration: none;
+    }
+
+    /* Search Bar */
+    .search-container {
+        flex: 1;
+        max-width: 400px;
+        margin: 0 40px;
+        position: relative;
+    }
+
+    .search-bar {
+        width: 100%;
+        padding: 12px 45px 12px 20px;
+        border: 1px solid #E5E7EB;
+        border-radius: 25px;
+        font-size: 14px;
+        outline: none;
+        background: #F9FAFB;
+        transition: all 0.3s;
+    }
+
+    .search-bar:focus {
+        border-color: #4F46E5;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
+    .search-icon {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9CA3AF;
+        font-size: 16px;
+    }
+
+    /* Header Actions */
+    .header__nav__option {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .header-icon {
+        position: relative;
+        color: #6B7280;
+        font-size: 20px;
+        text-decoration: none;
+        transition: color 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+    }
+
+    .header-icon:hover {
+        color: #4F46E5;
+    }
+
+    .icon-badge {
+        position: absolute;
+        left: 35px !important;
+        top: -5px !important;
+        background: #4F46E5;
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+    }
+
+    /* User Dropdown */
+    .user-dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .user-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 50%;
+        transition: background 0.3s;
+    }
+
+    .user-toggle:hover {
+        background: #F3F4F6;
+    }
+
+    .user-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #E5E7EB;
+    }
+
+    .user-icon {
+        width: 32px;
+        height: 32px;
+        background: #F3F4F6;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #6B7280;
+        font-size: 16px;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        border: 1px solid #E5E7EB;
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        min-width: 150px;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        margin-top: 8px;
+        display: block !important;
+    }
+
+    .user-dropdown.active .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .dropdown-item {
+        display: block;
+        padding: 12px 16px;
+        color: #374151;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background 0.3s;
+        border-bottom: 1px solid #F3F4F6;
+    }
+
+    .dropdown-item:last-child {
+        border-bottom: none;
+    }
+
+    .dropdown-item:hover {
+        background: #F9FAFB;
+        color: #4F46E5;
+        text-decoration: none;
+    }
+
+    /* Navigation */
+    .navigation {
+        background: white;
+        border-top: 1px solid #F3F4F6;
+        padding: 0;
+    }
+
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 40px;
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .nav-menu li {
+        position: relative;
+    }
+
+    .nav-menu li a {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 20px 0;
+        color: #374151;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+        position: relative;
+    }
+
+    .nav-menu li a:hover,
+    .nav-menu li.active a {
+        color: #4F46E5;
+        text-decoration: none;
+    }
+
+    .nav-menu li.active a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #4F46E5;
+    }
+
+    .dropdown-arrow {
+        font-size: 12px;
+        transition: transform 0.3s;
+    }
+
+    .nav-menu li:hover .dropdown-arrow {
+        transform: rotate(180deg);
+    }
+
+    /* Overlay for mobile dropdown */
+    .dropdown-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        z-index: 999;
+        display: none;
+    }
+
+    .dropdown-overlay.active {
+        display: block;
+    }
+</style>
+
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+
+<!-- Top Header -->
+<div class="top-header">
+    <div class="container">
+        <div class="contact-info">
+            <span><i class="fas fa-phone"></i> Hotline: 1900-1234</span>
+            <span><i class="fas fa-envelope"></i> info@jdshop.com</span>
+        </div>
+        <div class="shipping-notice">
+            Miễn phí vận chuyển đơn hàng từ 500k
+        </div>
+    </div>
+</div>
+
+<!-- Main Header -->
+<header class="main-header">
+    <div class="header-container">
+        <!-- Logo -->
+        <div class="header__logo">
+            <a asp-action="Index" asp-controller="Home">JD Shop</a>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Tìm kiếm sản phẩm...">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+
+        <!-- Header Actions -->
+        <div class="header__nav__option">
+            <!-- Wishlist -->
+            <a href="#" class="header-icon">
+                <i class="far fa-heart"></i>
+                <span class="icon-badge">2</span>
+            </a>
+
+            <!-- Shopping Cart -->
+            <a asp-action="ShoppingCart" asp-controller="Products" id="cart-link" class="header-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-count" class="icon-badge">3</span>
+            </a>
+
+            <!-- User Dropdown -->
+            <div class="user-dropdown" id="userDropdown">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    var avatarClaim = User.Claims.FirstOrDefault(c => c.Type == "Avartar");
+                    var avatarUrl = avatarClaim != null ? avatarClaim.Value : null;
+                    var userName = User.Identity.Name;
+
+                    <button class="user-toggle" type="button">
+                        @if (!string.IsNullOrEmpty(avatarUrl))
+                        {
+                            <img src="@avatarUrl" alt="User Avatar" class="user-avatar" />
+                        }
+                        else
+                        {
+                            <div class="user-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        }
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="@Url.Action("Profile", "Account")">
+                            <i class="fas fa-user"></i> Profile
+                        </a>
+                        <a class="dropdown-item" href="@Url.Action("OrderHistory", "Account")">
+                            <i class="fas fa-box"></i> Đơn hàng
+                        </a>
+                        <a class="dropdown-item" href="@Url.Action("Settings", "Account")">
+                            <i class="fas fa-cog"></i> Cài đặt
+                        </a>
+                        <div style="border-top: 1px solid #F3F4F6; margin: 5px 0;"></div>
+                        <a class="dropdown-item" href="@Url.Action("Logout", "Account")">
+                            <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <button class="user-toggle" type="button">
+                        <div class="user-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" asp-action="Login" asp-controller="Account">
+                            <i class="fas fa-sign-in-alt"></i> Đăng nhập
+                        </a>
+                        <a class="dropdown-item" asp-action="Register" asp-controller="Account">
+                            <i class="fas fa-user-plus"></i> Đăng ký
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Navigation -->
+<nav class="navigation">
+    <div class="nav-container">
+        <ul class="nav-menu">
+            <li class="@((ViewContext.RouteData.Values["Controller"].ToString() == "Home"
+                && ViewContext.RouteData.Values["Action"].ToString() == "Index") ? "active" : "")">
+                <a asp-action="Index" asp-controller="Home">Trang chủ</a>
+            </li>
+            <li class="@((ViewContext.RouteData.Values["Controller"].ToString() == "Products"
+                && ViewContext.RouteData.Values["Action"].ToString() == "Index") ? "active" : "")">
+                <a asp-action="Index" asp-controller="Products">
+                    Sản phẩm
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </a>
+            </li>
+            <li class="@((ViewContext.RouteData.Values["Controller"].ToString() == "Collections"
+                && ViewContext.RouteData.Values["Action"].ToString() == "Index") ? "active" : "")">
+                <a asp-action="Index" asp-controller="Collections">Bộ sưu tập</a>
+            </li>
+            <li class="@((ViewContext.RouteData.Values["Controller"].ToString() == "Home"
+                && ViewContext.RouteData.Values["Action"].ToString() == "Blog") ? "active" : "")">
+                <a asp-action="Blog" asp-controller="Home">Tin Tức</a>
+            </li>
+            <li class="@((ViewContext.RouteData.Values["Controller"].ToString() == "Home"
+                && ViewContext.RouteData.Values["Action"].ToString() == "About") ? "active" : "")">
+                <a asp-action="About" asp-controller="Home">Về chúng tôi</a>
+            </li>
+            <li class="@((ViewContext.RouteData.Values["Controller"].ToString() == "Home"
+                && ViewContext.RouteData.Values["Action"].ToString() == "Contacts") ? "active" : "")">
+                <a asp-action="Contacts" asp-controller="Home">Liên hệ</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Dropdown Overlay -->
+<div class="dropdown-overlay" id="dropdownOverlay" onclick="closeUserDropdown()"></div>
+
+<script>
+    // User dropdown functionality
+    function toggleUserDropdown(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        const dropdown = document.getElementById('userDropdown');
+        const overlay = document.getElementById('dropdownOverlay');
+        
+        if (dropdown && overlay) {
+            const isActive = dropdown.classList.contains('active');
+            
+            if (isActive) {
+                dropdown.classList.remove('active');
+                overlay.classList.remove('active');
+            } else {
+                dropdown.classList.add('active');
+                overlay.classList.add('active');
+            }
+        }
+    }
+
+    function closeUserDropdown() {
+        const dropdown = document.getElementById('userDropdown');
+        const overlay = document.getElementById('dropdownOverlay');
+        
+        if (dropdown && overlay) {
+            dropdown.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+    }
+
+    // Initialize dropdown functionality when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add click event to user toggle button
+        const userToggle = document.querySelector('.user-toggle');
+        if (userToggle) {
+            userToggle.addEventListener('click', toggleUserDropdown);
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('userDropdown');
+            if (dropdown && !dropdown.contains(event.target)) {
+                closeUserDropdown();
+            }
+        });
+
+        // Close dropdown with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeUserDropdown();
+            }
+        });
+
+        // Initialize cart count
+        updateCartCount();
+    });
+
+    // Search functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchBar = document.querySelector('.search-bar');
+        if (searchBar) {
+            searchBar.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    const searchTerm = this.value.trim();
+                    if (searchTerm) {
+                        window.location.href = `/Products?search=${encodeURIComponent(searchTerm)}`;
+                    }
+                }
+            });
+        }
+    });
+
+    // Cart count update function
+    function updateCartCount() {
+        @if (User.Identity.IsAuthenticated)
+        {
+            <text>
+            fetch('/Home/count')
+                .then(response => response.json())
+                .then(data => {
+                    const cartCount = document.getElementById('cart-count');
+                    if (cartCount) {
+                        cartCount.innerText = data.count || 0;
+                        cartCount.style.display = (data.count && data.count > 0) ? 'flex' : 'none';
+                    }
+                })
+                .catch(error => console.error('Error fetching cart count:', error));
+            </text>
+        }
+    }
+
+    // Make updateCartCount available globally
+    window.updateCartCount = updateCartCount;
+
+    // Debug function to check if elements exist
+    function debugDropdown() {
+        console.log('User dropdown element:', document.getElementById('userDropdown'));
+        console.log('User toggle element:', document.querySelector('.user-toggle'));
+        console.log('Dropdown overlay element:', document.getElementById('dropdownOverlay'));
+    }
+
+    // Call debug function (remove this after testing)
+    document.addEventListener('DOMContentLoaded', function() {
+        debugDropdown();
     });
 </script>

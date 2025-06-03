@@ -1,61 +1,597 @@
-﻿@model JDshop.Models.ProductSizeColor
+﻿@* @model JDshop.Models.ProductSizeColor *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Details"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>XEM CHI TIẾT</h1> *@
+
+@* <div> *@
+@*     <h4>Sản phẩm Màu Size</h4> *@
+@*     <hr /> *@
+@*     <dl class="row"> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Mã Code *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Code) *@
+@*         </dd> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Màu *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Color.Color1) *@
+@*         </dd> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Tên sản phẩm *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Product.Name) *@
+@*         </dd> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Số lượng *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.ProductInventory.Quantity) *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
+@*             Số lượng bán *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.ProductInventory.QuantitySold) *@
+@*         </dd> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Size *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Size.Size1) *@
+@*         </dd> *@
+@*     </dl> *@
+@* </div> *@
+@* <div> *@
+@*     <div style="float: left; padding-right:10px"> *@
+@*         <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Sửa</a> *@
+@*     </div> *@
+@*     <a class="btn btn-secondary" asp-action="Index">Quay Lại</a> *@
+@* </div> *@
+
+
+
+
+
+
+
+
+@model JDshop.Models.ProductSizeColor
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Chi tiết biến thể sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>XEM CHI TIẾT</h1>
+<style>
+    .details-container {
+        margin: 0 auto;
+        padding: 2rem;
+    }
 
-<div>
-    <h4>Sản phẩm Màu Size</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            Mã Code
-            @* @Html.DisplayNameFor(model => model.Code) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Code)
-        </dd>
-        <dt class = "col-sm-2">
-            Màu
-            @* @Html.DisplayNameFor(model => model.Color) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Color.Color1)
-        </dd>
-        <dt class = "col-sm-2">
-            Tên sản phẩm
-            @* @Html.DisplayNameFor(model => model.Product) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Product.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            Số lượng
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductInventory.Quantity)
-        </dd>
-        <dt class="col-sm-2">
-            Số lượng bán
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProductInventory.QuantitySold)
-        </dd>
-        <dt class = "col-sm-2">
-            Size
-            @* @Html.DisplayNameFor(model => model.Size) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Size.Size1)
-        </dd>
-    </dl>
-</div>
-<div>
-    <div style="float: left; padding-right:10px">
-        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Sửa</a>
+    .page-header {
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0;
+    }
+
+    .page-subtitle {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+    .details-grid {
+        display: grid;
+        grid-template-columns: 400px 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .product-preview-section {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 1.5rem;
+    }
+
+    .product-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 2px solid #ecf0f1;
+        margin-bottom: 1rem;
+    }
+
+    .no-image-placeholder {
+        width: 100%;
+        height: 300px;
+        background: #f8f9fa;
+        border: 2px dashed #dee2e6;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #6c757d;
+        margin-bottom: 1rem;
+    }
+
+        .no-image-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+    .product-basic-info {
+        text-align: center;
+    }
+
+    .product-name {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+    }
+
+    .variant-info {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .color-display {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #f8f9fa;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+    }
+
+    .color-swatch {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid #ecf0f1;
+    }
+
+    .size-display {
+        background: #fff3e0;
+        color: #f57c00;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-weight: 500;
+    }
+
+    .variant-details-section {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 1.5rem;
+    }
+
+    .variant-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    .variant-icon {
+        width: 48px;
+        height: 48px;
+        background: #8b5cf6;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .variant-info-header {
+        flex: 1;
+    }
+
+    .variant-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0;
+    }
+
+    .variant-description {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin: 0.25rem 0 0 0;
+    }
+
+    .details-list {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .detail-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 6px;
+        border-left: 4px solid #8b5cf6;
+    }
+
+    .detail-icon {
+        width: 20px;
+        color: #6b7280;
+        font-size: 0.875rem;
+    }
+
+    .detail-label {
+        color: #374151;
+        font-size: 0.875rem;
+        min-width: 120px;
+        font-weight: 500;
+    }
+
+    .detail-value {
+        color: #1f2937;
+        font-size: 0.875rem;
+        font-weight: 500;
+        flex: 1;
+    }
+
+    .code-badge {
+        background: #e3f2fd;
+        color: #1976d2;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        font-family: monospace;
+    }
+
+    .inventory-stats {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .stats-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        color: #1f2937;
+        font-weight: 600;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .stat-item {
+        background: #f8f9fa;
+        padding: 1rem;
+        border-radius: 6px;
+        text-align: center;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1f2937;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-top: 0.25rem;
+    }
+
+    .quantity-available {
+        color: #059669;
+    }
+
+    .quantity-sold {
+        color: #dc2626;
+    }
+
+    .quantity-low {
+        color: #f59e0b;
+    }
+
+    .quantity-out {
+        color: #dc2626;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        margin-top: 2rem;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: 1px solid;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-primary {
+        background: #3b82f6;
+        color: white;
+        border-color: #3b82f6;
+    }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            border-color: #2563eb;
+        }
+
+    .btn-secondary {
+        background: white;
+        color: #374151 !important;
+        border-color: #d1d5db;
+    }
+
+        .btn-secondary:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+        }
+
+    .btn-danger {
+        background: #dc2626;
+        color: white;
+        border-color: #dc2626;
+    }
+
+        .btn-danger:hover {
+            background: #b91c1c;
+            border-color: #b91c1c;
+        }
+
+    
+</style>
+
+<div class="details-container">
+    <div class="page-header">
+        <h1 class="page-title">Chi tiết biến thể sản phẩm</h1>
+        <p class="page-subtitle">Xem thông tin chi tiết về biến thể màu sắc và kích thước</p>
     </div>
-    <a class="btn btn-secondary" asp-action="Index">Quay Lại</a>
+
+    <!-- Inventory Statistics -->
+    <div class="inventory-stats">
+        <div class="stats-header">
+            <i class="fas fa-chart-bar"></i>
+            Thống kê tồn kho
+        </div>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number quantity-available">@(Model.ProductInventory?.Quantity - Model.ProductInventory.QuantitySold ?? 0)</div>
+                <div class="stat-label">Số lượng tồn</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number quantity-sold">@(Model.ProductInventory?.QuantitySold ?? 0)</div>
+                <div class="stat-label">Đã bán</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">@(Model.ProductInventory?.Quantity ?? 0)</div>
+                <div class="stat-label">Tổng nhập</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number @(GetStockStatusClass(Model.ProductInventory?.Quantity ?? 0))">
+                    @GetStockStatus(Model.ProductInventory?.Quantity ?? 0)
+                </div>
+                <div class="stat-label">Trạng thái</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="details-grid">
+        <!-- Product Preview Section -->
+        <div class="product-preview-section">
+            @if (Model.Product?.Images?.Any() == true)
+            {
+                <img src="@Url.Content("~/contents/Images/Product/" + Model.Product.Images.FirstOrDefault().Url)"
+                     class="product-image"
+                     alt="@Model.Product.Name"
+                     onerror="this.style.display='none'; document.getElementById('noImagePlaceholder').style.display='flex';">
+            }
+            else
+            {
+                <div class="no-image-placeholder" id="noImagePlaceholder">
+                    <i class="fas fa-image"></i>
+                    <h5>Không có hình ảnh</h5>
+                </div>
+            }
+
+            <div class="product-basic-info">
+                <h3 class="product-name">@(Model.Product?.Name ?? "Chưa có tên sản phẩm")</h3>
+                <div class="variant-info">
+                    @if (!string.IsNullOrEmpty(Model.Color?.Color1))
+                    {
+                        <div class="color-display">
+                            <div class="color-swatch" style="background-color: @GetColorHex(Model.Color.Color1);"></div>
+                            <span>@Model.Color.Color1</span>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Size?.Size1))
+                    {
+                        <div class="size-display">
+                            Size: @Model.Size.Size1
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Variant Details Section -->
+        <div class="variant-details-section">
+            <div class="variant-header">
+                <div class="variant-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <div class="variant-info-header">
+                    <h2 class="variant-title">Thông tin biến thể</h2>
+                    <p class="variant-description">Chi tiết về màu sắc và kích thước</p>
+                </div>
+            </div>
+
+            <div class="details-list">
+                <div class="detail-item">
+                    <i class="fas fa-barcode detail-icon"></i>
+                    <span class="detail-label">Mã Code:</span>
+                    <span class="detail-value">
+                        @if (!string.IsNullOrEmpty(Model.Code))
+                        {
+                            <span class="code-badge">@Model.Code</span>
+                        }
+                        else
+                        {
+                            <span style="color: #9ca3af;">Chưa có mã code</span>
+                        }
+                    </span>
+                </div>
+
+                <div class="detail-item">
+                    <i class="fas fa-palette detail-icon"></i>
+                    <span class="detail-label">Màu sắc:</span>
+                    <span class="detail-value">
+                        @if (!string.IsNullOrEmpty(Model.Color?.Color1))
+                        {
+                            <div class="color-display">
+                                <div class="color-swatch" style="background-color: @GetColorHex(Model.Color.Color1);"></div>
+                                <span>@Model.Color.Color1</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <span style="color: #9ca3af;">Chưa có màu</span>
+                        }
+                    </span>
+                </div>
+
+                <div class="detail-item">
+                    <i class="fas fa-expand-arrows-alt detail-icon"></i>
+                    <span class="detail-label">Kích thước:</span>
+                    <span class="detail-value">
+                        @if (!string.IsNullOrEmpty(Model.Size?.Size1))
+                        {
+                            <span class="size-display">@Model.Size.Size1</span>
+                        }
+                        else
+                        {
+                            <span style="color: #9ca3af;">Chưa có size</span>
+                        }
+                    </span>
+                </div>
+
+                <div class="detail-item">
+                    <i class="fas fa-box detail-icon"></i>
+                    <span class="detail-label">Sản phẩm:</span>
+                    <span class="detail-value">@(Model.Product?.Name ?? "Chưa có tên sản phẩm")</span>
+                </div>
+
+                <div class="detail-item">
+                    <i class="fas fa-warehouse detail-icon"></i>
+                    <span class="detail-label">Số lượng tồn:</span>
+                    <span class="detail-value">
+                        <span class="@GetQuantityClass(Model.ProductInventory?.Quantity ?? 0)">
+                            @(Model.ProductInventory?.Quantity ?? 0) sản phẩm
+                        </span>
+                    </span>
+                </div>
+
+                <div class="detail-item">
+                    <i class="fas fa-shopping-cart detail-icon"></i>
+                    <span class="detail-label">Đã bán:</span>
+                    <span class="detail-value">
+                        <span class="quantity-sold">@(Model.ProductInventory?.QuantitySold ?? 0) sản phẩm</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i>
+            Quay lại danh sách
+        </a>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">
+            <i class="fas fa-edit"></i>
+            Chỉnh sửa
+        </a>
+        <a asp-action="Delete" asp-route-id="@Model?.Id" class="btn btn-danger">
+            <i class="fas fa-trash"></i>
+            Xóa
+        </a>
+    </div>
 </div>
+
+@functions {
+    string GetColorHex(string colorName)
+    {
+        var colorMap = new Dictionary<string, string>
+        {
+            {"đỏ", "#ff0000"}, {"xanh", "#0000ff"}, {"vàng", "#ffff00"},
+            {"đen", "#000000"}, {"trắng", "#ffffff"}, {"xám", "#808080"},
+            {"hồng", "#ffc0cb"}, {"tím", "#800080"}, {"cam", "#ffa500"},
+            {"nâu", "#a52a2a"}, {"xanh lá", "#008000"}
+        };
+
+        return colorMap.ContainsKey(colorName.ToLower()) ? colorMap[colorName.ToLower()] : "#cccccc";
+    }
+
+    string GetStockStatus(int quantity)
+    {
+        if (quantity == 0) return "Hết hàng";
+        if (quantity < 10) return "Sắp hết";
+        return "Còn hàng";
+    }
+
+    string GetStockStatusClass(int quantity)
+    {
+        if (quantity == 0) return "quantity-out";
+        if (quantity < 10) return "quantity-low";
+        return "quantity-available";
+    }
+
+    string GetQuantityClass(int quantity)
+    {
+        if (quantity == 0) return "quantity-out";
+        if (quantity < 10) return "quantity-low";
+        return "quantity-available";
+    }
+}

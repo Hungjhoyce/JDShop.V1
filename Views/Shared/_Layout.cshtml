@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="~/User/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="~/User/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="~/User/css/style.css" type="text/css">
+    <link rel="stylesheet" href="~/User/css/stylenew.css" type="text/css">
+
 </head>
 <body>
        <!-- Page Preloder -->
@@ -30,6 +32,8 @@
 
     @RenderBody()
 
+
+    @await Html.PartialAsync("~/Views/Products/AddToCart.cshtml")
     @await Html.PartialAsync("~/Views/PartialView/_Footer.cshtml")
 
    <!-- Search Begin -->

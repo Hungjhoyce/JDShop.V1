@@ -1,4 +1,4 @@
-﻿@using System.Security.Claims
+﻿@* @using System.Security.Claims
 @{
     var AvartarClaim = User.Claims.FirstOrDefault(c => c.Type == "Avartar");
     var Avartar = "";
@@ -112,4 +112,353 @@
 
 
     </ul>
+</nav> *@
+
+
+
+
+
+@using System.Security.Claims
+@{
+    var AvartarClaim = User.Claims.FirstOrDefault(c => c.Type == "Avartar");
+    var Avartar = "";
+    if (AvartarClaim != null)
+    { Avartar = AvartarClaim.Value; }
+    var roleClaim = User.Claims.FirstOrDefault(c => c.Type == "Role");
+    var role = roleClaim?.Value ?? "N/A";
+    var roles = Context.User.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).ToList();
+}
+
+<style>
+.modern-sidebar {
+    width: 280px;
+    height: 100vh;
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    @* position: fixed; *@
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    padding: 24px 20px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.sidebar-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+}
+
+.sidebar-nav {
+    padding: 16px 0;
+    margin: 0;
+    list-style: none;
+}
+
+.nav-item {
+    margin: 0;
+    list-style: none;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #6b7280;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: none;
+    background: none;
+    width: 100%;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+    text-decoration: none;
+}
+
+.nav-link.active {
+    background-color: #eff6ff;
+    color: #2563eb;
+    border-right: 3px solid #2563eb;
+}
+
+.nav-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    flex-shrink: 0;
+    font-size: 16px;
+}
+
+.nav-text {
+    flex: 1;
+    text-align: left;
+}
+
+.nav-arrow {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+    font-size: 12px;
+    margin-left: auto;
+}
+
+.nav-arrow.expanded {
+    transform: rotate(90deg);
+}
+
+.submenu-container {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: #f9fafb;
+}
+
+.submenu-container.show {
+    max-height: 500px;
+}
+
+.sub-menu {
+    border-left: 2px solid #e5e7eb;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sub-menu .nav-item {
+    margin-left: 32px;
+}
+
+.sub-menu .nav-link {
+    padding: 8px 20px;
+    font-size: 13px;
+    color: #6b7280;
+    border-right: none;
+}
+
+.sub-menu .nav-link:hover {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+.sub-menu .nav-link.active {
+    background-color: #eff6ff;
+    color: #2563eb;
+    border-right: 3px solid #2563eb;
+}
+
+/* Icons using CSS */
+.icon-home::before { content: "🏠"; }
+.icon-product::before { content: "📦"; }
+.icon-customer::before { content: "👥"; }
+.icon-manage::before { content: "⚙️"; }
+.icon-discount::before { content: "🏷️"; }
+.icon-revenue::before { content: "💰"; }
+.icon-news::before { content: "📰"; }
+.icon-collection::before { content: "📚"; }
+.icon-sales::before { content: "🛒"; }
+.icon-arrow::before { content: "▶"; }
+</style>
+
+<nav class="modern-sidebar">
+    @* <div class="sidebar-header">
+        <h1 class="sidebar-title">JD Shop Admin</h1>
+    </div> *@
+    
+    <ul class="sidebar-nav">
+        <li class="nav-item">
+            <a class="nav-link" asp-action="Index" asp-controller="Home" data-controller="Home" data-action="Index">
+                <span class="nav-icon icon-home"></span>
+                <span class="nav-text">Trang chủ</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <button class="nav-link" type="button" onclick="toggleSubmenu('product-menu', this)">
+                <span class="nav-icon icon-product"></span>
+                <span class="nav-text">Quản lý sản phẩm</span>
+                <span class="nav-arrow icon-arrow"></span>
+            </button>
+            <div class="submenu-container" id="product-menu">
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="Suppliers" data-controller="Suppliers" data-action="Index">Nhà cung cấp</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="Categories" data-controller="Categories" data-action="Index">Loại sản phẩm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="ProductTypes" data-controller="ProductTypes" data-action="Index">Sản phẩm theo loại</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="Products" data-controller="Products" data-action="Index">Sản phẩm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="ProductSizeColors" data-controller="ProductSizeColors" data-action="Index">Sản phẩm Màu Size</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="ReceiptProducts" data-controller="ReceiptProducts" data-action="Index">Nhập sản phẩm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="Colors" data-controller="Colors" data-action="Index">Màu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="Sizes" data-controller="Sizes" data-action="Index">Size</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" asp-action="Index" asp-controller="Account" data-controller="Account" data-action="Index">
+                <span class="nav-icon icon-customer"></span>
+                <span class="nav-text">Khách hàng</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" asp-action="Manage" asp-controller="Account" data-controller="Account" data-action="Manage">
+                <span class="nav-icon icon-manage"></span>
+                <span class="nav-text">Quản lý</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" asp-action="Index" asp-controller="Discounts" data-controller="Discounts" data-action="Index">
+                <span class="nav-icon icon-discount"></span>
+                <span class="nav-text">Mã giảm giá</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" asp-action="Index" asp-controller="Revenue" data-controller="Revenue" data-action="Index">
+                <span class="nav-icon icon-revenue"></span>
+                <span class="nav-text">Doanh thu</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" asp-action="Index" asp-controller="News" data-controller="News" data-action="Index">
+                <span class="nav-icon icon-news"></span>
+                <span class="nav-text">Tin tức</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" asp-action="Index" asp-controller="Collections" data-controller="Collections" data-action="Index">
+                <span class="nav-icon icon-collection"></span>
+                <span class="nav-text">Bộ sưu tập</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" asp-action="Index" asp-controller="CollectionProducts" data-controller="CollectionProducts" data-action="Index">
+                <span class="nav-icon icon-collection"></span>
+                <span class="nav-text">SP Bộ sưu tập</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <button class="nav-link" type="button" onclick="toggleSubmenu('sales-menu', this)">
+                <span class="nav-icon icon-sales"></span>
+                <span class="nav-text">Quản lý bán hàng</span>
+                <span class="nav-arrow icon-arrow"></span>
+            </button>
+            <div class="submenu-container" id="sales-menu">
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="Order" data-controller="Order" data-action="Index">Đơn đặt hàng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="CanOrder" asp-controller="Order" data-controller="Order" data-action="CanOrder">Đã hủy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="OrderShip" asp-controller="Order" data-controller="Order" data-action="OrderShip">Đang vận chuyển</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
 </nav>
+
+<script>
+function toggleSubmenu(menuId, button) {
+    const submenu = document.getElementById(menuId);
+    const arrow = button.querySelector('.nav-arrow');
+    
+    // Đóng tất cả menu khác
+    const allSubmenus = document.querySelectorAll('.submenu-container');
+    const allArrows = document.querySelectorAll('.nav-arrow');
+    
+    allSubmenus.forEach(menu => {
+        if (menu.id !== menuId) {
+            menu.classList.remove('show');
+        }
+    });
+    
+    allArrows.forEach(arr => {
+        if (arr !== arrow) {
+            arr.classList.remove('expanded');
+        }
+    });
+    
+    // Toggle menu hiện tại
+    if (submenu.classList.contains('show')) {
+        submenu.classList.remove('show');
+        arrow.classList.remove('expanded');
+    } else {
+        submenu.classList.add('show');
+        arrow.classList.add('expanded');
+    }
+}
+
+// Set active state chính xác dựa trên controller và action
+document.addEventListener('DOMContentLoaded', function() {
+    // Lấy thông tin controller và action từ URL hoặc từ ViewContext
+    const currentController = '@ViewContext.RouteData.Values["Controller"]?.ToString()';
+    const currentAction = '@ViewContext.RouteData.Values["Action"]?.ToString()';
+    
+    console.log('Current Controller:', currentController);
+    console.log('Current Action:', currentAction);
+    
+    const navLinks = document.querySelectorAll('.nav-link[data-controller]');
+    
+    // Xóa active class từ tất cả links
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+    });
+    
+    // Tìm và set active cho link chính xác
+    navLinks.forEach(link => {
+        const linkController = link.getAttribute('data-controller');
+        const linkAction = link.getAttribute('data-action');
+        
+        if (linkController === currentController && linkAction === currentAction) {
+            link.classList.add('active');
+            
+            // Nếu là submenu item, mở parent menu
+            const parentSubmenu = link.closest('.submenu-container');
+            if (parentSubmenu) {
+                parentSubmenu.classList.add('show');
+                const parentButton = parentSubmenu.previousElementSibling;
+                if (parentButton) {
+                    const arrow = parentButton.querySelector('.nav-arrow');
+                    if (arrow) {
+                        arrow.classList.add('expanded');
+                    }
+                }
+            }
+        }
+    });
+});
+</script>

@@ -13,7 +13,7 @@ using JDshop.Models;
 namespace JDshop.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Nhân Viên")]
     public class ProductSizeColorsController : Controller
     {
         private readonly JDshopDbContext _context;
@@ -39,6 +39,7 @@ namespace JDshop.Areas.Admin.Controllers
             var productSizeColor = await _context.ProductSizeColors
                 .Include(p => p.Color)
                 .Include(p => p.Product)
+                .Include(p => p.Product.Images)
                 .Include(p => p.ProductInventory)
                 .Include(p => p.Size)
                 .FirstOrDefaultAsync(m => m.Id == id);

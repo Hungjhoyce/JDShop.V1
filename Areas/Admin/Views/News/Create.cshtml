@@ -1,81 +1,729 @@
-﻿@model JDshop.Models.News
+﻿@* @model JDshop.Models.News *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Create"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>THÊM</h1> *@
+
+@* <h4>Tin tức</h4> *@
+@* <hr /> *@
+@* <div class="row"> *@
+@*     <div class="col-md-4"> *@
+@*         <form asp-action="Create" method="post" enctype="multipart/form-data"> *@
+@*             <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+
+@*             <div class="form-group  flex-grow-1 mx-4"> *@
+@*                 <div id="image-preview"> *@
+@*                     <div id="preview-container"></div> *@
+@*                     <br /> *@
+@*                     <label class="control-label"> Images</label> *@
+@*                     <input type="file" name="fAvatars" class="form-control-file" onchange="previewImages(this)" required /> *@
+@*                 </div> *@
+@*             </div> *@
+@*             <hr /> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Title" class="control-label">Tên Blog</label> *@
+@*                 <input asp-for="Title" class="form-control" /> *@
+@*                 <span asp-validation-for="Title" class="text-danger"></span> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Content" class="control-label">Nội dung</label> *@
+@*                 <textarea asp-for="Content" class="form-control" id="summernote"></textarea> *@
+@*                 <span asp-validation-for="Content" class="text-danger"></span> *@
+@*             </div> *@
+
+
+@*             <div class="form-group"> *@
+@*                 <button type="submit" class="btn btn-gradient-primary me-2">Thêm mới</button> *@
+@*                 <a asp-action="Index" class="btn btn-light">Trở về</a> *@
+@*             </div> *@
+@*         </form> *@
+@*     </div> *@
+@* </div> *@
+
+@* @section Scripts { *@
+@*     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} *@
+@*     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.js"></script> *@
+@*     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.css" rel="stylesheet" /> *@
+@*     <script> *@
+@*         $(document).ready(function() { *@
+@*             $('#summernote').summernote({ *@
+@*                 height: 200 // set height *@
+@*             }); *@
+@*         }); *@
+@*     </script> *@
+@* } *@
+@* <script> *@
+@*     function previewImages(input) { *@
+@*         var previewContainer = document.getElementById('preview-container'); *@
+@*         previewContainer.innerHTML = ''; *@
+@*         if (input.files) { *@
+@*             Array.from(input.files).forEach(file => { *@
+@*                 var reader = new FileReader(); *@
+@*                 reader.onload = function (e) { *@
+@*                     var img = document.createElement('img'); *@
+@*                     img.setAttribute('src', e.target.result); *@
+@*                     img.style.width = '200px'; *@
+@*                     img.style.height = '200px'; *@
+@*                     img.style.borderRadius = '20px'; *@
+@*                     img.style.display = 'block'; *@
+@*                     previewContainer.appendChild(img); *@
+@*                 } *@
+@*                 reader.readAsDataURL(file); *@
+@*             }); *@
+@*         } *@
+@*     }; *@
+@* </script> *@
+
+
+
+
+
+
+
+
+
+@model JDshop.Models.News
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Thêm tin tức mới";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>THÊM</h1>
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-<h4>Tin tức</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    .main-container {
+        background-color: #f5f5f7;
+        min-height: 100vh;
+        padding: 2rem;
+    }
 
-            <div class="form-group  flex-grow-1 mx-4">
-                <div id="image-preview">
-                    <div id="preview-container"></div>
-                    <br />
-                    <label class="control-label"> Images</label>
-                    <input type="file" name="fAvatars" class="form-control-file" onchange="previewImages(this)" required />
+    .header-section {
+        margin-bottom: 2rem;
+    }
+
+    .header-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .header-subtitle {
+        color: #86868b;
+        margin: 0.25rem 0 0 0;
+        font-size: 0.95rem;
+    }
+
+    
+
+    .form-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+    }
+
+    .main-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        border: 1px solid #f0f0f0;
+        overflow: hidden;
+    }
+
+    .card-header {
+        background: #f9f9f9;
+        padding: 1.5rem;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+        .form-label.required::after {
+            content: " *";
+            color: #ff3b30;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+        background: white;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #007aff;
+            box-shadow: 0 0 0 3px rgba(0,122,255,0.1);
+        }
+
+    .form-hint {
+        color: #86868b;
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+    }
+
+    .validation-error {
+        color: #ff3b30;
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    .sidebar-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        border: 1px solid #f0f0f0;
+        overflow: hidden;
+        height: fit-content;
+    }
+
+    .sidebar-header {
+        background: #f0f8ff;
+        padding: 1.5rem;
+        border-bottom: 1px solid #007aff;
+    }
+
+    .sidebar-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #007aff;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .sidebar-body {
+        padding: 1.5rem;
+    }
+
+    .image-upload-container {
+        border: 2px dashed #d2d2d7;
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        margin-bottom: 1.5rem;
+    }
+
+        .image-upload-container:hover {
+            border-color: #007aff;
+            background: #f0f8ff;
+        }
+
+        .image-upload-container.dragover {
+            border-color: #30d158;
+            background: #f0fff4;
+        }
+
+    .image-upload-icon {
+        font-size: 3rem;
+        color: #86868b;
+        margin-bottom: 1rem;
+    }
+
+    .image-upload-text {
+        color: #1d1d1f;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+
+    .image-upload-hint {
+        color: #86868b;
+        font-size: 0.8rem;
+    }
+
+    .image-preview-container {
+        margin-top: 1.5rem;
+    }
+
+    .image-preview {
+        width: 100%;
+        height: 200px;
+        border-radius: 8px;
+        object-fit: cover;
+        border: 1px solid #f0f0f0;
+        margin-bottom: 1rem;
+    }
+
+    .remove-image-btn {
+        background: #ff3b30;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+        .remove-image-btn:hover {
+            background: #d70015;
+        }
+
+    .actions-container {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        border: 1px solid #f0f0f0;
+        padding: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .actions-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 1rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-start;
+    }
+
+    .btn {
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 0.95rem;
+    }
+
+    .btn-primary {
+        background: #30d158;
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background: #28cd4f;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(48,209,88,0.3);
+            text-decoration: none;
+            color: white;
+        }
+
+    .btn-secondary {
+        background: #f0f0f0;
+        color: #1d1d1f !important;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+            text-decoration: none;
+            color: #1d1d1f;
+        }
+
+    .note-editor {
+        border-radius: 8px !important;
+        border-color: #d2d2d7 !important;
+    }
+
+        .note-editor.note-frame {
+            border: 1px solid #d2d2d7 !important;
+        }
+
+    .note-toolbar {
+        background: #f9f9f9 !important;
+        border-bottom: 1px solid #f0f0f0 !important;
+        border-radius: 8px 8px 0 0 !important;
+    }
+
+    .note-statusbar {
+        border-top: 1px solid #f0f0f0 !important;
+        background: #f9f9f9 !important;
+        border-radius: 0 0 8px 8px !important;
+    }
+
+    .note-btn {
+        border-color: #d2d2d7 !important;
+        background: white !important;
+    }
+
+        .note-btn:hover {
+            background: #f0f0f0 !important;
+        }
+
+ 
+
+    .loading {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+        .loading .btn-primary {
+            background: #86868b;
+        }
+
+    .file-input {
+        display: none;
+    }
+
+    .tips-card {
+        background: #f0f8ff;
+        border: 1px solid #007aff;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .tips-title {
+        font-weight: 600;
+        color: #007aff;
+        margin: 0 0 0.5rem 0;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .tips-list {
+        margin: 0;
+        padding-left: 1rem;
+        color: #1d1d1f;
+        font-size: 0.85rem;
+    }
+
+        .tips-list li {
+            margin-bottom: 0.25rem;
+        }
+</style>
+
+<div class="main-container">
+    <!-- Header Section -->
+    <div class="header-section">
+       
+
+        <h1 class="header-title">
+            <i class="mdi mdi-plus-circle"></i>
+            Thêm tin tức mới
+        </h1>
+        <p class="header-subtitle">Tạo bài viết tin tức mới cho website</p>
+    </div>
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data" id="createForm">
+        <div asp-validation-summary="ModelOnly" class="validation-error"></div>
+
+        <div class="form-container">
+            <!-- Main Content -->
+            <div class="main-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="mdi mdi-text-box"></i>
+                        Thông tin bài viết
+                    </h2>
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="Title" class="form-label required">Tiêu đề bài viết</label>
+                        <input asp-for="Title" class="form-control" placeholder="Nhập tiêu đề bài viết" required />
+                        <div class="form-hint">Tiêu đề nên ngắn gọn, hấp dẫn và mô tả chính xác nội dung</div>
+                        <span asp-validation-for="Title" class="validation-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Content" class="form-label required">Nội dung</label>
+                        <textarea asp-for="Content" class="form-control" id="summernote" required></textarea>
+                        <div class="form-hint">Sử dụng các công cụ định dạng để làm nội dung hấp dẫn hơn</div>
+                        <span asp-validation-for="Content" class="validation-error"></span>
+                    </div>
                 </div>
             </div>
-            <hr />
-            <div class="form-group">
-                <label asp-for="Title" class="control-label">Tên Blog</label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Content" class="control-label">Nội dung</label>
-                <textarea asp-for="Content" class="form-control" id="summernote"></textarea>
-                <span asp-validation-for="Content" class="text-danger"></span>
-            </div>
 
+            <!-- Sidebar -->
+            <div class="sidebar-card">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title">
+                        <i class="mdi mdi-image"></i>
+                        Hình ảnh đại diện
+                    </h3>
+                </div>
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-gradient-primary me-2">Thêm mới</button>
-                <a asp-action="Index" class="btn btn-light">Trở về</a>
+                <div class="sidebar-body">
+                    <!-- Image Upload -->
+                    <div class="image-upload-container" id="uploadContainer" onclick="document.getElementById('imageUpload').click()">
+                        <div class="image-upload-icon">
+                            <i class="mdi mdi-cloud-upload"></i>
+                        </div>
+                        <div class="image-upload-text">Nhấp để tải lên hình ảnh</div>
+                        <div class="image-upload-hint">Hỗ trợ JPG, PNG, JPEG (Tối đa 5MB)</div>
+                        <input type="file" name="fAvatars" id="imageUpload" class="file-input" onchange="previewImage(event)" accept="image/*" required />
+                    </div>
+
+                    <div class="image-preview-container" id="imagePreviewContainer" style="display: none;">
+                        <!-- Preview will be inserted here -->
+                    </div>
+
+                    <!-- Tips Card -->
+                    <div class="tips-card">
+                        <h4 class="tips-title">
+                            <i class="mdi mdi-lightbulb"></i>
+                            Mẹo viết bài
+                        </h4>
+                        <ul class="tips-list">
+                            <li>Sử dụng tiêu đề hấp dẫn và dễ hiểu</li>
+                            <li>Chia nội dung thành các đoạn ngắn</li>
+                            <li>Thêm hình ảnh chất lượng cao</li>
+                            <li>Kiểm tra chính tả trước khi đăng</li>
+                            <li>Sử dụng từ khóa phù hợp</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </form>
-    </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions-container">
+            <h3 class="actions-title">
+                <i class="mdi mdi-content-save"></i>
+                Lưu bài viết
+            </h3>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    <i class="mdi mdi-plus"></i>
+                    Thêm mới
+                </button>
+                <a class="btn btn-secondary" asp-action="Index">
+                    <i class="mdi mdi-arrow-left"></i>
+                    Quay lại
+                </a>
+            </div>
+        </div>
+    </form>
 </div>
-@* <div>
-    <a asp-action="Index">Back to List</a>
-</div> *@
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.css" rel="stylesheet" />
     <script>
         $(document).ready(function() {
+            // Initialize Summernote with custom options
             $('#summernote').summernote({
-                height: 200 // set height
+                height: 300,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ],
+                placeholder: 'Viết nội dung bài viết tại đây...',
+                callbacks: {
+                    onImageUpload: function(files) {
+                        // Custom image upload handler
+                        for (let i = 0; i < files.length; i++) {
+                            const file = files[i];
+                            if (file.size > 5 * 1024 * 1024) {
+                                alert('Kích thước file quá lớn. Tối đa 5MB.');
+                                return;
+                            }
+
+                            // Insert as base64 for demo
+                            const reader = new FileReader();
+                            reader.onloadend = function() {
+                                const img = document.createElement('img');
+                                img.src = reader.result;
+                                img.style.maxWidth = '100%';
+                                $('#summernote').summernote('insertNode', img);
+                            }
+                            reader.readAsDataURL(file);
+                        }
+                    }
+                }
             });
+
+            // Add smooth animations
+            var cards = document.querySelectorAll('.main-card, .sidebar-card, .actions-container');
+            cards.forEach(function(card, index) {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+
+                setTimeout(function() {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // Preview uploaded image
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Kích thước file quá lớn. Tối đa 5MB.');
+                event.target.value = '';
+                return;
+            }
+
+            const reader = new FileReader();
+            const previewContainer = document.getElementById('imagePreviewContainer');
+
+            reader.onload = function(e) {
+                previewContainer.innerHTML = `
+                    <img src="${e.target.result}" class="image-preview" alt="Preview">
+                    <button type="button" class="remove-image-btn" onclick="removeImage()">
+                        <i class="mdi mdi-delete"></i> Xóa hình ảnh
+                    </button>
+                `;
+                previewContainer.style.display = 'block';
+
+                // Hide upload container
+                document.getElementById('uploadContainer').style.display = 'none';
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        // Remove image
+        function removeImage() {
+            document.getElementById('imageUpload').value = '';
+            document.getElementById('imagePreviewContainer').style.display = 'none';
+            document.getElementById('uploadContainer').style.display = 'block';
+        }
+
+        // Drag and drop functionality
+        const uploadContainer = document.getElementById('uploadContainer');
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadContainer.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            uploadContainer.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            uploadContainer.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight(e) {
+            uploadContainer.classList.add('dragover');
+        }
+
+        function unhighlight(e) {
+            uploadContainer.classList.remove('dragover');
+        }
+
+        uploadContainer.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+
+            if (files.length > 0) {
+                document.getElementById('imageUpload').files = files;
+                previewImage({ target: { files: files } });
+            }
+        }
+
+        // Form submission
+        document.getElementById('createForm').addEventListener('submit', function(e) {
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerHTML = '<i class="mdi mdi-loading mdi-spin"></i> Đang tạo...';
+            submitBtn.disabled = true;
+            this.classList.add('loading');
+        });
+
+        // Auto-save draft functionality (optional)
+        let autoSaveTimer;
+        function autoSave() {
+            clearTimeout(autoSaveTimer);
+            autoSaveTimer = setTimeout(() => {
+                const title = document.querySelector('input[name="Title"]').value;
+                const content = $('#summernote').summernote('code');
+
+                if (title || content) {
+                    localStorage.setItem('news_draft', JSON.stringify({
+                        title: title,
+                        content: content,
+                        timestamp: new Date().toISOString()
+                    }));
+                }
+            }, 2000);
+        }
+
+        // Load draft on page load
+        window.addEventListener('load', function() {
+            const draft = localStorage.getItem('news_draft');
+            if (draft) {
+                const data = JSON.parse(draft);
+                if (confirm('Bạn có muốn khôi phục bản nháp đã lưu?')) {
+                    document.querySelector('input[name="Title"]').value = data.title;
+                    $('#summernote').summernote('code', data.content);
+                }
+            }
+        });
+
+        // Add auto-save listeners
+        document.querySelector('input[name="Title"]').addEventListener('input', autoSave);
+        $('#summernote').on('summernote.change', autoSave);
+
+        // Clear draft on successful submit
+        document.getElementById('createForm').addEventListener('submit', function() {
+            localStorage.removeItem('news_draft');
         });
     </script>
 }
-<script>
-    function previewImages(input) {
-        var previewContainer = document.getElementById('preview-container');
-        previewContainer.innerHTML = '';
-        if (input.files) {
-            Array.from(input.files).forEach(file => {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    var img = document.createElement('img');
-                    img.setAttribute('src', e.target.result);
-                    img.style.width = '200px';
-                    img.style.height = '200px';
-                    img.style.borderRadius = '20px';
-                    img.style.display = 'block';
-                    previewContainer.appendChild(img);
-                }
-                reader.readAsDataURL(file);
-            });
-        }
-    };
-</script>

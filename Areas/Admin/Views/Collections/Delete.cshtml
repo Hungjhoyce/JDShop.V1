@@ -1,65 +1,607 @@
-﻿@model JDshop.Models.Collection
+﻿@* @model JDshop.Models.Collection *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Delete"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>XOÁ BỘ SƯU TẬP</h1> *@
+
+@* <h3>Bạn có chắc là muốn xóa không?</h3> *@
+@* <div> *@
+@*     <h4>Bộ sưu tập</h4> *@
+@*     <hr /> *@
+@*     <dl class="row"> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Tên bộ sưu tập *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Name) *@
+@*         </dd> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Mô tả *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Description) *@
+@*         </dd> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Trạng thái *@
+@*         </dt> *@
+@*         @if (Model.Status == true) *@
+@*         { *@
+@*             <dd class="col-sm-10"> *@
+@*                 Còn hoạt động *@
+@*             </dd> *@
+@*         } *@
+@*         else *@
+@*         { *@
+@*             <dd class="col-sm-10"> *@
+@*                 Ngừng hoạt động *@
+@*             </dd> *@
+
+@*         } *@
+@*     </dl> *@
+    
+@*     <div style="float: left; padding-right:10px"> *@
+@*         <a class="btn btn-secondary" asp-action="Index">Quay Lại</a> *@
+@*     </div> *@
+@*     <form asp-action="Delete"> *@
+
+@*         <input type="hidden" asp-for="Id" /> *@
+@*         <input type="submit" value="Xóa" class="btn btn-danger" /> *@
+@*     </form> *@
+@* </div> *@
+
+
+
+
+
+
+
+
+@model JDshop.Models.Collection
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Xóa bộ sưu tập";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    var isActive = Model.Status.HasValue && Model.Status.Value;
+    var collectionName = Model.Name ?? "Không có tên";
+    var collectionDescription = Model.Description ?? "Không có mô tả";
+    var avatarPath = !string.IsNullOrEmpty(Model.Avatar) ? Url.Content("~/contents/Images/Collection/" + Model.Avatar) : "";
+    var bannerPath = !string.IsNullOrEmpty(Model.Baner) ? Url.Content("~/contents/Images/Collection/" + Model.Baner) : "";
 }
 
-<h1>XOÁ BỘ SƯU TẬP</h1>
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-<h3>Bạn có chắc là muốn xóa không?</h3>
-<div>
-    <h4>Bộ sưu tập</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            Tên bộ sưu tập
-            @* @Html.DisplayNameFor(model => model.Name) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            Mô tả
-            @* @Html.DisplayNameFor(model => model.Description) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        @* <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Slug)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Slug)
-        </dd> *@
-        <dt class = "col-sm-2">
-            Trạng thái
-            @* @Html.DisplayNameFor(model => model.Status) *@
-        </dt>
-        @if (Model.Status == true)
-        {
-            <dd class="col-sm-10">
-                Còn hoạt động
-            </dd>
-        }
-        else
-        {
-            <dd class="col-sm-10">
-                Ngừng hoạt động
-            </dd>
+    .main-container {
+        background-color: #f5f5f7;
+        min-height: 100vh;
+        padding: 2rem;
+    }
 
+    .header-section {
+        margin-bottom: 2rem;
+    }
+
+    .header-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #ff3b30;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .header-subtitle {
+        color: #86868b;
+        margin: 0.25rem 0 0 0;
+        font-size: 0.95rem;
+    }
+
+    .breadcrumb {
+        background: none;
+        padding: 0;
+        margin-bottom: 1rem;
+    }
+
+    .breadcrumb-item {
+        color: #86868b;
+        font-size: 0.9rem;
+    }
+
+    .breadcrumb-item.active {
+        color: #1d1d1f;
+        font-weight: 500;
+    }
+
+    .breadcrumb-item + .breadcrumb-item::before {
+        content: ">";
+        color: #86868b;
+        margin: 0 0.5rem;
+    }
+
+    .warning-card {
+        background: #fff5f5;
+        border: 2px solid #ff3b30;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .warning-icon {
+        font-size: 3rem;
+        color: #ff3b30;
+        margin-bottom: 1rem;
+    }
+
+    .warning-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #ff3b30;
+        margin: 0 0 0.5rem 0;
+    }
+
+    .warning-message {
+        color: #86868b;
+        font-size: 0.95rem;
+        margin: 0;
+    }
+
+    .details-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        border: 1px solid #f0f0f0;
+        overflow: hidden;
+        margin-bottom: 2rem;
+    }
+
+    .card-header {
+        background: #f9f9f9;
+        padding: 1.5rem;
+        border-bottom: 1px solid #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .status-badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .status-active {
+        background: #d1f2eb;
+        color: #00875a;
+    }
+
+    .status-inactive {
+        background: #ffebe6;
+        color: #de350b;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .details-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 2rem;
+    }
+
+    .images-section {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .image-item {
+        background: #f9f9f9;
+        border-radius: 12px;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .image-label {
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .collection-image {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid #f0f0f0;
+    }
+
+    .no-image {
+        width: 100%;
+        height: 150px;
+        background: #f0f0f0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #86868b;
+        font-size: 0.9rem;
+        border: 2px dashed #d2d2d7;
+    }
+
+    .info-section {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .info-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .info-label {
+        font-weight: 600;
+        color: #1d1d1f;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .info-value {
+        color: #86868b;
+        font-size: 1rem;
+        line-height: 1.5;
+        background: #f9f9f9;
+        padding: 1rem;
+        border-radius: 8px;
+        border-left: 4px solid #007aff;
+    }
+
+    .info-value.empty {
+        font-style: italic;
+        color: #86868b;
+    }
+
+    .actions-container {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        border: 1px solid #f0f0f0;
+        padding: 1.5rem;
+    }
+
+    .actions-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 1rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-start;
+    }
+
+    .btn {
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 0.95rem;
+    }
+
+    .btn-danger {
+        background: #ff3b30;
+        color: white;
+    }
+
+    .btn-danger:hover {
+        background: #d63030;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(255,59,48,0.3);
+        text-decoration: none;
+        color: white;
+    }
+
+    .btn-secondary {
+        background: #f0f0f0;
+        color: #1d1d1f !important;
+        border: 1px solid #d2d2d7;
+    }
+
+    .btn-secondary:hover {
+        background: #e0e0e0;
+        text-decoration: none;
+        color: #1d1d1f;
+    }
+
+    .confirmation-section {
+        background: #fff5f5;
+        border: 1px solid #ff3b30;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .confirmation-text {
+        color: #ff3b30;
+        font-weight: 500;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .delete-form {
+        display: inline-block;
+    }
+
+    @@media (max-width: 992px) {
+        .details-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
         }
-        @* <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd> *@
-    </dl>
-    
-    <div style="float: left; padding-right:10px">
-        <a class="btn btn-secondary" asp-action="Index">Quay Lại</a>
+        
+        .main-container {
+            padding: 1rem;
+        }
+        
+        .form-actions {
+            flex-direction: column;
+        }
+        
+        .btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>
+
+<div class="main-container">
+    <!-- Header Section -->
+    <div class="header-section">
+        
+        <h1 class="header-title">
+            <i class="mdi mdi-delete"></i>
+            Xóa bộ sưu tập
+        </h1>
+        <p class="header-subtitle">Xác nhận xóa bộ sưu tập khỏi hệ thống</p>
     </div>
-    <form asp-action="Delete">
 
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Xóa" class="btn btn-danger" />
-    </form>
+    <!-- Warning Card -->
+    <div class="warning-card">
+        <h2 class="warning-title">Cảnh báo!</h2>
+        <p class="warning-message">
+            Bạn có chắc chắn muốn xóa bộ sưu tập này không? Hành động này không thể hoàn tác.
+        </p>
+    </div>
+
+    <!-- Details Card -->
+    <div class="details-card">
+        <div class="card-header">
+            <h2 class="card-title">
+                <i class="mdi mdi-folder-open"></i>
+                Thông tin bộ sưu tập sẽ bị xóa
+            </h2>
+            @if (isActive)
+            {
+                <span class="status-badge status-active">
+                    <i class="mdi mdi-check-circle"></i>
+                    Hoạt động
+                </span>
+            }
+            else
+            {
+                <span class="status-badge status-inactive">
+                    <i class="mdi mdi-close-circle"></i>
+                    Ngừng hoạt động
+                </span>
+            }
+        </div>
+
+        <div class="card-body">
+            <div class="details-grid">
+                <!-- Images Section -->
+                <div class="images-section">
+                    <div class="image-item">
+                        <div class="image-label">
+                            <i class="mdi mdi-account-circle"></i>
+                            Avatar
+                        </div>
+                        @if (!string.IsNullOrEmpty(Model.Avatar))
+                        {
+                            <img src="@avatarPath" class="collection-image" alt="Avatar" data-type="avatar" />
+                        }
+                        else
+                        {
+                            <div class="no-image">
+                                <div>
+                                    <i class="mdi mdi-image-off"></i><br>
+                                    Không có avatar
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="image-item">
+                        <div class="image-label">
+                            <i class="mdi mdi-panorama"></i>
+                            Banner
+                        </div>
+                        @if (!string.IsNullOrEmpty(Model.Baner))
+                        {
+                            <img src="@bannerPath" class="collection-image" alt="Banner" data-type="banner" />
+                        }
+                        else
+                        {
+                            <div class="no-image">
+                                <div>
+                                    <i class="mdi mdi-image-off"></i><br>
+                                    Không có banner
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Info Section -->
+                <div class="info-section">
+                    <div class="info-item">
+                        <div class="info-label">
+                            <i class="mdi mdi-identifier"></i>
+                            ID bộ sưu tập
+                        </div>
+                        <div class="info-value">@Model.Id</div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-label">
+                            Tên bộ sưu tập
+                        </div>
+                        <div class="info-value">@collectionName</div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-label">
+                            <i class="mdi mdi-text-box"></i>
+                            Mô tả
+                        </div>
+                        <div class="info-value @(string.IsNullOrEmpty(Model.Description) ? "empty" : "")">
+                            @if (!string.IsNullOrEmpty(Model.Description))
+                            {
+                                @Model.Description
+                            }
+                            else
+                            {
+                                <em>Không có mô tả</em>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-label">
+                            <i class="mdi mdi-toggle-switch"></i>
+                            Trạng thái
+                        </div>
+                        <div class="info-value">
+                            @if (isActive)
+                            {
+                                <span style="color: #00875a; font-weight: 600;">
+                                    <i class="mdi mdi-check-circle"></i>
+                                    Đang hoạt động
+                                </span>
+                            }
+                            else
+                            {
+                                <span style="color: #de350b; font-weight: 600;">
+                                    <i class="mdi mdi-close-circle"></i>
+                                    Ngừng hoạt động
+                                </span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions-container">
+        <h3 class="actions-title">
+            <i class="mdi mdi-cog"></i>
+            Xác nhận hành động
+        </h3>
+        
+        <div class="confirmation-section">
+            <p class="confirmation-text">
+                <i class="mdi mdi-alert-triangle"></i>
+                Việc xóa bộ sưu tập sẽ không thể hoàn tác. Tất cả dữ liệu liên quan sẽ bị mất vĩnh viễn.
+            </p>
+        </div>
+        
+        <div class="form-actions">
+            <form asp-action="Delete" class="delete-form" onsubmit="return confirmDelete()">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-danger">
+                    <i class="mdi mdi-delete"></i>
+                    Xác nhận xóa
+                </button>
+            </form>
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="mdi mdi-arrow-left"></i>
+                Hủy bỏ
+            </a>
+        </div>
+    </div>
 </div>
+
+<script>
+    function confirmDelete() {
+        return confirm('Bạn có chắc chắn muốn xóa bộ sưu tập "' + '@Html.Raw(Html.Encode(collectionName))' + '" không?\n\nHành động này không thể hoàn tác!');
+    }
+
+    // Add animation effects
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.warning-card, .details-card, .actions-container');
+        cards.forEach(function(card, index) {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            setTimeout(function() {
+                card.style.transition = 'all 0.6s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+
+        // Handle image errors
+        const collectionImages = document.querySelectorAll('.collection-image');
+        collectionImages.forEach(function(img) {
+            img.addEventListener('error', function() {
+                this.parentElement.innerHTML = '<div class="no-image"><div><i class="mdi mdi-image-off"></i><br>Không thể tải hình ảnh</div></div>';
+            });
+        });
+    });
+</script>

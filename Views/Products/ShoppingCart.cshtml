@@ -1,79 +1,656 @@
-﻿@model IEnumerable<JDshop.Models.OrderItem>
-@{
+﻿@* @model IEnumerable<JDshop.Models.OrderItem> *@
+@* @{ *@
 
-    ViewBag.Title = "Cart";
+@*     ViewBag.Title = "Cart"; *@
+@*     var Id = ViewBag.AddressId; *@
+@* } *@
+
+
+@* <style> *@
+@*     .payment-method { *@
+@*         width: 100%; *@
+@*         padding: 12px 20px; *@
+@*         border: 1px solid #ccc; *@
+@*         border-radius: 5px; *@
+@*         appearance: none; *@
+@*         background-color: #fff; *@
+@*         background-position: right 10px center; *@
+@*         background-repeat: no-repeat; *@
+@*         background-size: 20px; *@
+@*         font-size: 16px; *@
+@*         color: #333; *@
+@*     } *@
+@*         .payment-method select { *@
+@*             width: calc(100% - 40px); *@
+@*             padding: 10px; *@
+@*             border: none; *@
+@*             font-size: 16px; *@
+@*             background-color: transparent; *@
+@*             color: #333; *@
+@*             appearance: none; *@
+@*         } *@
+@*     .quantity { *@
+@*         display: flex; *@
+@*         align-items: center; *@
+@*     } *@
+
+@*         .quantity input { *@
+@*             width: 50px; *@
+@*             text-align: center; *@
+@*             border: 1px solid #ccc; *@
+@*             border-radius: 5px; *@
+@*             padding: 5px; *@
+@*             margin: 0 5px; *@
+@*         } *@
+
+@*         .quantity button { *@
+@*             background-color: #007bff; *@
+@*             color: white; *@
+@*             border: none; *@
+@*             border-radius: 5px; *@
+@*             padding: 5px 10px; *@
+@*             cursor: pointer; *@
+@*         } *@
+
+@*             .quantity button:hover { *@
+@*                 background-color: #0056b3; *@
+@*             } *@
+@* </style> *@
+@* <section class="breadcrumb-option"> *@
+@*     <div class="container"> *@
+@*         <div class="row"> *@
+@*             <div class="col-lg-12"> *@
+@*                 <div class="breadcrumb__text"> *@
+@*                     <h4>Giỏ hàng</h4> *@
+@*                     <div class="breadcrumb__links"> *@
+@*                         <a href="index.html">Trang chủ</a> *@
+@*                         <a href="shop.html">Shop</a> *@
+@*                         <span>Giỏ hàng</span> *@
+@*                     </div> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </section> *@
+@* <section class="shopping-cart spad"> *@
+@*     <div class="container"> *@
+@*         <div class="row"> *@
+@*             <div class="col-lg-8"> *@
+@*                 <div class="shopping__cart__table"> *@
+@*                     <table> *@
+@*                         <thead> *@
+@*                             <tr> *@
+@*                                 <th>Sản phẩm</th> *@
+@*                                 <th>Số lượng</th> *@
+@*                                 <th>Đơn giá</th> *@
+@*                                 <th></th> *@
+@*                             </tr> *@
+@*                         </thead> *@
+@*                         <tbody> *@
+@*                             @{ *@
+@*                                 int? SoSanPham = 0; *@
+@*                                 decimal? tongTien = 0; *@
+@*                             } *@
+@*                             @foreach (var item in Model) *@
+@*                             { *@
+@*                                 <tr> *@
+@*                                     <td class="product__cart__item"> *@
+@*                                         <div class="product__cart__item__pic"> *@
+@*                                             <img src="/contents/Images/Product/@item.ProductSizeColor.Product.Images.FirstOrDefault().Url" alt=""> *@
+@*                                         </div> *@
+@*                                         <div class="product__cart__item__text"> *@
+@*                                             <h6>@item.ProductSizeColor.Product.Name</h6> *@
+@*                                             <h6>Size : @item.ProductSizeColor.Size.Size1</h6> *@
+@*                                             <h6>Màu : @item.ProductSizeColor.Color.Color1</h6> *@
+@*                                             <h5>@String.Format("{0:#,##0}", item.ProductSizeColor.Product.Price * item.Quantity) VNĐ</h5> *@
+@*                                         </div> *@
+@*                                     </td> *@
+@*                                     <td class="quantity__item"> *@
+@*                                         <div class="quantity"> *@
+@*                                             <a class="quantity-btn" asp-controller="Orders" asp-action="UpdateOrder" asp-route-id="@item.ProductSizeColorId">-</a> *@
+@*                                             <input type="number" value="@item.Quantity" onchange="validateQuantity(this)" /> *@
+@*                                             <a class="quantity-btn" asp-controller="Orders" asp-action="UpdateOrderAdd" asp-route-id="@item.ProductSizeColorId">+</a> *@
+@*                                         </div> *@
+@*                                     </td> *@
+@*                                     <td class="cart__price">@String.Format("{0:#,##0}", item.ProductSizeColor.Product.Price) VNĐ</td> *@
+@*                                     <td class="cart__close"> *@
+
+@*                                         <a asp-controller="Orders" asp-action="RemoveProduct" asp-route-id="@item.ProductSizeColorId"><i class="fa fa-close"> </i></a> *@
+@*                                     </td> *@
+@*                                 </tr> *@
+@*                                 SoSanPham += item.Quantity; *@
+@*                                 tongTien += (decimal?)(item.ProductSizeColor.Product.Price * item.Quantity); *@
+@*                             } *@
+
+@*                         </tbody> *@
+@*                     </table> *@
+@*                 </div> *@
+@*                 <div class="row"> *@
+@*                     <div class="col-lg-6 col-md-6 col-sm-6"> *@
+@*                         <div class="continue__btn"> *@
+@*                             <a asp-action="Index" asp-controller="Products">Tiếp tục mua hàng</a> *@
+@*                         </div> *@
+@*                     </div> *@
+@*                 </div> *@
+@*             </div> *@
+@*             <div class="col-lg-4"> *@
+@*                 <div class="cart__discount"> *@
+@*                     <h6>Mã giảm giá</h6> *@
+@*                     <form action="#"> *@
+@*                         <input type="text" placeholder="Coupon code"> *@
+@*                         <button type="submit">Nhập mã</button> *@
+@*                     </form> *@
+@*                 </div> *@
+@*                 <div class="cart__total"> *@
+@*                     <form asp-action="CheckOut" asp-controller="Orders"> *@
+@*                         <h6>Tổng cộng giỏ hàng</h6> *@
+@*                         <ul> *@
+@*                             <li>Tổng cộng <span>@String.Format("{0:#,##0}", tongTien) VNĐ</span></li> *@
+@*                             <li>Thành tiền <span>@String.Format("{0:#,##0}", tongTien) VNĐ</span></li> *@
+@*                             <li> *@
+
+@*                             </li> *@
+@*                         </ul> *@
+@*                         <div style="display: flex; align-items: center;"> *@
+                          
+@*                             <label for="payment-select" style="margin-right: 8px;">Thanh toán qua:</label> *@
+                           
+@*                             <select id="payment-select" required name="pay"> *@
+@*                                 <option value="1" selected>COD</option> *@
+@*                                 <option value="2">VNPAY</option> *@
+@*                             </select> *@
+@*                         </div> *@
+@*                         <div style=" align-items: center;"> *@
+@*                              <div > *@
+
+@*                             <label for="shipping-address-select" style="margin-right: 8px;">Địa chỉ giao hàng:</label> *@
+@*                              </div> *@
+@*                             <select name="Address" asp-items="Id" class="form-select" required> *@
+@*                                 <option value="">-- Chọn Địa chỉ giao hàng --</option> *@
+@*                             </select> *@
+@*                         </div> *@
+@*                         <input type="hidden" name="total" value="@tongTien" /> *@
+@*                         <div style="margin-top:80px"> *@
+@*                             <button type="submit" class="primary-btn">Đặt Hàng</button> *@
+@*                         </div> *@
+@*                     </form> *@
+
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </section> *@
+@* @section Scripts { *@
+@*     <script> *@
+@*         function validateQuantity(input) { *@
+@*             if (input.value <= 0) { *@
+@*                 input.value = 1; *@
+@*             } *@
+@*         } *@
+@*     </script> *@
+@* } *@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@model IEnumerable<JDshop.Models.OrderItem>
+@{
+    ViewBag.Title = "Giỏ hàng";
     var Id = ViewBag.AddressId;
 }
 
-
 <style>
-    /* Thêm vào file CSS của bạn */
-    /* Thêm vào file CSS của bạn */
-    .payment-method {
-        width: 100%;
-        /* Đảm bảo combobox chiếm toàn bộ chiều rộng */
-        padding: 12px 20px;
-        /* Thêm khoảng cách bên trong cho đẹp mắt */
-        border: 1px solid #ccc;
-        /* Đường viền */
-        border-radius: 5px;
-        /* Bo góc */
-        appearance: none;
-        /* Tùy chọn hiển thị */
-        background-color: #fff;
-        /* Màu nền trắng */
-        background-position: right 10px center;
-        /* Đặt icon ở bên phải */
-        background-repeat: no-repeat;
-        /* Không lặp lại icon */
-        background-size: 20px;
-        /* Kích thước icon */
-        font-size: 16px;
-        /* Kích thước chữ */
-        color: #333;
-        /* Màu chữ */
+    /* Cart Page Styles */
+    .shopping-cart {
+        padding: 60px 0;
     }
 
-        /* Tùy chọn thêm cho phần hiển thị icon */
-        .payment-method select {
-            width: calc(100% - 40px);
-            /* Giảm chiều rộng để tạo khoảng trống cho icon */
-            padding: 10px;
-            border: none;
-            font-size: 16px;
-            background-color: transparent;
-            /* Giữ nền trong suốt */
-            color: #333;
-            appearance: none;
+    .breadcrumb-option {
+        background-color: #f5f5f5;
+        padding: 30px 0;
+        margin-bottom: 20px;
+    }
+
+    .breadcrumb__text h4 {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #111;
+    }
+
+    .breadcrumb__links a {
+        font-size: 15px;
+        color: #111;
+        margin-right: 18px;
+        position: relative;
+        display: inline-block;
+        text-decoration: none;
+    }
+
+        .breadcrumb__links a:after {
+            content: "/";
+            position: absolute;
+            right: -12px;
+            top: 0;
+            color: #888;
         }
 
-    /* Thêm CSS cho nút tăng giảm số lượng */
-    .quantity {
+    .breadcrumb__links span {
+        font-size: 15px;
+        color: #ca1515;
+        display: inline-block;
+    }
+
+    /* Cart Table Styles */
+    .shopping__cart__table {
+        margin-bottom: 30px;
+    }
+
+        .shopping__cart__table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .shopping__cart__table th {
+            font-size: 16px;
+            color: #111;
+            font-weight: 600;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 16px 0;
+            text-align: left;
+        }
+
+        .shopping__cart__table tbody tr {
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+            .shopping__cart__table tbody tr td {
+                padding: 20px 0;
+            }
+
+    .product__cart__item {
         display: flex;
         align-items: center;
     }
 
-        .quantity input {
-            width: 50px;
-            text-align: center;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 5px;
-            margin: 0 5px;
+    .product__cart__item__pic {
+        margin-right: 20px;
+    }
+
+        .product__cart__item__pic img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid #eee;
         }
 
-        .quantity button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
+    .product__cart__item__text {
+        width: calc(100% - 110px);
+    }
+
+        .product__cart__item__text h6 {
+            color: #111;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 16px;
         }
 
-            .quantity button:hover {
-                background-color: #0056b3;
+            .product__cart__item__text h6:first-child {
+                margin-bottom: 10px;
             }
+
+        .product__cart__item__text h5 {
+            color: #ca1515;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+    .product-variant {
+        display: inline-block;
+        background-color: #f8f9fa;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 13px;
+        color: #495057;
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+
+    /* Quantity Styles */
+    .quantity {
+        display: flex;
+        align-items: center;
+        border: 1px solid #e5e5e5;
+        border-radius: 50px;
+        padding: 2px;
+        width: fit-content;
+    }
+
+    .quantity-btn {
+        width: 30px;
+        height: 30px;
+        background-color: #f5f5f5;
+        border: none;
+        color: #111;
+        font-size: 16px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
+    }
+
+        .quantity-btn:hover {
+            background-color: #e9ecef;
+            color: #ca1515;
+        }
+
+    .quantity input {
+        width: 40px;
+        text-align: center;
+        border: none;
+        font-size: 16px;
+        color: #111;
+        font-weight: 500;
+        background: transparent;
+    }
+
+        .quantity input:focus {
+            outline: none;
+        }
+
+    /* Price and Remove Button */
+    .cart__price {
+        font-size: 16px;
+        color: #111;
+        font-weight: 600;
+    }
+
+    .cart__close {
+        text-align: right;
+    }
+
+        .cart__close a {
+            font-size: 18px;
+            color: #111;
+            height: 40px;
+            width: 40px;
+            background: #f3f3f3;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+            .cart__close a:hover {
+                background: #ca1515;
+                color: #ffffff;
+            }
+
+    /* Continue Shopping Button */
+    .continue__btn {
+        margin-bottom: 30px;
+    }
+
+        .continue__btn a {
+            display: inline-block;
+            font-size: 14px;
+            color: #111;
+            font-weight: 600;
+            border: 1px solid #e5e5e5;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+            .continue__btn a:hover {
+                background-color: #ca1515;
+                border-color: #ca1515;
+                color: #ffffff;
+            }
+
+    /* Coupon and Cart Total */
+    .cart__discount {
+        margin-bottom: 30px;
+    }
+
+        .cart__discount h6 {
+            color: #111;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .cart__discount form {
+            position: relative;
+        }
+
+            .cart__discount form input {
+                width: 100%;
+                height: 46px;
+                border: 1px solid #e5e5e5;
+                border-radius: 50px;
+                padding-left: 20px;
+                font-size: 14px;
+                color: #111;
+            }
+
+                .cart__discount form input:focus {
+                    outline: none;
+                    border-color: #ca1515;
+                }
+
+            .cart__discount form button {
+                position: absolute;
+                right: 0;
+                top: 0;
+                height: 46px;
+                padding: 0 25px;
+                border: none;
+                background-color: #111;
+                color: #ffffff;
+                font-size: 14px;
+                font-weight: 600;
+                border-radius: 0 50px 50px 0;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+                .cart__discount form button:hover {
+                    background-color: #ca1515;
+                }
+
+    .cart__total {
+        background-color: #f5f5f5;
+        padding: 30px;
+        border-radius: 10px;
+    }
+
+        .cart__total h6 {
+            color: #111;
+            font-weight: 600;
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .cart__total ul {
+            margin-bottom: 30px;
+            padding: 0;
+            list-style: none;
+        }
+
+            .cart__total ul li {
+                font-size: 15px;
+                color: #444;
+                line-height: 36px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+                .cart__total ul li:last-child {
+                    font-weight: 600;
+                    color: #111;
+                    font-size: 18px;
+                    border-top: 1px solid #e5e5e5;
+                    padding-top: 10px;
+                    margin-top: 10px;
+                }
+
+                .cart__total ul li span {
+                    color: #ca1515;
+                    font-weight: 600;
+                }
+
+    /* Payment and Address Selection */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #111;
+        }
+
+    .form-select {
+        width: 100%;
+        height: 46px;
+        border: 1px solid #e5e5e5;
+        border-radius: 5px;
+        padding: 0 15px;
+        font-size: 14px;
+        color: #111;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23212529' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        background-size: 12px;
+    }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #ca1515;
+        }
+
+    /* Checkout Button */
+    .primary-btn {
+        display: block;
+        width: 100%;
+        font-size: 16px;
+        color: #ffffff;
+        background-color: #ca1515;
+        font-weight: 600;
+        border: none;
+        padding: 14px 30px;
+        text-align: center;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+        .primary-btn:hover {
+            background-color: #111;
+        }
+
+    /* Empty Cart */
+    .empty-cart {
+        text-align: center;
+        padding: 50px 0;
+    }
+
+        .empty-cart i {
+            font-size: 60px;
+            color: #e5e5e5;
+            margin-bottom: 20px;
+        }
+
+        .empty-cart h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #111;
+        }
+
+        .empty-cart p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+    .discount-form {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .discount-form input {
+        flex: 1;
+        padding: 10px 15px;
+        border: 1px solid #e5e5e5;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .discount-form input:focus {
+        outline: none;
+        border-color: #ca1515;
+    }
+
+    .discount-form button {
+        padding: 10px 20px;
+        background-color: #ca1515;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .discount-form button:hover {
+        background-color: #a01111;
+    }
+
+    .discount-message {
+        margin-top: 5px;
+        font-size: 14px;
+    }
+
+    .text-success {
+        color: #28a745;
+    }
+
+    .text-danger {
+        color: #dc3545;
+    }
+
+    .discount-row {
+        color: #ca1515;
+        font-style: italic;
+    }
+
+    .discount-row span {
+        color: #ca1515 !important;
+    }
 </style>
 
 <!-- Breadcrumb Section Begin -->
@@ -84,8 +661,8 @@
                 <div class="breadcrumb__text">
                     <h4>Giỏ hàng</h4>
                     <div class="breadcrumb__links">
-                        <a href="index.html">Trang chủ</a>
-                        <a href="shop.html">Shop</a>
+                        <a href="/">Trang chủ</a>
+                        <a asp-controller="Products" asp-action="Index">Shop</a>
                         <span>Giỏ hàng</span>
                     </div>
                 </div>
@@ -97,119 +674,290 @@
 <!-- Shopping Cart Section Begin -->
 <section class="shopping-cart spad">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="shopping__cart__table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Sản phẩm</th>
-                                <th>Số lượng</th>
-                                <th>Đơn giá</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @{
-                                int? SoSanPham = 0;
-                                decimal? tongTien = 0;
-                            }
-                            @foreach (var item in Model)
-                            {
+        @if (Model != null && Model.Any())
+        {
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="shopping__cart__table">
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td class="product__cart__item">
-                                        <div class="product__cart__item__pic">
-                                            <img src="/contents/Images/Product/@item.ProductSizeColor.Product.Images.FirstOrDefault().Url" alt="">
-                                        </div>
-                                        <div class="product__cart__item__text">
-                                            <h6>@item.ProductSizeColor.Product.Name</h6>
-                                            <h6>Size : @item.ProductSizeColor.Size.Size1</h6>
-                                            <h6>Màu : @item.ProductSizeColor.Color.Color1</h6>
-                                            <h5>@String.Format("{0:#,##0}", item.ProductSizeColor.Product.Price * item.Quantity) VNĐ</h5>
-                                        </div>
-                                    </td>
-                                    <td class="quantity__item">
-                                        <div class="quantity">
-                                            <a class="quantity-btn" asp-controller="Orders" asp-action="UpdateOrder" asp-route-id="@item.ProductSizeColorId">-</a>
-                                            <input type="number" value="@item.Quantity" onchange="validateQuantity(this)" />
-                                            <a class="quantity-btn" asp-controller="Orders" asp-action="UpdateOrderAdd" asp-route-id="@item.ProductSizeColorId">+</a>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">@String.Format("{0:#,##0}", item.ProductSizeColor.Product.Price) VNĐ</td>
-                                    <td class="cart__close">
-
-                                        <a asp-controller="Orders" asp-action="RemoveProduct" asp-route-id="@item.ProductSizeColorId"><i class="fa fa-close"> </i></a>
-                                    </td>
+                                    <th>Sản phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th>Đơn giá</th>
+                                    <th></th>
                                 </tr>
-                                SoSanPham += item.Quantity;
-                                tongTien += (decimal?)(item.ProductSizeColor.Product.Price * item.Quantity);
-                            }
-
-                        </tbody>
-                    </table>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="continue__btn">
-                            <a asp-action="Index" asp-controller="Products">Tiếp tục mua hàng</a>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int? SoSanPham = 0;
+                                    decimal? tongTien = 0;
+                                }
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="product__cart__item">
+                                            <div class="product__cart__item__pic">
+                                                <img src="/contents/Images/Product/@item.ProductSizeColor.Product.Images.FirstOrDefault().Url" alt="@item.ProductSizeColor.Product.Name">
+                                            </div>
+                                            <div class="product__cart__item__text">
+                                                <h6>@item.ProductSizeColor.Product.Name</h6>
+                                                <div>
+                                                    <span class="product-variant">Size: @item.ProductSizeColor.Size.Size1</span>
+                                                    <span class="product-variant">Màu: @item.ProductSizeColor.Color.Color1</span>
+                                                </div>
+                                                <h5>@String.Format("{0:#,##0}", item.ProductSizeColor.Product.Price * item.Quantity) VNĐ</h5>
+                                            </div>
+                                        </td>
+                                        <td class="quantity__item">
+                                            <div class="quantity">
+                                                <a class="quantity-btn" asp-controller="Orders" asp-action="UpdateOrder" asp-route-id="@item.ProductSizeColorId">-</a>
+                                                <input type="number" value="@item.Quantity" min="1" onchange="validateQuantity(this)" />
+                                                <a class="quantity-btn" asp-controller="Orders" asp-action="UpdateOrderAdd" asp-route-id="@item.ProductSizeColorId">+</a>
+                                            </div>
+                                        </td>
+                                        <td class="cart__price">@String.Format("{0:#,##0}", item.ProductSizeColor.Product.Price) VNĐ</td>
+                                        <td class="cart__close">
+                                            <a asp-controller="Orders" asp-action="RemoveProduct" asp-route-id="@item.ProductSizeColorId" title="Xóa sản phẩm">
+                                                <i class="fa fa-close"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    SoSanPham += item.Quantity;
+                                    tongTien += (decimal?)(item.ProductSizeColor.Product.Price * item.Quantity);
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn">
+                                <a asp-action="Index" asp-controller="Products">
+                                    <i class="fa fa-long-arrow-left"></i> Tiếp tục mua hàng
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="cart__discount">
-                    <h6>Mã giảm giá</h6>
-                    <form action="#">
-                        <input type="text" placeholder="Coupon code">
-                        <button type="submit">Nhập mã</button>
-                    </form>
+                <div class="col-lg-4">
+                    <div class="cart__discount">
+                        <h6>Mã giảm giá</h6>
+                        <div class="discount-form">
+                            <input type="text" id="discountCode" placeholder="Nhập mã giảm giá">
+                            <button type="button" onclick="applyDiscount()">Áp dụng</button>
+                        </div>
+                        <div id="discountMessage" class="discount-message"></div>
+                    </div>
+                    <div class="cart__total">
+                        <form asp-action="CheckOut" asp-controller="Orders">
+                            <h6>Thông tin đơn hàng</h6>
+                            <ul>
+                                <li>Số lượng sản phẩm <span>@SoSanPham</span></li>
+                                <li>Tạm tính <span>@String.Format("{0:#,##0}", tongTien) VNĐ</span></li>
+                                <li>Phí vận chuyển <span>Miễn phí</span></li>
+                                <li>Thành tiền <span>@String.Format("{0:#,##0}", tongTien) VNĐ</span></li>
+                            </ul>
+
+                            <div class="form-group">
+                                <label for="payment-select">
+                                    <i class="fa fa-credit-card"></i> Phương thức thanh toán
+                                </label>
+                                <select id="payment-select" class="form-select" required name="pay">
+                                    <option value="1" selected>Thanh toán khi nhận hàng (COD)</option>
+                                    <option value="2">Thanh toán qua VNPAY</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="shipping-address-select">
+                                    <i class="fa fa-map-marker"></i> Địa chỉ giao hàng
+                                </label>
+                                <select id="shipping-address-select" name="Address" asp-items="Id" class="form-select" required>
+                                    <option value="">-- Chọn địa chỉ giao hàng --</option>
+                                </select>
+                            </div>
+
+                            <input type="hidden" name="total" value="@tongTien" />
+
+                            <button type="submit" class="primary-btn">
+                                <i class="fa fa-check-circle"></i> Tiến hành đặt hàng
+                            </button>
+                        </form>
+                    </div>
                 </div>
-                <div class="cart__total">
-                    <form asp-action="CheckOut" asp-controller="Orders">
-                        <h6>Tổng cộng giỏ hàng</h6>
-                        <ul>
-                            <li>Tổng cộng <span>@String.Format("{0:#,##0}", tongTien) VNĐ</span></li>
-                            <li>Thành tiền <span>@String.Format("{0:#,##0}", tongTien) VNĐ</span></li>
-                            <li>
-
-                            </li>
-                        </ul>
-                        <div style="display: flex; align-items: center;">
-                          
-                            <label for="payment-select" style="margin-right: 8px;">Thanh toán qua:</label>
-                           
-                            <select id="payment-select" required name="pay">
-                                <option value="1" selected>COD</option>
-                                <option value="2">VNPAY</option>
-                            </select>
-                        </div>
-                        <div style=" align-items: center;">
-                             <div >
-
-                            <label for="shipping-address-select" style="margin-right: 8px;">Địa chỉ giao hàng:</label>
-                             </div>
-                            <select name="Address" asp-items="Id" class="form-select" required>
-                                <option value="">-- Chọn Địa chỉ giao hàng --</option>
-                            </select>
-                        </div>
-                        <input type="hidden" name="total" value="@tongTien" />
-                        <div style="margin-top:80px">
-                            <button type="submit" class="primary-btn">Đặt Hàng</button>
-                        </div>
-                    </form>
-
-                </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="empty-cart">
+                <i class="fa fa-shopping-cart"></i>
+                <h3>Giỏ hàng của bạn đang trống</h3>
+                <p>Hãy thêm sản phẩm vào giỏ hàng để tiến hành đặt hàng</p>
+                <a asp-controller="Products" asp-action="Index" class="primary-btn">Tiếp tục mua sắm</a>
+            </div>
+        }
     </div>
 </section>
 <!-- Shopping Cart Section End -->
 @section Scripts {
     <script>
+        let appliedDiscount = null;
+
+        async function applyDiscount() {
+            const codeInput = document.getElementById('discountCode');
+            const code = codeInput.value.trim();
+            const messageDiv = document.getElementById('discountMessage');
+            
+            if (!code) {
+                messageDiv.innerHTML = '<span class="text-danger">Vui lòng nhập mã giảm giá</span>';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/Orders/ApplyDiscount?code=${encodeURIComponent(code)}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    messageDiv.innerHTML = `<span class="text-success">Áp dụng mã giảm giá thành công: -${data.discountAmount.toLocaleString('vi-VN')} VNĐ</span>`;
+                    appliedDiscount = {
+                        code: code,
+                        amount: data.discountAmount
+                    };
+                    updateCartTotals();
+                } else {
+                    messageDiv.innerHTML = `<span class="text-danger">${data.message}</span>`;
+                    appliedDiscount = null;
+                    updateCartTotals();
+                }
+            } catch (error) {
+                messageDiv.innerHTML = '<span class="text-danger">Có lỗi xảy ra khi áp dụng mã giảm giá</span>';
+                appliedDiscount = null;
+                updateCartTotals();
+            }
+        }
+
         function validateQuantity(input) {
             if (input.value <= 0) {
                 input.value = 1;
             }
+
+            // Get the row containing the quantity input
+            const row = input.closest('tr');
+            
+            // Get the unit price from the cart__price cell (remove 'VNĐ' and commas)
+            const unitPrice = parseFloat(row.querySelector('.cart__price').textContent.replace('VNĐ', '').replace(/,/g, ''));
+            
+            // Calculate new total for this item
+            const quantity = parseInt(input.value);
+            const total = unitPrice * quantity;
+            
+            // Update the item total price
+            row.querySelector('.product__cart__item__text h5').textContent = formatCurrency(total) + ' VNĐ';
+            
+            // Update cart totals
+            updateCartTotals();
+
+            // Add animation effect
+            row.style.backgroundColor = '#fff8f8';
+            setTimeout(() => {
+                row.style.backgroundColor = 'transparent';
+                row.style.transition = 'background-color 0.5s';
+            }, 300);
         }
+
+        // Format number to currency string
+        function formatCurrency(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // Update cart totals
+        function updateCartTotals() {
+            let totalQuantity = 0;
+            let subtotal = 0;
+
+            // Loop through all items in cart
+            document.querySelectorAll('.shopping__cart__table tbody tr').forEach(row => {
+                const quantity = parseInt(row.querySelector('.quantity input').value);
+                const unitPrice = parseFloat(row.querySelector('.cart__price').textContent.replace('VNĐ', '').replace(/,/g, ''));
+                
+                totalQuantity += quantity;
+                subtotal += (quantity * unitPrice);
+            });
+
+            // Calculate final total after discount
+            let finalTotal = subtotal;
+            if (appliedDiscount) {
+                finalTotal = Math.max(0, subtotal - appliedDiscount.amount);
+            }
+
+            // Update subtotal and total in the cart summary
+            document.querySelector('.cart__total ul li:first-child span').textContent = formatCurrency(subtotal) + ' VNĐ';
+            
+            // If there's a discount, show it
+            const discountRow = document.querySelector('.cart__total ul li.discount-row');
+            if (appliedDiscount) {
+                if (!discountRow) {
+                    const newDiscountRow = document.createElement('li');
+                    newDiscountRow.className = 'discount-row';
+                    newDiscountRow.innerHTML = `Giảm giá <span>-${formatCurrency(appliedDiscount.amount)} VNĐ</span>`;
+                    document.querySelector('.cart__total ul li:first-child').insertAdjacentElement('afterend', newDiscountRow);
+                } else {
+                    discountRow.innerHTML = `Giảm giá <span>-${formatCurrency(appliedDiscount.amount)} VNĐ</span>`;
+                }
+            } else if (discountRow) {
+                discountRow.remove();
+            }
+            
+            // Update final total
+            document.querySelector('.cart__total ul li:last-child span').textContent = formatCurrency(finalTotal) + ' VNĐ';
+            
+            // Update hidden total input for checkout
+            document.querySelector('input[name="total"]').value = finalTotal;
+        }
+
+        // Add event listeners for quantity buttons
+        document.querySelectorAll('.quantity-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const input = this.parentElement.querySelector('input');
+                const currentValue = parseInt(input.value);
+                
+                if (this.textContent === '+') {
+                    input.value = currentValue + 1;
+                } else if (this.textContent === '-' && currentValue > 1) {
+                    input.value = currentValue - 1;
+                }
+                
+                validateQuantity(input);
+            });
+        });
+
+        // Add event listener for quantity input changes
+        document.querySelectorAll('.quantity input').forEach(input => {
+            input.addEventListener('change', function() {
+                validateQuantity(this);
+            });
+        });
+
+        // Hiển thị thông báo xác nhận khi xóa sản phẩm
+        document.querySelectorAll('.cart__close a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (!confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?')) {
+                    e.preventDefault();
+                }
+            });
+        });
+
+        // Kiểm tra địa chỉ giao hàng trước khi đặt hàng
+        document.querySelector('form[asp-action="CheckOut"]').addEventListener('submit', function(e) {
+            const addressSelect = document.getElementById('shipping-address-select');
+            if (addressSelect.value === '') {
+                e.preventDefault();
+                alert('Vui lòng chọn địa chỉ giao hàng');
+                addressSelect.focus();
+            }
+        });
+
+        // Initialize cart totals on page load
+        updateCartTotals();
     </script>
 }

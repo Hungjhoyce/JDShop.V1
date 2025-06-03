@@ -1,111 +1,647 @@
-﻿@model JDshop.Models.Collection
+﻿@* @model JDshop.Models.Collection *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Edit"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>CHỈNH SỬA</h1> *@
+
+@* <h4>Bộ sưu tập</h4> *@
+@* <hr /> *@
+@* <div class="row"> *@
+@*     <div class="col-md-4"> *@
+@*         <form asp-action="Edit" method="post" enctype="multipart/form-data"> *@
+@*             <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+@*             <input type="hidden" asp-for="Id" /> *@
+
+@*             <div class="form-group flex-grow-1 mx-4"> *@
+@*                 <div id="previewImages" class="d-flex flex-wrap gap-2 mb-3"> *@
+@*                     <img src="@Url.Content("~/contents/Images/Collection/" + Model.Avatar)" style="width: 200px; height: 200px; border-radius: 20px;" alt="Existing Image"> *@
+@*                 </div> *@
+@*                 <label class="control-label">Hình ảnh đại diện</label> *@
+@*                 <input type="file" name="fAvatars" id="imageUpload" class="form-control-file" onchange="previewFiles(event)" /> *@
+@*             </div> *@
+@*             <hr /> *@
+
+@*             <div class="form-group flex-grow-1 mx-4"> *@
+@*                 <div id="previewImages1" class="d-flex flex-wrap gap-2 mb-3"> *@
+@*                     <img src="@Url.Content("~/contents/Images/Collection/" + Model.Baner)" style="width: 200px; height: 200px; border-radius: 20px;" alt="Existing Image"> *@
+@*                 </div> *@
+@*                 <label class="control-label">Hình ảnh đại diện</label> *@
+@*                 <input type="file" name="fAvatars1" id="imageUpload" class="form-control-file" onchange="previewFiles1(event)" /> *@
+@*             </div> *@
+
+@*             <div class="form-group"> *@
+@*                 <label> Tên bộ sưu tập</label> *@
+@*                 <input asp-for="Name" class="form-control" /> *@
+@*                 <span asp-validation-for="Name" class="text-danger"></span> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label> Mô tả</label> *@
+@*                 <input asp-for="Description" class="form-control" /> *@
+@*                 <span asp-validation-for="Description" class="text-danger"></span> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label>Trạng Thái</label> *@
+@*                 <select class="form-control" asp-for="Status" placeholder="" required> *@
+@*                     <option value="True" selected>Hoạt động</option> *@
+@*                     <option value="False">Ngừng hoạt động</option> *@
+
+@*                 </select> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <a asp-action="Index" class="btn btn-light">Trở về</a> *@
+@*                 <button type="submit" class="btn btn-gradient-primary me-2">Sửa</button> *@
+@*             </div> *@
+@*         </form> *@
+@*     </div> *@
+@* </div> *@
+
+@* @section Scripts { *@
+@*     @{ *@
+@*         await Html.RenderPartialAsync("_ValidationScriptsPartial"); *@
+@*     } *@
+@*     <script> *@
+@*         const previewFiles = (event) => { *@
+@*             const files = event.target.files; *@
+@*             const previewContainer = document.getElementById("previewImages"); *@
+@*             previewContainer.innerHTML = ""; // Xóa ảnh cũ *@
+
+@*             Array.from(files).forEach(file => { *@
+@*                 const reader = new FileReader(); *@
+@*                 reader.onload = function (e) { *@
+@*                     const img = document.createElement("img"); *@
+@*                     img.src = e.target.result; *@
+@*                     img.style = "width: 200px; height: 200px; border-radius: 20px; margin-right: 10px;"; *@
+@*                     previewContainer.appendChild(img); *@
+@*                 }; *@
+@*                 reader.readAsDataURL(file); *@
+@*             }); *@
+@*         }; *@
+@*         const previewFiles1 = (event) => { *@
+@*             const files = event.target.files; *@
+@*             const previewContainer = document.getElementById("previewImages1"); *@
+@*             previewContainer.innerHTML = ""; // Xóa ảnh cũ *@
+
+@*             Array.from(files).forEach(file => { *@
+@*                 const reader = new FileReader(); *@
+@*                 reader.onload = function (e) { *@
+@*                     const img = document.createElement("img"); *@
+@*                     img.src = e.target.result; *@
+@*                     img.style = "width: 200px; height: 200px; border-radius: 20px; margin-right: 10px;"; *@
+@*                     previewContainer.appendChild(img); *@
+@*                 }; *@
+@*                 reader.readAsDataURL(file); *@
+@*             }); *@
+@*         }; *@
+@*     </script> *@
+
+@* } *@
+
+
+
+
+
+
+
+
+
+@model JDshop.Models.Collection
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Chỉnh sửa bộ sưu tập";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    var avatarPath = !string.IsNullOrEmpty(Model.Avatar) ? Url.Content("~/contents/Images/Collection/" + Model.Avatar) : "/images/placeholder.png";
+    var bannerPath = !string.IsNullOrEmpty(Model.Baner) ? Url.Content("~/contents/Images/Collection/" + Model.Baner) : "/images/placeholder.png";
 }
 
-<h1>CHỈNH SỬA</h1>
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-<h4>Bộ sưu tập</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+    .main-container {
+        background-color: #f5f5f7;
+        min-height: 100vh;
+        padding: 2rem;
+    }
 
-            <div class="form-group flex-grow-1 mx-4">
-                <div id="previewImages" class="d-flex flex-wrap gap-2 mb-3">
-                    <img src="@Url.Content("~/contents/Images/Collection/" + Model.Avatar)" style="width: 200px; height: 200px; border-radius: 20px;" alt="Existing Image">
-                </div>
-                <label class="control-label">Hình ảnh đại diện</label>
-                <input type="file" name="fAvatars" id="imageUpload" class="form-control-file" onchange="previewFiles(event)" />
-            </div>
-            <hr />
+    .header-section {
+        margin-bottom: 2rem;
+    }
 
-            <div class="form-group flex-grow-1 mx-4">
-                <div id="previewImages1" class="d-flex flex-wrap gap-2 mb-3">
-                    <img src="@Url.Content("~/contents/Images/Collection/" + Model.Baner)" style="width: 200px; height: 200px; border-radius: 20px;" alt="Existing Image">
-                </div>
-                <label class="control-label">Hình ảnh đại diện</label>
-                <input type="file" name="fAvatars1" id="imageUpload" class="form-control-file" onchange="previewFiles1(event)" />
-            </div>
+    .header-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
 
-            <div class="form-group">
-                <label> Tên bộ sưu tập</label>
-                @* <label asp-for="Name" class="control-label"></label> *@
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label> Mô tả</label>
-                @* <label asp-for="Description" class="control-label"></label> *@
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-           @*  <div class="form-group">
-                <label asp-for="Slug" class="control-label"></label>
-                <input asp-for="Slug" class="form-control" />
-                <span asp-validation-for="Slug" class="text-danger"></span>
-            </div> *@
-            <div class="form-group">
-                <label>Trạng Thái</label>
-                <select class="form-control" asp-for="Status" placeholder="" required>
-                    <option value="True" selected>Hoạt động</option>
-                    <option value="False">Ngừng hoạt động</option>
+    .header-subtitle {
+        color: #86868b;
+        margin: 0.25rem 0 0 0;
+        font-size: 0.95rem;
+    }
 
-                </select>
-            </div>
-            <div class="form-group">
-                <a asp-action="Index" class="btn btn-light">Trở về</a>
-                <button type="submit" class="btn btn-gradient-primary me-2">Sửa</button>
-            </div>
-        </form>
+    .form-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        border: 1px solid #f0f0f0;
+        overflow: hidden;
+        margin-bottom: 2rem;
+    }
+
+    .card-header {
+        background: #f9f9f9;
+        padding: 1.5rem;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #1d1d1f;
+        font-size: 0.95rem;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.2s ease;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #007aff;
+            box-shadow: 0 0 0 3px rgba(0,122,255,0.1);
+        }
+
+    .form-control-file {
+        padding: 0.5rem 0;
+    }
+
+    .text-danger {
+        color: #ff3b30;
+        font-size: 0.85rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 0.95rem;
+    }
+
+    .btn-primary {
+        background: #007aff;
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,122,255,0.3);
+        }
+
+    .btn-secondary {
+        background: #f0f0f0;
+        color: #1d1d1f !important;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+    .btn-danger {
+        background: #ff3b30;
+        color: white;
+    }
+
+        .btn-danger:hover {
+            background: #d63030;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255,59,48,0.3);
+        }
+
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .image-preview-container {
+        margin-bottom: 1rem;
+    }
+
+    .image-preview {
+        width: 200px;
+        height: 200px;
+        border-radius: 12px;
+        object-fit: cover;
+        border: 2px solid #f0f0f0;
+        transition: all 0.2s ease;
+    }
+
+        .image-preview:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+    .image-section {
+        background: #f9f9f9;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .image-section-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 1rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .image-upload-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .custom-file-upload {
+        border: 2px dashed #d2d2d7;
+        border-radius: 8px;
+        padding: 1.5rem;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        background: white;
+    }
+
+        .custom-file-upload:hover {
+            border-color: #007aff;
+            background: #f0f8ff;
+        }
+
+    .upload-icon {
+        font-size: 2rem;
+        color: #007aff;
+        margin-bottom: 0.5rem;
+    }
+
+    .upload-text {
+        color: #86868b;
+        font-size: 0.9rem;
+    }
+
+    .upload-hint {
+        font-size: 0.8rem;
+        color: #86868b;
+        margin-top: 0.5rem;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .form-section {
+        background: #f9f9f9;
+        border-radius: 12px;
+        padding: 1.5rem;
+    }
+
+    .form-section-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 1rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .status-toggle {
+        display: flex;
+        gap: 1rem;
+        margin-top: 0.5rem;
+    }
+
+    .status-option {
+        flex: 1;
+        padding: 1rem;
+        border-radius: 8px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: 2px solid transparent;
+    }
+
+    .status-active {
+        background: #d1f2eb;
+        color: #00875a;
+    }
+
+    .status-inactive {
+        background: #ffebe6;
+        color: #de350b;
+    }
+
+    .status-option.selected {
+        border-color: currentColor;
+        font-weight: 600;
+    }
+
+    .textarea-control {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    @@media (max-width: 992px) {
+        .form-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .main-container {
+            padding: 1rem;
+        }
+
+        .form-actions {
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>
+
+<div class="main-container">
+    <!-- Header Section -->
+    <div class="header-section">
+
+        <h1 class="header-title">
+            <i class="mdi mdi-pencil"></i>
+            Chỉnh sửa bộ sưu tập
+        </h1>
+        <p class="header-subtitle">Cập nhật thông tin bộ sưu tập</p>
     </div>
-</div>
 
-@* <div>
-    <a asp-action="Index">Back to List</a>
-</div> *@
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-grid">
+            <!-- Left Column - Images -->
+            <div>
+                <!-- Avatar Image Section -->
+                <div class="form-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="mdi mdi-account-circle"></i>
+                            Hình ảnh đại diện
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="image-preview-container">
+                            <img id="avatarPreview" src="@avatarPath" class="image-preview" alt="Avatar Preview" onerror="this.src='/images/placeholder.png'">
+                        </div>
+
+                        <label for="avatarUpload" class="custom-file-upload">
+                            <div class="upload-icon">
+                                <i class="mdi mdi-cloud-upload"></i>
+                            </div>
+                            <div class="upload-text">Nhấp để tải lên hoặc kéo thả hình ảnh</div>
+                            <div class="upload-hint">Hỗ trợ JPG, PNG, GIF (Tối đa 5MB)</div>
+                        </label>
+                        <input type="file" id="avatarUpload" name="fAvatars" style="display: none;" accept="image/*" onchange="previewAvatar(event)">
+                    </div>
+                </div>
+
+                <!-- Banner Image Section -->
+                <div class="form-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="mdi mdi-panorama"></i>
+                            Hình ảnh banner
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="image-preview-container">
+                            <img id="bannerPreview" src="@bannerPath" class="image-preview" alt="Banner Preview" onerror="this.src='/images/placeholder.png'">
+                        </div>
+
+                        <label for="bannerUpload" class="custom-file-upload">
+                            <div class="upload-icon">
+                                <i class="mdi mdi-cloud-upload"></i>
+                            </div>
+                            <div class="upload-text">Nhấp để tải lên hoặc kéo thả hình ảnh</div>
+                            <div class="upload-hint">Hỗ trợ JPG, PNG, GIF (Tối đa 5MB)</div>
+                        </label>
+                        <input type="file" id="bannerUpload" name="fAvatars1" style="display: none;" accept="image/*" onchange="previewBanner(event)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Details -->
+            <div>
+                <div class="form-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="mdi mdi-information"></i>
+                            Thông tin bộ sưu tập
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="mdi mdi-format-title"></i>
+                                Tên bộ sưu tập
+                            </label>
+                            <input asp-for="Name" class="form-control" placeholder="Nhập tên bộ sưu tập" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="mdi mdi-text-box"></i>
+                                Mô tả
+                            </label>
+                            <textarea asp-for="Description" class="form-control textarea-control" placeholder="Nhập mô tả bộ sưu tập"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="mdi mdi-toggle-switch"></i>
+                                Trạng thái
+                            </label>
+                            <select asp-for="Status" class="form-control">
+                                <option value="true">Hoạt động</option>
+                                <option value="false">Ngừng hoạt động</option>
+                            </select>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="mdi mdi-content-save"></i>
+                        Lưu thay đổi
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="mdi mdi-arrow-left"></i>
+                        Quay lại
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <script>
-        const previewFiles = (event) => {
-            const files = event.target.files;
-            const previewContainer = document.getElementById("previewImages");
-            previewContainer.innerHTML = ""; // Xóa ảnh cũ
-
-            Array.from(files).forEach(file => {
+        // Preview avatar image
+        function previewAvatar(event) {
+            const file = event.target.files[0];
+            if (file) {
                 const reader = new FileReader();
-                reader.onload = function (e) {
-                    const img = document.createElement("img");
-                    img.src = e.target.result;
-                    img.style = "width: 200px; height: 200px; border-radius: 20px; margin-right: 10px;";
-                    previewContainer.appendChild(img);
+                reader.onload = function(e) {
+                    document.getElementById('avatarPreview').src = e.target.result;
                 };
                 reader.readAsDataURL(file);
-            });
-        };
-        const previewFiles1 = (event) => {
-            const files = event.target.files;
-            const previewContainer = document.getElementById("previewImages1");
-            previewContainer.innerHTML = ""; // Xóa ảnh cũ
+            }
+        }
 
-            Array.from(files).forEach(file => {
+        // Preview banner image
+        function previewBanner(event) {
+            const file = event.target.files[0];
+            if (file) {
                 const reader = new FileReader();
-                reader.onload = function (e) {
-                    const img = document.createElement("img");
-                    img.src = e.target.result;
-                    img.style = "width: 200px; height: 200px; border-radius: 20px; margin-right: 10px;";
-                    previewContainer.appendChild(img);
+                reader.onload = function(e) {
+                    document.getElementById('bannerPreview').src = e.target.result;
                 };
                 reader.readAsDataURL(file);
+            }
+        }
+
+        // Initialize drag and drop for avatar
+        const avatarUpload = document.getElementById('avatarUpload');
+        const avatarLabel = avatarUpload.previousElementSibling;
+
+        avatarLabel.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#007aff';
+            this.style.background = '#f0f8ff';
+        });
+
+        avatarLabel.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#d2d2d7';
+            this.style.background = 'white';
+        });
+
+        avatarLabel.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#d2d2d7';
+            this.style.background = 'white';
+
+            if (e.dataTransfer.files.length) {
+                avatarUpload.files = e.dataTransfer.files;
+                const event = new Event('change', { bubbles: true });
+                avatarUpload.dispatchEvent(event);
+            }
+        });
+
+        // Initialize drag and drop for banner
+        const bannerUpload = document.getElementById('bannerUpload');
+        const bannerLabel = bannerUpload.previousElementSibling;
+
+        bannerLabel.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#007aff';
+            this.style.background = '#f0f8ff';
+        });
+
+        bannerLabel.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#d2d2d7';
+            this.style.background = 'white';
+        });
+
+        bannerLabel.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#d2d2d7';
+            this.style.background = 'white';
+
+            if (e.dataTransfer.files.length) {
+                bannerUpload.files = e.dataTransfer.files;
+                const event = new Event('change', { bubbles: true });
+                bannerUpload.dispatchEvent(event);
+            }
+        });
+
+        // Add animation effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.form-card');
+            cards.forEach(function(card, index) {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+
+                setTimeout(function() {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
             });
-        };
+        });
     </script>
-
 }

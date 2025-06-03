@@ -1,39 +1,643 @@
-﻿@model JDshop.Models.Color
+﻿@* @model JDshop.Models.Color *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Edit"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>CHỈNH SỬA</h1> *@
+
+@* <h4>Màu</h4> *@
+@* <hr /> *@
+@* <div class="row"> *@
+@*     <div class="col-md-4"> *@
+@*         <form asp-action="Edit"> *@
+@*             <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+@*             <input type="hidden" asp-for="Id" /> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Color1" class="control-label"></label> *@
+@*                 <input asp-for="Color1" class="form-control" /> *@
+@*                 <span asp-validation-for="Color1" class="text-danger"></span> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <a asp-action="Index" class="btn btn-light">Trở về</a> *@
+@*                 <button type="submit" class="btn btn-gradient-primary me-2">Sửa</button> *@
+@*             </div> *@
+@*         </form> *@
+@*     </div> *@
+@* </div> *@
+
+@* @section Scripts { *@
+@*     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} *@
+@* } *@
+
+
+
+
+
+
+
+@model JDshop.Models.Color
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Chỉnh sửa màu sắc";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>CHỈNH SỬA</h1>
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-<h4>Màu</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Color1" class="control-label"></label>
-                <input asp-for="Color1" class="form-control" />
-                <span asp-validation-for="Color1" class="text-danger"></span>
+    .edit-page {
+        padding: 2rem;
+        margin: 0 auto;
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .page-subtitle {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin-top: 0.25rem;
+    }
+
+    .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        color: #86868b;
+        margin-bottom: 1rem;
+    }
+
+        .breadcrumb a {
+            color: #007aff;
+            text-decoration: none;
+        }
+
+            .breadcrumb a:hover {
+                text-decoration: underline;
+            }
+
+    .edit-container {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 2rem;
+    }
+
+    .form-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        height: fit-content;
+    }
+
+    .preview-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        height: fit-content;
+        position: sticky;
+        top: 2rem;
+    }
+
+    .form-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    .form-icon {
+        width: 48px;
+        height: 48px;
+        background: #f59e0b;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .form-info {
+        flex: 1;
+    }
+
+    .form-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 0.25rem 0;
+    }
+
+    .form-description {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin: 0;
+    }
+
+    .validation-summary {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        color: #dc2626;
+        font-size: 0.875rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #1d1d1f;
+        font-size: 0.875rem;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+        background-color: #fff;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #007aff;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+
+        .form-control.is-invalid {
+            border-color: #dc2626;
+        }
+
+    .text-danger {
+        color: #dc2626;
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    .color-picker-group {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 1rem;
+        align-items: end;
+    }
+
+    .color-picker {
+        width: 60px;
+        height: 45px;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        cursor: pointer;
+        background: none;
+        padding: 0;
+    }
+
+        .color-picker::-webkit-color-swatch-wrapper {
+            padding: 0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .color-picker::-webkit-color-swatch {
+            border: none;
+            border-radius: 6px;
+        }
+
+    .preset-colors {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .preset-color {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        border: 2px solid #e5e7eb;
+        cursor: pointer;
+        transition: all 0.2s;
+        position: relative;
+    }
+
+        .preset-color:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .preset-color.selected {
+            border-color: #007aff;
+            box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
+        }
+
+    .help-text {
+        font-size: 0.75rem;
+        color: #86868b;
+        margin-top: 0.25rem;
+    }
+
+    .preview-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .preview-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 0.5rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .preview-subtitle {
+        font-size: 0.875rem;
+        color: #86868b;
+    }
+
+    .color-preview {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin: 0 auto 1.5rem;
+        border: 4px solid #e5e7eb;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .color-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.1) 50%, transparent 50%, transparent 75%, rgba(255,255,255,0.1) 75%);
+            background-size: 20px 20px;
+        }
+
+    .color-info {
+        text-align: center;
+    }
+
+    .color-name {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 0.5rem;
+    }
+
+    .color-hex {
+        font-family: 'Monaco', 'Menlo', monospace;
+        background: #f3f4f6;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        color: #1d1d1f;
+        border: 1px solid #e5e7eb;
+        margin-bottom: 1rem;
+        display: inline-block;
+    }
+
+    .current-vs-new {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .comparison-item {
+        text-align: center;
+    }
+
+    .comparison-label {
+        font-size: 0.75rem;
+        color: #86868b;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .comparison-color {
+        width: 60px;
+        height: 60px;
+        border-radius: 8px;
+        margin: 0 auto;
+        border: 2px solid #e5e7eb;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #f3f4f6;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-cancel {
+        background: #f5f5f7;
+        color: #1d1d1f !important;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-cancel:hover {
+            background: #e8e8ed;
+            border-color: #9ca3af;
+        }
+
+    .btn-save {
+        background: #f59e0b;
+        color: white;
+    }
+
+        .btn-save:hover {
+            background: #d97706;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+
+</style>
+
+<div class="edit-page">
+
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">
+                <i class="fas fa-edit"></i>
+                Chỉnh sửa màu sắc
+            </h1>
+            <p class="page-subtitle">Cập nhật thông tin màu sắc</p>
+        </div>
+    </div>
+
+    <div class="edit-container">
+        <!-- Form Card -->
+        <div class="form-card">
+            <div class="form-header">
+                <div class="form-icon">
+                    <i class="fas fa-edit"></i>
+                </div>
+                <div class="form-info">
+                    <h3 class="form-title">Thông tin màu sắc</h3>
+                    <p class="form-description">Chỉnh sửa tên và mã màu</p>
+                </div>
             </div>
-            <div class="form-group">
-                <a asp-action="Index" class="btn btn-light">Trở về</a>
-                <button type="submit" class="btn btn-gradient-primary me-2">Sửa</button>
+
+            <form asp-action="Edit" id="editForm">
+                <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+                <input type="hidden" asp-for="Id" />
+
+                <div class="form-group">
+                    <label asp-for="Color1" class="form-label">
+                        <i class="fas fa-tag me-1"></i>
+                        Tên màu sắc
+                    </label>
+                    <input asp-for="Color1" class="form-control" placeholder="Nhập tên màu sắc..." id="colorName" />
+                    <span asp-validation-for="Color1" class="text-danger"></span>
+                    <div class="help-text">Tên màu sắc sẽ hiển thị trong hệ thống</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-eyedropper me-1"></i>
+                        Chọn màu
+                    </label>
+                    <div class="color-picker-group">
+                        <input type="text" class="form-control" placeholder="Nhập mã HEX..." id="hexInput" />
+                        <input type="color" class="color-picker" id="colorPicker" />
+                    </div>
+                    <div class="help-text">Chọn màu từ color picker hoặc nhập mã HEX</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-swatchbook me-1"></i>
+                        Màu có sẵn
+                    </label>
+                    <div class="preset-colors">
+                        <div class="preset-color" style="background-color: #ff0000;" data-color="#ff0000" data-name="Đỏ"></div>
+                        <div class="preset-color" style="background-color: #00ff00;" data-color="#00ff00" data-name="Xanh lá"></div>
+                        <div class="preset-color" style="background-color: #0000ff;" data-color="#0000ff" data-name="Xanh dương"></div>
+                        <div class="preset-color" style="background-color: #ffff00;" data-color="#ffff00" data-name="Vàng"></div>
+                        <div class="preset-color" style="background-color: #ff00ff;" data-color="#ff00ff" data-name="Tím"></div>
+                        <div class="preset-color" style="background-color: #00ffff;" data-color="#00ffff" data-name="Xanh lam"></div>
+                        <div class="preset-color" style="background-color: #ffa500;" data-color="#ffa500" data-name="Cam"></div>
+                        <div class="preset-color" style="background-color: #ffc0cb;" data-color="#ffc0cb" data-name="Hồng"></div>
+                        <div class="preset-color" style="background-color: #a52a2a;" data-color="#a52a2a" data-name="Nâu"></div>
+                        <div class="preset-color" style="background-color: #808080;" data-color="#808080" data-name="Xám"></div>
+                        <div class="preset-color" style="background-color: #000000;" data-color="#000000" data-name="Đen"></div>
+                        <div class="preset-color" style="background-color: #ffffff;" data-color="#ffffff" data-name="Trắng"></div>
+                    </div>
+                    <div class="help-text">Nhấp vào màu có sẵn để chọn nhanh</div>
+                </div>
+
+                <div class="action-buttons">
+                    <a asp-action="Index" class="btn btn-cancel">
+                        <i class="fas fa-arrow-left"></i>
+                        Hủy bỏ
+                    </a>
+
+                    <button type="submit" class="btn btn-save">
+                        <i class="fas fa-save"></i>
+                        Lưu thay đổi
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Preview Card -->
+        <div class="preview-card">
+            <div class="preview-header">
+                <h3 class="preview-title">
+                    <i class="fas fa-eye"></i>
+                    Xem trước
+                </h3>
+                <p class="preview-subtitle">Màu sắc sau khi chỉnh sửa</p>
             </div>
-            @* <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div> *@
-        </form>
+
+            <div class="color-preview" id="colorPreview" style="background-color: @GetColorHex(Model.Color1);"></div>
+
+            <div class="color-info">
+                <div class="color-name" id="previewName">@Model.Color1</div>
+                <div class="color-hex" id="previewHex">@GetColorHex(Model.Color1)</div>
+            </div>
+
+            <div class="current-vs-new">
+                <div class="comparison-item">
+                    <div class="comparison-label">Màu hiện tại</div>
+                    <div class="comparison-color" style="background-color: @GetColorHex(Model.Color1);"></div>
+                </div>
+                <div class="comparison-item">
+                    <div class="comparison-label">Màu mới</div>
+                    <div class="comparison-color" id="newColorPreview" style="background-color: @GetColorHex(Model.Color1);"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-@* <div>
-    <a asp-action="Index">Back to List</a>
-</div> *@
+@functions {
+    string GetColorHex(string colorName)
+    {
+        var colorMap = new Dictionary<string, string>
+        {
+            {"đỏ", "#ff0000"}, {"xanh", "#0000ff"}, {"vàng", "#ffff00"},
+            {"đen", "#000000"}, {"trắng", "#ffffff"}, {"xám", "#808080"},
+            {"hồng", "#ffc0cb"}, {"tím", "#800080"}, {"cam", "#ffa500"},
+            {"nâu", "#a52a2a"}, {"xanh lá", "#008000"}, {"xanh dương", "#0000ff"},
+            {"xanh lam", "#00ffff"}, {"bạc", "#c0c0c0"}, {"vàng kim", "#ffd700"}
+        };
+
+        return colorMap.ContainsKey(colorName.ToLower()) ? colorMap[colorName.ToLower()] : "#cccccc";
+    }
+}
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const colorPicker = document.getElementById('colorPicker');
+            const hexInput = document.getElementById('hexInput');
+            const colorName = document.getElementById('colorName');
+            const colorPreview = document.getElementById('colorPreview');
+            const previewName = document.getElementById('previewName');
+            const previewHex = document.getElementById('previewHex');
+            const newColorPreview = document.getElementById('newColorPreview');
+            const presetColors = document.querySelectorAll('.preset-color');
+
+            // Initialize with current color
+            const currentColor = '@GetColorHex(Model.Color1)';
+            colorPicker.value = currentColor;
+            hexInput.value = currentColor;
+
+            // Update preview when color picker changes
+            colorPicker.addEventListener('input', function() {
+                updatePreview(this.value);
+                hexInput.value = this.value;
+            });
+
+            // Update preview when hex input changes
+            hexInput.addEventListener('input', function() {
+                if (isValidHex(this.value)) {
+                    updatePreview(this.value);
+                    colorPicker.value = this.value;
+                }
+            });
+
+            // Update preview when color name changes
+            colorName.addEventListener('input', function() {
+                previewName.textContent = this.value || 'Tên màu';
+            });
+
+            // Preset color selection
+            presetColors.forEach(color => {
+                color.addEventListener('click', function() {
+                    const colorValue = this.getAttribute('data-color');
+                    const colorNameValue = this.getAttribute('data-name');
+
+                    // Remove previous selection
+                    presetColors.forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+
+                    // Update inputs and preview
+                    colorPicker.value = colorValue;
+                    hexInput.value = colorValue;
+                    colorName.value = colorNameValue;
+                    updatePreview(colorValue);
+                    previewName.textContent = colorNameValue;
+                });
+            });
+
+            function updatePreview(color) {
+                colorPreview.style.backgroundColor = color;
+                newColorPreview.style.backgroundColor = color;
+                previewHex.textContent = color.toUpperCase();
+            }
+
+            function isValidHex(hex) {
+                return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(hex);
+            }
+
+            // Form validation
+            document.getElementById('editForm').addEventListener('submit', function(e) {
+                const colorNameValue = colorName.value.trim();
+
+                if (!colorNameValue) {
+                    alert('Vui lòng nhập tên màu sắc.');
+                    e.preventDefault();
+                    return;
+                }
+
+                // Show loading state
+                const submitBtn = e.target.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Đang lưu...';
+                submitBtn.disabled = true;
+
+                // Reset button after 3 seconds if form doesn't submit
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 3000);
+            });
+
+            // Auto-focus color name input
+            colorName.focus();
+        });
+    </script>
 }

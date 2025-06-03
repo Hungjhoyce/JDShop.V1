@@ -1,4 +1,4 @@
-﻿@model JDshop.Models.Category
+﻿@* @model JDshop.Models.Category
 
 @{
     ViewData["Title"] = "Create";
@@ -16,18 +16,15 @@
            
             <div class="form-group">
                 <label>Tên loại sản phẩm</label>
-                @* <label asp-for="Name" class="control-label"></label> *@
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label>Tên nhà cung cấp</label>
-                @* <label asp-for="SupplierId" class="control-label"></label> *@
                 <select asp-for="SupplierId" class ="form-control" asp-items="ViewBag.SupplierId"></select>
             </div>
             <div class="form-group">
                 <label>Mô tả</label>
-                @* <label asp-for="Description" class="control-label"></label> *@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
@@ -36,15 +33,334 @@
                 <button type="submit" class="btn btn-gradient-primary me-2">Thêm Mới</button>
                 <a asp-action="Index" class="btn btn-light">Trở về</a>
             </div>
-@* 
-            <div class="form-group">
-                <input type="submit" value="Thêm" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-light">Trở về</a>
-            </div> *@
         </form>
     </div>
 </div>
 
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} *@
+
+
+
+
+
+
+
+
+@model JDshop.Models.Category
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+.content-wrapper {
+    padding: 32px;
+    background-color: #f8fafc;
+    min-height: calc(100vh - 64px);
+}
+
+.page-header {
+    margin-bottom: 32px;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 8px 0;
+}
+
+.page-subtitle {
+    color: #6b7280;
+    font-size: 16px;
+    margin: 0;
+}
+
+.form-container {
+    margin: 0 auto;
+}
+
+.form-card {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+    padding: 24px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.header-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.header-icon svg {
+    width: 24px;
+    height: 24px;
+    color: white;
+}
+
+.header-content h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 4px 0;
+}
+
+.header-content p {
+    color: #6b7280;
+    margin: 0;
+    font-size: 14px;
+}
+
+.form-body {
+    padding: 24px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.required {
+    color: #ef4444;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: #ffffff;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: #ffffff;
+    min-height: 100px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.form-textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    appearance: none;
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.validation-error {
+    color: #ef4444;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+}
+
+.validation-summary {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 20px;
+}
+
+.validation-summary ul {
+    margin: 0;
+    padding-left: 20px;
+    color: #dc2626;
+    font-size: 14px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 1px solid;
+}
+
+.btn-primary {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2563eb;
+    border-color: #2563eb;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background-color: white;
+    border-color: #d1d5db;
+    color: #374151 !important;
+}
+
+.btn-secondary:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+    color: #374151;
+    text-decoration: none;
+}
+
+
+
+
+
+</style>
+
+<div class="content-wrapper">
+    <div class="form-container">
+        
+
+        <div class="page-header">
+            <h1 class="page-title">Thêm loại sản phẩm mới</h1>
+            <p class="page-subtitle">Thêm thông tin loại sản phẩm trong hệ thống</p>
+        </div>
+
+        <div class="form-card">
+            <div class="form-header">
+                <div class="header-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                </div>
+                <div class="header-content">
+                    <h2>Tên loại sản phẩm</h2>
+                    <p>Vui lòng thêm các thông tin cần thiết</p>
+                </div>
+            </div>
+
+            <div class="form-body">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">
+                                Tên loại sản phẩm <span class="required">*</span>
+                            </label>
+                            <input asp-for="Name" class="form-input" placeholder="Nhập tên loại sản phẩm" />
+                            <span asp-validation-for="Name" class="validation-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">
+                                Tên nhà cung cấp <span class="required">*</span>
+                            </label>
+                            <select asp-for="SupplierId" class="form-select" asp-items="ViewBag.SupplierId">
+                                <option value="">-- Chọn nhà cung cấp --</option>
+                            </select>
+                            <span asp-validation-for="SupplierId" class="validation-error"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            Mô tả <span class="required">*</span>
+                        </label>
+                        <textarea asp-for="Description" class="form-textarea" placeholder="Nhập mô tả chi tiết về loại sản phẩm" rows="4"></textarea>
+                        <span asp-validation-for="Description" class="validation-error"></span>
+                    </div>
+
+                    <div class="form-actions">
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                            </svg>
+                            Hủy
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Cập nhật
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

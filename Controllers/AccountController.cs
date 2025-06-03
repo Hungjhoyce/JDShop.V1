@@ -231,18 +231,8 @@ namespace JDshop.Controllers
             int Id = 0;
             if (Idclam != null)
             { Id = Int32.Parse(Idclam.Value); }
-            var donhang = await _context.Orders.Where(x => x.AccountId == Id)
-                .Include(x => x.OderItems).ThenInclude(x=>x.ProductSizeColor)
-                .ThenInclude(x=>x.Product).ThenInclude(x=>x.Images).Include(x => x.Account)
-                .ThenInclude(x => x.Addresses).Where(x=>x.Status != 1 && x.Status != null).ToListAsync();
-            if (donhang == null)
-            {
-                return NotFound();
-            }
-            ViewBag.Donhang = donhang;
+
             ViewBag.Addresses = await _context.Addresses.Where(x => x.AccountId == Id).ToArrayAsync();
-
-
             return View(await _context.Accounts.Include(x => x.Addresses).FirstOrDefaultAsync(x => x.Id == Id));
         }
 
@@ -366,7 +356,7 @@ namespace JDshop.Controllers
                     };
                     using var smtp = new MailKit.Net.Smtp.SmtpClient();
                     smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                    smtp.Authenticate("khangchannel19@gmail.com", "jnal cnyl mlit izco");
+                    smtp.Authenticate("hung.jhoyce@gmail.com", "getp xtqh muxs saur");
                     smtp.Send(email);
                     smtp.Disconnect(true);
                     return RedirectToAction(nameof(ResetPassword));
@@ -410,6 +400,37 @@ namespace JDshop.Controllers
             }
 
             return View(model);
+        }
+
+        public async Task<IActionResult> OrderHistory()
+        {
+            var Idclam = User.Claims.SingleOrDefault(c => c.Type == "Id");
+            int Id = 0;
+            if (Idclam != null)
+            { Id = Int32.Parse(Idclam.Value); }
+            
+            var donhang = await _context.Orders.Where(x => x.AccountId == Id)
+                .Include(x => x.OderItems)
+                    .ThenInclude(x => x.ProductSizeColor)
+                        .ThenInclude(x => x.Product)
+                            .ThenInclude(x => x.Images)
+                .Include(x => x.OderItems)
+                    .ThenInclude(x => x.ProductSizeColor)
+                        .ThenInclude(x => x.Size)
+                .Include(x => x.OderItems)
+                    .ThenInclude(x => x.ProductSizeColor)
+                        .ThenInclude(x => x.Color)
+                .Include(x => x.Account)
+                    .ThenInclude(x => x.Addresses)
+                .Where(x => x.Status != 1 && x.Status != null)
+                .ToListAsync();
+            
+            if (donhang == null)
+            {
+                return NotFound();
+            }
+
+            return View(donhang);
         }
 
     }

@@ -1,50 +1,639 @@
-﻿@model IEnumerable<JDshop.Models.Color>
+﻿@* @model IEnumerable<JDshop.Models.Color> *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Index"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <div class="page-header"> *@
+@*     <h3 style="font-family:Helvetica;" class="page-title"> Quản lý Màu </h3> *@
+@*     <nav aria-label="breadcrumb"> *@
+
+@*     </nav> *@
+@* </div> *@
+
+@* <div class="col-lg-12 grid-margin stretch-card"> *@
+@*     <div class="card"> *@
+@*         <div class="card-body"> *@
+@*             <p> *@
+@*                 <a asp-action="Create" class="btn btn-success mb-2">Thêm</a> *@
+@*             </p> *@
+@*             <table class="table"> *@
+@*                 <thead> *@
+@*                     <tr> *@
+@*                         <th> *@
+@*                             Màu *@
+@*                         </th> *@
+@*                         <th></th> *@
+@*                     </tr> *@
+@*                 </thead> *@
+@*                 <tbody> *@
+@*                     @foreach (var item in Model) *@
+@*                     { *@
+@*                         <tr> *@
+@*                             <td> *@
+@*                                 @Html.DisplayFor(modelItem => item.Color1) *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 <a asp-action="Details" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-eye" style="color:#19b6ff;font-size:25px;"></i>  </a> *@
+@*                                 <a asp-action="Edit" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-square-edit-outline" style="color:#ffd83b;font-size:25px;"></i></a> *@
+@*                                 <a asp-action="Delete" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-delete" style="color:#e75555;font-size:25px;"></i></a> *@
+@*                             </td> *@
+@*                         </tr> *@
+@*                     } *@
+@*                 </tbody> *@
+@*             </table> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+
+
+
+
+
+@model IEnumerable<JDshop.Models.Color>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Quản lý màu sắc";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="page-header">
-    <h3 style="font-family:Helvetica;" class="page-title"> Quản lý Màu </h3>
-    <nav aria-label="breadcrumb">
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-    </nav>
-</div>
+    .page-container {
+        padding: 2rem;
+        margin: 0 auto;
+    }
 
-<div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <p>
-                <a asp-action="Create" class="btn btn-success mb-2">Thêm</a>
-            </p>
-            <table class="table">
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .page-subtitle {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin-top: 0.25rem;
+    }
+
+    .header-actions {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    .stats-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.25rem;
+    }
+
+        .stat-icon.total {
+            background: #8b5cf6;
+        }
+
+        .stat-icon.popular {
+            background: #f59e0b;
+        }
+
+    .stat-label {
+        font-size: 0.875rem;
+        color: #86868b;
+        font-weight: 500;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1d1d1f;
+    }
+
+    .table-container {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-header {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-bottom: 1px solid #e5e7eb;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .table-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .search-box {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    .search-input {
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        width: 250px;
+    }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #007aff;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+
+    .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .custom-table th {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            color: #1d1d1f;
+            font-size: 0.875rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .custom-table td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 0.875rem;
+            color: #1d1d1f;
+        }
+
+        .custom-table tr:hover {
+            background: #f9fafb;
+        }
+
+    .color-display {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .color-swatch {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        border: 2px solid #e5e7eb;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .color-info {
+        flex: 1;
+    }
+
+    .color-name {
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 0.25rem;
+    }
+
+    .color-code {
+        font-size: 0.75rem;
+        color: #86868b;
+        font-family: monospace;
+        background: #f3f4f6;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        display: inline-block;
+    }
+
+    .actions-cell {
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .action-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        text-decoration: none;
+    }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+    .btn-view {
+        background: #dbeafe;
+        color: #1d4ed8;
+    }
+
+        .btn-view:hover {
+            background: #bfdbfe;
+        }
+
+    .btn-edit {
+        background: #fef3c7;
+        color: #d97706;
+    }
+
+        .btn-edit:hover {
+            background: #fde68a;
+        }
+
+    .btn-delete {
+        background: #fee2e2;
+        color: #dc2626;
+    }
+
+        .btn-delete:hover {
+            background: #fecaca;
+        }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-success {
+        background: #10b981;
+        color: white;
+    }
+
+        .btn-success:hover {
+            background: #059669;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+        }
+
+    .btn-outline {
+        background: white;
+        color: #1d1d1f;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-outline:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+        }
+
+    .empty-state {
+        text-align: center;
+        padding: 3rem;
+        color: #86868b;
+    }
+
+    .empty-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #d1d5db;
+    }
+
+    .color-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .color-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s;
+    }
+
+        .color-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+    .color-preview {
+        width: 100%;
+        height: 80px;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        border: 2px solid #e5e7eb;
+    }
+
+    .view-toggle {
+        display: flex;
+        gap: 0.5rem;
+        background: #f3f4f6;
+        padding: 0.25rem;
+        border-radius: 8px;
+    }
+
+    .toggle-btn {
+        padding: 0.5rem 1rem;
+        border: none;
+        background: transparent;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+    }
+
+        .toggle-btn.active {
+            background: white;
+            color: #007aff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+</style>
+
+<div class="page-container">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">
+                <i class="fas fa-palette"></i>
+                Quản lý màu sắc
+            </h1>
+            <p class="page-subtitle">Quản lý danh sách màu sắc sản phẩm</p>
+        </div>
+        <div class="header-actions">
+            <div class="view-toggle">
+                <button class="toggle-btn active" onclick="switchView('table')">
+                    <i class="fas fa-list"></i>
+                    Bảng
+                </button>
+                <button class="toggle-btn" onclick="switchView('grid')">
+                    <i class="fas fa-th"></i>
+                    Lưới
+                </button>
+            </div>
+            <a asp-action="Create" class="btn btn-success">
+                <i class="fas fa-plus"></i>
+                Thêm màu
+            </a>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="stats-cards">
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon total">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <div>
+                    <div class="stat-label">Tổng màu sắc</div>
+                    <div class="stat-value">@Model.Count()</div>
+                </div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon popular">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <div class="stat-label">Màu phổ biến</div>
+                    <div class="stat-value">@(Model.Any() ? Model.First().Color1 : "Chưa có")</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grid View -->
+    <div id="gridView" class="color-grid" style="display: none;">
+        @foreach (var item in Model)
+        {
+            <div class="color-card">
+                <div class="color-preview" style="background-color: @GetColorHex(item.Color1);"></div>
+                <div class="color-info">
+                    <div class="color-name">@item.Color1</div>
+                    <div class="color-code">@GetColorHex(item.Color1)</div>
+                </div>
+                <div class="action-buttons" style="margin-top: 1rem;">
+                    <a asp-action="Details" asp-route-id="@item.Id" class="action-btn btn-view" title="Xem chi tiết">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="action-btn btn-edit" title="Chỉnh sửa">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="action-btn btn-delete" title="Xóa">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Table View -->
+    <div id="tableView" class="table-container">
+        <div class="table-header">
+            <h3 class="table-title">
+                <i class="fas fa-list"></i>
+                Danh sách màu sắc
+            </h3>
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Tìm kiếm màu sắc..." id="searchInput">
+            </div>
+        </div>
+
+        @if (Model.Any())
+        {
+            <table class="custom-table">
                 <thead>
                     <tr>
                         <th>
-                            Màu
-                            @* @Html.DisplayNameFor(model => model.Color1) *@
+                            <i class="fas fa-palette me-1"></i>
+                            Màu sắc
                         </th>
-                        <th></th>
+                        <th>
+                            <i class="fas fa-code me-1"></i>
+                            Mã màu
+                        </th>
+                        <th>
+                            <i class="fas fa-cogs me-1"></i>
+                            Thao tác
+                        </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tableBody">
                     @foreach (var item in Model)
                     {
-                        <tr>
+                        <tr data-color="@item.Color1.ToLower()">
                             <td>
-                                @Html.DisplayFor(modelItem => item.Color1)
+                                <div class="color-display">
+                                    <div class="color-swatch" style="background-color: @GetColorHex(item.Color1);"></div>
+                                    <div class="color-info">
+                                        <div class="color-name">@item.Color1</div>
+                                    </div>
+                                </div>
                             </td>
                             <td>
-                                <a asp-action="Details" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-eye" style="color:#19b6ff;font-size:25px;"></i>  </a>
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-square-edit-outline" style="color:#ffd83b;font-size:25px;"></i></a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-delete" style="color:#e75555;font-size:25px;"></i></a>
+                                <span class="color-code">@GetColorHex(item.Color1)</span>
+                            </td>
+                            <td class="actions-cell">
+                                <div class="action-buttons">
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="action-btn btn-view" title="Xem chi tiết">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="action-btn btn-edit" title="Chỉnh sửa">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="action-btn btn-delete" title="Xóa">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-        </div>
+        }
+        else
+        {
+            <div class="empty-state">
+                <div class="empty-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3>Chưa có màu sắc nào</h3>
+                <p>Bắt đầu bằng cách thêm màu sắc đầu tiên</p>
+                <a asp-action="Create" class="btn btn-success">
+                    <i class="fas fa-plus"></i>
+                    Thêm màu sắc
+                </a>
+            </div>
+        }
     </div>
 </div>
 
+@functions {
+    string GetColorHex(string colorName)
+    {
+        var colorMap = new Dictionary<string, string>
+        {
+            {"đỏ", "#ff0000"}, {"xanh", "#0000ff"}, {"vàng", "#ffff00"},
+            {"đen", "#000000"}, {"trắng", "#ffffff"}, {"xám", "#808080"},
+            {"hồng", "#ffc0cb"}, {"tím", "#800080"}, {"cam", "#ffa500"},
+            {"nâu", "#a52a2a"}, {"xanh lá", "#008000"}, {"xanh dương", "#0000ff"},
+            {"xanh lam", "#00ffff"}, {"bạc", "#c0c0c0"}, {"vàng kim", "#ffd700"}
+        };
+
+        return colorMap.ContainsKey(colorName.ToLower()) ? colorMap[colorName.ToLower()] : "#cccccc";
+    }
+}
+
+@section Scripts {
+    <script>
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#tableBody tr');
+
+            rows.forEach(row => {
+                const colorName = row.getAttribute('data-color');
+                if (colorName.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // View toggle functionality
+        function switchView(viewType) {
+            const tableView = document.getElementById('tableView');
+            const gridView = document.getElementById('gridView');
+            const toggleBtns = document.querySelectorAll('.toggle-btn');
+
+            toggleBtns.forEach(btn => btn.classList.remove('active'));
+
+            if (viewType === 'table') {
+                tableView.style.display = 'block';
+                gridView.style.display = 'none';
+                document.querySelector('.toggle-btn[onclick="switchView(\'table\')"]').classList.add('active');
+            } else {
+                tableView.style.display = 'none';
+                gridView.style.display = 'grid';
+                document.querySelector('.toggle-btn[onclick="switchView(\'grid\')"]').classList.add('active');
+            }
+        }
+
+        // Confirm delete
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (!confirm('Bạn có chắc chắn muốn xóa màu sắc này không?')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+}

@@ -1,4 +1,4 @@
-﻿@{
+﻿@* @{
     ViewData["Title"] = "Trang chủ Admin";
     var user = ViewBag.User ?? 0;
     var DoanhThu = ViewBag.DoanhThu ?? 0;
@@ -90,4 +90,332 @@
         </div>
     </div>
 </div>
+ *@
+
+
+@{
+
+    ViewData["Title"] = "Trang chủ Admin";
+    var user = ViewBag.User ?? 0;
+    var DoanhThu = ViewBag.DoanhThu ?? 0;
+    var Sanpham = ViewBag.Sanpham ?? 0;
+    var DonHuy = ViewBag.DonHuy ?? 0;
+    var TongDonHang = ViewBag.TongDonHang ?? 0;
+    var MaGiamGia = ViewBag.MaGiamGia ?? 0;
+}
+
+<style>
+    .dashboard-container {
+    @* margin-left: 280px; *@
+    padding: 24px;
+    background-color: #f8fafc;
+    min-height: 100vh;
+    }
+
+    .dashboard-header {
+    margin-bottom: 32px;
+    }
+
+    .dashboard-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 8px 0;
+    }
+
+    .dashboard-subtitle {
+    color: #6b7280;
+    font-size: 16px;
+    margin: 0;
+    }
+
+    .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+    }
+
+    .stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s ease;
+    }
+
+    .stat-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+    }
+
+    .stat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    }
+
+    .stat-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+    margin: 0;
+    }
+
+    .stat-icon {
+    width: 24px;
+    height: 24px;
+    color: #9ca3af;
+    }
+
+    .stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 8px 0;
+    }
+
+    .stat-change {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    }
+
+    .stat-change.positive {
+    color: #059669;
+    }
+
+    .stat-change.negative {
+    color: #dc2626;
+    }
+
+    .stat-change.neutral {
+    color: #6b7280;
+    }
+
+    .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    }
+
+    .content-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    }
+
+    .content-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 16px 0;
+    }
+
+    .order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f3f4f6;
+    }
+
+    .order-item:last-child {
+    border-bottom: none;
+    }
+
+    .order-info h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 4px 0;
+    }
+
+    .order-info p {
+    font-size: 12px;
+    color: #6b7280;
+    margin: 0;
+    }
+
+    .order-amount {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+    }
+
+    .order-status {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    }
+
+    .status-success {
+    background-color: #dcfce7;
+    color: #166534;
+    }
+
+    .status-warning {
+    background-color: #fef3c7;
+    color: #92400e;
+    }
+
+    .activity-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f3f4f6;
+    }
+
+    .activity-item:last-child {
+    border-bottom: none;
+    }
+
+    .activity-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 12px;
+    flex-shrink: 0;
+    }
+
+    .activity-dot.green {
+    background-color: #10b981;
+    }
+
+    .activity-dot.blue {
+    background-color: #3b82f6;
+    }
+
+    .activity-dot.yellow {
+    background-color: #f59e0b;
+    }
+
+    .activity-text {
+    font-size: 14px;
+    color: #374151;
+    margin: 0;
+    }
+
+    @* @media (max-width: 768px) {
+    .dashboard-container {
+        margin-left: 0;
+        padding: 16px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+} *@
+</style>
+
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1 class="dashboard-title">Dashboard Tổng Quan</h1>
+        <p class="dashboard-subtitle">Chào mừng bạn đến với hệ thống quản lý JD Shop</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-header">
+                <h3 class="stat-title">Tổng doanh thu</h3>
+                <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                </svg>
+            </div>
+            <h2 class="stat-value">@string.Format("{0:N0}", DoanhThu)đ</h2>
+            <div class="stat-change positive">+12% so với tháng trước</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <h3 class="stat-title">Đơn hàng</h3>
+                <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                </svg>
+            </div>
+            <h2 class="stat-value">@TongDonHang</h2>
+            <div class="stat-change positive">+8% so với tháng trước</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <h3 class="stat-title">Sản phẩm</h3>
+                <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                </svg>
+            </div>
+            <h2 class="stat-value">@Sanpham</h2>
+            <div class="stat-change positive">+3 sản phẩm mới</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <h3 class="stat-title">Khách hàng</h3>
+                <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                </svg>
+            </div>
+            <h2 class="stat-value">@user</h2>
+            <div class="stat-change positive">+2 khách hàng mới</div>
+        </div>
+    </div>
+
+    <div class="content-grid">
+        <div class="content-card">
+    <h3 class="content-title">Đơn hàng gần đây</h3>
+    @if (ViewBag.DonHangGanDay != null)
+    {
+        foreach (var order in ViewBag.DonHangGanDay)
+        {
+            <div class="order-item">
+                <div class="order-info">
+                    <h4>Đơn hàng #@order.Id</h4>
+                    <p>@order.Account?.FullName</p>
+                </div>
+                <div style="text-align: right;">
+                    <div class="order-amount">@string.Format("{0:N0}", order.Total)đ</div>
+                    <span class="order-status @(order.Status == 3 ? "status-success" : "status-warning")">
+                        @(
+                            order.Status == 3 ? "Đã giao" :
+                            order.Status == 2 ? "Đang xử lý" :
+                            order.Status == 4 ? "Đang giao" :
+                            order.Status == 5 ? "Đã huỷ" :
+                            "Chờ xác nhận"
+                        )
+                    </span>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+
+        <div class="content-card">
+    <h3 class="content-title">Hoạt động gần đây</h3>
+    @if (ViewBag.HoatDongGanDay != null)
+    {
+        foreach (var hd in ViewBag.HoatDongGanDay)
+        {
+            <div class="activity-item">
+                <div class="activity-dot green"></div>
+                <p class="activity-text">@hd</p>
+            </div>
+        }
+    }
+</div>
+
+    </div>
+</div>
+
+
 

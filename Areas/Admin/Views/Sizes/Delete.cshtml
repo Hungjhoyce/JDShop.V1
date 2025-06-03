@@ -1,32 +1,414 @@
-﻿@model JDshop.Models.Size
+﻿@* @model JDshop.Models.Size *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Delete"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>XOÁ SIZE</h1> *@
+
+@* <h3>Bạn có chắc là muốn xóa không?</h3> *@
+@* <div> *@
+@*     <h4>Size</h4> *@
+@*     <hr /> *@
+@*     <dl class="row"> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Size *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Size1) *@
+@*         </dd> *@
+@*     </dl> *@
+
+@*     <div style="float: left; padding-right:10px"> *@
+@*         <a class="btn btn-secondary" asp-action="Index">Quay Lại</a> *@
+@*     </div> *@
+@*     <form asp-action="Delete"> *@
+
+@*         <input type="hidden" asp-for="Id" /> *@
+@*         <input type="submit" value="Xóa" class="btn btn-danger" /> *@
+@*     </form> *@
+@* </div> *@
+
+
+
+
+@model JDshop.Models.Size
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Xóa kích thước";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>XOÁ SIZE</h1>
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-<h3>Bạn có chắc là muốn xóa không?</h3>
-<div>
-    <h4>Size</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            Size
-            @* @Html.DisplayNameFor(model => model.Size1) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Size1)
-        </dd>
-    </dl>
+    .delete-page {
+        padding: 2rem;
+        margin: 0 auto;
+    }
 
-    <div style="float: left; padding-right:10px">
-        <a class="btn btn-secondary" asp-action="Index">Quay Lại</a>
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #dc2626;
+        margin: 0;
+    }
+
+    .page-subtitle {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin: 0;
+    }
+
+    
+    .warning-alert {
+        background-color: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .warning-icon {
+        color: #dc2626;
+        font-size: 1.125rem;
+    }
+
+    .warning-text {
+        color: #dc2626;
+        font-size: 0.875rem;
+        margin: 0;
+    }
+
+    .details-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    .card-icon {
+        width: 48px;
+        height: 48px;
+        background: #dc2626;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .card-info {
+        flex: 1;
+    }
+
+    .card-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 0.25rem 0;
+    }
+
+    .card-description {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin: 0;
+    }
+
+    .size-preview-section {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+    }
+
+    .size-preview {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        border: 3px solid #e5e7eb;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: white;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .size-name {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 0.5rem;
+    }
+
+    .size-category {
+        background: #f0f9ff;
+        color: #0369a1;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        border: 1px solid #bae6fd;
+        display: inline-block;
+    }
+
+    .details-list {
+        display: grid;
+        gap: 0.75rem;
+    }
+
+    .detail-row {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.5rem 0;
+    }
+
+    .detail-icon {
+        width: 20px;
+        color: #86868b;
+        font-size: 0.875rem;
+        text-align: center;
+    }
+
+    .detail-label {
+        font-size: 0.875rem;
+        color: #1d1d1f;
+        min-width: 120px;
+    }
+
+    .detail-value {
+        font-size: 0.875rem;
+        color: #1d1d1f;
+        flex: 1;
+    }
+
+    .status-badge {
+        background: #d1fae5;
+        color: #065f46;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .status-inactive {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+
+    .impact-section {
+        background: #fffbeb;
+        border: 1px solid #fed7aa;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .impact-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #d97706;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .impact-text {
+        color: #d97706;
+        font-size: 0.75rem;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-cancel {
+        background: #f5f5f7;
+        color: #1d1d1f;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-cancel:hover {
+            background: #e8e8ed;
+        }
+
+    .btn-delete {
+        background: #dc2626;
+        color: white;
+    }
+
+        .btn-delete:hover {
+            background: #b91c1c;
+        }
+
+    
+</style>
+
+<div class="delete-page">
+    <div class="page-header">
+        <h1 class="page-title">Xóa kích thước</h1>
+        <p class="page-subtitle">Xác nhận xóa kích thước khỏi hệ thống</p>
     </div>
-    <form asp-action="Delete">
 
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Xóa" class="btn btn-danger" />
-    </form>
+    <div class="warning-alert">
+        <i class="fas fa-exclamation-triangle warning-icon"></i>
+        <p class="warning-text">Bạn có chắc chắn muốn xóa kích thước này? Hành động này không thể hoàn tác.</p>
+    </div>
+
+    <div class="details-card">
+        <div class="card-header">
+            <div class="card-icon">
+                <i class="fas fa-expand-arrows-alt"></i>
+            </div>
+            <div class="card-info">
+                <h3 class="card-title">Kích thước #@Model.Id</h3>
+                <p class="card-description">Thông tin kích thước sẽ bị xóa</p>
+            </div>
+        </div>
+
+        <!-- Size Preview -->
+        <div class="size-preview-section">
+            <div class="size-preview">@Model.Size1</div>
+            <div class="size-name">Size @Model.Size1</div>
+            <div class="size-category">@GetSizeCategory(Model.Size1)</div>
+        </div>
+
+        <div class="details-list">
+            <div class="detail-row">
+                <i class="fas fa-expand-arrows-alt detail-icon"></i>
+                <span class="detail-label">Kích thước</span>
+                <span class="detail-value">@Model.Size1</span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-layer-group detail-icon"></i>
+                <span class="detail-label">Phân loại</span>
+                <span class="detail-value">@GetSizeCategory(Model.Size1)</span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-key detail-icon"></i>
+                <span class="detail-label">ID</span>
+                <span class="detail-value">#@Model.Id</span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-info-circle detail-icon"></i>
+                <span class="detail-label">Mô tả</span>
+                <span class="detail-value">@GetSizeDescription(Model.Size1)</span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-check-circle detail-icon"></i>
+                <span class="detail-label">Trạng thái</span>
+                <span class="detail-value">
+                    <span class="status-badge">Đang sử dụng</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Impact Warning -->
+        <div class="impact-section">
+            <div class="impact-header">
+                <i class="fas fa-exclamation-circle"></i>
+                Tác động khi xóa
+            </div>
+            <div class="impact-text">
+                Việc xóa kích thước này có thể ảnh hưởng đến các sản phẩm đang sử dụng kích thước này.
+                Vui lòng kiểm tra kỹ trước khi xóa.
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a asp-action="Index" class="btn btn-cancel">
+                <i class="fas fa-arrow-left"></i>
+                Hủy
+            </a>
+
+            <form asp-action="Delete" style="display: inline;">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa kích thước này không? Hành động này không thể hoàn tác!')">
+                    <i class="fas fa-trash"></i>
+                    Xác nhận xóa
+                </button>
+            </form>
+        </div>
+    </div>
 </div>
+
+@functions {
+    string GetSizeCategory(string size)
+    {
+        if (new[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" }.Contains(size.ToUpper()))
+            return "Quần áo";
+        if (new[] { "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45" }.Contains(size))
+            return "Giày dép";
+        if (size.All(char.IsDigit))
+            return "Số";
+        return "Tùy chỉnh";
+    }
+
+    string GetSizeDescription(string size)
+    {
+        var descriptions = new Dictionary<string, string>
+        {
+            {"XS", "Extra Small - Rất nhỏ"},
+            {"S", "Small - Nhỏ"},
+            {"M", "Medium - Vừa"},
+            {"L", "Large - Lớn"},
+            {"XL", "Extra Large - Rất lớn"},
+            {"XXL", "Double Extra Large"},
+            {"XXXL", "Triple Extra Large"}
+        };
+
+        return descriptions.ContainsKey(size.ToUpper()) ? descriptions[size.ToUpper()] : $"Kích thước {size}";
+    }
+}

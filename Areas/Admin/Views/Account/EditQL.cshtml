@@ -1,78 +1,553 @@
-﻿@model Account
+﻿@* @model Account *@
+@* @{ *@
+@*     ViewData["Title"] = "Edit"; *@
+@*     var RoleId = ViewBag.RoleId; *@
+@*     if (Model.Status == 1) *@
+@*     { *@
+@*         <script> *@
+@*             document.querySelector('select[name="Status"]').value = '1'; *@
+@*         </script> *@
+@*     } *@
+@*     else if (Model.Status == 2) *@
+@*     { *@
+@*         <script> *@
+@*             document.querySelector('select[name="Status"]').value = '2'; *@
+@*         </script> *@
+@*     } *@
+
+@* } *@
+@* <div class="col-12 grid-margin stretch-card"> *@
+@*     <div class="card"> *@
+@*         <div class="card-body"> *@
+@*             <h4 class="card-title">SỬA QUẢN LÝ</h4> *@
+@*             <p class="card-description"> Nhập thông tin  </p> *@
+@*             <form class="forms-sample" asp-action="EditQL" method="post" enctype="multipart/form-data"> *@
+@*                 <input type="hidden" asp-for="Id" /> *@
+@*                 <div class="form-group  flex-grow-1 mx-4"> *@
+@*                     <img src="@Url.Content("~/contents/Images/Admin/" + @Model.Avartar)" style="width: 200px; height: 200px; border-radius: 20px;" alt="" id="output"> *@
+@*                     <label asp-for="Avartar" class="control-label"></label> *@
+@*                     <input type="file" name="fAvatar" asp-for="Avartar" class="form-control-file" onchange="loadFile(event)" /> *@
+@*                     <span asp-validation-for="Avartar" class="text-danger"></span> *@
+@*                 </div> *@
+@*                 <div class="form-group"> *@
+@*                     <label>Tài khoản</label> *@
+@*                     <input type="" class="form-control" asp-for="UserName" placeholder="Tài khoản" required> *@
+@*                 </div> *@
+@*                 <div class="form-group"> *@
+@*                     <label>Email</label> *@
+@*                     <input type="email" class="form-control" asp-for="Email" placeholder="Email" required> *@
+@*                 </div> *@
+@*                 <div class="form-group"> *@
+@*                     <label>SĐT</label> *@
+@*                     <input type="number" class="form-control" asp-for="Phone" placeholder="SĐT" required> *@
+@*                 </div> <div class="form-group"> *@
+@*                     <label>Họ Tên</label> *@
+@*                     <input class="form-control" asp-for="FullName" placeholder="Họ Tên" required> *@
+@*                 </div> *@
+@*                 <div class="form-group"> *@
+@*                     <label>Ngày Sinh</label> *@
+@*                     <input class="form-control" asp-for="Birthday" type="date" placeholder="Ngày Sinh" required> *@
+@*                 </div> *@
+@*                 <div class="form-group"> *@
+@*                     <label asp-for="RoleId" class="form-label">Chức vụ <span></span></label> *@
+@*                     <select asp-for="RoleId" asp-items="RoleId" class="form-select" required> *@
+@*                         <option value="">-- Chọn chức vụ --</option> *@
+@*                     </select> *@
+@*                 </div> *@
+@*                 <div class="form-group"> *@
+@*                     <label>Giới tính </label> *@
+@*                     <select class="form-control" asp-for="Gender" placeholder="" required> *@
+@*                         <option value="1" selected>Nam</option> *@
+@*                         <option value="2">Nữ</option> *@
+
+@*                     </select> *@
+@*                 </div> *@
+@*                 <div class="form-group"> *@
+@*                     <label>Trạng Thái </label> *@
+@*                     <select class="form-control" asp-for="Status" placeholder="" required> *@
+@*                         <option value="1" selected>Hoạt động</option> *@
+@*                         <option value="2">Ngừng hoạt động</option> *@
+
+@*                     </select> *@
+@*                 </div> *@
+
+@*                 <button type="submit" class="btn btn-gradient-primary me-2">SỬA</button> *@
+@*                 <button asp-action="Manage" class="btn btn-light">Trở về</button> *@
+@*             </form> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+@* @section Scripts { *@
+@*     @{ *@
+@*         await Html.RenderPartialAsync("_ValidationScriptsPartial"); *@
+@*     } *@
+@*     <script> *@
+@*         var loadFile = function (event) { *@
+@*             var image = document.getElementById("output"); *@
+@*             image.src = URL.createObjectURL(event.target.files[0]); *@
+@*         }; *@
+@*     </script> *@
+@* } *@
+
+
+
+
+
+
+
+
+@model Account
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Chỉnh sửa tài khoản";
     var RoleId = ViewBag.RoleId;
-    if (Model.Status == 1)
-    {
-        <script>
-            document.querySelector('select[name="Status"]').value = '1';
-        </script>
-    }
-    else if (Model.Status == 2)
-    {
-        <script>
-            document.querySelector('select[name="Status"]').value = '2';
-        </script>
-    }
-
 }
-<div class="col-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">SỬA QUẢN LÝ</h4>
-            <p class="card-description"> Nhập thông tin  </p>
-            <form class="forms-sample" asp-action="EditQL" method="post" enctype="multipart/form-data">
+
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .main-container {
+        background-color: #f5f5f7;
+        min-height: 100vh;
+        padding: 2rem;
+    }
+
+    .header-section {
+        margin-bottom: 2rem;
+    }
+
+    .header-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .header-subtitle {
+        color: #86868b;
+        margin: 0.25rem 0 0 0;
+        font-size: 0.95rem;
+    }
+
+    .form-container {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        border: 1px solid #f0f0f0;
+        overflow: hidden;
+    }
+
+    .form-header {
+        background: #f9f9f9;
+        padding: 1.5rem;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .form-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .form-body {
+        padding: 2rem;
+    }
+
+    .avatar-section {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding: 2rem;
+        background: #f9f9f9;
+        border-radius: 12px;
+        border: 2px dashed #d2d2d7;
+        transition: all 0.3s ease;
+    }
+
+        .avatar-section:hover {
+            border-color: #007aff;
+            background: #f0f8ff;
+        }
+
+    .avatar-preview {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        object-fit: cover;
+        border: 4px solid white;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: all 0.3s ease;
+    }
+
+        .avatar-preview:hover {
+            transform: scale(1.05);
+        }
+
+    .avatar-upload-btn {
+        background: #007aff;
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+        .avatar-upload-btn:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+        }
+
+    .file-input-hidden {
+        display: none;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .form-group-full {
+        grid-column: 1 / -1;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+        .form-label.required::after {
+            content: " *";
+            color: #ff3b30;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+        background: white;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #007aff;
+            box-shadow: 0 0 0 3px rgba(0,122,255,0.1);
+        }
+
+        .form-control:invalid {
+            border-color: #ff3b30;
+        }
+
+    .form-select {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        background: white;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #007aff;
+            box-shadow: 0 0 0 3px rgba(0,122,255,0.1);
+        }
+
+    .input-group {
+        position: relative;
+    }
+
+    .input-icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #86868b;
+        z-index: 1;
+    }
+
+    .input-with-icon {
+        padding-left: 2.5rem;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+        padding-top: 2rem;
+        border-top: 1px solid #f0f0f0;
+    }
+
+    .btn {
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 0.95rem;
+    }
+
+    .btn-primary {
+        background: #007aff;
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,122,255,0.3);
+        }
+
+    .btn-secondary {
+        background: #f0f0f0;
+        color: #1d1d1f !important;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+            text-decoration: none;
+            color: #1d1d1f;
+        }
+
+    .validation-error {
+        color: #ff3b30;
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    .status-indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+    }
+
+    .status-active {
+        background: #d1f2eb;
+        color: #00875a;
+    }
+
+    .status-inactive {
+        background: #ffebe6;
+        color: #de350b;
+    }
+
+    .loading {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+        .loading .btn-primary {
+            background: #86868b;
+        }
+</style>
+
+<div class="main-container">
+    <!-- Header Section -->
+    <div class="header-section">
+        <h1 class="header-title">
+            <i class="mdi mdi-account-edit"></i>
+            Chỉnh sửa tài khoản
+        </h1>
+        <p class="header-subtitle">Cập nhật thông tin tài khoản quản lý</p>
+    </div>
+
+    <!-- Form Container -->
+    <div class="form-container">
+        <div class="form-header">
+            <h2 class="form-title">
+                <i class="mdi mdi-form-select"></i>
+                Thông tin tài khoản
+            </h2>
+        </div>
+
+        <div class="form-body">
+            <!-- Status Indicator -->
+            @if (Model.Status == 1)
+            {
+                <div class="status-indicator status-active">
+                    <i class="mdi mdi-check-circle"></i>
+                    Tài khoản đang hoạt động
+                </div>
+            }
+            else if (Model.Status == 2)
+            {
+                <div class="status-indicator status-inactive">
+                    <i class="mdi mdi-close-circle"></i>
+                    Tài khoản ngừng hoạt động
+                </div>
+            }
+
+            <form class="edit-form" asp-action="EditQL" method="post" enctype="multipart/form-data" id="editForm">
                 <input type="hidden" asp-for="Id" />
-                <div class="form-group  flex-grow-1 mx-4">
-                    <img src="@Url.Content("~/contents/Images/Admin/" + @Model.Avartar)" style="width: 200px; height: 200px; border-radius: 20px;" alt="" id="output">
-                    <label asp-for="Avartar" class="control-label"></label>
-                    <input type="file" name="fAvatar" asp-for="Avartar" class="form-control-file" onchange="loadFile(event)" />
-                    <span asp-validation-for="Avartar" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label>Tài khoản</label>
-                    <input type="" class="form-control" asp-for="UserName" placeholder="Tài khoản" required>
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" class="form-control" asp-for="Email" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <label>SĐT</label>
-                    <input type="number" class="form-control" asp-for="Phone" placeholder="SĐT" required>
-                </div> <div class="form-group">
-                    <label>Họ Tên</label>
-                    <input class="form-control" asp-for="FullName" placeholder="Họ Tên" required>
-                </div>
-                <div class="form-group">
-                    <label>Ngày Sinh</label>
-                    <input class="form-control" asp-for="Birthday" type="date" placeholder="Ngày Sinh" required>
-                </div>
-                <div class="form-group">
-                    <label asp-for="RoleId" class="form-label">Chức vụ <span></span></label>
-                    <select asp-for="RoleId" asp-items="RoleId" class="form-select" required>
-                        <option value="">-- Chọn chức vụ --</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Giới tính </label>
-                    <select class="form-control" asp-for="Gender" placeholder="" required>
-                        <option value="1" selected>Nam</option>
-                        <option value="2">Nữ</option>
 
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Trạng Thái </label>
-                    <select class="form-control" asp-for="Status" placeholder="" required>
-                        <option value="1" selected>Hoạt động</option>
-                        <option value="2">Ngừng hoạt động</option>
-
-                    </select>
+                <!-- Avatar Section -->
+                <div class="avatar-section">
+                    <img src="@Url.Content("~/contents/Images/Admin/" + (Model.Avartar ?? "default-avatar.png"))"
+                         class="avatar-preview" alt="Avatar" id="avatarPreview">
+                    <div>
+                        <label for="avatarInput" class="avatar-upload-btn">
+                            <i class="mdi mdi-camera"></i>
+                            Thay đổi ảnh đại diện
+                        </label>
+                        <input type="file" name="fAvatar" asp-for="Avartar"
+                               class="file-input-hidden" id="avatarInput"
+                               accept="image/*" onchange="loadFile(event)" />
+                    </div>
+                    <p style="color: #86868b; font-size: 0.8rem; margin-top: 0.5rem;">
+                        Định dạng: JPG, PNG. Kích thước tối đa: 5MB
+                    </p>
+                    <span asp-validation-for="Avartar" class="validation-error"></span>
                 </div>
 
-                <button type="submit" class="btn btn-gradient-primary me-2">SỬA</button>
-                <button asp-action="Manage" class="btn btn-light">Trở về</button>
+                <!-- Form Fields Grid -->
+                <div class="form-grid">
+                    <!-- Username -->
+                    <div class="form-group">
+                        <label class="form-label required">Tên tài khoản</label>
+                        <div class="input-group">
+                            <i class="mdi mdi-account input-icon"></i>
+                            <input type="text" class="form-control input-with-icon"
+                                   asp-for="UserName" placeholder="Nhập tên tài khoản" required>
+                        </div>
+                        <span asp-validation-for="UserName" class="validation-error"></span>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label class="form-label required">Email</label>
+                        <div class="input-group">
+                            <i class="mdi mdi-email input-icon"></i>
+                            <input type="email" class="form-control input-with-icon"
+                                   asp-for="Email" placeholder="Nhập địa chỉ email" required>
+                        </div>
+                        <span asp-validation-for="Email" class="validation-error"></span>
+                    </div>
+
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label class="form-label required">Họ và tên</label>
+                        <div class="input-group">
+                            <i class="mdi mdi-account-box input-icon"></i>
+                            <input type="text" class="form-control input-with-icon"
+                                   asp-for="FullName" placeholder="Nhập họ và tên" required>
+                        </div>
+                        <span asp-validation-for="FullName" class="validation-error"></span>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="form-group">
+                        <label class="form-label required">Số điện thoại</label>
+                        <div class="input-group">
+                            <i class="mdi mdi-phone input-icon"></i>
+                            <input type="tel" class="form-control input-with-icon"
+                                   asp-for="Phone" placeholder="Nhập số điện thoại" required>
+                        </div>
+                        <span asp-validation-for="Phone" class="validation-error"></span>
+                    </div>
+
+                    <!-- Birthday -->
+                    <div class="form-group">
+                        <label class="form-label required">Ngày sinh</label>
+                        <div class="input-group">
+                            <i class="mdi mdi-calendar input-icon"></i>
+                            <input type="date" class="form-control input-with-icon"
+                                   asp-for="Birthday" required>
+                        </div>
+                        <span asp-validation-for="Birthday" class="validation-error"></span>
+                    </div>
+
+                    <!-- Role -->
+                    <div class="form-group">
+                        <label class="form-label required">Chức vụ</label>
+                        <div class="input-group">
+                            <i class="mdi mdi-shield-account input-icon"></i>
+                            <select asp-for="RoleId" asp-items="RoleId" class="form-select input-with-icon" required>
+                                <option value="">-- Chọn chức vụ --</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="RoleId" class="validation-error"></span>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="form-group">
+                        <label class="form-label required">Giới tính</label>
+                        <div class="input-group">
+                            <i class="mdi mdi-human-male-female input-icon"></i>
+                            <select class="form-select input-with-icon" asp-for="Gender" required>
+                                <option value="">-- Chọn giới tính --</option>
+                                <option value="1">Nam</option>
+                                <option value="2">Nữ</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="Gender" class="validation-error"></span>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="form-group">
+                        <label class="form-label required">Trạng thái</label>
+                        <div class="input-group">
+                            <i class="mdi mdi-toggle-switch input-icon"></i>
+                            <select class="form-select input-with-icon" asp-for="Status" required>
+                                <option value="">-- Chọn trạng thái --</option>
+                                <option value="1">Hoạt động</option>
+                                <option value="2">Ngừng hoạt động</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="Status" class="validation-error"></span>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <a asp-action="Manage" class="btn btn-secondary">
+                        <i class="mdi mdi-arrow-left"></i>
+                        Trở về
+                    </a>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        <i class="mdi mdi-content-save"></i>
+                        Cập nhật
+                    </button>
+                </div>
             </form>
         </div>
     </div>
@@ -83,9 +558,79 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <script>
+        // Avatar preview function
         var loadFile = function (event) {
-            var image = document.getElementById("output");
-            image.src = URL.createObjectURL(event.target.files[0]);
+            var image = document.getElementById("avatarPreview");
+            if (event.target.files && event.target.files[0]) {
+                image.src = URL.createObjectURL(event.target.files[0]);
+            }
         };
+
+        // Set initial values
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set status value
+        @if (Model.Status == 1)
+        {
+            <text>
+                    document.querySelector('select[name="Status"]').value = '1';
+            </text>
+        }
+        else if (Model.Status == 2)
+        {
+            <text>
+                    document.querySelector('select[name="Status"]').value = '2';
+            </text>
+        }
+
+            // Set gender value
+        @if (Model.Gender.HasValue)
+        {
+            <text>
+                    document.querySelector('select[name="Gender"]').value = '@Model.Gender';
+            </text>
+        }
+
+            // Form submission loading state
+            const form = document.getElementById('editForm');
+            const submitBtn = document.getElementById('submitBtn');
+
+            form.addEventListener('submit', function() {
+                submitBtn.innerHTML = '<i class="mdi mdi-loading mdi-spin"></i> Đang cập nhật...';
+                submitBtn.disabled = true;
+                form.classList.add('loading');
+            });
+
+            // Real-time validation
+            const inputs = document.querySelectorAll('.form-control, .form-select');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.hasAttribute('required') && !this.value.trim()) {
+                        this.style.borderColor = '#ff3b30';
+                    } else {
+                        this.style.borderColor = '#d2d2d7';
+                    }
+                });
+
+                input.addEventListener('input', function() {
+                    if (this.style.borderColor === 'rgb(255, 59, 48)') {
+                        this.style.borderColor = '#d2d2d7';
+                    }
+                });
+            });
+
+            // Phone number formatting
+            const phoneInput = document.querySelector('input[name="Phone"]');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function() {
+                    // Remove non-numeric characters
+                    this.value = this.value.replace(/\D/g, '');
+
+                    // Limit to 10 digits
+                    if (this.value.length > 10) {
+                        this.value = this.value.slice(0, 10);
+                    }
+                });
+            }
+        });
     </script>
 }

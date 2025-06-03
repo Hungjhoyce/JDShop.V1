@@ -1,71 +1,352 @@
-﻿@model JDshop.Models.ReceiptProduct
+﻿@* @model JDshop.Models.ReceiptProduct *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Delete"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>XOÁ PHIẾU NHẬP</h1> *@
+
+@* <h3>Bạn có chắc là muốn xóa không?</h3> *@
+@* <div> *@
+@*     <h4>Phiếu nhập hàng</h4> *@
+@*     <hr /> *@
+@*     <dl class="row"> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Số lượng *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Quantity) *@
+@*         </dd> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Giá tiền *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Price) *@
+@*         </dd> *@
+    
+@*         <dt class = "col-sm-2"> *@
+@*             Ngày tạo *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.CreateDay) *@
+@*         </dd> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Trạng thái *@
+@*         </dt> *@
+@*         @if (Model.Status == 1) *@
+@*         { *@
+@*             <dd class="col-sm-10"> *@
+@*                 Còn hoạt động *@
+@*             </dd> *@
+@*         } *@
+@*         else *@
+@*         { *@
+@*             <dd class="col-sm-10"> *@
+@*                 Ngừng hoạt động *@
+@*             </dd> *@
+
+@*         } *@
+@*         <dt class = "col-sm-2"> *@
+@*             Sản phẩm Màu Size *@
+@*             @Html.DisplayNameFor(model => model.ProductSizeColor) *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.ProductSizeColor.Code) *@
+@*         </dd> *@
+@*     </dl> *@
+    
+@*     <form asp-action="Delete"> *@
+@*         <input type="hidden" asp-for="Id" /> *@
+@*         <input type="submit" value="Delete" class="btn btn-danger" /> | *@
+@*         <a asp-action="Index">Back to List</a> *@
+@*     </form> *@
+@* </div> *@
+
+
+
+
+
+@using System.Globalization
+@model JDshop.Models.ReceiptProduct
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Xóa phiếu nhập";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>XOÁ PHIẾU NHẬP</h1>
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-<h3>Bạn có chắc là muốn xóa không?</h3>
-<div>
-    <h4>Phiếu nhập hàng</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            Số lượng
-            @* @Html.DisplayNameFor(model => model.Quantity) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class = "col-sm-2">
-            Giá tiền
-            @* @Html.DisplayNameFor(model => model.Price) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-    
-        <dt class = "col-sm-2">
-            Ngày tạo
-            @* @Html.DisplayNameFor(model => model.CreateDay) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreateDay)
-        </dd>
-        <dt class = "col-sm-2">
-            Trạng thái
-            @* @Html.DisplayNameFor(model => model.Status) *@
-        </dt>
-        @if (Model.Status == 1)
-        {
-            <dd class="col-sm-10">
-                Còn hoạt động
-            </dd>
-        }
-        else
-        {
-            <dd class="col-sm-10">
-                Ngừng hoạt động
-            </dd>
+    .delete-page {
+        padding: 2rem;
+        margin: 0 auto;
+    }
 
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #dc2626;
+        margin: 0;
+    }
+
+    .page-subtitle {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin: 0;
+    }
+
+    .warning-alert {
+        background-color: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .warning-icon {
+        color: #dc2626;
+        font-size: 1.125rem;
+    }
+
+    .warning-text {
+        color: #dc2626;
+        font-size: 0.875rem;
+        margin: 0;
+    }
+
+    .details-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    .card-icon {
+        width: 48px;
+        height: 48px;
+        background: #dc2626;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .card-info {
+        flex: 1;
+    }
+
+    .card-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 0.25rem 0;
+    }
+
+    .card-description {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin: 0;
+    }
+
+    .details-list {
+        display: grid;
+        gap: 0.75rem;
+    }
+
+    .detail-row {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.5rem 0;
+    }
+
+    .detail-icon {
+        width: 20px;
+        color: #86868b;
+        font-size: 0.875rem;
+        text-align: center;
+    }
+
+    .detail-label {
+        font-size: 0.875rem;
+        color: #1d1d1f;
+        min-width: 120px;
+    }
+
+    .detail-value {
+        font-size: 0.875rem;
+        color: #1d1d1f;
+        flex: 1;
+    }
+
+    .status-badge {
+        background: #d1fae5;
+        color: #065f46;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .status-inactive {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-cancel {
+        background: #f5f5f7;
+        color: #1d1d1f;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-cancel:hover {
+            background: #e8e8ed;
         }
-        @* <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd> *@
-        <dt class = "col-sm-2">
-            Sản phẩm Màu Size
-            @Html.DisplayNameFor(model => model.ProductSizeColor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductSizeColor.Code)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+
+    .btn-delete {
+        background: #dc2626;
+        color: white;
+    }
+
+        .btn-delete:hover {
+            background: #b91c1c;
+        }
+
+
+</style>
+
+<div class="delete-page">
+    <div class="page-header">
+        <h1 class="page-title">Xóa phiếu nhập</h1>
+        <p class="page-subtitle">Xác nhận xóa phiếu nhập khỏi hệ thống</p>
+    </div>
+
+    <div class="warning-alert">
+        <i class="fas fa-exclamation-triangle warning-icon"></i>
+        <p class="warning-text">Bạn có chắc chắn muốn xóa phiếu nhập này? Hành động này không thể hoàn tác.</p>
+    </div>
+
+    <div class="details-card">
+        <div class="card-header">
+            <div class="card-icon">
+                <i class="fas fa-receipt"></i>
+            </div>
+            <div class="card-info">
+                <h3 class="card-title">Phiếu nhập #@Model.Id</h3>
+                <p class="card-description">Thông tin phiếu nhập sẽ bị xóa</p>
+            </div>
+        </div>
+
+        <div class="details-list">
+            <div class="detail-row">
+                <i class="fas fa-barcode detail-icon"></i>
+                <span class="detail-label">Mã sản phẩm</span>
+                <span class="detail-value">@(Model.ProductSizeColor?.Code ?? "Chưa có mã")</span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-cubes detail-icon"></i>
+                <span class="detail-label">Số lượng</span>
+                <span class="detail-value">@Model.Quantity</span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-money-bill detail-icon"></i>
+                <span class="detail-label">Đơn giá</span>
+                <span class="detail-value">@string.Format(new CultureInfo("vi-VN"), "{0:C0}", Model.Price)</span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-calculator detail-icon"></i>
+                <span class="detail-label">Tổng giá trị</span>
+                <span class="detail-value">@string.Format(new CultureInfo("vi-VN"), "{0:C0}", Model.Price * Model.Quantity)</span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-calendar detail-icon"></i>
+                <span class="detail-label">Ngày tạo</span>
+                <span class="detail-value">
+                    @(Model.CreateDay.HasValue
+                        ? Model.CreateDay.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN"))
+                        : "Chưa có ngày")
+                </span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-info-circle detail-icon"></i>
+                <span class="detail-label">Trạng thái</span>
+                <span class="detail-value">
+                    @if (Model.Status == 1)
+                    {
+                        <span class="status-badge">Đã Nhập</span>
+                    }
+                    else
+                    {
+                        <span class="status-badge status-inactive">Ngừng hoạt động</span>
+                    }
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <a asp-action="Index" class="btn btn-cancel">
+            <i class="fas fa-arrow-left"></i>
+            Hủy
+        </a>
+
+        <form asp-action="Delete" style="display: inline;">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa phiếu nhập này không?')">
+                <i class="fas fa-trash"></i>
+                Xác nhận xóa
+            </button>
+        </form>
+    </div>
 </div>

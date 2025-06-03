@@ -16,6 +16,7 @@ public partial class Product
     public byte? Status { get; set; }
 
     public int? ProductTypeId { get; set; }
+    public int? CategoryId { get; set; }
 
     public virtual ICollection<CollectionProduct> CollectionProducts { get; set; } = new List<CollectionProduct>();
 
@@ -24,4 +25,5 @@ public partial class Product
     public virtual ICollection<ProductSizeColor> ProductSizeColors { get; set; } = new List<ProductSizeColor>();
 
     public virtual ProductType? ProductType { get; set; }
+    public virtual Category? Category { get; set; }
 }

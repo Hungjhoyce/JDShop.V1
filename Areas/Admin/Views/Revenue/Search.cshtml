@@ -1,81 +1,413 @@
-﻿@model IEnumerable<JDshop.Models.Order>
+﻿@* @model IEnumerable<JDshop.Models.Order> *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Index"; *@
+@*     var DonHuy = ViewBag.DonHuy; *@
+@*     var TongDonHang = ViewBag.TongDonHang; *@
+@*     var TongTien = ViewBag.TongTien; *@
+@* } *@
+@* <div class="page-header"> *@
+@*     <h3 style="font-family:Helvetica;" class="page-title"> DOANH THU </h3> *@
+@*     <nav aria-label="breadcrumb"> *@
+
+@*     </nav> *@
+@* </div> *@
+
+@* <div class="col-lg-12 grid-margin stretch-card"> *@
+@*     <div class="card"> *@
+@*         <div class="card-body"> *@
+@*             <form asp-action="Search" method="post"> *@
+
+
+@*                 <div class="row"> *@
+@*                     <div class="col-lg-3 grid-margin stretch-card"> *@
+@*                         <label>Từ ngày</label> *@
+@*                         <input type="datetime-local" class="form-control" name="TuNgay" placeholder="Ngày Sinh" required> *@
+@*                     </div> *@
+@*                     <div class="col-lg-3 grid-margin stretch-card"> *@
+@*                         <label>Đếm ngày ngày</label> *@
+@*                         <input type="datetime-local" class="form-control" name="DenNgay" placeholder="Ngày Sinh" required> *@
+@*                     </div> *@
+@*                     <div class="col-lg-3 grid-margin stretch-card"> *@
+@*                         <button type="submit" class="btn btn-gradient-primary me-2">Tìm kiếm</button> *@
+@*                     </div> *@
+@*                     <div class="col-lg-3 grid-margin stretch-card"> *@
+@*                         <button type="submit" class="btn btn-danger mb-2" formaction="/Admin/Revenue/ExportExcelNgay">Xuất file Excel</button> *@
+@*                     </div> *@
+@*                 </div> *@
+@*             </form> *@
+@*             <div class="row"> *@
+@*                 <div class="col-lg-3 grid-margin stretch-card"> *@
+@*                     <h3>Doanh Thu : @string.Format("{0:N0}", TongTien) VNĐ</h3> *@
+@*                 </div> *@
+@*                 <div class="col-lg-3 grid-margin stretch-card"> *@
+@*                     <h3>Tổng đơn hàng : @TongDonHang</h3> *@
+@*                 </div> *@
+@*                 <div class="col-lg-3 grid-margin stretch-card"> *@
+@*                     <h3>Đơn hàng hủy : @DonHuy</h3> *@
+@*                 </div> *@
+@*             </div> *@
+@*             <hr /> *@
+@*             <table class="table"> *@
+@*                 <thead> *@
+@*                     <tr> *@
+@*                         <th> *@
+@*                             Người đặt *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             Email *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             SĐT *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             Tổng tiền *@
+@*                         </th> *@
+
+@*                         <th> *@
+@*                             Ngày đặt *@
+@*                         </th> *@
+
+@*                         <th> *@
+@*                             Địa chỉ giao hàng *@
+@*                         </th> *@
+
+@*                         <th> *@
+@*                             Trạng thái *@
+@*                         </th> *@
+
+@*                     </tr> *@
+@*                 </thead> *@
+@*                 <tbody> *@
+@*                     @foreach (var item in Model) *@
+@*                     { *@
+@*                         <tr> *@
+@*                             <td> *@
+@*                                 @item.Account?.FullName *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 @item.Account?.Email *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 @item.Account?.Phone *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 @item.Total *@
+@*                             </td> *@
+
+@*                             <td> *@
+@*                                 @item?.CreateDay *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 @item?.Account?.Addresses.FirstOrDefault()?.Street , *@
+@*                                 @item?.Account?.Addresses.FirstOrDefault()?.Ward, *@
+@*                                 @item?.Account?.Addresses.FirstOrDefault()?.District, *@
+@*                                 @item?.Account?.Addresses.FirstOrDefault()?.City *@
+@*                             </td> *@
+@*                             @if (item?.Status == 2) *@
+@*                             { *@
+@*                                 <td> Chờ xác nhận</td> *@
+@*                             } *@
+@*                             @if (item?.Status == 3) *@
+@*                             { *@
+@*                                 <td>Hoàn thành </td> *@
+@*                             } *@
+@*                             @if (item?.Status == 5) *@
+@*                             { *@
+@*                                 <td>Đã Hủy </td> *@
+@*                             } *@
+@*                         </tr> *@
+@*                     } *@
+@*                 </tbody> *@
+@*             </table> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+
+
+
+
+
+
+
+
+
+@model IEnumerable<JDshop.Models.Order>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Báo cáo doanh thu";
     var DonHuy = ViewBag.DonHuy;
     var TongDonHang = ViewBag.TongDonHang;
     var TongTien = ViewBag.TongTien;
 }
-<div class="page-header">
-    <h3 style="font-family:Helvetica;" class="page-title"> DOANH THU </h3>
-    <nav aria-label="breadcrumb">
 
-    </nav>
+<style>
+    .page-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0;
+        color: #333;
+    }
+
+    .card {
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        margin-bottom: 2rem;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    .filter-row {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-control {
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        padding: 0.5rem 0.75rem;
+        height: auto;
+    }
+
+        .form-control:focus {
+            border-color: #6c7ae0;
+            box-shadow: 0 0 0 0.2rem rgba(108, 122, 224, 0.25);
+        }
+
+    label {
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .btn {
+        border-radius: 6px;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        height: 38px;
+        margin-top: 1.9rem;
+    }
+
+    .btn-gradient-primary {
+        background: linear-gradient(to right, #6c7ae0, #8e9af9);
+        border: none;
+        color: white;
+    }
+
+    .btn-danger {
+        background-color: #f44336;
+        border: none;
+        color: white;
+    }
+
+    .stats-row {
+        margin-bottom: 1.5rem;
+    }
+
+    .stat-card {
+        background: #fff;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        border: 1px solid #eee;
+        height: 100%;
+    }
+
+    .stat-title {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #333;
+        margin: 0;
+    }
+
+    .revenue-value {
+        color: #4caf50;
+    }
+
+    .orders-value {
+        color: #2196f3;
+    }
+
+    .cancelled-value {
+        color: #f44336;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .table th {
+            background-color: #f8f9fa;
+            color: #495057;
+            font-weight: 600;
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 2px solid #dee2e6;
+            white-space: nowrap;
+        }
+
+        .table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #dee2e6;
+            vertical-align: middle;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+    .status-badge {
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        display: inline-block;
+    }
+
+    .status-pending {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+
+    .status-completed {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .status-cancelled {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .address-cell {
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .money-cell {
+        font-weight: 600;
+        color: #4caf50;
+    }
+
+    .icon-cell {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+        .icon-cell i {
+            font-size: 1.1rem;
+        }
+
+</style>
+
+<div class="page-header">
+    <h3 class="page-title">
+        <i class="mdi mdi-chart-line mr-1"></i>
+        BÁO CÁO DOANH THU
+    </h3>
 </div>
 
-<div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <form asp-action="Search" method="post">
-
-
-                <div class="row">
-                    <div class="col-lg-3 grid-margin stretch-card">
-                        <label>Từ ngày</label>
-                        <input type="datetime-local" class="form-control" name="TuNgay" placeholder="Ngày Sinh" required>
-                    </div>
-                    <div class="col-lg-3 grid-margin stretch-card">
-                        <label>Đếm ngày ngày</label>
-                        <input type="datetime-local" class="form-control" name="DenNgay" placeholder="Ngày Sinh" required>
-                    </div>
-                    <div class="col-lg-3 grid-margin stretch-card">
-                        <button type="submit" class="btn btn-gradient-primary me-2">Tìm kiếm</button>
-                    </div>
-                    <div class="col-lg-3 grid-margin stretch-card">
-                        <button type="submit" class="btn btn-danger mb-2" formaction="/Admin/Revenue/ExportExcelNgay">Xuất file Excel</button>
-                    </div>
+<div class="card">
+    <div class="card-body">
+        <!-- Filter Form -->
+        <form asp-action="Search" method="post">
+            <div class="row filter-row">
+                <div class="col-lg-3">
+                    <label>
+                        <i class="mdi mdi-calendar-start"></i>
+                        Từ ngày
+                    </label>
+                    <input type="datetime-local" class="form-control" name="TuNgay" required>
                 </div>
-            </form>
-            <div class="row">
-                <div class="col-lg-3 grid-margin stretch-card">
-                    <h3>Doanh Thu : @string.Format("{0:N0}", TongTien) VNĐ</h3>
+                <div class="col-lg-3">
+                    <label>
+                        <i class="mdi mdi-calendar-end"></i>
+                        Đến ngày
+                    </label>
+                    <input type="datetime-local" class="form-control" name="DenNgay" required>
                 </div>
-                <div class="col-lg-3 grid-margin stretch-card">
-                    <h3>Tổng đơn hàng : @TongDonHang</h3>
+                <div class="col-lg-3">
+                    <button type="submit" class="btn btn-gradient-primary">
+                        <i class="mdi mdi-magnify"></i>
+                        Tìm kiếm
+                    </button>
                 </div>
-                <div class="col-lg-3 grid-margin stretch-card">
-                    <h3>Đơn hàng hủy : @DonHuy</h3>
+                <div class="col-lg-3">
+                    <button type="submit" class="btn btn-danger" formaction="/Admin/Revenue/ExportExcelNgay">
+                        <i class="mdi mdi-file-excel"></i>
+                        Xuất file Excel
+                    </button>
                 </div>
             </div>
-            <hr />
+        </form>
+
+        <!-- Statistics -->
+        <div class="row stats-row">
+            <div class="col-lg-4 mb-3">
+                <div class="stat-card">
+                    <div class="stat-title">
+                        <i class="mdi mdi-currency-usd"></i>
+                        Doanh Thu
+                    </div>
+                    <h3 class="stat-value revenue-value">@string.Format("{0:N0}", TongTien) VNĐ</h3>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-3">
+                <div class="stat-card">
+                    <div class="stat-title">
+                        <i class="mdi mdi-shopping"></i>
+                        Tổng đơn hàng
+                    </div>
+                    <h3 class="stat-value orders-value">@TongDonHang</h3>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-3">
+                <div class="stat-card">
+                    <div class="stat-title">
+                        <i class="mdi mdi-close-circle"></i>
+                        Đơn hàng hủy
+                    </div>
+                    <h3 class="stat-value cancelled-value">@DonHuy</h3>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <!-- Orders Table -->
+        <div class="table-responsive">
             <table class="table">
                 <thead>
                     <tr>
-                        <th>
-                            Người đặt
-                        </th>
-                        <th>
-                            Email
-                        </th>
-                        <th>
-                            SĐT
-                        </th>
-                        <th>
-                            Tổng tiền
-                        </th>
-
-                        <th>
-                            Ngày đặt
-                        </th>
-
-                        <th>
-                            Địa chỉ giao hàng
-                        </th>
-
-                        <th>
-                            Trạng thái
-                        </th>
-
+                        <th>Người đặt</th>
+                        <th>Email</th>
+                        <th>SĐT</th>
+                        <th>Tổng tiền</th>
+                        <th>Ngày đặt</th>
+                        <th>Địa chỉ giao hàng</th>
+                        <th>Trạng thái</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -83,39 +415,50 @@
                     {
                         <tr>
                             <td>
-                                @item.Account?.FullName
+                                <div class="icon-cell">
+                                    <i class="mdi mdi-account"></i>
+                                    @item.Account?.FullName
+                                </div>
+                            </td>
+                            <td>@item.Account?.Email</td>
+                            <td>@item.Account?.Phone</td>
+                            <td class="money-cell">
+                                @(item.Total != null ? string.Format("{0:N0}", item.Total) + " VNĐ" : "0 VNĐ")
                             </td>
                             <td>
-                                @item.Account?.Email
+                                @(item.CreateDay.HasValue
+                                    ? item.CreateDay.Value.ToString("dd/MM/yyyy HH:mm")
+                                    : "")
                             </td>
-                            <td>
-                                @item.Account?.Phone
-                            </td>
-                            <td>
-                                @item.Total
-                            </td>
-
-                            <td>
-                                @item?.CreateDay
-                            </td>
-                            <td>
-                                @item?.Account?.Addresses.FirstOrDefault()?.Street ,
+                            <td class="address-cell" title="@($"{item?.Account?.Addresses.FirstOrDefault()?.Street}, {item?.Account?.Addresses.FirstOrDefault()?.Ward}, {item?.Account?.Addresses.FirstOrDefault()?.District}, {item?.Account?.Addresses.FirstOrDefault()?.City}")">
+                                @item?.Account?.Addresses.FirstOrDefault()?.Street,
                                 @item?.Account?.Addresses.FirstOrDefault()?.Ward,
                                 @item?.Account?.Addresses.FirstOrDefault()?.District,
                                 @item?.Account?.Addresses.FirstOrDefault()?.City
                             </td>
-                            @if (item?.Status == 2)
-                            {
-                                <td> Chờ xác nhận</td>
-                            }
-                            @if (item?.Status == 3)
-                            {
-                                <td>Hoàn thành </td>
-                            }
-                            @if (item?.Status == 5)
-                            {
-                                <td>Đã Hủy </td>
-                            }
+                            <td>
+                                @if (item?.Status == 2)
+                                {
+                                    <span class="status-badge status-pending">
+                                        <i class="mdi mdi-clock-outline"></i>
+                                        Chờ xác nhận
+                                    </span>
+                                }
+                                @if (item?.Status == 3)
+                                {
+                                    <span class="status-badge status-completed">
+                                        <i class="mdi mdi-check-circle"></i>
+                                        Hoàn thành
+                                    </span>
+                                }
+                                @if (item?.Status == 5)
+                                {
+                                    <span class="status-badge status-cancelled">
+                                        <i class="mdi mdi-close-circle"></i>
+                                        Đã hủy
+                                    </span>
+                                }
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -123,3 +466,17 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set default date range (current month)
+        var today = new Date();
+        var firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+
+        var tuNgayInput = document.querySelector('input[name="TuNgay"]');
+        var denNgayInput = document.querySelector('input[name="DenNgay"]');
+
+        tuNgayInput.value = firstDay.toISOString().slice(0, 16);
+        denNgayInput.value = today.toISOString().slice(0, 16);
+    });
+</script>

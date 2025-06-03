@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JDShop.Migrations
 {
     [DbContext(typeof(JDshopDbContext))]
-    [Migration("20250523063342_JDShopDb")]
+    [Migration("20250527170413_JDShopDb")]
     partial class JDShopDb
     {
         /// <inheritdoc />
@@ -86,7 +86,7 @@ namespace JDShop.Migrations
                             Email = "admin@jdshop.com",
                             FullName = "Admin JDShop",
                             Gender = (byte)1,
-                            Password = "hunghoang123",
+                            Password = "4297f44b13955235245b2497399d7a93",
                             Phone = "0123456789",
                             RoleId = 1,
                             Status = (byte)1,
@@ -100,7 +100,7 @@ namespace JDShop.Migrations
                             Email = "khachang1@gmail.com",
                             FullName = "Khách Hàng 1",
                             Gender = (byte)2,
-                            Password = "hunghoang123",
+                            Password = "4297f44b13955235245b2497399d7a93",
                             Phone = "0987654321",
                             Point = 100,
                             RoleId = 2,
@@ -211,7 +211,7 @@ namespace JDShop.Migrations
                         new
                         {
                             Id = 1,
-                            Cdt = new DateTime(2025, 5, 23, 13, 33, 42, 83, DateTimeKind.Local).AddTicks(1384),
+                            Cdt = new DateTime(2025, 5, 28, 0, 4, 12, 722, DateTimeKind.Local).AddTicks(6427),
                             Description = "Các loại áo dành cho nữ",
                             Name = "Áo nữ",
                             Status = true,
@@ -220,7 +220,7 @@ namespace JDShop.Migrations
                         new
                         {
                             Id = 2,
-                            Cdt = new DateTime(2025, 5, 23, 13, 33, 42, 83, DateTimeKind.Local).AddTicks(1388),
+                            Cdt = new DateTime(2025, 5, 28, 0, 4, 12, 722, DateTimeKind.Local).AddTicks(6430),
                             Description = "Các loại áo dành cho nam",
                             Name = "Áo nam",
                             Status = true,
@@ -545,6 +545,9 @@ namespace JDShop.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -561,6 +564,8 @@ namespace JDShop.Migrations
                         .HasColumnType("tinyint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("ProductTypeId");
 
@@ -667,12 +672,17 @@ namespace JDShop.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
                     b.Property<byte?>("Status")
                         .HasColumnType("tinyint");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("ProductTypes");
 
@@ -681,7 +691,7 @@ namespace JDShop.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            Cdt = new DateTime(2025, 5, 23, 13, 33, 42, 83, DateTimeKind.Local).AddTicks(1412),
+                            Cdt = new DateTime(2025, 5, 28, 0, 4, 12, 722, DateTimeKind.Local).AddTicks(6455),
                             Description = "Áo thun dành cho nữ",
                             Name = "Áo thun nữ",
                             Status = (byte)1
@@ -690,7 +700,7 @@ namespace JDShop.Migrations
                         {
                             Id = 2,
                             CategoryId = 2,
-                            Cdt = new DateTime(2025, 5, 23, 13, 33, 42, 83, DateTimeKind.Local).AddTicks(1414),
+                            Cdt = new DateTime(2025, 5, 28, 0, 4, 12, 722, DateTimeKind.Local).AddTicks(6459),
                             Description = "Áo sơ mi dành cho nam",
                             Name = "Áo sơ mi nam",
                             Status = (byte)1
@@ -881,7 +891,7 @@ namespace JDShop.Migrations
                         {
                             Id = 1,
                             Address = "123 Ha Noi",
-                            Cdt = new DateTime(2025, 5, 23, 13, 33, 42, 83, DateTimeKind.Local).AddTicks(1336),
+                            Cdt = new DateTime(2025, 5, 28, 0, 4, 12, 722, DateTimeKind.Local).AddTicks(6379),
                             Email = "supplier@jdshop.com",
                             Name = "JDShop Supplier",
                             Phone = "0123456789",
@@ -891,7 +901,7 @@ namespace JDShop.Migrations
                         {
                             Id = 2,
                             Address = "456 Quang Ninh",
-                            Cdt = new DateTime(2025, 5, 23, 13, 33, 42, 83, DateTimeKind.Local).AddTicks(1353),
+                            Cdt = new DateTime(2025, 5, 28, 0, 4, 12, 722, DateTimeKind.Local).AddTicks(6396),
                             Email = "fashion@supplier.com",
                             Name = "Fashion Supplier",
                             Phone = "0987654321",
@@ -1018,10 +1028,16 @@ namespace JDShop.Migrations
 
             modelBuilder.Entity("JDshop.Models.Product", b =>
                 {
+                    b.HasOne("JDshop.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
+
                     b.HasOne("JDshop.Models.ProductType", "ProductType")
                         .WithMany("Products")
                         .HasForeignKey("ProductTypeId")
                         .HasConstraintName("FK_Products_ProductTypes");
+
+                    b.Navigation("Category");
 
                     b.Navigation("ProductType");
                 });
@@ -1064,7 +1080,14 @@ namespace JDShop.Migrations
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_ProductTypes_Category");
 
+                    b.HasOne("JDshop.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .HasConstraintName("FK_ProductTypes_Product");
+
                     b.Navigation("Category");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("JDshop.Models.ReceiptProduct", b =>

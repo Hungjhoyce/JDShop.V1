@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="~/LayoutAdmin/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="~/LayoutAdmin/assets/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="~/LayoutAdmin/assets/css/style.css">
+    <link rel="stylesheet" href="~/LayoutAdmin/assets/css/stylenew.css">
     <link rel="shortcut icon" href="~/LayoutAdmin/assets/images/favicon.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
     <style>
@@ -22,12 +23,12 @@
         <!-- partial:~/partials/_navbar.html -->
         @await Html.PartialAsync("~/Areas/Admin/Views/PartialView/_Header.cshtml")
         <!-- partial -->
-        <div class="container-fluid page-body-wrapper" style="padding-top:70px">
+        <div class="container-fluid page-body-wrapper">
             <!-- partial:~/partials/_sidebar.html -->
             @await Html.PartialAsync("~/Areas/Admin/Views/PartialView/_Menu.cshtml")
             <!-- partial -->
             <div class="main-panel">
-                <div class="content-wrapper">
+                <div class="content-wrapper" style="padding: 0;">
                     @RenderBody()
                 </div>
                 <!-- content-wrapper ends -->

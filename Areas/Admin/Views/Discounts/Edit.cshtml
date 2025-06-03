@@ -1,66 +1,601 @@
-﻿@model JDshop.Models.Discount
+﻿@* @model JDshop.Models.Discount *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Edit"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <div class="col-12 grid-margin stretch-card"> *@
+@*     <div class="card"> *@
+@*         <div class="card-body"> *@
+@*             <h1>SỬA MÃ GIẢM GIÁ</h1> *@
+@*             <h4>Nhập thông tin</h4> *@
+@*             <hr /> *@
+@*             <div class="row"> *@
+@*                 <div class="col-md-4"> *@
+@*                     <form asp-action="Edit"> *@
+@*                         <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+@*                         <input type="hidden" asp-for="Id" /> *@
+@*                         <div class="form-group"> *@
+@*                             <label asp-for="Name" class="control-label">Tên mã giảm giá</label> *@
+@*                             <input asp-for="Name" class="form-control" /> *@
+@*                             <span asp-validation-for="Name" class="text-danger"></span> *@
+@*                         </div> *@
+@*                         <div class="form-group"> *@
+@*                             <label asp-for="Code" class="control-label">Mã code</label> *@
+@*                             <input asp-for="Code" class="form-control" /> *@
+@*                             <span asp-validation-for="Code" class="text-danger"></span> *@
+@*                         </div> *@
+@*                         <div class="form-group"> *@
+@*                             <label asp-for="Description" class="control-label">Mô tả</label> *@
+@*                             <input asp-for="Description" class="form-control" /> *@
+@*                             <span asp-validation-for="Description" class="text-danger"></span> *@
+@*                         </div> *@
+@*                         <div class="form-group"> *@
+@*                             <label asp-for="DiscountPercent" class="control-label">Số tiền giảm giá</label> *@
+@*                             <input asp-for="DiscountPercent" class="form-control" /> *@
+@*                             <span asp-validation-for="DiscountPercent" class="text-danger"></span> *@
+@*                         </div> *@
+@*                         <div class="form-group"> *@
+@*                             <label asp-for="Quantity" class="control-label">Số lượng mã giảm giá</label> *@
+@*                             <input asp-for="Quantity" class="form-control" /> *@
+@*                             <span asp-validation-for="Quantity" class="text-danger"></span> *@
+@*                         </div> *@
+@*                         <div class="form-group"> *@
+@*                             <label asp-for="UseNumber" class="control-label">Số lượng mã sử dụng</label> *@
+@*                             <input asp-for="UseNumber" class="form-control" /> *@
+@*                             <span asp-validation-for="UseNumber" class="text-danger"></span> *@
+@*                         </div> *@
+@*                         <div class="form-group"> *@
+@*                             <label>Trạng Thái</label> *@
+@*                             <select class="form-control" asp-for="Status" placeholder="" required> *@
+@*                                 <option value="1" selected>Hoạt động</option> *@
+@*                                 <option value="2">Ngừng hoạt động</option> *@
+
+@*                             </select> *@
+@*                         </div> *@
+@*                         <div class="form-group"> *@
+@*                             <button type="submit" class="btn btn-gradient-primary me-2">Sửa</button> *@
+@*                             <a asp-action="Index" class="btn btn-light">Trở về</a> *@
+@*                         </div> *@
+@*                     </form> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+@* @section Scripts { *@
+@*     @{ *@
+@*         await Html.RenderPartialAsync("_ValidationScriptsPartial"); *@
+@*     } *@
+@* } *@
+
+
+
+
+
+
+
+
+
+
+
+
+@model JDshop.Models.Discount
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Chỉnh sửa mã giảm giá";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="col-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <h1>SỬA MÃ GIẢM GIÁ</h1>
-            <h4>Nhập thông tin</h4>
-            <hr />
-            <div class="row">
-                <div class="col-md-4">
-                    <form asp-action="Edit">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <input type="hidden" asp-for="Id" />
-                        <div class="form-group">
-                            <label asp-for="Name" class="control-label">Tên mã giảm giá</label>
-                            <input asp-for="Name" class="form-control" />
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Code" class="control-label">Mã code</label>
-                            <input asp-for="Code" class="form-control" />
-                            <span asp-validation-for="Code" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Description" class="control-label">Mô tả</label>
-                            <input asp-for="Description" class="form-control" />
-                            <span asp-validation-for="Description" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="DiscountPercent" class="control-label">Số tiền giảm giá</label>
-                            <input asp-for="DiscountPercent" class="form-control" />
-                            <span asp-validation-for="DiscountPercent" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Quantity" class="control-label">Số lượng mã giảm giá</label>
-                            <input asp-for="Quantity" class="form-control" />
-                            <span asp-validation-for="Quantity" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="UseNumber" class="control-label">Số lượng mã sử dụng</label>
-                            <input asp-for="UseNumber" class="form-control" />
-                            <span asp-validation-for="UseNumber" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Trạng Thái</label>
-                            <select class="form-control" asp-for="Status" placeholder="" required>
-                                <option value="1" selected>Hoạt động</option>
-                                <option value="2">Ngừng hoạt động</option>
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-gradient-primary me-2">Sửa</button>
-                            <a asp-action="Index" class="btn btn-light">Trở về</a>
-                        </div>
-                    </form>
+    .main-container {
+        background-color: #f5f5f7;
+        min-height: 100vh;
+        padding: 2rem;
+    }
+
+    .header-section {
+        margin-bottom: 2rem;
+    }
+
+    .header-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .header-subtitle {
+        color: #86868b;
+        margin: 0.25rem 0 0 0;
+        font-size: 0.95rem;
+    }
+    .form-container {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        border: 1px solid #f0f0f0;
+        overflow: hidden;
+    }
+
+    .form-header {
+        background: #f9f9f9;
+        padding: 1.5rem;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .form-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .form-body {
+        padding: 2rem;
+    }
+
+    .current-info-card {
+        background: #f0f8ff;
+        border: 1px solid #007aff;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .current-info-title {
+        font-weight: 600;
+        color: #007aff;
+        margin: 0 0 1rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .current-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .current-info-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .current-info-label {
+        font-size: 0.8rem;
+        color: #86868b;
+        font-weight: 500;
+    }
+
+    .current-info-value {
+        font-weight: 600;
+        color: #007aff;
+    }
+
+    .discount-code-display {
+        background: #f0f8ff;
+        color: #007aff;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-family: 'Courier New', monospace;
+        font-weight: 600;
+        border: 2px solid #007aff;
+        display: inline-block;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .form-group-full {
+        grid-column: 1 / -1;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+        .form-label.required::after {
+            content: " *";
+            color: #ff3b30;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+        background: white;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #007aff;
+            box-shadow: 0 0 0 3px rgba(0,122,255,0.1);
+        }
+
+        .form-control:invalid {
+            border-color: #ff3b30;
+        }
+
+    .form-select {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        background: white;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #007aff;
+            box-shadow: 0 0 0 3px rgba(0,122,255,0.1);
+        }
+
+    .input-group {
+        position: relative;
+    }
+
+    .input-icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #86868b;
+        z-index: 1;
+    }
+
+    .input-with-icon {
+        padding-left: 2.5rem;
+    }
+
+    .form-hint {
+        color: #86868b;
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+    }
+
+    .validation-error {
+        color: #ff3b30;
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    .status-indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+    }
+
+    .status-active {
+        background: #d1f2eb;
+        color: #00875a;
+    }
+
+    .status-inactive {
+        background: #ffebe6;
+        color: #de350b;
+    }
+
+    .usage-warning {
+        background: #fff3e0;
+        border: 1px solid #ff9500;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #f57c00;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+        padding-top: 2rem;
+        border-top: 1px solid #f0f0f0;
+    }
+
+    .btn {
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 0.95rem;
+        min-width: 120px;
+        justify-content: center;
+    }
+
+    .btn-primary {
+        background: #007aff;
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,122,255,0.3);
+        }
+
+    .btn-secondary {
+        background: #f0f0f0;
+        color: #1d1d1f !important;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+            text-decoration: none;
+            color: #1d1d1f;
+        }
+
+    .progress-container {
+        margin-top: 0.5rem;
+    }
+
+    .progress-label {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.25rem;
+        font-size: 0.8rem;
+        color: #86868b;
+    }
+
+    .progress-bar-container {
+        width: 100%;
+        height: 6px;
+        background: #f0f0f0;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        height: 100%;
+        background: linear-gradient(to right, #30d158, #ff9500);
+        border-radius: 3px;
+        transition: width 0.3s ease;
+    }
+
+    .loading {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+        .loading .btn-primary {
+            background: #86868b;
+        }
+</style>
+
+<div class="main-container">
+    <!-- Header Section -->
+    <div class="header-section">
+
+        <h1 class="header-title">
+            <i class="mdi mdi-pencil"></i>
+            Chỉnh sửa mã giảm giá
+        </h1>
+        <p class="header-subtitle">Cập nhật thông tin mã giảm giá</p>
+    </div>
+
+    <!-- Form Container -->
+    <div class="form-container">
+        <div class="form-header">
+            <h2 class="form-title">
+                <i class="mdi mdi-ticket-percent"></i>
+                Thông tin mã giảm giá
+            </h2>
+        </div>
+
+        <div class="form-body">
+            <!-- Current Status Indicator -->
+            @if (Model.Status == 1)
+            {
+                <div class="status-indicator status-active">
+                    <i class="mdi mdi-check-circle"></i>
+                    Mã giảm giá đang hoạt động
+                </div>
+            }
+            else
+            {
+                <div class="status-indicator status-inactive">
+                    <i class="mdi mdi-close-circle"></i>
+                    Mã giảm giá ngừng hoạt động
+                </div>
+            }
+
+            <!-- Current Information Card -->
+            <div class="current-info-card">
+                <h3 class="current-info-title">
+                    <i class="mdi mdi-information"></i>
+                    Thông tin hiện tại
+                </h3>
+                <div class="current-info-grid">
+                    <div class="current-info-item">
+                        <span class="current-info-label">Mã code</span>
+                        <span class="current-info-value discount-code-display">@Model.Code</span>
+                    </div>
+                    <div class="current-info-item">
+                        <span class="current-info-label">Số lượng ban đầu</span>
+                        <span class="current-info-value">@Model.Quantity</span>
+                    </div>
+                    <div class="current-info-item">
+                        <span class="current-info-label">Đã sử dụng</span>
+                        <span class="current-info-value">@Model.UseNumber</span>
+                    </div>
+                    <div class="current-info-item">
+                        <span class="current-info-label">Còn lại</span>
+                        <span class="current-info-value">@((Model.Quantity ?? 0) - (Model.UseNumber ?? 0))</span>
+                    </div>
+                </div>
+
+                @{
+                    var usagePercent = Model.Quantity > 0 ? (double)(Model.UseNumber ?? 0) / (double)Model.Quantity * 100 : 0;
+                }
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Tỷ lệ sử dụng</span>
+                        <span>@usagePercent.ToString("F1")%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: @(usagePercent)%"></div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Usage Warning -->
+            @if (Model.UseNumber > 0)
+            {
+                <div class="usage-warning">
+                    <i class="mdi mdi-alert-circle"></i>
+                    <span>Lưu ý: Mã này đã được sử dụng @Model.UseNumber lần. Hãy cẩn thận khi thay đổi số lượng.</span>
+                </div>
+            }
+
+            <form asp-action="Edit" id="editForm">
+                <div asp-validation-summary="ModelOnly" class="validation-error"></div>
+                <input type="hidden" asp-for="Id" />
+
+                <!-- Form Fields Grid -->
+                <div class="form-grid">
+                    <!-- Name -->
+                    <div class="form-group">
+                        <label asp-for="Name" class="form-label required">Tên mã giảm giá</label>
+                        <div class="input-group">
+                            <i class="mdi mdi-tag input-icon"></i>
+                            <input asp-for="Name" class="form-control input-with-icon" placeholder="Nhập tên mã giảm giá" required>
+                        </div>
+                        <div class="form-hint">Tên hiển thị của mã giảm giá</div>
+                        <span asp-validation-for="Name" class="validation-error"></span>
+                    </div>
+
+                    <!-- Code -->
+                    <div class="form-group">
+                        <label asp-for="Code" class="form-label required">Mã code</label>
+                        <div class="input-group">
+                            <i class="mdi mdi-barcode input-icon"></i>
+                            <input asp-for="Code" class="form-control input-with-icon" placeholder="Nhập mã code" required>
+                        </div>
+                        <div class="form-hint">Mã duy nhất để khách hàng nhập</div>
+                        <span asp-validation-for="Code" class="validation-error"></span>
+                    </div>
+
+                    <!-- Discount Amount -->
+                    <div class="form-group">
+                        <label asp-for="DiscountPercent" class="form-label required">Số tiền giảm giá (VNĐ)</label>
+                        <div class="input-group">
+                            <i class="mdi mdi-cash input-icon"></i>
+                            <input asp-for="DiscountPercent" class="form-control input-with-icon" type="number" min="0" placeholder="Nhập số tiền giảm" required>
+                        </div>
+                        <div class="form-hint">Số tiền giảm giá tính bằng VNĐ</div>
+                        <span asp-validation-for="DiscountPercent" class="validation-error"></span>
+                    </div>
+
+                    <!-- Quantity -->
+                    <div class="form-group">
+                        <label asp-for="Quantity" class="form-label required">Số lượng mã</label>
+                        <div class="input-group">
+                            <i class="mdi mdi-package-variant input-icon"></i>
+                            <input asp-for="Quantity" class="form-control input-with-icon" type="number" min="0" placeholder="Nhập số lượng" required>
+                        </div>
+                        <div class="form-hint">Tổng số lượng mã có thể sử dụng</div>
+                        <span asp-validation-for="Quantity" class="validation-error"></span>
+                    </div>
+
+                    <!-- Use Number -->
+                    <div class="form-group">
+                        <label asp-for="UseNumber" class="form-label">Số lần đã sử dụng</label>
+                        <div class="input-group">
+                            <i class="mdi mdi-account-multiple input-icon"></i>
+                            <input asp-for="UseNumber" class="form-control input-with-icon" type="number" min="0" placeholder="Số lần đã sử dụng" readonly>
+                        </div>
+                        <div class="form-hint">Số lần mã đã được sử dụng (chỉ đọc)</div>
+                        <span asp-validation-for="UseNumber" class="validation-error"></span>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="form-group">
+                        <label class="form-label required">Trạng thái</label>
+                        <div class="input-group">
+                            <i class="mdi mdi-toggle-switch input-icon"></i>
+                            <select class="form-select input-with-icon" asp-for="Status" required>
+                                <option value="">-- Chọn trạng thái --</option>
+                                <option value="1">Hoạt động</option>
+                                <option value="2">Ngừng hoạt động</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="Status" class="validation-error"></span>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group form-group-full">
+                        <label asp-for="Description" class="form-label">Mô tả</label>
+                        <div class="input-group">
+                            <i class="mdi mdi-text input-icon"></i>
+                            <textarea asp-for="Description" class="form-control input-with-icon" rows="3" placeholder="Nhập mô tả cho mã giảm giá"></textarea>
+                        </div>
+                        <div class="form-hint">Mô tả chi tiết về mã giảm giá (tùy chọn)</div>
+                        <span asp-validation-for="Description" class="validation-error"></span>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="mdi mdi-arrow-left"></i>
+                        Hủy bỏ
+                    </a>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        <i class="mdi mdi-content-save"></i>
+                        Cập nhật
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -69,4 +604,101 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('editForm');
+            var submitBtn = document.getElementById('submitBtn');
+            var quantityInput = document.querySelector('input[name="Quantity"]');
+            var useNumberInput = document.querySelector('input[name="UseNumber"]');
+
+            // Set initial status value
+        @if (Model.Status == 1)
+        {
+            <text>
+                    document.querySelector('select[name="Status"]').value = '1';
+            </text>
+        }
+        else if (Model.Status == 2)
+        {
+            <text>
+                    document.querySelector('select[name="Status"]').value = '2';
+            </text>
+        }
+
+            // Form submission loading state
+            form.addEventListener('submit', function(e) {
+                // Validate quantity vs use number
+                var quantity = parseInt(quantityInput.value) || 0;
+                var useNumber = parseInt(useNumberInput.value) || 0;
+
+                if (quantity < useNumber) {
+                    e.preventDefault();
+                    alert('Số lượng mã không thể nhỏ hơn số lần đã sử dụng (' + useNumber + ')!');
+                    quantityInput.focus();
+                    return;
+                }
+
+                submitBtn.innerHTML = '<i class="mdi mdi-loading mdi-spin"></i> Đang cập nhật...';
+                submitBtn.disabled = true;
+                form.classList.add('loading');
+            });
+
+            // Real-time validation
+            var inputs = document.querySelectorAll('.form-control, .form-select');
+            inputs.forEach(function(input) {
+                input.addEventListener('blur', function() {
+                    if (this.hasAttribute('required') && !this.value.trim()) {
+                        this.style.borderColor = '#ff3b30';
+                    } else {
+                        this.style.borderColor = '#d2d2d7';
+                    }
+                });
+
+                input.addEventListener('input', function() {
+                    if (this.style.borderColor === 'rgb(255, 59, 48)') {
+                        this.style.borderColor = '#d2d2d7';
+                    }
+                });
+            });
+
+            // Quantity validation
+            quantityInput.addEventListener('input', function() {
+                var quantity = parseInt(this.value) || 0;
+                var useNumber = parseInt(useNumberInput.value) || 0;
+
+                if (quantity < useNumber) {
+                    this.style.borderColor = '#ff3b30';
+                    this.title = 'Số lượng không thể nhỏ hơn số lần đã sử dụng (' + useNumber + ')';
+                } else {
+                    this.style.borderColor = '#30d158';
+                    this.title = '';
+                }
+            });
+
+            // Format number inputs
+            var numberInputs = document.querySelectorAll('input[type="number"]');
+            numberInputs.forEach(function(input) {
+                input.addEventListener('input', function() {
+                    if (this.value < 0) {
+                        this.value = 0;
+                    }
+                });
+            });
+
+            // Auto-generate code if empty
+            var codeInput = document.querySelector('input[name="Code"]');
+            var nameInput = document.querySelector('input[name="Name"]');
+
+            nameInput.addEventListener('input', function() {
+                if (!codeInput.value.trim()) {
+                    var code = this.value.toUpperCase()
+                        .replace(/[^A-Z0-9]/g, '')
+                        .substring(0, 10);
+                    if (code) {
+                        codeInput.value = code + Math.floor(Math.random() * 100);
+                    }
+                }
+            });
+        });
+    </script>
 }

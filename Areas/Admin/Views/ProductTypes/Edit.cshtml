@@ -1,63 +1,431 @@
-﻿@model JDshop.Models.ProductType
+﻿@* @model JDshop.Models.ProductType *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Edit"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>CHỈNH SỬA</h1> *@
+
+@* <h4>Sản phẩm theo loại</h4> *@
+@* <hr /> *@
+@* <div class="row"> *@
+@*     <div class="col-md-4"> *@
+@*         <form asp-action="Edit"> *@
+@*             <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+@*             <input type="hidden" asp-for="Id" /> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="CategoryId" class="control-label">Loại sản phẩm</label> *@
+@*                 <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select> *@
+@*                 <span asp-validation-for="CategoryId" class="text-danger"></span> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Name" class="control-label">Tên sản phẩm</label> *@
+@*                 <input asp-for="Name" class="form-control" /> *@
+@*                 <span asp-validation-for="Name" class="text-danger"></span> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Description" class="control-label">Mô tả</label> *@
+@*                 <input asp-for="Description" class="form-control" /> *@
+@*                 <span asp-validation-for="Description" class="text-danger"></span> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label>Trạng Thái</label> *@
+@*                 <select class="form-control" asp-for="Status" placeholder="" required> *@
+@*                     <option value="1" selected>Hoạt động</option> *@
+@*                     <option value="2">Ngừng hoạt động</option> *@
+
+@*                 </select> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Cdt" class="control-label">Ngày tạo</label> *@
+@*                 <input asp-for="Cdt" class="form-control" /> *@
+@*                 <span asp-validation-for="Cdt" class="text-danger"></span> *@
+@*             </div> *@
+
+@*             <div class="form-group"> *@
+@*                 <a asp-action="Index" class="btn btn-light">Trở về</a> *@
+@*                 <button type="submit" class="btn btn-gradient-primary me-2">Sửa</button> *@
+@*             </div *@
+@*         </form> *@
+@*     </div> *@
+@* </div> *@
+
+@* @section Scripts { *@
+@*     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} *@
+@* } *@
+
+
+
+
+
+
+@model JDshop.Models.ProductType
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Chỉnh sửa loại sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>CHỈNH SỬA</h1>
+<style>
+    .edit-container {
+        margin: 0 auto;
+        padding: 2rem;
+    }
 
-<h4>Sản phẩm theo loại</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="CategoryId" class="control-label">Loại sản phẩm</label>
-                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
+    .page-header {
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0;
+    }
+
+    .page-subtitle {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+    .form-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    .form-icon {
+        width: 48px;
+        height: 48px;
+        background: #8b5cf6;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .form-info {
+        flex: 1;
+    }
+
+    .form-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0;
+    }
+
+    .form-description {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin: 0.25rem 0 0 0;
+    }
+
+    .validation-summary {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 6px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        color: #dc2626;
+        font-size: 0.875rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #374151;
+        font-size: 0.875rem;
+    }
+
+        .form-label.required::after {
+            content: " *";
+            color: #dc2626;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+        background-color: #fff;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-control.is-invalid {
+            border-color: #dc2626;
+        }
+
+    .text-danger {
+        color: #dc2626;
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    .form-select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.5rem center;
+        background-repeat: no-repeat;
+        background-size: 1.5em 1.5em;
+        padding-right: 2.5rem;
+    }
+
+    .textarea-control {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .input-group {
+        position: relative;
+    }
+
+    .input-icon {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6b7280;
+        font-size: 0.875rem;
+        pointer-events: none;
+    }
+
+    .input-with-icon {
+        padding-left: 2.5rem;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #f3f4f6;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: 1px solid;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-primary {
+        background: #3b82f6;
+        color: white;
+        border-color: #3b82f6;
+    }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            border-color: #2563eb;
+        }
+
+    .btn-secondary {
+        background: white;
+        color: #374151 !important;
+        border-color: #d1d5db;
+    }
+
+        .btn-secondary:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+        }
+
+    .help-text {
+        font-size: 0.75rem;
+        color: #6b7280;
+        margin-top: 0.25rem;
+    }
+
+    
+</style>
+
+<div class="edit-container">
+    <div class="page-header">
+        <h1 class="page-title">Chỉnh sửa loại sản phẩm</h1>
+        <p class="page-subtitle">Cập nhật thông tin loại sản phẩm</p>
+    </div>
+
+    <form asp-action="Edit" id="editForm">
+        <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-card">
+            <div class="form-header">
+                <div class="form-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <div class="form-info">
+                    <h2 class="form-title">Thông tin loại sản phẩm</h2>
+                    <p class="form-description">Chỉnh sửa thông tin chi tiết</p>
+                </div>
             </div>
+
             <div class="form-group">
-                <label asp-for="Name" class="control-label">Tên sản phẩm</label>
-                <input asp-for="Name" class="form-control" />
+                <label asp-for="CategoryId" class="form-label required">
+                    <i class="fas fa-folder me-1"></i>
+                    Danh mục
+                </label>
+                <select asp-for="CategoryId" class="form-control form-select" asp-items="ViewBag.CategoryId">
+                    <option value="">-- Chọn danh mục --</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                <div class="help-text">Chọn danh mục chính cho loại sản phẩm này</div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="form-label required">
+                    <i class="fas fa-tag me-1"></i>
+                    Tên loại sản phẩm
+                </label>
+                <div class="input-group">
+                    <i class="fas fa-tag input-icon"></i>
+                    <input asp-for="Name" class="form-control input-with-icon" placeholder="Nhập tên loại sản phẩm..." />
+                </div>
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="Description" class="control-label">Mô tả</label>
-                <input asp-for="Description" class="form-control" />
+                <label asp-for="Description" class="form-label">
+                    <i class="fas fa-align-left me-1"></i>
+                    Mô tả
+                </label>
+                <textarea asp-for="Description" class="form-control textarea-control"
+                          placeholder="Nhập mô tả chi tiết về loại sản phẩm..."></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
+                <div class="help-text">Mô tả ngắn gọn về đặc điểm của loại sản phẩm này</div>
             </div>
-            <div class="form-group">
-                <label>Trạng Thái</label>
-                <select class="form-control" asp-for="Status" placeholder="" required>
-                    <option value="1" selected>Hoạt động</option>
-                    <option value="2">Ngừng hoạt động</option>
 
+            <div class="form-group">
+                <label class="form-label required">
+                    <i class="fas fa-toggle-on me-1"></i>
+                    Trạng thái
+                </label>
+                <select class="form-control form-select" asp-for="Status" required>
+                    <option value="1">Hoạt động</option>
+                    <option value="0">Ngừng hoạt động</option>
                 </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cdt" class="control-label">Ngày tạo</label>
-                <input asp-for="Cdt" class="form-control" />
-                <span asp-validation-for="Cdt" class="text-danger"></span>
+                <div class="help-text">Trạng thái hiển thị của loại sản phẩm</div>
             </div>
 
             <div class="form-group">
-                <a asp-action="Index" class="btn btn-light">Trở về</a>
-                <button type="submit" class="btn btn-gradient-primary me-2">Sửa</button>
+                <label asp-for="Cdt" class="form-label">
+                    <i class="fas fa-calendar me-1"></i>
+                    Ngày tạo
+                </label>
+                <div class="input-group">
+                    <i class="fas fa-calendar input-icon"></i>
+                    <input asp-for="Cdt" class="form-control input-with-icon" type="date" />
+                </div>
+                <span asp-validation-for="Cdt" class="text-danger"></span>
+                <div class="help-text">Ngày tạo loại sản phẩm này</div>
             </div>
-            @* <div class="form-group">
-                <input type="submit" value="Lưu" class="btn btn-primary" />
-            </div> *@
-        </form>
-    </div>
+        </div>
+
+        <div class="action-buttons">
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i>
+                Hủy bỏ
+            </a>
+            <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">
+                <i class="fas fa-eye"></i>
+                Xem chi tiết
+            </a>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i>
+                Lưu thay đổi
+            </button>
+        </div>
+    </form>
 </div>
 
-@* <div>
-    <a asp-action="Index">Back to List</a>
-</div> *@
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        // Form validation
+        document.getElementById('editForm').addEventListener('submit', function(e) {
+            const name = document.querySelector('input[name="Name"]').value.trim();
+            const categoryId = document.querySelector('select[name="CategoryId"]').value;
+
+            if (!name) {
+                alert('Vui lòng nhập tên loại sản phẩm.');
+                e.preventDefault();
+                return;
+            }
+
+            if (!categoryId) {
+                alert('Vui lòng chọn danh mục.');
+                e.preventDefault();
+                return;
+            }
+        });
+
+        // Auto-focus first input
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstInput = document.querySelector('input[name="Name"]');
+            if (firstInput) {
+                firstInput.focus();
+            }
+        });
+
+        // Character counter for description
+        const descriptionTextarea = document.querySelector('textarea[name="Description"]');
+        if (descriptionTextarea) {
+            const maxLength = 500;
+            const helpText = descriptionTextarea.parentNode.querySelector('.help-text');
+
+            function updateCounter() {
+                const remaining = maxLength - descriptionTextarea.value.length;
+                helpText.textContent = `Mô tả ngắn gọn về đặc điểm của loại sản phẩm này (${remaining} ký tự còn lại)`;
+
+                if (remaining < 50) {
+                    helpText.style.color = '#dc2626';
+                } else {
+                    helpText.style.color = '#6b7280';
+                }
+            }
+
+            descriptionTextarea.addEventListener('input', updateCounter);
+            descriptionTextarea.setAttribute('maxlength', maxLength);
+            updateCounter();
+        }
+    </script>
 }

@@ -1,74 +1,825 @@
-﻿@model IEnumerable<Account>
-<div class="page-header">
-    <h3 style="font-family:Helvetica;" class="page-title"> TÀI KHOẢN KHÁCH HÀNG </h3>
+﻿@* @model IEnumerable<Account> *@
+@* <div class="page-header"> *@
+@*     <h3 style="font-family:Helvetica;" class="page-title"> TÀI KHOẢN KHÁCH HÀNG </h3> *@
    
-</div>
-<div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <h4 style="font-family:Helvetica;" class="card-title"> TÀI KHOẢN KHÁCH HÀNG </h4>
-            <div class="d-flex justify-content-between">
+@* </div> *@
+@* <div class="col-lg-12 grid-margin stretch-card"> *@
+@*     <div class="card"> *@
+@*         <div class="card-body"> *@
+@*             <h4 style="font-family:Helvetica;" class="card-title"> TÀI KHOẢN KHÁCH HÀNG </h4> *@
+@*             <div class="d-flex justify-content-between"> *@
 
-                <a asp-action="Create" class="btn btn-success mb-2">Thêm</a>
+@*                 <a asp-action="Create" class="btn btn-success mb-2">Thêm</a> *@
 
 
+@*             </div> *@
+@*             <table class="table table-striped"> *@
+@*                 <thead> *@
+@*                     <tr> *@
+
+@*                         <th> HỌ TÊN & NGÀY SINH </th> *@
+@*                         <th>TÊN TÀI KHOẢN </th> *@
+@*                         <th>EMAIL </th> *@
+@*                         <th>SĐT </th> *@
+@*                         <th>ĐIỂM </th> *@
+@*                         <th> LOẠI TÀI KHOẢN  </th> *@
+@*                         <th> TRẠNG THÁI  </th> *@
+@*                         <th> THAO TÁC  </th> *@
+@*                     </tr> *@
+@*                 </thead> *@
+@*                 <tbody> *@
+@*                     @foreach (var item in Model) *@
+@*                     { *@
+@*                         <tr> *@
+
+@*                             <td> *@
+@*                                 <div style="margin-bottom:5px;"> *@
+@*                                     @item.FullName *@
+@*                                 </div> *@
+@*                                         @(item.Birthday.HasValue *@
+@*                                             ? item.Birthday.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN")) *@
+@*                                             : "") *@
+                                
+@*                             </td> *@
+                           
+@*                             <td> @item.UserName </td> *@
+@*                             <td> @item.Email </td> *@
+@*                             <td> @item.Phone </td> *@
+@*                             <td> *@
+@*                                 @item.Point *@
+@*                             </td> *@
+@*                             <td> @item.AccountType?.Name </td> *@
+                            
+@*                             @if (item.Status == 1) *@
+@*                             { *@
+@*                                 <td> Hoạt động </td> *@
+@*                             }@if (item.Status == 2) *@
+@*                             { *@
+@*                                 <td>Ngừng Hoạt động </td> *@
+@*                             } *@
+@*                             <td> *@
+@*                                 <a asp-action="Details" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-eye" style="color:#19b6ff;font-size:25px;"></i>  </a> *@
+@*                                 <a asp-action="Edit" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-square-edit-outline" style="color:#ffd83b;font-size:25px;"></i></a> *@
+@*                                 <a asp-action="Delete" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-delete" style="color:#e75555;font-size:25px;"></i></a> *@
+@*                             </td> *@
+@*                         </tr> *@
+@*                     } *@
+@*                 </tbody> *@
+@*             </table> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+
+
+
+
+@model IEnumerable<Account>
+
+@{
+    ViewData["Title"] = "Quản lý tài khoản khách hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .page-container {
+        padding: 2rem;
+        margin: 0 auto;
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .page-subtitle {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin-top: 0.25rem;
+    }
+
+    .header-actions {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    .stats-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.25rem;
+    }
+
+        .stat-icon.total {
+            background: #8b5cf6;
+        }
+
+        .stat-icon.active {
+            background: #10b981;
+        }
+
+        .stat-icon.inactive {
+            background: #ef4444;
+        }
+
+        .stat-icon.premium {
+            background: #f59e0b;
+        }
+
+    .stat-label {
+        font-size: 0.875rem;
+        color: #86868b;
+        font-weight: 500;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1d1d1f;
+    }
+
+    .table-container {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-header {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-bottom: 1px solid #e5e7eb;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .table-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .table-controls {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .search-input {
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        width: 250px;
+    }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #007aff;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+
+    .filter-select {
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        background: white;
+        min-width: 120px;
+    }
+
+    .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .custom-table th {
+            background: #f8f9fa;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #1d1d1f;
+            font-size: 0.875rem;
+            border-bottom: 1px solid #e5e7eb;
+            white-space: nowrap;
+        }
+
+        .custom-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 0.875rem;
+            color: #1d1d1f;
+            vertical-align: top;
+        }
+
+        .custom-table tr:hover {
+            background: #f9fafb;
+        }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 0.875rem;
+    }
+
+    .user-details {
+        flex: 1;
+    }
+
+    .user-name {
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 0.25rem;
+    }
+
+    .user-birthday {
+        font-size: 0.75rem;
+        color: #86868b;
+    }
+
+    .username-cell {
+        font-family: 'Monaco', 'Menlo', monospace;
+        background: #f3f4f6;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .contact-icon {
+        width: 16px;
+        color: #86868b;
+    }
+
+    .points-display {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+    }
+
+    .points-icon {
+        color: #f59e0b;
+    }
+
+    .account-type-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .type-standard {
+        background: #f3f4f6;
+        color: #374151;
+    }
+
+    .type-premium {
+        background: #fef3c7;
+        color: #d97706;
+    }
+
+    .type-vip {
+        background: #ede9fe;
+        color: #7c3aed;
+    }
+
+    .status-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .status-active {
+        background: #d1fae5;
+        color: #065f46;
+    }
+
+    .status-inactive {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+
+    .status-icon {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: currentColor;
+    }
+
+    .actions-cell {
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .action-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        text-decoration: none;
+        font-size: 0.875rem;
+    }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+    .btn-view {
+        background: #dbeafe;
+        color: #1d4ed8;
+    }
+
+        .btn-view:hover {
+            background: #bfdbfe;
+        }
+
+    .btn-edit {
+        background: #fef3c7;
+        color: #d97706;
+    }
+
+        .btn-edit:hover {
+            background: #fde68a;
+        }
+
+    .btn-delete {
+        background: #fee2e2;
+        color: #dc2626;
+    }
+
+        .btn-delete:hover {
+            background: #fecaca;
+        }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-success {
+        background: #10b981;
+        color: white;
+    }
+
+        .btn-success:hover {
+            background: #059669;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+        }
+
+    .btn-outline {
+        background: white;
+        color: #1d1d1f;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-outline:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+        }
+
+    .empty-state {
+        text-align: center;
+        padding: 3rem;
+        color: #86868b;
+    }
+
+    .empty-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #d1d5db;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1.5rem;
+        background: #f8f9fa;
+    }
+
+    .pagination-btn {
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #d2d2d7;
+        border-radius: 6px;
+        background: white;
+        cursor: pointer;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+    }
+
+        .pagination-btn:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+        }
+
+        .pagination-btn.active {
+            background: #007aff;
+            color: white;
+            border-color: #007aff;
+        }
+
+</style>
+
+<div class="page-container">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">
+                <i class="fas fa-users"></i>
+                Quản lý tài khoản khách hàng
+            </h1>
+            <p class="page-subtitle">Quản lý thông tin và trạng thái tài khoản khách hàng</p>
+        </div>
+        <div class="header-actions">
+            <button class="btn btn-outline" onclick="exportData()">
+                <i class="fas fa-download"></i>
+                Xuất Excel
+            </button>
+            <a asp-action="Create" class="btn btn-success">
+                <i class="fas fa-plus"></i>
+                Thêm tài khoản
+            </a>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="stats-cards">
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon total">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div>
+                    <div class="stat-label">Tổng tài khoản</div>
+                    <div class="stat-value">@Model.Count()</div>
+                </div>
             </div>
-            @*  @await Html.PartialAsync("_PartialViewCreateList", new Account()) *@
-            <table class="table table-striped">
+        </div>
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon active">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <div>
+                    <div class="stat-label">Đang hoạt động</div>
+                    <div class="stat-value">@Model.Count(x => x.Status == 1)</div>
+                </div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon inactive">
+                    <i class="fas fa-user-times"></i>
+                </div>
+                <div>
+                    <div class="stat-label">Ngừng hoạt động</div>
+                    <div class="stat-value">@Model.Count(x => x.Status == 2)</div>
+                </div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon premium">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div>
+                    <div class="stat-label">Tài khoản VIP</div>
+                    <div class="stat-value">@Model.Count(x => x.AccountType?.Name?.Contains("VIP") == true)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-container">
+        <div class="table-header">
+            <h3 class="table-title">
+                <i class="fas fa-list"></i>
+                Danh sách tài khoản
+            </h3>
+            <div class="table-controls">
+                <input type="text" class="search-input" placeholder="Tìm kiếm tài khoản..." id="searchInput">
+                <select class="filter-select" id="statusFilter">
+                    <option value="">Tất cả trạng thái</option>
+                    <option value="1">Hoạt động</option>
+                    <option value="2">Ngừng hoạt động</option>
+                </select>
+                <select class="filter-select" id="typeFilter">
+                    <option value="">Tất cả loại</option>
+                    <option value="Standard">Standard</option>
+                    <option value="Premium">Premium</option>
+                    <option value="VIP">VIP</option>
+                </select>
+            </div>
+        </div>
+
+        @if (Model.Any())
+        {
+            <table class="custom-table">
                 <thead>
                     <tr>
-
-                        <th> HỌ TÊN & NGÀY SINH </th>
-                        <th>TÊN TÀI KHOẢN </th>
-                        <th>EMAIL </th>
-                        <th>SĐT </th>
-                        <th>ĐIỂM </th>
-                        <th> LOẠI TÀI KHOẢN  </th>
-                        <th> TRẠNG THÁI  </th>
-                        <th> THAO TÁC  </th>
+                        <th>
+                            <i class="fas fa-user me-1"></i>
+                            Thông tin cá nhân
+                        </th>
+                        <th>
+                            <i class="fas fa-at me-1"></i>
+                            Tài khoản
+                        </th>
+                        <th>
+                            <i class="fas fa-envelope me-1"></i>
+                            Liên hệ
+                        </th>
+                        <th>
+                            <i class="fas fa-star me-1"></i>
+                            Điểm
+                        </th>
+                        <th>
+                            <i class="fas fa-crown me-1"></i>
+                            Loại TK
+                        </th>
+                        <th>
+                            <i class="fas fa-toggle-on me-1"></i>
+                            Trạng thái
+                        </th>
+                        <th>
+                            <i class="fas fa-cogs me-1"></i>
+                            Thao tác
+                        </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tableBody">
                     @foreach (var item in Model)
                     {
-                        <tr>
-
+                        <tr data-name="@item.FullName?.ToLower()" data-username="@item.UserName?.ToLower()" data-email="@item.Email?.ToLower()" data-status="@item.Status" data-type="@item.AccountType?.Name">
                             <td>
-                                <div style="margin-bottom:5px;">
-                                    @item.FullName
+                                <div class="user-info">
+                                    <div class="user-avatar">
+                                        @(item.FullName?.Substring(0, 1).ToUpper() ?? "?")
+                                    </div>
+                                    <div class="user-details">
+                                        <div class="user-name">@(item.FullName ?? "Chưa có tên")</div>
+                                        <div class="user-birthday">
+                                            @if (item.Birthday.HasValue)
+                                            {
+                                                <i class="fas fa-birthday-cake me-1"></i>
+                                                @item.Birthday.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN"))
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted">Chưa có ngày sinh</span>
+                                            }
+                                        </div>
+                                    </div>
                                 </div>
-                                        @(item.Birthday.HasValue
-                                            ? item.Birthday.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN"))
-                                            : "")
-                          
-                                   @*  @item.Birthday *@
-                                
                             </td>
-                           
-                            <td> @item.UserName </td>
-                            <td> @item.Email </td>
-                            <td> @item.Phone </td>
                             <td>
-                                @item.Point
+                                <div class="username-cell">@item.UserName</div>
                             </td>
-                            <td> @item.AccountType?.Name </td>
-                            
-                            @if (item.Status == 1)
-                            {
-                                <td> Hoạt động </td>
-                            }@if (item.Status == 2)
-                            {
-                                <td>Ngừng Hoạt động </td>
-                            }
                             <td>
-                                <a asp-action="Details" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-eye" style="color:#19b6ff;font-size:25px;"></i>  </a>
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-square-edit-outline" style="color:#ffd83b;font-size:25px;"></i></a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-delete" style="color:#e75555;font-size:25px;"></i></a>
+                                <div class="contact-info">
+                                    <div class="contact-item">
+                                        <i class="fas fa-envelope contact-icon"></i>
+                                        <span>@(item.Email ?? "Chưa có email")</span>
+                                    </div>
+                                    <div class="contact-item">
+                                        <i class="fas fa-phone contact-icon"></i>
+                                        <span>@(item.Phone ?? "Chưa có SĐT")</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="points-display">
+                                    <i class="fas fa-star points-icon"></i>
+                                    <span>@(item.Point?.ToString("N0") ?? "0")</span>
+                                </div>
+                            </td>
+                            <td>
+                                @{
+                                    var accountType = item.AccountType?.Name ?? "Standard";
+                                    var typeClass = accountType.ToLower() switch
+                                    {
+                                        "premium" => "type-premium",
+                                        "vip" => "type-vip",
+                                        _ => "type-standard"
+                                    };
+                                }
+                                <span class="account-type-badge @typeClass">@accountType</span>
+                            </td>
+                            <td>
+                                @if (item.Status == 1)
+                                {
+                                    <span class="status-badge status-active">
+                                        <span class="status-icon"></span>
+                                        Hoạt động
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="status-badge status-inactive">
+                                        <span class="status-icon"></span>
+                                        Ngừng hoạt động
+                                    </span>
+                                }
+                            </td>
+                            <td class="actions-cell">
+                                <div class="action-buttons">
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="action-btn btn-view" title="Xem chi tiết">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="action-btn btn-edit" title="Chỉnh sửa">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="action-btn btn-delete" title="Xóa">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-        </div>
+        }
+        else
+        {
+            <div class="empty-state">
+                <div class="empty-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Chưa có tài khoản nào</h3>
+                <p>Bắt đầu bằng cách thêm tài khoản khách hàng đầu tiên</p>
+                <a asp-action="Create" class="btn btn-success">
+                    <i class="fas fa-plus"></i>
+                    Thêm tài khoản
+                </a>
+            </div>
+        }
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            filterTable();
+        });
+
+        // Status filter
+        document.getElementById('statusFilter').addEventListener('change', function() {
+            filterTable();
+        });
+
+        // Type filter
+        document.getElementById('typeFilter').addEventListener('change', function() {
+            filterTable();
+        });
+
+        function filterTable() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            const typeFilter = document.getElementById('typeFilter').value;
+            const rows = document.querySelectorAll('#tableBody tr');
+
+            rows.forEach(row => {
+                const name = row.getAttribute('data-name') || '';
+                const username = row.getAttribute('data-username') || '';
+                const email = row.getAttribute('data-email') || '';
+                const status = row.getAttribute('data-status');
+                const type = row.getAttribute('data-type') || '';
+
+                const matchesSearch = name.includes(searchTerm) ||
+                                    username.includes(searchTerm) ||
+                                    email.includes(searchTerm);
+                const matchesStatus = !statusFilter || status === statusFilter;
+                const matchesType = !typeFilter || type.includes(typeFilter);
+
+                if (matchesSearch && matchesStatus && matchesType) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Export functionality
+        function exportData() {
+            alert('Tính năng xuất Excel sẽ được triển khai trong phiên bản tiếp theo.');
+        }
+
+        // Confirm delete
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (!confirm('Bạn có chắc chắn muốn xóa tài khoản này không?')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+}

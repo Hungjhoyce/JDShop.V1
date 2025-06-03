@@ -1,75 +1,429 @@
-﻿@model JDshop.Models.Discount
+﻿@* @model JDshop.Models.Discount *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Delete"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>XÓA MÃ</h1> *@
+
+@* <h3>Bạn có chắc chắn muốn xóa không?</h3> *@
+@* <div> *@
+@*     <h4>Mã giảm giá</h4> *@
+@*     <hr /> *@
+@*     <dl class="row"> *@
+@*         <dt class="col-sm-2"> *@
+@*             Tên mã giảm giá *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Name) *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
+@*             Mã code *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Code) *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
+@*             Mô tả *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Description) *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
+@*             Số tiền giảm giá *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.DiscountPercent) *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
+@*             Số lượng mã *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Quantity) *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
+@*             Số lần sử dụng *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.UseNumber) *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
+@*             Trạng thái *@
+@*         </dt> *@
+@*         @if (Model.Status == 1) *@
+@*         { *@
+@*             <dd class="col-sm-10"> *@
+@*                 Hoạt động *@
+@*             </dd> *@
+@*         }@if (Model.Status == 2) *@
+@*         { *@
+@*             <dd class="col-sm-10"> *@
+@*                 Ngừng Hoạt động *@
+@*             </dd> *@
+@*         } *@
+@*     </dl> *@
+
+
+@*     <form asp-action="Delete"> *@
+@*         <div style="float: left; padding-right:10px"> *@
+@*             <input type="hidden" asp-for="Id" /> *@
+@*             <input type="submit" value="Xóa" class="btn btn-danger" /> *@
+@*         </div> *@
+@*         <a class="btn btn-secondary" asp-action="Index">Quay Lại</a> *@
+@*     </form> *@
+@* </div> *@
+
+
+
+
+
+
+
+
+
+
+@model JDshop.Models.Discount
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Xóa mã giảm giá";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>XÓA MÃ</h1>
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-<h3>Bạn có chắc chắn muốn xóa không?</h3>
-<div>
-    <h4>Mã giảm giá</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            Tên mã giảm giá
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class="col-sm-2">
-            Mã code
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Code)
-        </dd>
-        <dt class="col-sm-2">
-            Mô tả
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class="col-sm-2">
-            Số tiền giảm giá
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DiscountPercent)
-        </dd>
-        <dt class="col-sm-2">
-            Số lượng mã
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class="col-sm-2">
-            Số lần sử dụng
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.UseNumber)
-        </dd>
-        <dt class="col-sm-2">
-            Trạng thái
-        </dt>
-        @if (Model.Status == 1)
-        {
-            <dd class="col-sm-10">
-                Hoạt động
-            </dd>
-        }@if (Model.Status == 2)
-        {
-            <dd class="col-sm-10">
-                Ngừng Hoạt động
-            </dd>
+    .delete-container {
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin: 0;
+    }
+
+    .page-subtitle {
+        color: #6b7280;
+        font-size: 0.95rem;
+        margin: 0;
+        text-align: right;
+    }
+
+    .warning-alert {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .warning-icon {
+        color: #dc2626;
+        font-size: 1.25rem;
+        margin-top: 0.1rem;
+        flex-shrink: 0;
+    }
+
+    .warning-text {
+        color: #dc2626;
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    .info-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 2rem;
+    }
+
+    .card-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid #e5e7eb;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .discount-icon {
+        width: 48px;
+        height: 48px;
+        background: #8b5cf6;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .card-title-section {
+        flex: 1;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin: 0 0 0.25rem 0;
+    }
+
+    .card-subtitle {
+        color: #6b7280;
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    .card-body {
+        padding: 0;
+    }
+
+    .info-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #f3f4f6;
+        gap: 1rem;
+    }
+
+        .info-item:last-child {
+            border-bottom: none;
         }
-    </dl>
 
+    .info-icon {
+        color: #6b7280;
+        font-size: 1.1rem;
+        width: 20px;
+        flex-shrink: 0;
+    }
 
-    <form asp-action="Delete">
-        <div style="float: left; padding-right:10px">
-            <input type="hidden" asp-for="Id" />
-            <input type="submit" value="Xóa" class="btn btn-danger" />
+    .info-label {
+        color: #6b7280;
+        font-size: 0.9rem;
+        min-width: 140px;
+        flex-shrink: 0;
+    }
+
+    .info-value {
+        color: #1a1a1a;
+        font-weight: 500;
+        flex: 1;
+    }
+
+    .status-badge {
+        background: #dcfce7;
+        color: #166534;
+        padding: 0.25rem 0.75rem;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    .status-inactive {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+
+    .discount-code {
+        background: #eff6ff;
+        color: #1d4ed8;
+        padding: 0.25rem 0.75rem;
+        border-radius: 6px;
+        font-family: 'Courier New', monospace;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .supplier-info {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .supplier-icon {
+        color: #6b7280;
+        font-size: 1rem;
+    }
+
+    .actions-section {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        padding-top: 1rem;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 0.9rem;
+    }
+
+    .btn-secondary {
+        background: #f3f4f6;
+        color: #374151 !important;
+        border: 1px solid #d1d5db;
+    }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+            text-decoration: none;
+            color: #374151;
+        }
+
+    .btn-danger {
+        background: #dc2626;
+        color: white;
+    }
+
+        .btn-danger:hover {
+            background: #b91c1c;
+            text-decoration: none;
+            color: white;
+        }
+
+    
+</style>
+
+<div class="delete-container">
+    <!-- Header -->
+    <div class="header-section">
+        <h1 class="page-title">Xóa mã giảm giá</h1>
+        <p class="page-subtitle">Xác nhận xóa mã giảm giá khỏi hệ thống</p>
+    </div>
+
+    <!-- Warning Alert -->
+    <div class="warning-alert">
+        <i class="mdi mdi-alert-triangle warning-icon"></i>
+        <p class="warning-text">
+            Bạn có chắc chắn muốn xóa mã giảm giá này? Hành động này không thể hoàn tác.
+        </p>
+    </div>
+
+    <!-- Discount Info Card -->
+    <div class="info-card">
+        <div class="card-header">
+            <div class="discount-icon">
+                <i class="mdi mdi-ticket-percent"></i>
+            </div>
+            <div class="card-title-section">
+                <h2 class="card-title">@Model.Name</h2>
+                <p class="card-subtitle">Thông tin mã giảm giá sẽ bị xóa</p>
+            </div>
         </div>
-        <a class="btn btn-secondary" asp-action="Index">Quay Lại</a>
-    </form>
+
+        <div class="card-body">
+            <ul class="info-list">
+                <li class="info-item">
+                    <i class="mdi mdi-tag info-icon"></i>
+                    <span class="info-label">Tên mã giảm giá</span>
+                    <span class="info-value">@Model.Name</span>
+                </li>
+
+                <li class="info-item">
+                    <i class="mdi mdi-barcode info-icon"></i>
+                    <span class="info-label">Mã code</span>
+                    <span class="info-value">
+                        <span class="discount-code">@Model.Code</span>
+                    </span>
+                </li>
+
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+                    <li class="info-item">
+                        <i class="mdi mdi-text info-icon"></i>
+                        <span class="info-label">Mô tả</span>
+                        <span class="info-value">@Model.Description</span>
+                    </li>
+                }
+
+                <li class="info-item">
+                    <i class="mdi mdi-cash info-icon"></i>
+                    <span class="info-label">Số tiền giảm giá</span>
+                    <span class="info-value">@Model.DiscountPercent?.ToString("N0") VNĐ</span>
+                </li>
+
+                <li class="info-item">
+                    <i class="mdi mdi-package-variant info-icon"></i>
+                    <span class="info-label">Số lượng mã</span>
+                    <span class="info-value">@Model.Quantity</span>
+                </li>
+
+                <li class="info-item">
+                    <i class="mdi mdi-account-multiple info-icon"></i>
+                    <span class="info-label">Số lần sử dụng</span>
+                    <span class="info-value">@Model.UseNumber</span>
+                </li>
+
+                <li class="info-item">
+                    <i class="mdi mdi-toggle-switch info-icon"></i>
+                    <span class="info-label">Trạng thái</span>
+                    <span class="info-value">
+                        @if (Model.Status == 1)
+                        {
+                            <span class="status-badge">Hoạt động</span>
+                        }
+                        else
+                        {
+                            <span class="status-badge status-inactive">Ngừng hoạt động</span>
+                        }
+                    </span>
+                </li>
+
+                <li class="info-item">
+                    <i class="mdi mdi-calendar info-icon"></i>
+                    <span class="info-label">Ngày tạo</span>
+                    <span class="info-value">@DateTime.Now.ToString("dd/MM/yyyy")</span>
+                </li>
+
+                
+            </ul>
+        </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions-section">
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="mdi mdi-arrow-left"></i>
+            Hủy
+        </a>
+
+        <form asp-action="Delete" style="display: inline;">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa mã giảm giá này?')">
+                <i class="mdi mdi-delete"></i>
+                Xác nhận xóa
+            </button>
+        </form>
+    </div>
 </div>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "M5MEoSG2rxe2N+LRg+4QaCw8ZUh9X/cd3tgz/u//olY=",
+  "Hash": "vh0eTI8OywQFukSChtK77xPrLzpFDmxpXECiMYSCi7w=",
   "Source": "JDShop",
   "BasePath": "_content/JDShop",
   "Mode": "Default",
@@ -283,8 +283,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "eeb2rat8z1",
-      "Integrity": "yiaiYnieESHs+Q5FICIpRQaAX8hC8yOLZjMgqp2qN2I=",
+      "Fingerprint": "645hl8jz6o",
+      "Integrity": "JnmCsV9IE5w1Z4q0XQE1eQBNmUjj3A6rQn1trUs27Rw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\css\\style.css"
@@ -309,6 +309,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\css\\style.css.map"
+    },
+    {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\css\\stylenew.css",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "LayoutAdmin/assets/css/stylenew#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "e0z1goekgi",
+      "Integrity": "frcCV1k9oG9oKj3dpUqdJg1PxRT2RSN/XKdLCPjaYaY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\css\\stylenew.css"
     },
     {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\fonts\\Ubuntu\\Ubuntu-Bold.eot",
@@ -771,90 +792,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\images\\dashboard\\img_4.jpg"
-    },
-    {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-1.png",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "LayoutAdmin/assets/images/faces-clipart/pic-1#[.{fingerprint}]?.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "k9yzgo9yhd",
-      "Integrity": "yOc77gh2TAaqvcYnP+kXlOWj19wJNwRmQpPLx3+m4JQ=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-1.png"
-    },
-    {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-2.png",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "LayoutAdmin/assets/images/faces-clipart/pic-2#[.{fingerprint}]?.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "8i6q7ustye",
-      "Integrity": "kL0tGDZKYPjBG/rRSwrvSYY059yRBpsTNUR4/mgkTiA=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-2.png"
-    },
-    {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-3.png",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "LayoutAdmin/assets/images/faces-clipart/pic-3#[.{fingerprint}]?.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "z31kccty0u",
-      "Integrity": "YTEdaN85+aD/lDUSxBDsZ4PZ9SMkU+clzQvkADs5Amo=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-3.png"
-    },
-    {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-4.png",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "LayoutAdmin/assets/images/faces-clipart/pic-4#[.{fingerprint}]?.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "9zan9vausa",
-      "Integrity": "VTz37/EWP7wQyFtw26imb8/k4xUcQJB2gxsPiAa70Vw=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-4.png"
     },
     {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces\\face1.jpg",
@@ -1424,6 +1361,90 @@
       "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\images\\faces\\face9.jpg"
     },
     {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-1.png",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "LayoutAdmin/assets/images/faces-clipart/pic-1#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "k9yzgo9yhd",
+      "Integrity": "yOc77gh2TAaqvcYnP+kXlOWj19wJNwRmQpPLx3+m4JQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-1.png"
+    },
+    {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-2.png",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "LayoutAdmin/assets/images/faces-clipart/pic-2#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8i6q7ustye",
+      "Integrity": "kL0tGDZKYPjBG/rRSwrvSYY059yRBpsTNUR4/mgkTiA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-2.png"
+    },
+    {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-3.png",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "LayoutAdmin/assets/images/faces-clipart/pic-3#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "z31kccty0u",
+      "Integrity": "YTEdaN85+aD/lDUSxBDsZ4PZ9SMkU+clzQvkADs5Amo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-3.png"
+    },
+    {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-4.png",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "LayoutAdmin/assets/images/faces-clipart/pic-4#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "9zan9vausa",
+      "Integrity": "VTz37/EWP7wQyFtw26imb8/k4xUcQJB2gxsPiAa70Vw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-4.png"
+    },
+    {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\favicon.ico",
       "SourceId": "JDShop",
       "SourceType": "Discovered",
@@ -1466,27 +1487,6 @@
       "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\images\\favicon.png"
     },
     {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\logo-mini.svg",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "LayoutAdmin/assets/images/logo-mini#[.{fingerprint}]?.svg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "j9spyn1n5i",
-      "Integrity": "qbadQrpBs7yqpOynBuox4835nQampe3AlF/c7IX+k4E=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\images\\logo-mini.svg"
-    },
-    {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\logo.svg",
       "SourceId": "JDShop",
       "SourceType": "Discovered",
@@ -1506,6 +1506,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\images\\logo.svg"
+    },
+    {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\logo-mini.svg",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "LayoutAdmin/assets/images/logo-mini#[.{fingerprint}]?.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "j9spyn1n5i",
+      "Integrity": "qbadQrpBs7yqpOynBuox4835nQampe3AlF/c7IX+k4E=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\images\\logo-mini.svg"
     },
     {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\sprites\\blue.png",
@@ -2131,8 +2152,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "4opmmbfq6g",
-      "Integrity": "jIJsEfihbRPoW2htTZXA41XJHF7bx3PWe9VJAqzSY5U=",
+      "Fingerprint": "gepeusm7fp",
+      "Integrity": "6Jk40HZ7J2GTiQul3aND/n3s0JpsMcJq+QKVbXSJPNI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\scss\\_vertical-wrapper.scss"
@@ -2936,6 +2957,27 @@
       "OriginalItemSpec": "wwwroot\\LayoutAdmin\\assets\\vendors\\mdi\\fonts\\materialdesignicons-webfont.woff2"
     },
     {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\gulpfile.js",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "LayoutAdmin/gulpfile#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "gvr33ikh3p",
+      "Integrity": "3JqVuh0wI35974bhRfse6bRV6AVmyYC/59bTYDoIb34=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\LayoutAdmin\\gulpfile.js"
+    },
+    {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\gulp-tasks\\inject.js",
       "SourceId": "JDShop",
       "SourceType": "Discovered",
@@ -2997,27 +3039,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\LayoutAdmin\\gulp-tasks\\vendors.js"
-    },
-    {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\gulpfile.js",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "LayoutAdmin/gulpfile#[.{fingerprint}]?.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "gvr33ikh3p",
-      "Integrity": "3JqVuh0wI35974bhRfse6bRV6AVmyYC/59bTYDoIb34=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\LayoutAdmin\\gulpfile.js"
     },
     {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\pages\\charts\\chartjs.html",
@@ -3333,6 +3354,174 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\LayoutAdmin\\screenshot.jpg"
+    },
+    {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "lib/bootstrap/dist/css/bootstrap#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "mpyigms19s",
+      "Integrity": "xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "lib/bootstrap/dist/css/bootstrap.css#[.{fingerprint}]?.map",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "73kdqttayv",
+      "Integrity": "DRvWr0gangj5/5Q3DRn6ttzpcWDzl3OpHoAwAzNDR5Q=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "lib/bootstrap/dist/css/bootstrap.min#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "bpk8xqwxhs",
+      "Integrity": "z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css#[.{fingerprint}]?.map",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8inm30yfxf",
+      "Integrity": "gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ve6x09088i",
+      "Integrity": "SZ2mKaD4A+b+HIvttwl+TvLFnVy8o8/X40j+EKVwyvY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css#[.{fingerprint}]?.map",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "4gxs3k148c",
+      "Integrity": "VFvmi/ZSwQFmjS6Pry9B8zXeZ/GA168TXLyykDhNMZE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "9b9oa1qrmt",
+      "Integrity": "22wR6QTidoeiRZXp6zkRQyMSUb/FB+Av11jqmZJF6uU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css#[.{fingerprint}]?.map",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "fctod5rc9n",
+      "Integrity": "j7uqK5VoTT4rUHMr911QEU5Sa94lR3uh9E28XBMlzrM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
@@ -3839,174 +4028,6 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "lib/bootstrap/dist/css/bootstrap#[.{fingerprint}]?.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "mpyigms19s",
-      "Integrity": "xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css"
-    },
-    {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "lib/bootstrap/dist/css/bootstrap.css#[.{fingerprint}]?.map",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "73kdqttayv",
-      "Integrity": "DRvWr0gangj5/5Q3DRn6ttzpcWDzl3OpHoAwAzNDR5Q=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
-    },
-    {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "lib/bootstrap/dist/css/bootstrap.min#[.{fingerprint}]?.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "bpk8xqwxhs",
-      "Integrity": "z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
-    },
-    {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css#[.{fingerprint}]?.map",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "8inm30yfxf",
-      "Integrity": "gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
-    },
-    {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl#[.{fingerprint}]?.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "ve6x09088i",
-      "Integrity": "SZ2mKaD4A+b+HIvttwl+TvLFnVy8o8/X40j+EKVwyvY=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
-    },
-    {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css#[.{fingerprint}]?.map",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "4gxs3k148c",
-      "Integrity": "VFvmi/ZSwQFmjS6Pry9B8zXeZ/GA168TXLyykDhNMZE=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
-    },
-    {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min#[.{fingerprint}]?.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "9b9oa1qrmt",
-      "Integrity": "22wR6QTidoeiRZXp6zkRQyMSUb/FB+Av11jqmZJF6uU=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
-    },
-    {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css#[.{fingerprint}]?.map",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "fctod5rc9n",
-      "Integrity": "j7uqK5VoTT4rUHMr911QEU5Sa94lR3uh9E28XBMlzrM=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
-    },
-    {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "SourceId": "JDShop",
       "SourceType": "Discovered",
@@ -4280,12 +4301,12 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
     },
     {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "SourceId": "JDShop",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
       "BasePath": "_content/JDShop",
-      "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive#[.{fingerprint}]?.js",
+      "RelativePath": "lib/jquery/dist/jquery#[.{fingerprint}]?.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -4294,19 +4315,19 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "47otxtyo56",
-      "Integrity": "wJQaJ0XynBE2fq6CexXXhxKu7fstVmQc7V2MHNTo+WQ=",
+      "Fingerprint": "fwhahm2icz",
+      "Integrity": "H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+      "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "SourceId": "JDShop",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
       "BasePath": "_content/JDShop",
-      "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min#[.{fingerprint}]?.js",
+      "RelativePath": "lib/jquery/dist/jquery.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -4315,19 +4336,19 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "4v8eqarkd7",
-      "Integrity": "YJa7W8EiQdQpkk93iGEjjnLSUWRpRJbSfzfURh1kxz4=",
+      "Fingerprint": "dd6z7egasc",
+      "Integrity": "/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+      "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "SourceId": "JDShop",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
       "BasePath": "_content/JDShop",
-      "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE#[.{fingerprint}]?.txt",
+      "RelativePath": "lib/jquery/dist/jquery.min#[.{fingerprint}]?.map",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -4336,11 +4357,32 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "356vix0kms",
-      "Integrity": "16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s=",
+      "Fingerprint": "5pze98is44",
+      "Integrity": "OZVI+w57FGwS9boYCZpH1ZSpcP7pYhLu4KtIUvPlZ4I=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+      "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "lib/jquery/LICENSE#[.{fingerprint}]?.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "mlv21k5csn",
+      "Integrity": "hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
     },
     {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
@@ -4448,12 +4490,12 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "SourceId": "JDShop",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
       "BasePath": "_content/JDShop",
-      "RelativePath": "lib/jquery/dist/jquery#[.{fingerprint}]?.js",
+      "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive#[.{fingerprint}]?.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -4462,19 +4504,19 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "fwhahm2icz",
-      "Integrity": "H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=",
+      "Fingerprint": "47otxtyo56",
+      "Integrity": "wJQaJ0XynBE2fq6CexXXhxKu7fstVmQc7V2MHNTo+WQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.js"
+      "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "SourceId": "JDShop",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
       "BasePath": "_content/JDShop",
-      "RelativePath": "lib/jquery/dist/jquery.min#[.{fingerprint}]?.js",
+      "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -4483,19 +4525,19 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "dd6z7egasc",
-      "Integrity": "/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=",
+      "Fingerprint": "4v8eqarkd7",
+      "Integrity": "YJa7W8EiQdQpkk93iGEjjnLSUWRpRJbSfzfURh1kxz4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.js"
+      "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "SourceId": "JDShop",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
       "BasePath": "_content/JDShop",
-      "RelativePath": "lib/jquery/dist/jquery.min#[.{fingerprint}]?.map",
+      "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE#[.{fingerprint}]?.txt",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -4504,32 +4546,11 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "5pze98is44",
-      "Integrity": "OZVI+w57FGwS9boYCZpH1ZSpcP7pYhLu4KtIUvPlZ4I=",
+      "Fingerprint": "356vix0kms",
+      "Integrity": "16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.map"
-    },
-    {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\LICENSE.txt",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "lib/jquery/LICENSE#[.{fingerprint}]?.txt",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "mlv21k5csn",
-      "Integrity": "hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
+      "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\css\\bootstrap.min.css",
@@ -4714,11 +4735,32 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "5i6qjq1g3o",
-      "Integrity": "k7Er7c+60+32ZFGRoHBOyo8liKwei9o+xs5HvpV08fQ=",
+      "Fingerprint": "r1nrv7vg7q",
+      "Integrity": "kWfhaHJsKrqxuE6rgejyqY1v3edtZTSrJcnO95xfUvQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\User\\css\\style.css"
+    },
+    {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\css\\stylenew.css",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "User/css/stylenew#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "bq5arvkoc5",
+      "Integrity": "g1KYlaGuYYMmBw8D3Sr3U5OZkTAoD4H8Ht5YFaZnxYo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\User\\css\\stylenew.css"
     },
     {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\fonts\\ElegantIcons.eot",
@@ -5981,27 +6023,6 @@
       "OriginalItemSpec": "wwwroot\\User\\img\\payment.png"
     },
     {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\img\\product-sale.png",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "User/img/product-sale#[.{fingerprint}]?.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "d5h2amywuv",
-      "Integrity": "UUX+OJYvSFJLgB297x9Ck0+Y8xO+Vpovg7vNxwGW1FE=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\User\\img\\product-sale.png"
-    },
-    {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\img\\product\\product-1.jpg",
       "SourceId": "JDShop",
       "SourceType": "Discovered",
@@ -6296,6 +6317,27 @@
       "OriginalItemSpec": "wwwroot\\User\\img\\product\\product-9.jpg"
     },
     {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\img\\product-sale.png",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "User/img/product-sale#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "d5h2amywuv",
+      "Integrity": "UUX+OJYvSFJLgB297x9Ck0+Y8xO+Vpovg7vNxwGW1FE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\User\\img\\product-sale.png"
+    },
+    {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\img\\shop-details\\details-payment.png",
       "SourceId": "JDShop",
       "SourceType": "Discovered",
@@ -6315,6 +6357,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\User\\img\\shop-details\\details-payment.png"
+    },
+    {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\img\\shop-details\\product-big.png",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "User/img/shop-details/product-big#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "qbu5om0mhh",
+      "Integrity": "xthTOgbp94scyiSuG447MZ4ER9zOxh9C2fVROYtkoB8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\User\\img\\shop-details\\product-big.png"
     },
     {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\img\\shop-details\\product-big-2.png",
@@ -6378,27 +6441,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\User\\img\\shop-details\\product-big-4.png"
-    },
-    {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\img\\shop-details\\product-big.png",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "User/img/shop-details/product-big#[.{fingerprint}]?.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "qbu5om0mhh",
-      "Integrity": "xthTOgbp94scyiSuG447MZ4ER9zOxh9C2fVROYtkoB8=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\User\\img\\shop-details\\product-big.png"
     },
     {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\img\\shop-details\\thumb-1.png",
@@ -6590,27 +6632,6 @@
       "OriginalItemSpec": "wwwroot\\User\\js\\bootstrap.min.js"
     },
     {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\jquery-3.3.1.min.js",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "User/js/jquery-3.3.1.min#[.{fingerprint}]?.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "2ye1g148en",
-      "Integrity": "FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\User\\js\\jquery-3.3.1.min.js"
-    },
-    {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\jquery.countdown.min.js",
       "SourceId": "JDShop",
       "SourceType": "Discovered",
@@ -6653,27 +6674,6 @@
       "OriginalItemSpec": "wwwroot\\User\\js\\jquery.magnific-popup.min.js"
     },
     {
-      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\jquery.nice-select.min.js",
-      "SourceId": "JDShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
-      "BasePath": "_content/JDShop",
-      "RelativePath": "User/js/jquery.nice-select.min#[.{fingerprint}]?.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "eix7w2fz8h",
-      "Integrity": "Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\User\\js\\jquery.nice-select.min.js"
-    },
-    {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\jquery.nicescroll.min.js",
       "SourceId": "JDShop",
       "SourceType": "Discovered",
@@ -6695,6 +6695,27 @@
       "OriginalItemSpec": "wwwroot\\User\\js\\jquery.nicescroll.min.js"
     },
     {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\jquery.nice-select.min.js",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "User/js/jquery.nice-select.min#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "eix7w2fz8h",
+      "Integrity": "Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\User\\js\\jquery.nice-select.min.js"
+    },
+    {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\jquery.slicknav.js",
       "SourceId": "JDShop",
       "SourceType": "Discovered",
@@ -6714,6 +6735,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\User\\js\\jquery.slicknav.js"
+    },
+    {
+      "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\jquery-3.3.1.min.js",
+      "SourceId": "JDShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\",
+      "BasePath": "_content/JDShop",
+      "RelativePath": "User/js/jquery-3.3.1.min#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "2ye1g148en",
+      "Integrity": "FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\User\\js\\jquery-3.3.1.min.js"
     },
     {
       "Identity": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\main.js",
@@ -7503,6 +7545,51 @@
       ]
     },
     {
+      "Route": "LayoutAdmin/assets/css/style.645hl8jz6o.css",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\css\\style.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "419001"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"JnmCsV9IE5w1Z4q0XQE1eQBNmUjj3A6rQn1trUs27Rw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 17:13:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "645hl8jz6o"
+        },
+        {
+          "Name": "label",
+          "Value": "LayoutAdmin/assets/css/style.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-JnmCsV9IE5w1Z4q0XQE1eQBNmUjj3A6rQn1trUs27Rw="
+        }
+      ]
+    },
+    {
       "Route": "LayoutAdmin/assets/css/style.css",
       "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\css\\style.css",
       "Selectors": [],
@@ -7513,7 +7600,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "418910"
+          "Value": "419001"
         },
         {
           "Name": "Content-Type",
@@ -7521,11 +7608,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"yiaiYnieESHs+Q5FICIpRQaAX8hC8yOLZjMgqp2qN2I=\""
+          "Value": "\"JnmCsV9IE5w1Z4q0XQE1eQBNmUjj3A6rQn1trUs27Rw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+          "Value": "Sun, 25 May 2025 17:13:51 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7535,7 +7622,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-yiaiYnieESHs+Q5FICIpRQaAX8hC8yOLZjMgqp2qN2I="
+          "Value": "sha256-JnmCsV9IE5w1Z4q0XQE1eQBNmUjj3A6rQn1trUs27Rw="
         }
       ]
     },
@@ -7562,7 +7649,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+          "Value": "Sun, 25 May 2025 17:13:45 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7599,7 +7686,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+          "Value": "Sun, 25 May 2025 17:13:45 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7622,8 +7709,8 @@
       ]
     },
     {
-      "Route": "LayoutAdmin/assets/css/style.eeb2rat8z1.css",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\css\\style.css",
+      "Route": "LayoutAdmin/assets/css/stylenew.css",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\css\\stylenew.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7632,7 +7719,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "418910"
+          "Value": "2"
         },
         {
           "Name": "Content-Type",
@@ -7640,11 +7727,48 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"yiaiYnieESHs+Q5FICIpRQaAX8hC8yOLZjMgqp2qN2I=\""
+          "Value": "\"frcCV1k9oG9oKj3dpUqdJg1PxRT2RSN/XKdLCPjaYaY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+          "Value": "Sun, 25 May 2025 17:00:30 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-frcCV1k9oG9oKj3dpUqdJg1PxRT2RSN/XKdLCPjaYaY="
+        }
+      ]
+    },
+    {
+      "Route": "LayoutAdmin/assets/css/stylenew.e0z1goekgi.css",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\css\\stylenew.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"frcCV1k9oG9oKj3dpUqdJg1PxRT2RSN/XKdLCPjaYaY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 17:00:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7654,15 +7778,15 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "eeb2rat8z1"
+          "Value": "e0z1goekgi"
         },
         {
           "Name": "label",
-          "Value": "LayoutAdmin/assets/css/style.css"
+          "Value": "LayoutAdmin/assets/css/stylenew.css"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-yiaiYnieESHs+Q5FICIpRQaAX8hC8yOLZjMgqp2qN2I="
+          "Value": "sha256-frcCV1k9oG9oKj3dpUqdJg1PxRT2RSN/XKdLCPjaYaY="
         }
       ]
     },
@@ -9467,334 +9591,6 @@
         {
           "Name": "integrity",
           "Value": "sha256-2jcm7Yfjk+m1CdtJSV1rSk3CHnjA90HJ21UXPSMDBkk="
-        }
-      ]
-    },
-    {
-      "Route": "LayoutAdmin/assets/images/faces-clipart/pic-1.k9yzgo9yhd.png",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-1.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2202"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"yOc77gh2TAaqvcYnP+kXlOWj19wJNwRmQpPLx3+m4JQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "k9yzgo9yhd"
-        },
-        {
-          "Name": "label",
-          "Value": "LayoutAdmin/assets/images/faces-clipart/pic-1.png"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-yOc77gh2TAaqvcYnP+kXlOWj19wJNwRmQpPLx3+m4JQ="
-        }
-      ]
-    },
-    {
-      "Route": "LayoutAdmin/assets/images/faces-clipart/pic-1.png",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-1.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2202"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"yOc77gh2TAaqvcYnP+kXlOWj19wJNwRmQpPLx3+m4JQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-yOc77gh2TAaqvcYnP+kXlOWj19wJNwRmQpPLx3+m4JQ="
-        }
-      ]
-    },
-    {
-      "Route": "LayoutAdmin/assets/images/faces-clipart/pic-2.8i6q7ustye.png",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-2.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2413"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"kL0tGDZKYPjBG/rRSwrvSYY059yRBpsTNUR4/mgkTiA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8i6q7ustye"
-        },
-        {
-          "Name": "label",
-          "Value": "LayoutAdmin/assets/images/faces-clipart/pic-2.png"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-kL0tGDZKYPjBG/rRSwrvSYY059yRBpsTNUR4/mgkTiA="
-        }
-      ]
-    },
-    {
-      "Route": "LayoutAdmin/assets/images/faces-clipart/pic-2.png",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-2.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2413"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"kL0tGDZKYPjBG/rRSwrvSYY059yRBpsTNUR4/mgkTiA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-kL0tGDZKYPjBG/rRSwrvSYY059yRBpsTNUR4/mgkTiA="
-        }
-      ]
-    },
-    {
-      "Route": "LayoutAdmin/assets/images/faces-clipart/pic-3.png",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-3.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2353"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"YTEdaN85+aD/lDUSxBDsZ4PZ9SMkU+clzQvkADs5Amo=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-YTEdaN85+aD/lDUSxBDsZ4PZ9SMkU+clzQvkADs5Amo="
-        }
-      ]
-    },
-    {
-      "Route": "LayoutAdmin/assets/images/faces-clipart/pic-3.z31kccty0u.png",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-3.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2353"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"YTEdaN85+aD/lDUSxBDsZ4PZ9SMkU+clzQvkADs5Amo=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "z31kccty0u"
-        },
-        {
-          "Name": "label",
-          "Value": "LayoutAdmin/assets/images/faces-clipart/pic-3.png"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-YTEdaN85+aD/lDUSxBDsZ4PZ9SMkU+clzQvkADs5Amo="
-        }
-      ]
-    },
-    {
-      "Route": "LayoutAdmin/assets/images/faces-clipart/pic-4.9zan9vausa.png",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-4.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2154"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"VTz37/EWP7wQyFtw26imb8/k4xUcQJB2gxsPiAa70Vw=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "9zan9vausa"
-        },
-        {
-          "Name": "label",
-          "Value": "LayoutAdmin/assets/images/faces-clipart/pic-4.png"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-VTz37/EWP7wQyFtw26imb8/k4xUcQJB2gxsPiAa70Vw="
-        }
-      ]
-    },
-    {
-      "Route": "LayoutAdmin/assets/images/faces-clipart/pic-4.png",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-4.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2154"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"VTz37/EWP7wQyFtw26imb8/k4xUcQJB2gxsPiAa70Vw=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-VTz37/EWP7wQyFtw26imb8/k4xUcQJB2gxsPiAa70Vw="
         }
       ]
     },
@@ -12013,6 +11809,334 @@
       ]
     },
     {
+      "Route": "LayoutAdmin/assets/images/faces-clipart/pic-1.k9yzgo9yhd.png",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2202"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yOc77gh2TAaqvcYnP+kXlOWj19wJNwRmQpPLx3+m4JQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "k9yzgo9yhd"
+        },
+        {
+          "Name": "label",
+          "Value": "LayoutAdmin/assets/images/faces-clipart/pic-1.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-yOc77gh2TAaqvcYnP+kXlOWj19wJNwRmQpPLx3+m4JQ="
+        }
+      ]
+    },
+    {
+      "Route": "LayoutAdmin/assets/images/faces-clipart/pic-1.png",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2202"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yOc77gh2TAaqvcYnP+kXlOWj19wJNwRmQpPLx3+m4JQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yOc77gh2TAaqvcYnP+kXlOWj19wJNwRmQpPLx3+m4JQ="
+        }
+      ]
+    },
+    {
+      "Route": "LayoutAdmin/assets/images/faces-clipart/pic-2.8i6q7ustye.png",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-2.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2413"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kL0tGDZKYPjBG/rRSwrvSYY059yRBpsTNUR4/mgkTiA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8i6q7ustye"
+        },
+        {
+          "Name": "label",
+          "Value": "LayoutAdmin/assets/images/faces-clipart/pic-2.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-kL0tGDZKYPjBG/rRSwrvSYY059yRBpsTNUR4/mgkTiA="
+        }
+      ]
+    },
+    {
+      "Route": "LayoutAdmin/assets/images/faces-clipart/pic-2.png",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-2.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2413"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kL0tGDZKYPjBG/rRSwrvSYY059yRBpsTNUR4/mgkTiA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-kL0tGDZKYPjBG/rRSwrvSYY059yRBpsTNUR4/mgkTiA="
+        }
+      ]
+    },
+    {
+      "Route": "LayoutAdmin/assets/images/faces-clipart/pic-3.png",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-3.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2353"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YTEdaN85+aD/lDUSxBDsZ4PZ9SMkU+clzQvkADs5Amo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YTEdaN85+aD/lDUSxBDsZ4PZ9SMkU+clzQvkADs5Amo="
+        }
+      ]
+    },
+    {
+      "Route": "LayoutAdmin/assets/images/faces-clipart/pic-3.z31kccty0u.png",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-3.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2353"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YTEdaN85+aD/lDUSxBDsZ4PZ9SMkU+clzQvkADs5Amo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z31kccty0u"
+        },
+        {
+          "Name": "label",
+          "Value": "LayoutAdmin/assets/images/faces-clipart/pic-3.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YTEdaN85+aD/lDUSxBDsZ4PZ9SMkU+clzQvkADs5Amo="
+        }
+      ]
+    },
+    {
+      "Route": "LayoutAdmin/assets/images/faces-clipart/pic-4.9zan9vausa.png",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-4.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2154"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"VTz37/EWP7wQyFtw26imb8/k4xUcQJB2gxsPiAa70Vw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9zan9vausa"
+        },
+        {
+          "Name": "label",
+          "Value": "LayoutAdmin/assets/images/faces-clipart/pic-4.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-VTz37/EWP7wQyFtw26imb8/k4xUcQJB2gxsPiAa70Vw="
+        }
+      ]
+    },
+    {
+      "Route": "LayoutAdmin/assets/images/faces-clipart/pic-4.png",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\faces-clipart\\pic-4.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2154"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"VTz37/EWP7wQyFtw26imb8/k4xUcQJB2gxsPiAa70Vw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-VTz37/EWP7wQyFtw26imb8/k4xUcQJB2gxsPiAa70Vw="
+        }
+      ]
+    },
+    {
       "Route": "LayoutAdmin/assets/images/favicon.1n6drl222p.png",
       "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\favicon.png",
       "Selectors": [],
@@ -12177,88 +12301,6 @@
       ]
     },
     {
-      "Route": "LayoutAdmin/assets/images/logo-mini.j9spyn1n5i.svg",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\logo-mini.svg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2007"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/svg+xml"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"qbadQrpBs7yqpOynBuox4835nQampe3AlF/c7IX+k4E=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "j9spyn1n5i"
-        },
-        {
-          "Name": "label",
-          "Value": "LayoutAdmin/assets/images/logo-mini.svg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-qbadQrpBs7yqpOynBuox4835nQampe3AlF/c7IX+k4E="
-        }
-      ]
-    },
-    {
-      "Route": "LayoutAdmin/assets/images/logo-mini.svg",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\logo-mini.svg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2007"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/svg+xml"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"qbadQrpBs7yqpOynBuox4835nQampe3AlF/c7IX+k4E=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-qbadQrpBs7yqpOynBuox4835nQampe3AlF/c7IX+k4E="
-        }
-      ]
-    },
-    {
       "Route": "LayoutAdmin/assets/images/logo.0zdr2maxr7.svg",
       "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\logo.svg",
       "Selectors": [],
@@ -12337,6 +12379,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-hEZ7eBL5sMqcEc8NzQPDOQDDtKyFdlxLpiXwKoj7kus="
+        }
+      ]
+    },
+    {
+      "Route": "LayoutAdmin/assets/images/logo-mini.j9spyn1n5i.svg",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\logo-mini.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2007"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"qbadQrpBs7yqpOynBuox4835nQampe3AlF/c7IX+k4E=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "j9spyn1n5i"
+        },
+        {
+          "Name": "label",
+          "Value": "LayoutAdmin/assets/images/logo-mini.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-qbadQrpBs7yqpOynBuox4835nQampe3AlF/c7IX+k4E="
+        }
+      ]
+    },
+    {
+      "Route": "LayoutAdmin/assets/images/logo-mini.svg",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\images\\logo-mini.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2007"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"qbadQrpBs7yqpOynBuox4835nQampe3AlF/c7IX+k4E=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-qbadQrpBs7yqpOynBuox4835nQampe3AlF/c7IX+k4E="
         }
       ]
     },
@@ -14085,7 +14209,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+          "Value": "Sun, 25 May 2025 16:54:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -14130,7 +14254,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+          "Value": "Sun, 25 May 2025 16:54:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -14249,7 +14373,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+          "Value": "Sun, 25 May 2025 17:09:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -14294,7 +14418,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+          "Value": "Sun, 25 May 2025 17:09:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -14413,7 +14537,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+          "Value": "Sun, 25 May 2025 17:09:16 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -14450,7 +14574,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+          "Value": "Sun, 25 May 2025 17:09:16 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -14659,7 +14783,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+          "Value": "Sun, 25 May 2025 17:09:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -14704,7 +14828,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+          "Value": "Sun, 25 May 2025 17:09:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -14719,7 +14843,7 @@
       ]
     },
     {
-      "Route": "LayoutAdmin/assets/scss/_vertical-wrapper.4opmmbfq6g.scss",
+      "Route": "LayoutAdmin/assets/scss/_vertical-wrapper.gepeusm7fp.scss",
       "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\scss\\_vertical-wrapper.scss",
       "Selectors": [],
       "ResponseHeaders": [
@@ -14729,7 +14853,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "749"
+          "Value": "750"
         },
         {
           "Name": "Content-Type",
@@ -14737,11 +14861,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"jIJsEfihbRPoW2htTZXA41XJHF7bx3PWe9VJAqzSY5U=\""
+          "Value": "\"6Jk40HZ7J2GTiQul3aND/n3s0JpsMcJq+QKVbXSJPNI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+          "Value": "Sun, 25 May 2025 17:13:47 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -14751,7 +14875,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "4opmmbfq6g"
+          "Value": "gepeusm7fp"
         },
         {
           "Name": "label",
@@ -14759,7 +14883,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-jIJsEfihbRPoW2htTZXA41XJHF7bx3PWe9VJAqzSY5U="
+          "Value": "sha256-6Jk40HZ7J2GTiQul3aND/n3s0JpsMcJq+QKVbXSJPNI="
         }
       ]
     },
@@ -14774,7 +14898,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "749"
+          "Value": "750"
         },
         {
           "Name": "Content-Type",
@@ -14782,11 +14906,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"jIJsEfihbRPoW2htTZXA41XJHF7bx3PWe9VJAqzSY5U=\""
+          "Value": "\"6Jk40HZ7J2GTiQul3aND/n3s0JpsMcJq+QKVbXSJPNI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+          "Value": "Sun, 25 May 2025 17:13:47 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -14796,7 +14920,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-jIJsEfihbRPoW2htTZXA41XJHF7bx3PWe9VJAqzSY5U="
+          "Value": "sha256-6Jk40HZ7J2GTiQul3aND/n3s0JpsMcJq+QKVbXSJPNI="
         }
       ]
     },
@@ -17917,6 +18041,88 @@
       ]
     },
     {
+      "Route": "LayoutAdmin/gulpfile.gvr33ikh3p.js",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\gulpfile.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "215"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3JqVuh0wI35974bhRfse6bRV6AVmyYC/59bTYDoIb34=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gvr33ikh3p"
+        },
+        {
+          "Name": "label",
+          "Value": "LayoutAdmin/gulpfile.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3JqVuh0wI35974bhRfse6bRV6AVmyYC/59bTYDoIb34="
+        }
+      ]
+    },
+    {
+      "Route": "LayoutAdmin/gulpfile.js",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\gulpfile.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "215"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3JqVuh0wI35974bhRfse6bRV6AVmyYC/59bTYDoIb34=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-3JqVuh0wI35974bhRfse6bRV6AVmyYC/59bTYDoIb34="
+        }
+      ]
+    },
+    {
       "Route": "LayoutAdmin/gulp-tasks/inject.js",
       "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\gulp-tasks\\inject.js",
       "Selectors": [],
@@ -18159,88 +18365,6 @@
         {
           "Name": "integrity",
           "Value": "sha256-jfpz68KxCLEryEaegYIdPN6ZN0bA44YnHSA/XKDqNEk="
-        }
-      ]
-    },
-    {
-      "Route": "LayoutAdmin/gulpfile.gvr33ikh3p.js",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\gulpfile.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "215"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"3JqVuh0wI35974bhRfse6bRV6AVmyYC/59bTYDoIb34=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "gvr33ikh3p"
-        },
-        {
-          "Name": "label",
-          "Value": "LayoutAdmin/gulpfile.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-3JqVuh0wI35974bhRfse6bRV6AVmyYC/59bTYDoIb34="
-        }
-      ]
-    },
-    {
-      "Route": "LayoutAdmin/gulpfile.js",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\gulpfile.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "215"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"3JqVuh0wI35974bhRfse6bRV6AVmyYC/59bTYDoIb34=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 17 Dec 2021 04:28:00 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-3JqVuh0wI35974bhRfse6bRV6AVmyYC/59bTYDoIb34="
         }
       ]
     },
@@ -19471,6 +19595,662 @@
         {
           "Name": "integrity",
           "Value": "sha256-GBNEZBfNX3C7JaZYbzt3hdPP7dAxi9JVKwZeaadpXWc="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap.css",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "204136"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap.css.73kdqttayv.map",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "536547"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DRvWr0gangj5/5Q3DRn6ttzpcWDzl3OpHoAwAzNDR5Q=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "73kdqttayv"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/bootstrap.css.map"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-DRvWr0gangj5/5Q3DRn6ttzpcWDzl3OpHoAwAzNDR5Q="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap.css.map",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "536547"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DRvWr0gangj5/5Q3DRn6ttzpcWDzl3OpHoAwAzNDR5Q=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-DRvWr0gangj5/5Q3DRn6ttzpcWDzl3OpHoAwAzNDR5Q="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap.min.bpk8xqwxhs.css",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "162720"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bpk8xqwxhs"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/bootstrap.min.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap.min.css",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "162720"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap.min.css.8inm30yfxf.map",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "449111"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8inm30yfxf"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/bootstrap.min.css.map"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap.min.css.map",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "449111"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap.mpyigms19s.css",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "204136"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "mpyigms19s"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/bootstrap.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.css",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "203803"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SZ2mKaD4A+b+HIvttwl+TvLFnVy8o8/X40j+EKVwyvY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-SZ2mKaD4A+b+HIvttwl+TvLFnVy8o8/X40j+EKVwyvY="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.css.4gxs3k148c.map",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "536461"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"VFvmi/ZSwQFmjS6Pry9B8zXeZ/GA168TXLyykDhNMZE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4gxs3k148c"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/bootstrap.rtl.css.map"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-VFvmi/ZSwQFmjS6Pry9B8zXeZ/GA168TXLyykDhNMZE="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.css.map",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "536461"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"VFvmi/ZSwQFmjS6Pry9B8zXeZ/GA168TXLyykDhNMZE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-VFvmi/ZSwQFmjS6Pry9B8zXeZ/GA168TXLyykDhNMZE="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.9b9oa1qrmt.css",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "162825"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"22wR6QTidoeiRZXp6zkRQyMSUb/FB+Av11jqmZJF6uU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9b9oa1qrmt"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/bootstrap.rtl.min.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-22wR6QTidoeiRZXp6zkRQyMSUb/FB+Av11jqmZJF6uU="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.css",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "162825"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"22wR6QTidoeiRZXp6zkRQyMSUb/FB+Av11jqmZJF6uU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-22wR6QTidoeiRZXp6zkRQyMSUb/FB+Av11jqmZJF6uU="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.fctod5rc9n.map",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "661035"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"j7uqK5VoTT4rUHMr911QEU5Sa94lR3uh9E28XBMlzrM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "fctod5rc9n"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-j7uqK5VoTT4rUHMr911QEU5Sa94lR3uh9E28XBMlzrM="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "661035"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"j7uqK5VoTT4rUHMr911QEU5Sa94lR3uh9E28XBMlzrM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-j7uqK5VoTT4rUHMr911QEU5Sa94lR3uh9E28XBMlzrM="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.ve6x09088i.css",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "203803"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SZ2mKaD4A+b+HIvttwl+TvLFnVy8o8/X40j+EKVwyvY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ve6x09088i"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/bootstrap.rtl.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-SZ2mKaD4A+b+HIvttwl+TvLFnVy8o8/X40j+EKVwyvY="
         }
       ]
     },
@@ -21443,662 +22223,6 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/bootstrap.css",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "204136"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap.css.73kdqttayv.map",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "536547"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/plain"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"DRvWr0gangj5/5Q3DRn6ttzpcWDzl3OpHoAwAzNDR5Q=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "73kdqttayv"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/bootstrap/dist/css/bootstrap.css.map"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-DRvWr0gangj5/5Q3DRn6ttzpcWDzl3OpHoAwAzNDR5Q="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap.css.map",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "536547"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/plain"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"DRvWr0gangj5/5Q3DRn6ttzpcWDzl3OpHoAwAzNDR5Q=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-DRvWr0gangj5/5Q3DRn6ttzpcWDzl3OpHoAwAzNDR5Q="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap.min.bpk8xqwxhs.css",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "162720"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "bpk8xqwxhs"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/bootstrap/dist/css/bootstrap.min.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap.min.css",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "162720"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap.min.css.8inm30yfxf.map",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "449111"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/plain"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8inm30yfxf"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/bootstrap/dist/css/bootstrap.min.css.map"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap.min.css.map",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "449111"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/plain"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap.mpyigms19s.css",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "204136"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "mpyigms19s"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/bootstrap/dist/css/bootstrap.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.css",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "203803"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"SZ2mKaD4A+b+HIvttwl+TvLFnVy8o8/X40j+EKVwyvY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-SZ2mKaD4A+b+HIvttwl+TvLFnVy8o8/X40j+EKVwyvY="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.css.4gxs3k148c.map",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "536461"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/plain"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"VFvmi/ZSwQFmjS6Pry9B8zXeZ/GA168TXLyykDhNMZE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "4gxs3k148c"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/bootstrap/dist/css/bootstrap.rtl.css.map"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-VFvmi/ZSwQFmjS6Pry9B8zXeZ/GA168TXLyykDhNMZE="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.css.map",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "536461"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/plain"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"VFvmi/ZSwQFmjS6Pry9B8zXeZ/GA168TXLyykDhNMZE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-VFvmi/ZSwQFmjS6Pry9B8zXeZ/GA168TXLyykDhNMZE="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.9b9oa1qrmt.css",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "162825"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"22wR6QTidoeiRZXp6zkRQyMSUb/FB+Av11jqmZJF6uU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "9b9oa1qrmt"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/bootstrap/dist/css/bootstrap.rtl.min.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-22wR6QTidoeiRZXp6zkRQyMSUb/FB+Av11jqmZJF6uU="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.css",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "162825"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"22wR6QTidoeiRZXp6zkRQyMSUb/FB+Av11jqmZJF6uU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-22wR6QTidoeiRZXp6zkRQyMSUb/FB+Av11jqmZJF6uU="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.fctod5rc9n.map",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "661035"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/plain"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"j7uqK5VoTT4rUHMr911QEU5Sa94lR3uh9E28XBMlzrM=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "fctod5rc9n"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-j7uqK5VoTT4rUHMr911QEU5Sa94lR3uh9E28XBMlzrM="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "661035"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/plain"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"j7uqK5VoTT4rUHMr911QEU5Sa94lR3uh9E28XBMlzrM=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-j7uqK5VoTT4rUHMr911QEU5Sa94lR3uh9E28XBMlzrM="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.ve6x09088i.css",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "203803"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"SZ2mKaD4A+b+HIvttwl+TvLFnVy8o8/X40j+EKVwyvY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "ve6x09088i"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/bootstrap/dist/css/bootstrap.rtl.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-SZ2mKaD4A+b+HIvttwl+TvLFnVy8o8/X40j+EKVwyvY="
-        }
-      ]
-    },
-    {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.js",
       "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "Selectors": [],
@@ -23165,8 +23289,8 @@
       ]
     },
     {
-      "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.47otxtyo56.js",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Route": "lib/jquery/dist/jquery.fwhahm2icz.js",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -23175,7 +23299,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "19385"
+          "Value": "288580"
         },
         {
           "Name": "Content-Type",
@@ -23183,7 +23307,7 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"wJQaJ0XynBE2fq6CexXXhxKu7fstVmQc7V2MHNTo+WQ=\""
+          "Value": "\"H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=\""
         },
         {
           "Name": "Last-Modified",
@@ -23197,21 +23321,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "47otxtyo56"
+          "Value": "fwhahm2icz"
         },
         {
           "Name": "label",
-          "Value": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
+          "Value": "lib/jquery/dist/jquery.js"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-wJQaJ0XynBE2fq6CexXXhxKu7fstVmQc7V2MHNTo+WQ="
+          "Value": "sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
         }
       ]
     },
     {
-      "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Route": "lib/jquery/dist/jquery.js",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -23220,7 +23344,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "19385"
+          "Value": "288580"
         },
         {
           "Name": "Content-Type",
@@ -23228,7 +23352,7 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"wJQaJ0XynBE2fq6CexXXhxKu7fstVmQc7V2MHNTo+WQ=\""
+          "Value": "\"H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=\""
         },
         {
           "Name": "Last-Modified",
@@ -23242,13 +23366,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-wJQaJ0XynBE2fq6CexXXhxKu7fstVmQc7V2MHNTo+WQ="
+          "Value": "sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
         }
       ]
     },
     {
-      "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.4v8eqarkd7.js",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Route": "lib/jquery/dist/jquery.min.5pze98is44.map",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -23257,89 +23381,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5824"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"YJa7W8EiQdQpkk93iGEjjnLSUWRpRJbSfzfURh1kxz4=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "4v8eqarkd7"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-YJa7W8EiQdQpkk93iGEjjnLSUWRpRJbSfzfURh1kxz4="
-        }
-      ]
-    },
-    {
-      "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "5824"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"YJa7W8EiQdQpkk93iGEjjnLSUWRpRJbSfzfURh1kxz4=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-YJa7W8EiQdQpkk93iGEjjnLSUWRpRJbSfzfURh1kxz4="
-        }
-      ]
-    },
-    {
-      "Route": "lib/jquery-validation-unobtrusive/LICENSE.356vix0kms.txt",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1139"
+          "Value": "137972"
         },
         {
           "Name": "Content-Type",
@@ -23347,7 +23389,7 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s=\""
+          "Value": "\"OZVI+w57FGwS9boYCZpH1ZSpcP7pYhLu4KtIUvPlZ4I=\""
         },
         {
           "Name": "Last-Modified",
@@ -23361,21 +23403,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "356vix0kms"
+          "Value": "5pze98is44"
         },
         {
           "Name": "label",
-          "Value": "lib/jquery-validation-unobtrusive/LICENSE.txt"
+          "Value": "lib/jquery/dist/jquery.min.map"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s="
+          "Value": "sha256-OZVI+w57FGwS9boYCZpH1ZSpcP7pYhLu4KtIUvPlZ4I="
         }
       ]
     },
     {
-      "Route": "lib/jquery-validation-unobtrusive/LICENSE.txt",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Route": "lib/jquery/dist/jquery.min.dd6z7egasc.js",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -23384,15 +23426,60 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1139"
+          "Value": "89501"
         },
         {
           "Name": "Content-Type",
-          "Value": "text/plain"
+          "Value": "text/javascript"
         },
         {
           "Name": "ETag",
-          "Value": "\"16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s=\""
+          "Value": "\"/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dd6z7egasc"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/jquery/dist/jquery.min.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        }
+      ]
+    },
+    {
+      "Route": "lib/jquery/dist/jquery.min.js",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "89501"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=\""
         },
         {
           "Name": "Last-Modified",
@@ -23406,7 +23493,126 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s="
+          "Value": "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        }
+      ]
+    },
+    {
+      "Route": "lib/jquery/dist/jquery.min.map",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "137972"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"OZVI+w57FGwS9boYCZpH1ZSpcP7pYhLu4KtIUvPlZ4I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-OZVI+w57FGwS9boYCZpH1ZSpcP7pYhLu4KtIUvPlZ4I="
+        }
+      ]
+    },
+    {
+      "Route": "lib/jquery/LICENSE.mlv21k5csn.txt",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1117"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "mlv21k5csn"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/jquery/LICENSE.txt"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk="
+        }
+      ]
+    },
+    {
+      "Route": "lib/jquery/LICENSE.txt",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1117"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk="
         }
       ]
     },
@@ -23821,8 +24027,8 @@
       ]
     },
     {
-      "Route": "lib/jquery/dist/jquery.fwhahm2icz.js",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.47otxtyo56.js",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -23831,7 +24037,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "288580"
+          "Value": "19385"
         },
         {
           "Name": "Content-Type",
@@ -23839,7 +24045,7 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=\""
+          "Value": "\"wJQaJ0XynBE2fq6CexXXhxKu7fstVmQc7V2MHNTo+WQ=\""
         },
         {
           "Name": "Last-Modified",
@@ -23853,21 +24059,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "fwhahm2icz"
+          "Value": "47otxtyo56"
         },
         {
           "Name": "label",
-          "Value": "lib/jquery/dist/jquery.js"
+          "Value": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+          "Value": "sha256-wJQaJ0XynBE2fq6CexXXhxKu7fstVmQc7V2MHNTo+WQ="
         }
       ]
     },
     {
-      "Route": "lib/jquery/dist/jquery.js",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -23876,7 +24082,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "288580"
+          "Value": "19385"
         },
         {
           "Name": "Content-Type",
@@ -23884,7 +24090,7 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=\""
+          "Value": "\"wJQaJ0XynBE2fq6CexXXhxKu7fstVmQc7V2MHNTo+WQ=\""
         },
         {
           "Name": "Last-Modified",
@@ -23898,13 +24104,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+          "Value": "sha256-wJQaJ0XynBE2fq6CexXXhxKu7fstVmQc7V2MHNTo+WQ="
         }
       ]
     },
     {
-      "Route": "lib/jquery/dist/jquery.min.5pze98is44.map",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.4v8eqarkd7.js",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -23913,15 +24119,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "137972"
+          "Value": "5824"
         },
         {
           "Name": "Content-Type",
-          "Value": "text/plain"
+          "Value": "text/javascript"
         },
         {
           "Name": "ETag",
-          "Value": "\"OZVI+w57FGwS9boYCZpH1ZSpcP7pYhLu4KtIUvPlZ4I=\""
+          "Value": "\"YJa7W8EiQdQpkk93iGEjjnLSUWRpRJbSfzfURh1kxz4=\""
         },
         {
           "Name": "Last-Modified",
@@ -23935,21 +24141,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "5pze98is44"
+          "Value": "4v8eqarkd7"
         },
         {
           "Name": "label",
-          "Value": "lib/jquery/dist/jquery.min.map"
+          "Value": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-OZVI+w57FGwS9boYCZpH1ZSpcP7pYhLu4KtIUvPlZ4I="
+          "Value": "sha256-YJa7W8EiQdQpkk93iGEjjnLSUWRpRJbSfzfURh1kxz4="
         }
       ]
     },
     {
-      "Route": "lib/jquery/dist/jquery.min.dd6z7egasc.js",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -23958,7 +24164,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "89501"
+          "Value": "5824"
         },
         {
           "Name": "Content-Type",
@@ -23966,7 +24172,44 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=\""
+          "Value": "\"YJa7W8EiQdQpkk93iGEjjnLSUWRpRJbSfzfURh1kxz4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YJa7W8EiQdQpkk93iGEjjnLSUWRpRJbSfzfURh1kxz4="
+        }
+      ]
+    },
+    {
+      "Route": "lib/jquery-validation-unobtrusive/LICENSE.356vix0kms.txt",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1139"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s=\""
         },
         {
           "Name": "Last-Modified",
@@ -23980,21 +24223,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "dd6z7egasc"
+          "Value": "356vix0kms"
         },
         {
           "Name": "label",
-          "Value": "lib/jquery/dist/jquery.min.js"
+          "Value": "lib/jquery-validation-unobtrusive/LICENSE.txt"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+          "Value": "sha256-16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s="
         }
       ]
     },
     {
-      "Route": "lib/jquery/dist/jquery.min.js",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Route": "lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -24003,15 +24246,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "89501"
+          "Value": "1139"
         },
         {
           "Name": "Content-Type",
-          "Value": "text/javascript"
+          "Value": "text/plain"
         },
         {
           "Name": "ETag",
-          "Value": "\"/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=\""
+          "Value": "\"16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s=\""
         },
         {
           "Name": "Last-Modified",
@@ -24025,126 +24268,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-        }
-      ]
-    },
-    {
-      "Route": "lib/jquery/dist/jquery.min.map",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "137972"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/plain"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"OZVI+w57FGwS9boYCZpH1ZSpcP7pYhLu4KtIUvPlZ4I=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-OZVI+w57FGwS9boYCZpH1ZSpcP7pYhLu4KtIUvPlZ4I="
-        }
-      ]
-    },
-    {
-      "Route": "lib/jquery/LICENSE.mlv21k5csn.txt",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\LICENSE.txt",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1117"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/plain"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "mlv21k5csn"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/jquery/LICENSE.txt"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk="
-        }
-      ]
-    },
-    {
-      "Route": "lib/jquery/LICENSE.txt",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\lib\\jquery\\LICENSE.txt",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1117"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/plain"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Oct 2024 14:59:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk="
+          "Value": "sha256-16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s="
         }
       ]
     },
@@ -24805,51 +24929,6 @@
       ]
     },
     {
-      "Route": "User/css/style.5i6qjq1g3o.css",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\css\\style.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "63807"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"k7Er7c+60+32ZFGRoHBOyo8liKwei9o+xs5HvpV08fQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 15 Dec 2022 10:32:03 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "5i6qjq1g3o"
-        },
-        {
-          "Name": "label",
-          "Value": "User/css/style.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-k7Er7c+60+32ZFGRoHBOyo8liKwei9o+xs5HvpV08fQ="
-        }
-      ]
-    },
-    {
       "Route": "User/css/style.css",
       "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\css\\style.css",
       "Selectors": [],
@@ -24860,7 +24939,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "63807"
+          "Value": "63820"
         },
         {
           "Name": "Content-Type",
@@ -24868,11 +24947,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"k7Er7c+60+32ZFGRoHBOyo8liKwei9o+xs5HvpV08fQ=\""
+          "Value": "\"kWfhaHJsKrqxuE6rgejyqY1v3edtZTSrJcnO95xfUvQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 Dec 2022 10:32:03 GMT"
+          "Value": "Mon, 26 May 2025 18:06:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24882,7 +24961,134 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-k7Er7c+60+32ZFGRoHBOyo8liKwei9o+xs5HvpV08fQ="
+          "Value": "sha256-kWfhaHJsKrqxuE6rgejyqY1v3edtZTSrJcnO95xfUvQ="
+        }
+      ]
+    },
+    {
+      "Route": "User/css/style.r1nrv7vg7q.css",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\css\\style.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "63820"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kWfhaHJsKrqxuE6rgejyqY1v3edtZTSrJcnO95xfUvQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 26 May 2025 18:06:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "r1nrv7vg7q"
+        },
+        {
+          "Name": "label",
+          "Value": "User/css/style.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-kWfhaHJsKrqxuE6rgejyqY1v3edtZTSrJcnO95xfUvQ="
+        }
+      ]
+    },
+    {
+      "Route": "User/css/stylenew.bq5arvkoc5.css",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\css\\stylenew.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5983"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"g1KYlaGuYYMmBw8D3Sr3U5OZkTAoD4H8Ht5YFaZnxYo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 26 May 2025 15:16:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bq5arvkoc5"
+        },
+        {
+          "Name": "label",
+          "Value": "User/css/stylenew.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-g1KYlaGuYYMmBw8D3Sr3U5OZkTAoD4H8Ht5YFaZnxYo="
+        }
+      ]
+    },
+    {
+      "Route": "User/css/stylenew.css",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\css\\stylenew.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5983"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"g1KYlaGuYYMmBw8D3Sr3U5OZkTAoD4H8Ht5YFaZnxYo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 26 May 2025 15:16:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-g1KYlaGuYYMmBw8D3Sr3U5OZkTAoD4H8Ht5YFaZnxYo="
         }
       ]
     },
@@ -29807,88 +30013,6 @@
       ]
     },
     {
-      "Route": "User/img/product-sale.d5h2amywuv.png",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\img\\product-sale.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "177162"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"UUX+OJYvSFJLgB297x9Ck0+Y8xO+Vpovg7vNxwGW1FE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 15 Dec 2022 10:32:03 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "d5h2amywuv"
-        },
-        {
-          "Name": "label",
-          "Value": "User/img/product-sale.png"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-UUX+OJYvSFJLgB297x9Ck0+Y8xO+Vpovg7vNxwGW1FE="
-        }
-      ]
-    },
-    {
-      "Route": "User/img/product-sale.png",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\img\\product-sale.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "177162"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"UUX+OJYvSFJLgB297x9Ck0+Y8xO+Vpovg7vNxwGW1FE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 15 Dec 2022 10:32:03 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-UUX+OJYvSFJLgB297x9Ck0+Y8xO+Vpovg7vNxwGW1FE="
-        }
-      ]
-    },
-    {
       "Route": "User/img/product/product-1.3k90mt0kwa.jpg",
       "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\img\\product\\product-1.jpg",
       "Selectors": [],
@@ -31037,6 +31161,88 @@
       ]
     },
     {
+      "Route": "User/img/product-sale.d5h2amywuv.png",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\img\\product-sale.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "177162"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UUX+OJYvSFJLgB297x9Ck0+Y8xO+Vpovg7vNxwGW1FE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 Dec 2022 10:32:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "d5h2amywuv"
+        },
+        {
+          "Name": "label",
+          "Value": "User/img/product-sale.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UUX+OJYvSFJLgB297x9Ck0+Y8xO+Vpovg7vNxwGW1FE="
+        }
+      ]
+    },
+    {
+      "Route": "User/img/product-sale.png",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\img\\product-sale.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "177162"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UUX+OJYvSFJLgB297x9Ck0+Y8xO+Vpovg7vNxwGW1FE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 Dec 2022 10:32:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UUX+OJYvSFJLgB297x9Ck0+Y8xO+Vpovg7vNxwGW1FE="
+        }
+      ]
+    },
+    {
       "Route": "User/img/shop-details/details-payment.4u37cuvmrk.png",
       "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\img\\shop-details\\details-payment.png",
       "Selectors": [],
@@ -31115,6 +31321,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-1LxgBfdRkyHjevgzPl6edRydbNZVO8bUB7cJu8t5ETk="
+        }
+      ]
+    },
+    {
+      "Route": "User/img/shop-details/product-big.png",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\img\\shop-details\\product-big.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "256057"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xthTOgbp94scyiSuG447MZ4ER9zOxh9C2fVROYtkoB8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 Dec 2022 10:32:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-xthTOgbp94scyiSuG447MZ4ER9zOxh9C2fVROYtkoB8="
+        }
+      ]
+    },
+    {
+      "Route": "User/img/shop-details/product-big.qbu5om0mhh.png",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\img\\shop-details\\product-big.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "256057"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xthTOgbp94scyiSuG447MZ4ER9zOxh9C2fVROYtkoB8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 Dec 2022 10:32:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "qbu5om0mhh"
+        },
+        {
+          "Name": "label",
+          "Value": "User/img/shop-details/product-big.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-xthTOgbp94scyiSuG447MZ4ER9zOxh9C2fVROYtkoB8="
         }
       ]
     },
@@ -31361,88 +31649,6 @@
         {
           "Name": "integrity",
           "Value": "sha256-eDINO4RVh41iQEdTl0qk++7pYyOKCmB65B1TeNUjRPY="
-        }
-      ]
-    },
-    {
-      "Route": "User/img/shop-details/product-big.png",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\img\\shop-details\\product-big.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "256057"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"xthTOgbp94scyiSuG447MZ4ER9zOxh9C2fVROYtkoB8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 15 Dec 2022 10:32:03 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-xthTOgbp94scyiSuG447MZ4ER9zOxh9C2fVROYtkoB8="
-        }
-      ]
-    },
-    {
-      "Route": "User/img/shop-details/product-big.qbu5om0mhh.png",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\img\\shop-details\\product-big.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "256057"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"xthTOgbp94scyiSuG447MZ4ER9zOxh9C2fVROYtkoB8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 15 Dec 2022 10:32:03 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "qbu5om0mhh"
-        },
-        {
-          "Name": "label",
-          "Value": "User/img/shop-details/product-big.png"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-xthTOgbp94scyiSuG447MZ4ER9zOxh9C2fVROYtkoB8="
         }
       ]
     },
@@ -32185,88 +32391,6 @@
       ]
     },
     {
-      "Route": "User/js/jquery-3.3.1.min.2ye1g148en.js",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\jquery-3.3.1.min.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "86927"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 15 Dec 2022 10:32:03 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "2ye1g148en"
-        },
-        {
-          "Name": "label",
-          "Value": "User/js/jquery-3.3.1.min.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        }
-      ]
-    },
-    {
-      "Route": "User/js/jquery-3.3.1.min.js",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\jquery-3.3.1.min.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "86927"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 15 Dec 2022 10:32:03 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        }
-      ]
-    },
-    {
       "Route": "User/js/jquery.countdown.min.duy8hhne78.js",
       "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\jquery.countdown.min.js",
       "Selectors": [],
@@ -32431,88 +32555,6 @@
       ]
     },
     {
-      "Route": "User/js/jquery.nice-select.min.eix7w2fz8h.js",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\jquery.nice-select.min.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2942"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 15 Dec 2022 10:32:03 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "eix7w2fz8h"
-        },
-        {
-          "Name": "label",
-          "Value": "User/js/jquery.nice-select.min.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo="
-        }
-      ]
-    },
-    {
-      "Route": "User/js/jquery.nice-select.min.js",
-      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\jquery.nice-select.min.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2942"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 15 Dec 2022 10:32:03 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo="
-        }
-      ]
-    },
-    {
       "Route": "User/js/jquery.nicescroll.min.js",
       "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\jquery.nicescroll.min.js",
       "Selectors": [],
@@ -32595,6 +32637,88 @@
       ]
     },
     {
+      "Route": "User/js/jquery.nice-select.min.eix7w2fz8h.js",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\jquery.nice-select.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2942"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 Dec 2022 10:32:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "eix7w2fz8h"
+        },
+        {
+          "Name": "label",
+          "Value": "User/js/jquery.nice-select.min.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo="
+        }
+      ]
+    },
+    {
+      "Route": "User/js/jquery.nice-select.min.js",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\jquery.nice-select.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2942"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 Dec 2022 10:32:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo="
+        }
+      ]
+    },
+    {
       "Route": "User/js/jquery.slicknav.0xz0k8bqh9.js",
       "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\jquery.slicknav.js",
       "Selectors": [],
@@ -32673,6 +32797,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-LGbcxQA7qc/pt2l/4fyhs4Az7L5xKo1PITAGJFZwNuc="
+        }
+      ]
+    },
+    {
+      "Route": "User/js/jquery-3.3.1.min.2ye1g148en.js",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\jquery-3.3.1.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "86927"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 Dec 2022 10:32:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "2ye1g148en"
+        },
+        {
+          "Name": "label",
+          "Value": "User/js/jquery-3.3.1.min.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        }
+      ]
+    },
+    {
+      "Route": "User/js/jquery-3.3.1.min.js",
+      "AssetFile": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\js\\jquery-3.3.1.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "86927"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 Dec 2022 10:32:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         }
       ]
     },

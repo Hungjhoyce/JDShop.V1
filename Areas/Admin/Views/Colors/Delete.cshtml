@@ -1,37 +1,468 @@
-﻿@model JDshop.Models.Color
+﻿@* @model JDshop.Models.Color *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Delete"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>XOÁ MÀU</h1> *@
+
+@* <h3>Bạn có chắc là muốn xóa không?</h3> *@
+@* <div> *@
+@*     <h4>Màu</h4> *@
+@*     <hr /> *@
+@*     <dl class="row"> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Màu *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Color1) *@
+@*         </dd> *@
+@*     </dl> *@
+
+@*     <div style="float: left; padding-right:10px"> *@
+@*         <a class="btn btn-secondary" asp-action="Index">Quay Lại</a> *@
+@*     </div> *@
+@*     <form asp-action="Delete"> *@
+
+@*         <input type="hidden" asp-for="Id" /> *@
+@*         <input type="submit" value="Xóa" class="btn btn-danger" /> *@
+@*     </form> *@
+@* </div> *@
+
+
+
+
+@model JDshop.Models.Color
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Xóa màu sắc";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>XOÁ MÀU</h1>
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-<h3>Bạn có chắc là muốn xóa không?</h3>
-<div>
-    <h4>Màu</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            Màu
-            @* @Html.DisplayNameFor(model => model.Color1) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Color1)
-        </dd>
-    </dl>
+    .details-page {
+        padding: 2rem;
+        margin: 0 auto;
+    }
 
-    <div style="float: left; padding-right:10px">
-        <a class="btn btn-secondary" asp-action="Index">Quay Lại</a>
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .page-subtitle {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin-top: 0.25rem;
+    }
+
+    .warning-alert {
+        background-color: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .warning-icon {
+        color: #dc2626;
+        font-size: 1.125rem;
+    }
+
+    .warning-text {
+        color: #dc2626;
+        font-size: 0.875rem;
+        margin: 0;
+    }
+
+    .details-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+    }
+
+    .card-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem;
+        text-align: center;
+        color: white;
+    }
+
+    .color-preview {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .color-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.1) 50%, transparent 50%, transparent 75%, rgba(255,255,255,0.1) 75%);
+            background-size: 20px 20px;
+        }
+
+    .color-name {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .color-id {
+        font-size: 0.875rem;
+        opacity: 0.8;
+        margin-top: 0.5rem;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid #007aff;
+    }
+
+    .info-icon {
+        width: 40px;
+        height: 40px;
+        background: #007aff;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.125rem;
+    }
+
+    .info-content {
+        flex: 1;
+    }
+
+    .info-label {
+        font-size: 0.75rem;
+        color: #86868b;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.25rem;
+    }
+
+    .info-value {
+        font-size: 1rem;
+        color: #1d1d1f;
+        font-weight: 600;
+    }
+
+    .color-hex {
+        font-family: 'Monaco', 'Menlo', monospace;
+        background: #f3f4f6;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.875rem;
+    }
+
+    .color-variations {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .variations-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .color-palette {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .palette-color {
+        width: 48px;
+        height: 48px;
+        border-radius: 8px;
+        border: 2px solid #e5e7eb;
+        cursor: pointer;
+        transition: all 0.2s;
+        position: relative;
+    }
+
+        .palette-color:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .palette-color::after {
+            content: attr(data-name);
+            position: absolute;
+            bottom: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: #86868b;
+            white-space: nowrap;
+        }
+
+    .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-cancel {
+        background: #f5f5f7;
+        color: #1d1d1f;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-cancel:hover {
+            background: #e8e8ed;
+        }
+
+    .btn-delete {
+        background: #dc2626;
+        color: white;
+    }
+
+        .btn-delete:hover {
+            background: #b91c1c;
+        }
+
+    .usage-stats {
+        background: #f0f9ff;
+        border: 1px solid #bae6fd;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+
+    .usage-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #0369a1;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .usage-text {
+        color: #0369a1;
+        font-size: 0.875rem;
+    }
+</style>
+
+<div class="details-page">
+
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">
+                <i class="fas fa-eye"></i>
+                Xóa màu sắc
+            </h1>
+            <p class="page-subtitle">Xác nhận xóa màu khỏi hệ thống</p>
+        </div>
     </div>
-    <form asp-action="Delete">
 
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Xóa" class="btn btn-danger" />
-    </form>
-    @* <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Xoá" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form> *@
+    <div class="warning-alert">
+        <i class="fas fa-exclamation-triangle warning-icon"></i>
+        <p class="warning-text">Bạn có chắc chắn muốn xóa phiếu nhập này? Hành động này không thể hoàn tác.</p>
+    </div>
+
+    <div class="details-card">
+        <div class="card-header">
+            <div class="color-preview" style="background-color: @GetColorHex(Model.Color1);">
+            </div>
+            <h2 class="color-name">@Model.Color1</h2>
+            <div class="color-id">ID: #@Model.Id</div>
+        </div>
+
+        <div class="card-body">
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">Tên màu</div>
+                        <div class="info-value">@Model.Color1</div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-hashtag"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">Mã màu HEX</div>
+                        <div class="info-value">
+                            <span class="color-hex">@GetColorHex(Model.Color1)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">ID màu sắc</div>
+                        <div class="info-value">#@Model.Id</div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">Trạng thái</div>
+                        <div class="info-value">
+                            <span style="color: #10b981;">
+                                <i class="fas fa-check-circle"></i>
+                                Đang sử dụng
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a asp-action="Index" class="btn btn-cancel">
+                    <i class="fas fa-arrow-left"></i>
+                    Hủy
+                </a>
+
+                <form asp-action="Delete" style="display: inline;">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa màu này không?')">
+                        <i class="fas fa-trash"></i>
+                        Xác nhận xóa
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+
+@functions {
+    string GetColorHex(string colorName)
+    {
+        var colorMap = new Dictionary<string, string>
+        {
+            {"đỏ", "#ff0000"}, {"xanh", "#0000ff"}, {"vàng", "#ffff00"},
+            {"đen", "#000000"}, {"trắng", "#ffffff"}, {"xám", "#808080"},
+            {"hồng", "#ffc0cb"}, {"tím", "#800080"}, {"cam", "#ffa500"},
+            {"nâu", "#a52a2a"}, {"xanh lá", "#008000"}, {"xanh dương", "#0000ff"},
+            {"xanh lam", "#00ffff"}, {"bạc", "#c0c0c0"}, {"vàng kim", "#ffd700"},
+            {"xanh navy", "#000080"}, {"xanh mint", "#98fb98"}, {"đỏ đô", "#8b0000"}
+        };
+
+        return colorMap.ContainsKey(colorName.ToLower()) ? colorMap[colorName.ToLower()] : "#cccccc";
+    }
+
+    string GetLighterShade(string hexColor)
+    {
+        // Simple lighter shade calculation
+        if (hexColor == "#ffffff") return "#f0f0f0";
+        if (hexColor == "#000000") return "#404040";
+
+        // For other colors, return a lighter version
+        var colorMap = new Dictionary<string, string>
+        {
+            {"#ff0000", "#ff6666"}, {"#0000ff", "#6666ff"}, {"#ffff00", "#ffff99"},
+            {"#808080", "#b3b3b3"}, {"#ffc0cb", "#ffe4e6"}, {"#800080", "#b366b3"},
+            {"#ffa500", "#ffcc66"}, {"#a52a2a", "#d2691e"}, {"#008000", "#66b366"},
+            {"#00ffff", "#99ffff"}, {"#c0c0c0", "#e0e0e0"}, {"#ffd700", "#ffeb99"}
+        };
+
+        return colorMap.ContainsKey(hexColor) ? colorMap[hexColor] : "#e6e6e6";
+    }
+
+    string GetDarkerShade(string hexColor)
+    {
+        // Simple darker shade calculation
+        if (hexColor == "#000000") return "#000000";
+        if (hexColor == "#ffffff") return "#cccccc";
+
+        // For other colors, return a darker version
+        var colorMap = new Dictionary<string, string>
+        {
+            {"#ff0000", "#cc0000"}, {"#0000ff", "#0000cc"}, {"#ffff00", "#cccc00"},
+            {"#808080", "#4d4d4d"}, {"#ffc0cb", "#ff69b4"}, {"#800080", "#4d004d"},
+            {"#ffa500", "#cc8400"}, {"#a52a2a", "#8b1a1a"}, {"#008000", "#004d00"},
+            {"#00ffff", "#00cccc"}, {"#c0c0c0", "#999999"}, {"#ffd700", "#ccad00"}
+        };
+
+        return colorMap.ContainsKey(hexColor) ? colorMap[hexColor] : "#999999";
+    }
+}

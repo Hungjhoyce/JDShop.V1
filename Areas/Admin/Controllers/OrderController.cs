@@ -7,7 +7,7 @@ using JDshop.Models;
 namespace JDshop.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Nhân Viên")]
     public class OrderController : Controller
     {
         private JDshopDbContext _context; public static string? image;
@@ -77,6 +77,36 @@ namespace JDshop.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> OrderDetails(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var order = await _context.Orders
+                .Include(o => o.Account)
+                .Include(o => o.Discount)
+                .Include(o => o.OderItems)
+                    .ThenInclude(oi => oi.ProductSizeColor)
+                        .ThenInclude(psc => psc.Product)
+                .Include(o => o.OderItems)
+                    .ThenInclude(oi => oi.ProductSizeColor)
+                        .ThenInclude(psc => psc.Size)
+                .Include(o => o.OderItems)
+                    .ThenInclude(oi => oi.ProductSizeColor)
+                        .ThenInclude(psc => psc.Color)
+                .Include(o => o.Payments)
+                    .ThenInclude(p => p.PaymentMethods)
+                .FirstOrDefaultAsync(o => o.Id == id);
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            return View(order);
+        }
 
         //public async Task<IActionResult> OrderDone()
         //{

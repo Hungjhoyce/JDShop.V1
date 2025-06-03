@@ -1,44 +1,674 @@
-﻿@model JDshop.Models.ProductSizeColor
+﻿@* @model JDshop.Models.ProductSizeColor *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Create"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>THÊM</h1> *@
+
+@* <h4>Sản phẩm Màu Size</h4> *@
+@* <hr /> *@
+@* <div class="row"> *@
+@*     <div class="col-md-4"> *@
+@*         <form asp-action="Create"> *@
+@*             <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+@*             <div class="form-group"> *@
+@*                 <label> Tên sản phẩm</label> *@
+@*                 <select asp-for="ProductId" class ="form-control" asp-items="ViewBag.ProductId"></select> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="SizeId" class="control-label">Size</label> *@
+@*                 <select asp-for="SizeId" class ="form-control" asp-items="ViewBag.SizeId"></select> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="ColorId" class="control-label">Màu</label> *@
+@*                 <select asp-for="ColorId" class ="form-control" asp-items="ViewBag.ColorId"></select> *@
+@*             </div> *@
+
+@*             <div class="form-group"> *@
+@*                 <button type="submit" class="btn btn-gradient-primary me-2">Thêm mới</button> *@
+@*                 <a asp-action="Index" class="btn btn-light">Trở về</a> *@
+@*             </div> *@
+@*         </form> *@
+@*     </div> *@
+@* </div> *@
+
+@* @section Scripts { *@
+@*     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} *@
+@* } *@
+
+
+
+
+
+
+
+
+@model JDshop.Models.ProductSizeColor
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Thêm biến thể sản phẩm mới";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>THÊM</h1>
+<style>
+    .create-container {
+        margin: 0 auto;
+        padding: 2rem;
+    }
 
-<h4>Sản phẩm Màu Size</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label> Tên sản phẩm</label>
-                @* <label asp-for="ProductId" class="control-label"></label> *@
-                <select asp-for="ProductId" class ="form-control" asp-items="ViewBag.ProductId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="SizeId" class="control-label">Size</label>
-                <select asp-for="SizeId" class ="form-control" asp-items="ViewBag.SizeId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="ColorId" class="control-label">Màu</label>
-                <select asp-for="ColorId" class ="form-control" asp-items="ViewBag.ColorId"></select>
-            </div>
+    .page-header {
+        margin-bottom: 2rem;
+    }
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-gradient-primary me-2">Thêm mới</button>
-                <a asp-action="Index" class="btn btn-light">Trở về</a>
-            </div>
-        </form>
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0;
+    }
+
+    .page-subtitle {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+    .form-container {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 2rem;
+    }
+
+    .form-section {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 1.5rem;
+    }
+
+    .form-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    .form-icon {
+        width: 48px;
+        height: 48px;
+        background: #10b981;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .form-info {
+        flex: 1;
+    }
+
+    .form-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0;
+    }
+
+    .form-description {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin: 0.25rem 0 0 0;
+    }
+
+    .validation-summary {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 6px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        color: #dc2626;
+        font-size: 0.875rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #374151;
+        font-size: 0.875rem;
+    }
+
+        .form-label.required::after {
+            content: " *";
+            color: #dc2626;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+        background-color: #fff;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .form-control.is-invalid {
+            border-color: #dc2626;
+        }
+
+    .text-danger {
+        color: #dc2626;
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    .form-select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.5rem center;
+        background-repeat: no-repeat;
+        background-size: 1.5em 1.5em;
+        padding-right: 2.5rem;
+    }
+
+    .input-group {
+        position: relative;
+    }
+
+    .input-icon {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6b7280;
+        font-size: 0.875rem;
+        pointer-events: none;
+    }
+
+    .input-with-icon {
+        padding-left: 2.5rem;
+    }
+
+    .help-text {
+        font-size: 0.75rem;
+        color: #6b7280;
+        margin-top: 0.25rem;
+    }
+
+    /* Preview Section */
+    .preview-section {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 1.5rem;
+    }
+
+    .preview-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        color: #1f2937;
+        font-weight: 600;
+    }
+
+    .preview-content {
+        background: #f8f9fa;
+        border-radius: 6px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .preview-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+        .preview-item:last-child {
+            border-bottom: none;
+        }
+
+    .preview-label {
+        font-size: 0.75rem;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .preview-value {
+        font-weight: 500;
+        color: #1f2937;
+        font-size: 0.875rem;
+    }
+
+    .preview-empty {
+        color: #9ca3af;
+        font-style: italic;
+    }
+
+    .color-preview {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .color-swatch {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 2px solid #e5e7eb;
+    }
+
+    .size-badge {
+        background: #fff3e0;
+        color: #f57c00;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .code-preview {
+        background: #e3f2fd;
+        color: #1976d2;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        font-family: monospace;
+    }
+
+    .inventory-section {
+        background: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        border-radius: 6px;
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+
+    .inventory-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #166534;
+        margin-bottom: 0.5rem;
+    }
+
+    .inventory-note {
+        font-size: 0.75rem;
+        color: #166534;
+        line-height: 1.4;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #f3f4f6;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: 1px solid;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-success {
+        background: #10b981;
+        color: white;
+        border-color: #10b981;
+    }
+
+        .btn-success:hover {
+            background: #059669;
+            border-color: #059669;
+        }
+
+    .btn-secondary {
+        background: white;
+        color: #374151 !important;
+        border-color: #d1d5db;
+    }
+
+        .btn-secondary:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+        }
+
+    .duplicate-warning {
+        background: #fef3c7;
+        border: 1px solid #fbbf24;
+        border-radius: 6px;
+        padding: 1rem;
+        margin-top: 1rem;
+        color: #92400e;
+        font-size: 0.875rem;
+        display: none;
+    }
+
+   
+</style>
+
+<div class="create-container">
+    <div class="page-header">
+        <h1 class="page-title">Thêm biến thể sản phẩm mới</h1>
+        <p class="page-subtitle">Tạo biến thể mới với màu sắc và kích thước khác nhau</p>
     </div>
+
+    <form asp-action="Create" id="createForm">
+        <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+        <div class="form-container">
+            <!-- Main Form Section -->
+            <div class="form-section">
+                <div class="form-header">
+                    <div class="form-icon">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="form-info">
+                        <h2 class="form-title">Thông tin biến thể</h2>
+                        <p class="form-description">Nhập thông tin chi tiết cho biến thể mới</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">
+                        <i class="fas fa-box me-1"></i>
+                        Sản phẩm
+                    </label>
+                    <select asp-for="ProductId" class="form-control form-select" asp-items="ViewBag.ProductId" onchange="updatePreview()">
+                        <option value="">-- Chọn sản phẩm --</option>
+                    </select>
+                    <span asp-validation-for="ProductId" class="text-danger"></span>
+                    <div class="help-text">Chọn sản phẩm chính cho biến thể này</div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label asp-for="ColorId" class="form-label required">
+                            <i class="fas fa-palette me-1"></i>
+                            Màu sắc
+                        </label>
+                        <select asp-for="ColorId" class="form-control form-select" asp-items="ViewBag.ColorId" onchange="updatePreview()">
+                            <option value="">-- Chọn màu --</option>
+                        </select>
+                        <span asp-validation-for="ColorId" class="text-danger"></span>
+                        <div class="help-text">Chọn màu sắc cho biến thể</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="SizeId" class="form-label required">
+                            <i class="fas fa-expand-arrows-alt me-1"></i>
+                            Kích thước
+                        </label>
+                        <select asp-for="SizeId" class="form-control form-select" asp-items="ViewBag.SizeId" onchange="updatePreview()">
+                            <option value="">-- Chọn size --</option>
+                        </select>
+                        <span asp-validation-for="SizeId" class="text-danger"></span>
+                        <div class="help-text">Chọn kích thước cho biến thể</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-barcode me-1"></i>
+                        Mã Code (Tự động tạo)
+                    </label>
+                    <div class="input-group">
+                        <i class="fas fa-barcode input-icon"></i>
+                        <input type="text" id="generatedCode" class="form-control input-with-icon" readonly placeholder="Sẽ được tạo tự động..." />
+                    </div>
+                    <div class="help-text">Mã code sẽ được tạo tự động dựa trên sản phẩm, màu và size</div>
+                </div>
+
+                <div class="duplicate-warning" id="duplicateWarning">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong>Cảnh báo:</strong> Biến thể với combination này có thể đã tồn tại. Vui lòng kiểm tra lại.
+                </div>
+            </div>
+
+            <!-- Preview Section -->
+            <div class="preview-section">
+                <div class="preview-header">
+                    <i class="fas fa-eye"></i>
+                    Xem trước biến thể
+                </div>
+
+                <div class="preview-content">
+                    <div class="preview-item">
+                        <span class="preview-label">Sản phẩm</span>
+                        <span class="preview-value" id="previewProduct">
+                            <span class="preview-empty">Chưa chọn</span>
+                        </span>
+                    </div>
+                    <div class="preview-item">
+                        <span class="preview-label">Màu sắc</span>
+                        <span class="preview-value" id="previewColor">
+                            <span class="preview-empty">Chưa chọn</span>
+                        </span>
+                    </div>
+                    <div class="preview-item">
+                        <span class="preview-label">Kích thước</span>
+                        <span class="preview-value" id="previewSize">
+                            <span class="preview-empty">Chưa chọn</span>
+                        </span>
+                    </div>
+                    <div class="preview-item">
+                        <span class="preview-label">Mã Code</span>
+                        <span class="preview-value" id="previewCode">
+                            <span class="preview-empty">Chưa tạo</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="inventory-section">
+                    <div class="inventory-title">
+                        <i class="fas fa-info-circle me-1"></i>
+                        Lưu ý về tồn kho
+                    </div>
+                    <div class="inventory-note">
+                        Sau khi tạo biến thể, bạn có thể cập nhật số lượng tồn kho và số lượng đã bán trong phần chỉnh sửa.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i>
+                Hủy bỏ
+            </a>
+            <button type="submit" class="btn btn-success" id="submitBtn">
+                <i class="fas fa-plus"></i>
+                Tạo biến thể
+            </button>
+        </div>
+    </form>
 </div>
 
-@* <div>
-    <a asp-action="Index">Back to List</a>
-</div> *@
+@functions {
+    string GetColorHex(string colorName)
+    {
+        var colorMap = new Dictionary<string, string>
+        {
+            {"đỏ", "#ff0000"}, {"xanh", "#0000ff"}, {"vàng", "#ffff00"},
+            {"đen", "#000000"}, {"trắng", "#ffffff"}, {"xám", "#808080"},
+            {"hồng", "#ffc0cb"}, {"tím", "#800080"}, {"cam", "#ffa500"},
+            {"nâu", "#a52a2a"}, {"xanh lá", "#008000"}
+        };
+
+        return colorMap.ContainsKey(colorName.ToLower()) ? colorMap[colorName.ToLower()] : "#cccccc";
+    }
+}
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        // Color mapping for preview
+        const colorMap = {
+            'đỏ': '#ff0000', 'xanh': '#0000ff', 'vàng': '#ffff00',
+            'đen': '#000000', 'trắng': '#ffffff', 'xám': '#808080',
+            'hồng': '#ffc0cb', 'tím': '#800080', 'cam': '#ffa500',
+            'nâu': '#a52a2a', 'xanh lá': '#008000'
+        };
+
+        // Update preview when selections change
+        function updatePreview() {
+            const productSelect = document.querySelector('select[name="ProductId"]');
+            const colorSelect = document.querySelector('select[name="ColorId"]');
+            const sizeSelect = document.querySelector('select[name="SizeId"]');
+
+            // Update product preview
+            const previewProduct = document.getElementById('previewProduct');
+            if (productSelect.value) {
+                previewProduct.innerHTML = productSelect.options[productSelect.selectedIndex].text;
+            } else {
+                previewProduct.innerHTML = '<span class="preview-empty">Chưa chọn</span>';
+            }
+
+            // Update color preview
+            const previewColor = document.getElementById('previewColor');
+            if (colorSelect.value) {
+                const colorText = colorSelect.options[colorSelect.selectedIndex].text;
+                const colorHex = colorMap[colorText.toLowerCase()] || '#cccccc';
+                previewColor.innerHTML = `
+                    <div class="color-preview">
+                        <div class="color-swatch" style="background-color: ${colorHex};"></div>
+                        ${colorText}
+                    </div>
+                `;
+            } else {
+                previewColor.innerHTML = '<span class="preview-empty">Chưa chọn</span>';
+            }
+
+            // Update size preview
+            const previewSize = document.getElementById('previewSize');
+            if (sizeSelect.value) {
+                const sizeText = sizeSelect.options[sizeSelect.selectedIndex].text;
+                previewSize.innerHTML = `<span class="size-badge">${sizeText}</span>`;
+            } else {
+                previewSize.innerHTML = '<span class="preview-empty">Chưa chọn</span>';
+            }
+
+            // Generate and update code
+            generateCode();
+
+            // Check for duplicates (you can implement this based on your needs)
+            checkDuplicate();
+        }
+
+        // Generate code based on selections
+        function generateCode() {
+            const productSelect = document.querySelector('select[name="ProductId"]');
+            const colorSelect = document.querySelector('select[name="ColorId"]');
+            const sizeSelect = document.querySelector('select[name="SizeId"]');
+            const codeInput = document.getElementById('generatedCode');
+            const previewCode = document.getElementById('previewCode');
+
+            if (productSelect.value && colorSelect.value && sizeSelect.value) {
+                const productText = productSelect.options[productSelect.selectedIndex].text;
+                const colorText = colorSelect.options[colorSelect.selectedIndex].text;
+                const sizeText = sizeSelect.options[sizeSelect.selectedIndex].text;
+
+                // Generate code (customize this logic as needed)
+                const code = `${productText.substring(0, 3).toUpperCase()}-${colorText.substring(0, 2).toUpperCase()}-${sizeText}`;
+                codeInput.value = code;
+                previewCode.innerHTML = `<span class="code-preview">${code}</span>`;
+            } else {
+                codeInput.value = '';
+                previewCode.innerHTML = '<span class="preview-empty">Chưa tạo</span>';
+            }
+        }
+
+        // Check for potential duplicates
+        function checkDuplicate() {
+            const productSelect = document.querySelector('select[name="ProductId"]');
+            const colorSelect = document.querySelector('select[name="ColorId"]');
+            const sizeSelect = document.querySelector('select[name="SizeId"]');
+            const duplicateWarning = document.getElementById('duplicateWarning');
+
+            if (productSelect.value && colorSelect.value && sizeSelect.value) {
+                // Here you would typically make an AJAX call to check for duplicates
+                // For now, we'll just show/hide the warning based on some logic
+                // duplicateWarning.style.display = 'block'; // Show if duplicate found
+                duplicateWarning.style.display = 'none'; // Hide if no duplicate
+            } else {
+                duplicateWarning.style.display = 'none';
+            }
+        }
+
+        // Form validation
+        document.getElementById('createForm').addEventListener('submit', function(e) {
+            const productId = document.querySelector('select[name="ProductId"]').value;
+            const colorId = document.querySelector('select[name="ColorId"]').value;
+            const sizeId = document.querySelector('select[name="SizeId"]').value;
+
+            if (!productId) {
+                alert('Vui lòng chọn sản phẩm.');
+                e.preventDefault();
+                return;
+            }
+
+            if (!colorId) {
+                alert('Vui lòng chọn màu sắc.');
+                e.preventDefault();
+                return;
+            }
+
+            if (!sizeId) {
+                alert('Vui lòng chọn kích thước.');
+                e.preventDefault();
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Đang tạo...';
+            submitBtn.disabled = true;
+
+            // Reset button after 3 seconds if form doesn't submit
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 3000);
+        });
+
+        // Initialize preview on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updatePreview();
+        });
+    </script>
 }

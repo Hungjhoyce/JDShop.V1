@@ -10,7 +10,7 @@ using JDshop.Models;
 namespace JDshop.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Nhân Viên")]
     public class ProductsController : Controller
     {
         private readonly JDshopDbContext _context;
@@ -24,7 +24,8 @@ namespace JDshop.Areas.Admin.Controllers
         [Route("/Admin/product")]
         public async Task<IActionResult> Index()
         {
-            var JDshopDbContext = _context.Products.Include(p => p.ProductType).Include(x => x.Images);
+            var JDshopDbContext = _context.Products.Include(p => p.ProductType).Include(p => p.Category).Include(x => x.Images);
+            //var result = _context.Products.Include(p => p.Category).Include(x => x.Images);
             return View(await JDshopDbContext.ToListAsync());
         }
 
@@ -37,6 +38,7 @@ namespace JDshop.Areas.Admin.Controllers
 
             var product = await _context.Products
                 .Include(p => p.ProductType)
+                .Include(p => p.Images)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -49,6 +51,7 @@ namespace JDshop.Areas.Admin.Controllers
         public IActionResult Create()
         {
             ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes.Where(x => x.Status == 1), "Id", "Name");
+            ViewData["CategoryId"] = new SelectList(_context.Categories.Where(x => x.Status == true), "Id", "Name");
             return View();
         }
 
@@ -105,6 +108,7 @@ namespace JDshop.Areas.Admin.Controllers
                 return NotFound();
             }
             ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes.Where(x => x.Status == 1), "Id", "Name", product.ProductTypeId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories.Where(x => x.Status == true), "Id", "Name", product.CategoryId);
             return View(product);
         }
 
@@ -121,6 +125,7 @@ namespace JDshop.Areas.Admin.Controllers
             {
                 _notyfService.Error("Tên sản phẩm đã tồn tại.");
                 ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes.Where(x => x.Status == 1), "Id", "Name", product.ProductTypeId);
+                ViewData["CategoryId"] = new SelectList(_context.Categories.Where(x => x.Status == true), "Id", "Name", product.CategoryId);
                 return View(product);
             }
 
@@ -172,6 +177,7 @@ namespace JDshop.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes.Where(x => x.Status == 1), "Id", "Name", product.ProductTypeId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories.Where(x => x.Status == true), "Id", "Name", product.CategoryId);
             return View(product);
         }
 
@@ -197,16 +203,54 @@ namespace JDshop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products
+                .Include(x => x.Images)
+                .Include(x => x.ProductSizeColors)
+                .Include(x => x.CollectionProducts)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
             if (product != null)
             {
-                product.Status = 2;
-                _context.Products.Update(product);
+                // 1. Xoá ảnh sản phẩm
+                if (product.Images.Any())
+                {
+                    _context.Images.RemoveRange(product.Images);
+                }
+
+                // 2. Xoá liên kết bộ sưu tập
+                if (product.CollectionProducts.Any())
+                {
+                    _context.CollectionProducts.RemoveRange(product.CollectionProducts);
+                }
+
+                // 3. Xử lý từng ProductSizeColor
+                foreach (var psc in product.ProductSizeColors)
+                {
+                    // Xoá trong Order_Items
+                    var orderItems = _context.OrderItems
+                        .Where(oi => oi.ProductSizeColorId == psc.Id);
+                    _context.OrderItems.RemoveRange(orderItems);
+
+                    // Xoá trong Receipt_Products
+                    var receipts = _context.ReceiptProducts
+                        .Where(rp => rp.ProductSizeColorId == psc.Id);
+                    _context.ReceiptProducts.RemoveRange(receipts);
+
+                    // Xoá ProductSizeColor
+                    _context.ProductSizeColors.Remove(psc);
+                }
+
+                // 4. Cuối cùng, xoá sản phẩm
+                _context.Products.Remove(product);
+
+                // 5. Lưu thay đổi
                 await _context.SaveChangesAsync();
-                _notyfService.Success("Xóa sản phẩm thành công.");
+                _notyfService.Success("Xóa sản phẩm và tất cả dữ liệu liên quan thành công.");
             }
+
             return RedirectToAction(nameof(Index));
         }
+
 
         private bool ProductExists(int id)
         {

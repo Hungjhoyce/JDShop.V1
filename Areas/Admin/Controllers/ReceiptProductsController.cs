@@ -12,7 +12,7 @@ using JDshop.Models;
 namespace JDshop.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Nhân Viên")]
     public class ReceiptProductsController : Controller
     {
         private readonly JDshopDbContext _context;
@@ -96,7 +96,7 @@ namespace JDshop.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProductSizeColorId"] = new SelectList(_context.ProductSizeColors, "Id", "SCodeize", receiptProduct.ProductSizeColorId);
+            ViewData["ProductSizeColorId"] = new SelectList(_context.ProductSizeColors, "Id", "Code", receiptProduct.ProductSizeColorId);
             return View(receiptProduct);
         }
 

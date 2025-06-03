@@ -1,161 +1,930 @@
-﻿@model JDshop.Models.Product
+﻿@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 
-<section class="shop-details"  style="margin-bottom:50px">
-    <div class="product__details__pic">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="product__details__breadcrumb">
-                        <a href="index.html">Home</a>
-                        <a href="shop.html">Shop</a>
-                        <span>Product Details</span>
+@model JDshop.Models.Product
+
+@{
+    ViewData["Title"] = Model.Name;
+
+    var colorHexMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+    {
+        { "Đỏ", "#FF0000" },
+        { "Xanh dương", "#0000FF" },
+        { "Xanh lá", "#008000" },
+        { "Vàng", "#FFFF00" },
+        { "Cam", "#FFA500" },
+        { "Hồng", "#FFC0CB" },
+        { "Trắng", "#FFFFFF" },
+        { "Đen", "#000000" },
+        { "Xám", "#808080" },
+        { "Tím", "#800080" }
+    };
+}
+
+<style>
+    /* Light Theme Variables */
+    :root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-card: #ffffff;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --text-muted: #9ca3af;
+    --accent-blue: #3b82f6;
+    --accent-blue-hover: #2563eb;
+    --border-color: #e5e7eb;
+    --border-light: #f3f4f6;
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+    --warning-color: #f59e0b;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Global Styles */
+    body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb-section {
+    background: var(--bg-secondary);
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+    }
+
+    .breadcrumb-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    }
+
+    .breadcrumb-link {
+    color: var(--accent-blue);
+    text-decoration: none;
+    transition: color 0.3s;
+    }
+
+    .breadcrumb-link:hover {
+    color: var(--accent-blue-hover);
+    text-decoration: none;
+    }
+
+    .breadcrumb-separator {
+    color: var(--text-secondary);
+    margin: 0 5px;
+    }
+
+    .breadcrumb-current {
+    color: var(--text-primary);
+    }
+
+    /* Main Container */
+    .product-detail-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    }
+
+    /* Product Section */
+    .product-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 50px;
+    }
+
+    /* Product Images */
+    .product-images {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    }
+
+    .main-image {
+    width: 100%;
+    height: 500px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    }
+
+    .main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+
+    .main-image .placeholder {
+    font-size: 4rem;
+    color: var(--text-muted);
+    }
+
+    .thumbnail-images {
+    display: flex;
+    gap: 15px;
+    }
+
+    .thumbnail {
+    width: 80px;
+    height: 80px;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    }
+
+    .thumbnail:hover,
+    .thumbnail.active {
+    border-color: var(--accent-blue);
+    }
+
+    .thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+
+    .thumbnail .placeholder {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    }
+
+    /* Product Info */
+    .product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    }
+
+    .product-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    line-height: 1.3;
+    }
+
+    .product-sku {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 15px;
+    }
+
+    .product-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    }
+
+    .stars {
+    display: flex;
+    gap: 2px;
+    }
+
+    .star {
+    color: #fbbf24;
+    font-size: 16px;
+    }
+
+    .rating-text {
+    color: var(--text-secondary);
+    font-size: 14px;
+    }
+
+    .product-price {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    }
+
+    .current-price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    }
+
+    .original-price {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    text-decoration: line-through;
+    }
+
+    /* Product Options */
+    .product-option {
+    margin-bottom: 25px;
+    }
+
+    .option-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    display: block;
+    }
+
+    /* Color Options */
+    .color-options {
+    display: flex;
+    gap: 10px;
+    }
+
+    .color-option {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    }
+
+    .color-option:hover,
+    .color-option.active {
+    border-color: var(--accent-blue);
+    transform: scale(1.1);
+    }
+
+    .color-option.white {
+    background: #ffffff;
+    border-color: #d1d5db;
+    }
+
+    .color-option.blue {
+    background: #3b82f6;
+    }
+
+    .color-option.black {
+    background: #1f2937;
+    }
+
+    .color-option.red {
+    background: #ef4444;
+    }
+
+    /* Size Options */
+    .size-options {
+    display: flex;
+    gap: 10px;
+    }
+
+    .size-option {
+    padding: 12px 20px;
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+    min-width: 60px;
+    text-align: center;
+    }
+
+    .size-option:hover,
+    .size-option.active {
+    border-color: var(--accent-blue);
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent-blue);
+    }
+
+    /* Quantity Selector */
+    .quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    }
+
+    .quantity-controls {
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    }
+
+    .quantity-btn {
+    width: 40px;
+    height: 40px;
+    background: var(--bg-card);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+    color: var(--text-primary);
+    }
+
+    .quantity-btn:hover {
+    background: var(--bg-secondary);
+    }
+
+    .quantity-input {
+    width: 60px;
+    height: 40px;
+    border: none;
+    text-align: center;
+    font-weight: 500;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    }
+
+    .quantity-input:focus {
+    outline: none;
+    }
+
+    .stock-info {
+    color: var(--text-secondary);
+    font-size: 14px;
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    }
+
+    .add-to-cart {
+    flex: 1;
+    padding: 15px 30px;
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    }
+
+    .add-to-cart:hover {
+    background: var(--accent-blue-hover);
+    }
+
+    .secondary-btn {
+    padding: 15px 20px;
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--text-primary);
+    text-decoration: none;
+    }
+
+    .secondary-btn:hover {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    text-decoration: none;
+    }
+
+    /* Service Features */
+    .service-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 50px;
+    padding: 30px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    }
+
+    .service-item {
+    text-align: center;
+    padding: 20px;
+    }
+
+    .service-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--accent-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    color: white;
+    font-size: 1.2rem;
+    }
+
+    .service-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+    }
+
+    .service-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    }
+
+    /* Product Tabs */
+    .product-tabs {
+    margin-bottom: 50px;
+    }
+
+    .tab-headers {
+    display: flex;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 30px;
+    }
+
+    .tab-header {
+    padding: 15px 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: all 0.3s;
+    border-bottom: 3px solid transparent;
+    }
+
+    .tab-header.active {
+    color: var(--accent-blue);
+    border-bottom-color: var(--accent-blue);
+    }
+
+    .tab-content {
+    display: none;
+    padding: 20px 0;
+    }
+
+    .tab-content.active {
+    display: block;
+    }
+
+    .description-content {
+    line-height: 1.6;
+    color: var(--text-primary);
+    }
+
+    .description-content ul {
+    margin: 20px 0;
+    padding-left: 20px;
+    }
+
+    .description-content li {
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+    }
+
+    /* Related Products */
+    .related-products {
+    margin-top: 50px;
+    }
+
+    .section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 30px;
+    }
+
+    .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    }
+
+    .related-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s;
+    box-shadow: var(--shadow-sm);
+    }
+
+    .related-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    }
+
+    .related-image {
+    height: 200px;
+    background: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    }
+
+    .related-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+
+    .related-image .placeholder {
+    font-size: 3rem;
+    color: var(--text-muted);
+    }
+
+    .related-info {
+    padding: 20px;
+    }
+
+    .related-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    line-height: 1.4;
+    }
+
+    .related-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    }
+
+    .related-current-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    }
+
+    .related-original-price {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-decoration: line-through;
+    }
+
+
+</style>
+
+<!-- Breadcrumb Section -->
+<div class="breadcrumb-section">
+    <div class="breadcrumb-container">
+        <a href="@Url.Action("Index", "Home")" class="breadcrumb-link">Trang chủ</a>
+        <span class="breadcrumb-separator">/</span>
+        <a href="@Url.Action("Index", "Products")" class="breadcrumb-link">Sản phẩm</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-link">Áo nam</span>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current">@Model.Name</span>
+    </div>
+</div>
+
+<!-- Product Detail Section -->
+<div class="product-detail-container">
+    <!-- Main Product Section -->
+    <div class="product-section">
+        <!-- Product Images -->
+        <div class="product-images">
+            <div class="main-image">
+                @if (Model.Images != null && Model.Images.Any())
+                {
+                    <img src="/contents/Images/Product/@Model.Images.FirstOrDefault()?.Url" alt="@Model.Name" id="mainImage">
+                }
+                else
+                {
+                    <div class="placeholder">
+                        <i class="fas fa-camera"></i>
                     </div>
+                }
+            </div>
+
+            <div class="thumbnail-images">
+                @if (Model.Images != null && Model.Images.Any())
+                {
+                    @foreach (var image in Model.Images.Take(4))
+                    {
+                        <div class="thumbnail @(Model.Images.First() == image ? "active" : "")" onclick="changeMainImage('/contents/Images/Product/@image.Url', this)">
+                            <img src="/contents/Images/Product/@image.Url" alt="@Model.Name">
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="thumbnail active">
+                        <div class="placeholder">
+                            <i class="fas fa-image"></i>
+                        </div>
+                    </div>
+                    <div class="thumbnail">
+                        <div class="placeholder">
+                            <i class="fas fa-image"></i>
+                        </div>
+                    </div>
+                    <div class="thumbnail">
+                        <div class="placeholder">
+                            <i class="fas fa-image"></i>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-info">
+            <div class="product-header">
+                <h1>@Model.Name</h1>
+                <div class="product-sku">SKU: MH-SHIRT-001</div>
+
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                    </div>
+                    <span class="rating-text">4.8 (18 đánh giá)</span>
+                </div>
+
+                <div class="product-price">
+                    <span class="current-price">@string.Format("{0:N0}đ", Model.Price)</span>
+                    <span class="original-price">@string.Format("{0:N0}đ", Model.Price * 1.18)</span>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-3">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
-                                <div class="product__thumb__pic set-bg" data-setbg="/User/img/shop-details/thumb-1.png">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">
-                                <div class="product__thumb__pic set-bg" data-setbg="/User/img/shop-details/thumb-2.png">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">
-                                <div class="product__thumb__pic set-bg" data-setbg="/User/img/shop-details/thumb-3.png">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">
-                                <div class="product__thumb__pic set-bg" data-setbg="/User/img/shop-details/thumb-4.png">
-                                    <i class="fa fa-play"></i>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+
+            <!-- Color Selection -->
+            <div class="product-option">
+                <label class="option-label">Màu sắc: Trắng</label>
+                <div class="color-options">
+                    @* <div class="color-option white active" onclick="selectColor(this, 'Trắng')"></div> *@
+                    @* <div class="color-option blue" onclick="selectColor(this, 'Xanh')"></div> *@
+                    @* <div class="color-option black" onclick="selectColor(this, 'Đen')"></div> *@
+                    @* <div class="color-option red" onclick="selectColor(this, 'Đỏ')"></div> *@
+                    @foreach (var group in Model.ProductSizeColors.GroupBy(p => p.ColorId))
+                    {
+                        var color = group.First();
+                        var colorName = color.Color.Color1;
+                        var hex = colorHexMap.ContainsKey(colorName) ? colorHexMap[colorName] : "#CCCCCC"; // fallback
+
+                        <div class="color-option"
+                             style="background-color: @hex;"
+                             title="@colorName"
+                             onclick="selectColor(this, '@colorName')">
+                        </div>
+                    }
                 </div>
-                <div class="col-lg-6 col-md-9">
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                            <div class="product__details__pic__item">
-                                <img src="/User/img/shop-details/product-big-2.png" alt="">
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tabs-2" role="tabpanel">
-                            <div class="product__details__pic__item">
-                                <img src="/User/img/shop-details/product-big-3.png" alt="">
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tabs-3" role="tabpanel">
-                            <div class="product__details__pic__item">
-                                <img src="/User/img/shop-details/product-big.png" alt="">
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tabs-4" role="tabpanel">
-                            <div class="product__details__pic__item">
-                                <img src="/User/img/shop-details/product-big-4.png" alt="">
-                                <a href="https://www.youtube.com/watch?v=8PJ3_p7VqHw&amp;list=RD8PJ3_p7VqHw&amp;start_radio=1" class="video-popup"><i class="fa fa-play"></i></a>
-                            </div>
-                        </div>
+            </div>
+
+            <!-- Size Selection -->
+            <div class="product-option">
+                <label class="option-label">Kích cỡ</label>
+                <div class="size-options">
+                    @* <div class="size-option" onclick="selectSize(this, 'M')">M</div> *@
+                    @* <div class="size-option active" onclick="selectSize(this, 'L')">L</div> *@
+                    @* <div class="size-option" onclick="selectSize(this, 'XL')">XL</div> *@
+                    @* <div class="size-option" onclick="selectSize(this, 'XXL')">XXL</div> *@
+                    @foreach (var product in Model.ProductSizeColors.GroupBy(p => p.SizeId))
+                    {
+                        var size = product.First();
+                        <div class="size-option" onclick="selectSize(this, '@size.Size.Size1' )">@size.Size.Size1</div>
+                    }
+                </div>
+            </div>
+
+            <!-- Quantity Selection -->
+            <div class="product-option">
+                <label class="option-label">Số lượng</label>
+                <div class="quantity-selector">
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(-1)">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <input type="number" class="quantity-input" value="1" min="1" max="10" id="quantity">
+                        <button class="quantity-btn" onclick="changeQuantity(1)">
+                            <i class="fas fa-plus"></i>
+                        </button>
                     </div>
+                    <span class="stock-info">20 sản phẩm có sẵn</span>
                 </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="add-to-cart" onclick="addToCart(@Model.Id)">
+                    <i class="fas fa-shopping-cart"></i>
+                    Mua hàng
+                </button>
+                <a href="#" class="secondary-btn">
+                    <i class="far fa-heart"></i>
+                    Yêu thích
+                </a>
+                <a href="#" class="secondary-btn">
+                    <i class="fas fa-share-alt"></i>
+                    Chia sẻ
+                </a>
             </div>
         </div>
     </div>
-    <div class="product__details__content">
-        <div class="container">
-            <div class="row d-flex justify-content-center">
-                <div class="col-lg-8">
-                    <div class="product__details__text">
-                        <h4>Hooded thermal anorak</h4>
-                        <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
-                            <span> - 5 Reviews</span>
-                        </div>
-                        <h3>$270.00 <span>70.00</span></h3>
-                        <p>
-                            Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable
-                            cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening
-                            with placket.
-                        </p>
-                        <div class="product__details__option">
-                            <div class="product__details__option__size">
-                                <span>Size:</span>
-                                <label for="xxl">
-                                    xxl
-                                    <input type="radio" id="xxl">
-                                </label>
-                                <label class="active" for="xl">
-                                    xl
-                                    <input type="radio" id="xl">
-                                </label>
-                                <label for="l">
-                                    l
-                                    <input type="radio" id="l">
-                                </label>
-                                <label for="sm">
-                                    s
-                                    <input type="radio" id="sm">
-                                </label>
-                            </div>
-                            <div class="product__details__option__color">
-                                <span>Color:</span>
-                                <label class="c-1" for="sp-1">
-                                    <input type="radio" id="sp-1">
-                                </label>
-                                <label class="c-2" for="sp-2">
-                                    <input type="radio" id="sp-2">
-                                </label>
-                                <label class="c-3" for="sp-3">
-                                    <input type="radio" id="sp-3">
-                                </label>
-                                <label class="c-4" for="sp-4">
-                                    <input type="radio" id="sp-4">
-                                </label>
-                                <label class="c-9" for="sp-9">
-                                    <input type="radio" id="sp-9">
-                                </label>
-                            </div>
-                        </div>
-                        <div class="product__details__cart__option">
-                            <div class="quantity">
-                                <div class="pro-qty">
-                                    <input type="text" value="1">
-                                </div>
-                            </div>
-                            <a href="#" class="primary-btn">add to cart</a>
-                        </div>
-                        <div class="product__details__btns__option">
-                            <a href="#"><i class="fa fa-heart"></i> add to wishlist</a>
-                            <a href="#"><i class="fa fa-exchange"></i> Add To Compare</a>
-                        </div>
-                        <div class="product__details__last__option">
-                            <h5><span>Guaranteed Safe Checkout</span></h5>
-                            <img src="/User/img/shop-details/details-payment.png" alt="">
-                            <ul>
-                                <li><span>SKU:</span> 3812912</li>
-                                <li><span>Categories:</span> Clothes</li>
-                                <li><span>Tag:</span> Clothes, Skin, Body</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+
+    <!-- Service Features -->
+    <div class="service-features">
+        <div class="service-item">
+            <div class="service-icon">
+                <i class="fas fa-shipping-fast"></i>
             </div>
-            
+            <div class="service-title">Miễn phí vận chuyển</div>
+            <div class="service-desc">Miễn phí giao hàng</div>
+        </div>
+        <div class="service-item">
+            <div class="service-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="service-title">Bảo hành chính hãng</div>
+            <div class="service-desc">12 tháng</div>
+        </div>
+        <div class="service-item">
+            <div class="service-icon">
+                <i class="fas fa-undo-alt"></i>
+            </div>
+            <div class="service-title">Đổi trả dễ dàng</div>
+            <div class="service-desc">Trong 7 ngày</div>
         </div>
     </div>
-</section>
-<!-- Shop Details Section End -->
+
+    <!-- Product Tabs -->
+    <div class="product-tabs">
+        <div class="tab-headers">
+            <button class="tab-header active" onclick="switchTab(this, 'description')">Mô tả sản phẩm</button>
+            <button class="tab-header" onclick="switchTab(this, 'specifications')">Thông số kỹ thuật</button>
+            <button class="tab-header" onclick="switchTab(this, 'reviews')">Đánh giá (18)</button>
+        </div>
+
+        <div class="tab-content active" id="description">
+            <div class="description-content">
+                <p>Áo sơ mi nam regular fit tay dài, thiết kế đơn giản tích phù hợp cho môi trường công sở và các dịp trang trọng. Sản phẩm được làm từ chất liệu cotton cao cấp mang lại cảm giác thoải mái khi mặc.</p>
+                
+                <h4>Đặc điểm nổi bật:</h4>
+                <ul>
+                    <li>Chất liệu cotton pha cao cấp</li>
+                    <li>Thiết kế regular fit</li>
+                    <li>Có thể sử dụng tay dài</li>
+                    <li>Dễ dàng vệ sinh</li>
+                    <li>Phù hợp đi làm</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tab-content" id="specifications">
+            <div class="description-content">
+                <h4>Thông số kỹ thuật:</h4>
+                <ul>
+                    <li>Chất liệu: Cotton pha 65%, Polyester 35%</li>
+                    <li>Kiểu dáng: Regular fit</li>
+                    <li>Màu sắc: Trắng, Xanh, Đen, Đỏ</li>
+                    <li>Size: M, L, XL, XXL</li>
+                    <li>Xuất xứ: Việt Nam</li>
+                    <li>Hướng dẫn bảo quản: Giặt máy ở nhiệt độ thường</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tab-content" id="reviews">
+            <div class="description-content">
+                <h4>Đánh giá từ khách hàng:</h4>
+                <p>Sản phẩm chất lượng tốt, vải mềm mại và thoải mái. Thiết kế đẹp, phù hợp đi làm và dự tiệc. Giao hàng nhanh, đóng gói cẩn thận.</p>
+                <p><strong>Đánh giá trung bình:</strong> 4.8/5 sao (18 đánh giá)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Image gallery functionality
+    function changeMainImage(imageSrc, thumbnail) {
+        const mainImage = document.getElementById('mainImage');
+        if (mainImage) {
+            mainImage.src = imageSrc;
+        }
+        
+        // Update active thumbnail
+        document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+        thumbnail.classList.add('active');
+    }
+
+    // Color selection
+    function selectColor(element, colorName) {
+        document.querySelectorAll('.color-option').forEach(option => option.classList.remove('active'));
+        element.classList.add('active');
+        
+        // Update color label
+        const colorLabel = document.querySelector('.product-option label');
+        if (colorLabel) {
+            colorLabel.textContent = `Màu sắc: ${colorName}`;
+        }
+    }
+
+    // Size selection
+    function selectSize(element, sizeName) {
+        document.querySelectorAll('.size-option').forEach(option => option.classList.remove('active'));
+        element.classList.add('active');
+    }
+
+    // Quantity controls
+    function changeQuantity(delta) {
+        const quantityInput = document.getElementById('quantity');
+        const currentValue = parseInt(quantityInput.value);
+        const newValue = Math.max(1, Math.min(10, currentValue + delta));
+        quantityInput.value = newValue;
+    }
+
+    // Tab switching
+    function switchTab(tabHeader, tabId) {
+        // Update tab headers
+        document.querySelectorAll('.tab-header').forEach(header => header.classList.remove('active'));
+        tabHeader.classList.add('active');
+        
+        // Update tab content
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+    }
+
+    // Add to cart functionality
+    function addToCart(productId) {
+        const quantity = parseInt(document.getElementById('quantity').value);
+        const selectedColor = document.querySelector('.color-option.active');
+        const selectedSize = document.querySelector('.size-option.active');
+        
+        if (!selectedColor || !selectedSize) {
+            alert('Vui lòng chọn màu sắc và kích thước');
+            return;
+        }
+
+        const colorName = selectedColor.getAttribute('title');
+        const sizeName = selectedSize.textContent.trim();
+        
+        const addToCartBtn = document.querySelector('.add-to-cart');
+        const originalText = addToCartBtn.innerHTML;
+        
+        // Show loading state
+        addToCartBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang xử lý...';
+        addToCartBtn.disabled = true;
+        
+        // Send AJAX request to add to cart
+        fetch('/Orders/AddToCart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `productId=${productId}&size=${sizeName}&color=${colorName}&quantity=${quantity}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                addToCartBtn.innerHTML = '<i class="fas fa-check"></i> Đã thêm vào giỏ';
+                if (typeof updateCartCount === 'function') {
+                    updateCartCount();
+                }
+                // Redirect to shopping cart page after successful addition
+                setTimeout(() => {
+                    window.location.href = '/Products/ShoppingCart';
+                }, 1000);
+            } else {
+                alert(data.message || 'Có lỗi xảy ra khi thêm vào giỏ hàng');
+                addToCartBtn.innerHTML = originalText;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Có lỗi xảy ra khi thêm vào giỏ hàng');
+            addToCartBtn.innerHTML = originalText;
+        })
+        .finally(() => {
+            addToCartBtn.disabled = false;
+        });
+    }
+
+    // Quantity input validation
+    document.getElementById('quantity').addEventListener('change', function() {
+        const value = parseInt(this.value);
+        if (value < 1) this.value = 1;
+        if (value > 10) this.value = 10;
+    });
+</script>

@@ -1,84 +1,280 @@
-﻿@model IEnumerable<JDshop.Models.Order>
+﻿@* @model IEnumerable<JDshop.Models.Order> *@
 
-@{
-    ViewData["Title"] = "Index";
+@* @{ *@
+@*     ViewData["Title"] = "Index"; *@
 
-}
-<div class="page-header">
-    <h3 style="font-family:Helvetica;" class="page-title"> ĐƠN ĐẶT HÀNG </h3>
-    <nav aria-label="breadcrumb">
+@* } *@
+@* <div class="page-header"> *@
+@*     <h3 style="font-family:Helvetica;" class="page-title"> ĐƠN ĐẶT HÀNG </h3> *@
+@*     <nav aria-label="breadcrumb"> *@
 
-    </nav>
-</div>
+@*     </nav> *@
+@* </div> *@
 
-<div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
+@* <div class="col-lg-12 grid-margin stretch-card"> *@
+@*     <div class="card"> *@
+@*         <div class="card-body"> *@
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            Người đặt
-                        </th>
-                        <th>
-                            Email
-                        </th>
-                        <th>
-                            Tổng tiền
-                        </th>
+@*             <table class="table"> *@
+@*                 <thead> *@
+@*                     <tr> *@
+@*                         <th> *@
+@*                             Người đặt *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             Email *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             Tổng tiền *@
+@*                         </th> *@
 
-                        <th>
-                            Ngày đặt
-                        </th>
+@*                         <th> *@
+@*                             Ngày đặt *@
+@*                         </th> *@
 
-                        <th>
-                            Địa chỉ giao hàng
-                        </th>
+@*                         <th> *@
+@*                             Địa chỉ giao hàng *@
+@*                         </th> *@
 
-                        <th>
-                            Trạng thái
-                        </th>
-                        <th>Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @item.Account?.FullName
-                            </td>
-                            <td>
-                                @item.Account?.Email
-                            </td>
-                            <td>
-                                @item.Total
-                            </td>
+@*                         <th> *@
+@*                             Trạng thái *@
+@*                         </th> *@
+@*                         <th>Thao tác</th> *@
+@*                     </tr> *@
+@*                 </thead> *@
+@*                 <tbody> *@
+@*                     @foreach (var item in Model) *@
+@*                     { *@
+@*                         <tr> *@
+@*                             <td> *@
+@*                                 @item.Account?.FullName *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 @item.Account?.Email *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 @item.Total *@
+@*                             </td> *@
 
-                            <td>
-                                @(item.CreateDay.HasValue
-                                    ? item.CreateDay.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN"))
-                                    : "")
-                            </td>
-                            @* <td>
-                                @item?.CreateDay
-                            </td> *@
-                            <td>
-                                @item?.Account?.Addresses.FirstOrDefault()?.Street ,
-                                @item?.Account?.Addresses.FirstOrDefault()?.Ward,
-                                @item?.Account?.Addresses.FirstOrDefault()?.District,
-                                @item?.Account?.Addresses.FirstOrDefault()?.City
-                            </td>
+@*                             <td> *@
+@*                                 @(item.CreateDay.HasValue *@
+@*                                     ? item.CreateDay.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN")) *@
+@*                                     : "") *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 @item?.Account?.Addresses.FirstOrDefault()?.Street , *@
+@*                                 @item?.Account?.Addresses.FirstOrDefault()?.Ward, *@
+@*                                 @item?.Account?.Addresses.FirstOrDefault()?.District, *@
+@*                                 @item?.Account?.Addresses.FirstOrDefault()?.City *@
+@*                             </td> *@
 
 
-                            <td>Đã Hủy </td>
+@*                             <td>Đã Hủy </td> *@
 
                           
+@*                         </tr> *@
+@*                     } *@
+@*                 </tbody> *@
+@*             </table> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+
+
+
+
+
+
+
+@model IEnumerable<JDshop.Models.Order>
+
+@{
+    ViewData["Title"] = "Đơn hàng đã hủy";
+}
+
+<div class="container-fluid" style="background-color: #f8f9fa; min-height: 100vh; padding: 24px;">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h4 class="fw-bold text-dark mb-1">
+                <i class="fas fa-times-circle me-2"></i>Quản lý đơn hàng đã hủy
+            </h4>
+            <p class="text-muted mb-0">Quản lý thông tin và phân tích đơn hàng đã hủy</p>
+        </div>
+        <button class="btn btn-success rounded-pill px-4">
+            <i class="fas fa-chart-bar me-2"></i>Phân tích hủy đơn
+        </button>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card border-0 shadow-sm h-100" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);">
+                <div class="card-body text-white">
+                    <div class="d-flex align-items-center">
+                        <div class="rounded-3 p-3 me-3" style="background: rgba(255,255,255,0.2);">
+                            <i class="fas fa-times-circle fa-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="mb-0 fw-bold">@Model.Count()</h3>
+                            <p class="mb-0 opacity-75">Đã hủy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card border-0 shadow-sm h-100" style="background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%);">
+                <div class="card-body text-white">
+                    <div class="d-flex align-items-center">
+                        <div class="rounded-3 p-3 me-3" style="background: rgba(255,255,255,0.2);">
+                            <i class="fas fa-money-bill-wave fa-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="mb-0 fw-bold">@string.Format("{0:N0}", Model.Sum(x => x.Total))</h3>
+                            <p class="mb-0 opacity-75">Doanh thu mất</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card border-0 shadow-sm h-100" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                <div class="card-body text-white">
+                    <div class="d-flex align-items-center">
+                        <div class="rounded-3 p-3 me-3" style="background: rgba(255,255,255,0.2);">
+                            <i class="fas fa-chart-line fa-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="mb-0 fw-bold">@string.Format("{0:N0}", Model.Any() ? Model.Average(x => x.Total) : 0)</h3>
+                            <p class="mb-0 opacity-75">Giá trị TB/đơn hủy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card border-0 shadow-sm h-100" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <div class="card-body text-white">
+                    <div class="d-flex align-items-center">
+                        <div class="rounded-3 p-3 me-3" style="background: rgba(255,255,255,0.2);">
+                            <i class="fas fa-calendar-times fa-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="mb-0 fw-bold">@Model.Where(x => x.CreateDay.HasValue && x.CreateDay.Value.Date == DateTime.Today).Count()</h3>
+                            <p class="mb-0 opacity-75">Hủy hôm nay</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Section -->
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            <!-- Table Header -->
+            <div class="p-4 border-bottom">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold">
+                        <i class="fas fa-list me-2"></i>Danh sách đơn hàng đã hủy
+                    </h5>
+                    <div class="d-flex gap-2">
+                        <div class="position-relative">
+                            <input type="text" class="form-control rounded-pill ps-5" placeholder="Tìm kiếm đơn hàng..." style="width: 300px;">
+                            <i class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                        </div>
+                        <select class="form-select rounded-pill" style="width: auto;">
+                            <option>Tất cả lý do</option>
+                            <option>Khách hàng hủy</option>
+                            <option>Hết hàng</option>
+                            <option>Lỗi hệ thống</option>
+                        </select>
+                        <select class="form-select rounded-pill" style="width: auto;">
+                            <option>Tất cả thời gian</option>
+                            <option>Hôm nay</option>
+                            <option>7 ngày qua</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead style="background-color: #f8f9fa;">
+                        <tr>
+                            <th class="border-0 py-3 ps-4">Thông tin cá nhân</th>
+                            <th class="border-0 py-3">Tài khoản</th>
+                            <th class="border-0 py-3">Liên hệ</th>
+                            <th class="border-0 py-3">Giá trị</th>
+                            <th class="border-0 py-3">Ngày hủy</th>
+                            <th class="border-0 py-3">Trạng thái</th>
+                            <th class="border-0 py-3 text-center">Thao tác</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="ps-4 py-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="rounded-circle d-flex align-items-center justify-content-center me-3"
+                                             style="width: 40px; height: 40px; background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%); color: white; font-weight: bold;">
+                                            @(item.Account?.FullName?.Substring(0, 1).ToUpper() ?? "U")
+                                        </div>
+                                        <div>
+                                            <div class="fw-semibold">@item.Account?.FullName</div>
+                                            <div class="text-muted small">
+                                                <i class="fas fa-calendar me-1"></i>
+                                                @(item.CreateDay.HasValue ? item.CreateDay.Value.ToString("dd/MM/yyyy") : "")
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-3">
+                                    <span class="fw-semibold">#@item.Id</span>
+                                </td>
+                                <td class="py-3">
+                                    <div>
+                                        <div class="small">
+                                            <i class="fas fa-envelope me-1 text-muted"></i>@item.Account?.Email
+                                        </div>
+                                        <div class="small">
+                                            <i class="fas fa-phone me-1 text-muted"></i>@item.Account?.Phone
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-3">
+                                    <span class="fw-bold text-danger">@string.Format("{0:N0}", item.Total) đ</span>
+                                </td>
+                                <td class="py-3">
+                                    @(item.CreateDay.HasValue ? item.CreateDay.Value.ToString("dd/MM/yyyy") : "")
+                                </td>
+                                <td class="py-3">
+                                    <span class="badge bg-danger rounded-pill">
+                                        <i class="fas fa-times me-1"></i>Đã hủy
+                                    </span>
+                                </td>
+                                <td class="py-3 text-center">
+                                    <div class="d-flex justify-content-center gap-1">
+                                        <button class="btn btn-sm btn-outline-primary rounded-circle" style="width: 32px; height: 32px;" title="Xem chi tiết">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-warning rounded-circle" style="width: 32px; height: 32px;" title="Lý do hủy">
+                                            <i class="fas fa-question-circle"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-info rounded-circle" style="width: 32px; height: 32px;" title="Liên hệ khách hàng">
+                                            <i class="fas fa-envelope"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

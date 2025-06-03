@@ -1,56 +1,466 @@
-﻿@model JDshop.Models.ProductType
+﻿@* @model JDshop.Models.ProductType *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Create"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>THÊM</h1> *@
+
+@* <h4>Sản phẩm theo loại</h4> *@
+@* <hr /> *@
+@* <div class="row"> *@
+@*     <div class="col-md-4"> *@
+@*         <form asp-action="Create"> *@
+@*             <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="CategoryId" class="control-label">Loại sản phẩm</label> *@
+@*                 <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Name" class="control-label">Tên sản phẩm</label> *@
+@*                 <input asp-for="Name" class="form-control" /> *@
+@*                 <span asp-validation-for="Name" class="text-danger"></span> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Description" class="control-label">Mô tả</label> *@
+@*                 <input asp-for="Description" class="form-control" /> *@
+@*                 <span asp-validation-for="Description" class="text-danger"></span> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label>Trạng Thái</label> *@
+@*                 <select class="form-control" asp-for="Status" placeholder="" required> *@
+@*                     <option value="1" selected>Hoạt động</option> *@
+@*                     <option value="2">Ngừng hoạt động</option> *@
+
+@*                 </select> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <button type="submit" class="btn btn-gradient-primary me-2">Thêm mới</button> *@
+@*                 <a asp-action="Index" class="btn btn-light">Trở về</a> *@
+@*             </div> *@
+@*         </form> *@
+@*     </div> *@
+@* </div> *@
+
+@* @section Scripts { *@
+@*     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} *@
+@* } *@
+
+
+
+
+
+
+
+@model JDshop.Models.ProductType
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Thêm loại sản phẩm mới";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>THÊM</h1>
+<style>
+    .create-container {
+        margin: 0 auto;
+        padding: 2rem;
+    }
 
-<h4>Sản phẩm theo loại</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CategoryId" class="control-label">Loại sản phẩm</label>
-                <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label">Tên sản phẩm</label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label">Mô tả</label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label>Trạng Thái</label>
-                <select class="form-control" asp-for="Status" placeholder="" required>
-                    <option value="1" selected>Hoạt động</option>
-                    <option value="2">Ngừng hoạt động</option>
+    .page-header {
+        margin-bottom: 2rem;
+    }
 
-                </select>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-gradient-primary me-2">Thêm mới</button>
-                <a asp-action="Index" class="btn btn-light">Trở về</a>
-            </div>
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0;
+    }
 
-            @* <div class="form-group">
-                <input type="submit" value="Thêm mới" class="btn btn-primary" />
-            </div> *@
-        </form>
+    .page-subtitle {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+    .form-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    .form-icon {
+        width: 48px;
+        height: 48px;
+        background: #10b981;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .form-info {
+        flex: 1;
+    }
+
+    .form-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0;
+    }
+
+    .form-description {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin: 0.25rem 0 0 0;
+    }
+
+    .validation-summary {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 6px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        color: #dc2626;
+        font-size: 0.875rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #374151;
+        font-size: 0.875rem;
+    }
+
+        .form-label.required::after {
+            content: " *";
+            color: #dc2626;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+        background-color: #fff;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .form-control.is-invalid {
+            border-color: #dc2626;
+        }
+
+    .text-danger {
+        color: #dc2626;
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    .form-select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.5rem center;
+        background-repeat: no-repeat;
+        background-size: 1.5em 1.5em;
+        padding-right: 2.5rem;
+    }
+
+    .textarea-control {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .input-group {
+        position: relative;
+    }
+
+    .input-icon {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6b7280;
+        font-size: 0.875rem;
+        pointer-events: none;
+    }
+
+    .input-with-icon {
+        padding-left: 2.5rem;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #f3f4f6;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: 1px solid;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-success {
+        background: #10b981;
+        color: white;
+        border-color: #10b981;
+    }
+
+        .btn-success:hover {
+            background: #059669;
+            border-color: #059669;
+        }
+
+    .btn-secondary {
+        background: white;
+        color: #374151 !important;
+        border-color: #d1d5db;
+    }
+
+        .btn-secondary:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+        }
+
+    .help-text {
+        font-size: 0.75rem;
+        color: #6b7280;
+        margin-top: 0.25rem;
+    }
+
+    .success-message {
+        background: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        border-radius: 6px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        color: #166534;
+        font-size: 0.875rem;
+        display: none;
+    }
+
+    
+</style>
+
+<div class="create-container">
+    <div class="page-header">
+        <h1 class="page-title">Thêm loại sản phẩm mới</h1>
+        <p class="page-subtitle">Tạo loại sản phẩm mới cho hệ thống</p>
     </div>
+
+    <form asp-action="Create" id="createForm">
+        <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+        <div class="success-message" id="successMessage">
+            <i class="fas fa-check-circle me-2"></i>
+            Loại sản phẩm đã được tạo thành công!
+        </div>
+
+        <div class="form-card">
+            <div class="form-header">
+                <div class="form-icon">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="form-info">
+                    <h2 class="form-title">Thông tin loại sản phẩm</h2>
+                    <p class="form-description">Nhập thông tin chi tiết cho loại sản phẩm mới</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CategoryId" class="form-label required">
+                    <i class="fas fa-folder me-1"></i>
+                    Danh mục
+                </label>
+                <select asp-for="CategoryId" class="form-control form-select" asp-items="ViewBag.CategoryId">
+                    <option value="">-- Chọn danh mục --</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                <div class="help-text">Chọn danh mục chính cho loại sản phẩm này</div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="form-label required">
+                    <i class="fas fa-tag me-1"></i>
+                    Tên loại sản phẩm
+                </label>
+                <div class="input-group">
+                    <i class="fas fa-tag input-icon"></i>
+                    <input asp-for="Name" class="form-control input-with-icon" placeholder="Nhập tên loại sản phẩm..." />
+                </div>
+                <span asp-validation-for="Name" class="text-danger"></span>
+                <div class="help-text">Tên loại sản phẩm phải rõ ràng và dễ hiểu</div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="form-label">
+                    <i class="fas fa-align-left me-1"></i>
+                    Mô tả
+                </label>
+                <textarea asp-for="Description" class="form-control textarea-control"
+                          placeholder="Nhập mô tả chi tiết về loại sản phẩm..."></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+                <div class="help-text">Mô tả ngắn gọn về đặc điểm của loại sản phẩm này (tối đa 500 ký tự)</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required">
+                    <i class="fas fa-toggle-on me-1"></i>
+                    Trạng thái
+                </label>
+                <select class="form-control form-select" asp-for="Status" required>
+                    <option value="1" selected>Hoạt động</option>
+                    <option value="0">Ngừng hoạt động</option>
+                </select>
+                <div class="help-text">Trạng thái hiển thị của loại sản phẩm</div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i>
+                Hủy bỏ
+            </a>
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-plus"></i>
+                Tạo loại sản phẩm
+            </button>
+        </div>
+    </form>
 </div>
 
-@* <div>
-    <a asp-action="Index">Back to List</a>
-</div> *@
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        // Form validation
+        document.getElementById('createForm').addEventListener('submit', function(e) {
+            const name = document.querySelector('input[name="Name"]').value.trim();
+            const categoryId = document.querySelector('select[name="CategoryId"]').value;
+
+            if (!name) {
+                alert('Vui lòng nhập tên loại sản phẩm.');
+                e.preventDefault();
+                return;
+            }
+
+            if (!categoryId) {
+                alert('Vui lòng chọn danh mục.');
+                e.preventDefault();
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Đang tạo...';
+            submitBtn.disabled = true;
+
+            // Reset button after 3 seconds if form doesn't submit
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 3000);
+        });
+
+        // Auto-focus first input
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSelect = document.querySelector('select[name="CategoryId"]');
+            if (firstSelect) {
+                firstSelect.focus();
+            }
+        });
+
+        // Character counter for description
+        const descriptionTextarea = document.querySelector('textarea[name="Description"]');
+        if (descriptionTextarea) {
+            const maxLength = 500;
+            const helpText = descriptionTextarea.parentNode.querySelector('.help-text');
+
+            function updateCounter() {
+                const remaining = maxLength - descriptionTextarea.value.length;
+                helpText.textContent = `Mô tả ngắn gọn về đặc điểm của loại sản phẩm này (${remaining} ký tự còn lại)`;
+
+                if (remaining < 50) {
+                    helpText.style.color = '#dc2626';
+                } else {
+                    helpText.style.color = '#6b7280';
+                }
+            }
+
+            descriptionTextarea.addEventListener('input', updateCounter);
+            descriptionTextarea.setAttribute('maxlength', maxLength);
+            updateCounter();
+        }
+
+        // Real-time name validation
+        const nameInput = document.querySelector('input[name="Name"]');
+        if (nameInput) {
+            nameInput.addEventListener('input', function() {
+                const value = this.value.trim();
+                const helpText = this.parentNode.parentNode.querySelector('.help-text');
+
+                if (value.length < 3) {
+                    helpText.textContent = 'Tên loại sản phẩm phải có ít nhất 3 ký tự';
+                    helpText.style.color = '#dc2626';
+                } else if (value.length > 50) {
+                    helpText.textContent = 'Tên loại sản phẩm không được quá 50 ký tự';
+                    helpText.style.color = '#dc2626';
+                } else {
+                    helpText.textContent = 'Tên loại sản phẩm phải rõ ràng và dễ hiểu';
+                    helpText.style.color = '#6b7280';
+                }
+            });
+        }
+
+        // Auto-generate slug from name (if needed)
+        if (nameInput) {
+            nameInput.addEventListener('blur', function() {
+                const value = this.value.trim();
+                if (value) {
+                    // You can add slug generation logic here if needed
+                    console.log('Generated slug:', value.toLowerCase().replace(/\s+/g, '-'));
+                }
+            });
+        }
+    </script>
 }

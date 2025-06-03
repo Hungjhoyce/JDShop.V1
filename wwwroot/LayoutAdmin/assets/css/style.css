@@ -14445,6 +14445,12 @@ dl {
   width: 100%;
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
-  flex-grow: 1; }
+  flex-grow: 1;
+  max-width: 100%; /* Thêm max-width */
+  overflow-x: hidden; /* Thêm overflow-x */
+}
+
+
+  
 
 /*# sourceMappingURL=style.css.map */

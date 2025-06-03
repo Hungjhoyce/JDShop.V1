@@ -102,8 +102,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>eeb2rat8z1</Fingerprint>
-      <Integrity>yiaiYnieESHs+Q5FICIpRQaAX8hC8yOLZjMgqp2qN2I=</Integrity>
+      <Fingerprint>645hl8jz6o</Fingerprint>
+      <Integrity>JnmCsV9IE5w1Z4q0XQE1eQBNmUjj3A6rQn1trUs27Rw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\LayoutAdmin\assets\css\style.css'))</OriginalItemSpec>
@@ -125,6 +125,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\LayoutAdmin\assets\css\style.css.map'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\LayoutAdmin\assets\css\stylenew.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>JDShop</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/JDShop</BasePath>
+      <RelativePath>LayoutAdmin/assets/css/stylenew.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>e0z1goekgi</Fingerprint>
+      <Integrity>frcCV1k9oG9oKj3dpUqdJg1PxRT2RSN/XKdLCPjaYaY=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\LayoutAdmin\assets\css\stylenew.css'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\LayoutAdmin\assets\fonts\Ubuntu\Ubuntu-Bold.eot'))">
       <SourceType>Package</SourceType>
@@ -2172,8 +2190,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>4opmmbfq6g</Fingerprint>
-      <Integrity>jIJsEfihbRPoW2htTZXA41XJHF7bx3PWe9VJAqzSY5U=</Integrity>
+      <Fingerprint>gepeusm7fp</Fingerprint>
+      <Integrity>6Jk40HZ7J2GTiQul3aND/n3s0JpsMcJq+QKVbXSJPNI=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\LayoutAdmin\assets\scss\_vertical-wrapper.scss'))</OriginalItemSpec>
@@ -3900,11 +3918,29 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>5i6qjq1g3o</Fingerprint>
-      <Integrity>k7Er7c+60+32ZFGRoHBOyo8liKwei9o+xs5HvpV08fQ=</Integrity>
+      <Fingerprint>r1nrv7vg7q</Fingerprint>
+      <Integrity>kWfhaHJsKrqxuE6rgejyqY1v3edtZTSrJcnO95xfUvQ=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\User\css\style.css'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\User\css\stylenew.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>JDShop</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/JDShop</BasePath>
+      <RelativePath>User/css/stylenew.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>bq5arvkoc5</Fingerprint>
+      <Integrity>g1KYlaGuYYMmBw8D3Sr3U5OZkTAoD4H8Ht5YFaZnxYo=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\User\css\stylenew.css'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\User\fonts\ElegantIcons.eot'))">
       <SourceType>Package</SourceType>

@@ -1,77 +1,551 @@
-﻿@model Account
+﻿@* @model Account *@
 
-<h1>XÓA QUẢN LÝ</h1>
-<h3>Bạn có chắc là muốn xóa không?</h3>
+@* <h1>XÓA QUẢN LÝ</h1> *@
+@* <h3>Bạn có chắc là muốn xóa không?</h3> *@
 
-<div>
+@* <div> *@
 
-    <hr />
-    <br />
-    <dl class="row">
-        <dt class="col-sm-2">
+@*     <hr /> *@
+@*     <br /> *@
+@*     <dl class="row"> *@
+@*         <dt class="col-sm-2"> *@
 
-            Họ và tên
-        </dt>
-        <dd class="col-sm-10">
-            @Model.FullName
-        </dd>
-        <dt class="col-sm-2">
+@*             Họ và tên *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Model.FullName *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
 
-            Ngày sinh
-        </dt>
-        <dd class="col-sm-10">
-            @(Model.Birthday.HasValue
-                ? Model.Birthday.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN"))
-                : "")
-        </dd>
-       @*  <dd class="col-sm-10">
-            @Model.Birthday
-        </dd> *@
-        <dt class="col-sm-2">
+@*             Ngày sinh *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @(Model.Birthday.HasValue *@
+@*                 ? Model.Birthday.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN")) *@
+@*                 : "") *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
 
-            Email
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Email
-        </dd>
-        <dt class="col-sm-2">
+@*             Email *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Model.Email *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
 
-            Tài khoản
-        </dt>
-        <dd class="col-sm-10">
-            @Model.UserName
-        </dd>
-        <dt class="col-sm-2">
+@*             Tài khoản *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Model.UserName *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
 
-            Chức vụ
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Role?.Name
-        </dd>
+@*             Chức vụ *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Model.Role?.Name *@
+@*         </dd> *@
 
-        <dt class="col-sm-2">
+@*         <dt class="col-sm-2"> *@
 
-            TRẠNG THÁI
-        </dt>
+@*             TRẠNG THÁI *@
+@*         </dt> *@
 
-        @if (Model.Status == 1)
-        {
-            <dd class="col-sm-10">
-                Hoạt động
-            </dd>
-        }@if (Model.Status == 2)
-        {
-            <dd class="col-sm-10">
-                Ngừng hoạt động
-            </dd>
+@*         @if (Model.Status == 1) *@
+@*         { *@
+@*             <dd class="col-sm-10"> *@
+@*                 Hoạt động *@
+@*             </dd> *@
+@*         }@if (Model.Status == 2) *@
+@*         { *@
+@*             <dd class="col-sm-10"> *@
+@*                 Ngừng hoạt động *@
+@*             </dd> *@
+@*         } *@
+@*     </dl> *@
+@*     <br /> *@
+@*     <form asp-action="DeleteQL"> *@
+@*         <div style="float: left; padding-right:10px"> *@
+@*             <input type="hidden" asp-for="Id" /> *@
+@*             <input type="submit" value="Xóa" class="btn btn-danger" /> *@
+@*         </div> *@
+@*         <a class="btn btn-secondary" asp-action="Manage">Quay Lại</a> *@
+@*     </form> *@
+@* </div> *@
+
+
+
+
+
+
+
+
+
+
+@model Account
+
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .main-container {
+        background-color: #f5f5f7;
+        min-height: 100vh;
+        padding: 2rem;
+    }
+
+    .header-section {
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .header-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #d32f2f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .header-subtitle {
+        color: #86868b;
+        margin: 0.5rem 0 0 0;
+        font-size: 1rem;
+    }
+
+    .warning-container {
+        background: #fff3e0;
+        border: 2px solid #ff9800;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .warning-icon {
+        font-size: 2rem;
+        color: #ff9800;
+    }
+
+    .warning-text {
+        flex: 1;
+    }
+
+    .warning-title {
+        font-weight: 600;
+        color: #e65100;
+        margin: 0 0 0.5rem 0;
+        font-size: 1.1rem;
+    }
+
+    .warning-message {
+        color: #f57c00;
+        margin: 0;
+        font-size: 0.95rem;
+    }
+
+    .account-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        border: 1px solid #f0f0f0;
+        overflow: hidden;
+        margin-bottom: 2rem;
+    }
+
+    .card-header {
+        background: #f9f9f9;
+        padding: 1.5rem;
+        border-bottom: 1px solid #f0f0f0;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .avatar-container {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: #e9ecef;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: #6c757d;
+        flex-shrink: 0;
+    }
+
+    .avatar-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .user-info {
+        flex: 1;
+    }
+
+    .user-name {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 0.25rem 0;
+    }
+
+    .user-role {
+        color: #86868b;
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .info-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .info-label {
+        font-weight: 600;
+        color: #86868b;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .info-value {
+        font-size: 1rem;
+        color: #1d1d1f;
+        font-weight: 500;
+    }
+
+    .status-badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .status-active {
+        background: #d1f2eb;
+        color: #00875a;
+    }
+
+    .status-inactive {
+        background: #ffebe6;
+        color: #de350b;
+    }
+
+    .actions-container {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        border: 1px solid #f0f0f0;
+        padding: 2rem;
+    }
+
+    .actions-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 1.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .btn {
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 0.95rem;
+        min-width: 120px;
+        justify-content: center;
+    }
+
+    .btn-danger {
+        background: #d32f2f;
+        color: white;
+    }
+
+        .btn-danger:hover {
+            background: #b71c1c;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
         }
-    </dl>
-    <br />
-    <form asp-action="DeleteQL">
-        <div style="float: left; padding-right:10px">
-            <input type="hidden" asp-for="Id" />
-            <input type="submit" value="Xóa" class="btn btn-danger" />
+
+    .btn-secondary {
+        background: #f0f0f0;
+        color: #1d1d1f !important;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+            text-decoration: none;
+            color: #1d1d1f;
+        }
+
+    .danger-zone {
+        background: #ffebee;
+        border: 2px solid #f44336;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    .danger-title {
+        color: #d32f2f;
+        font-weight: 600;
+        margin: 0 0 0.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .danger-text {
+        color: #c62828;
+        margin: 0;
+        font-size: 0.9rem;
+    }
+
+    .loading {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+        .loading .btn-danger {
+            background: #86868b;
+        }
+</style>
+
+<div class="main-container">
+    <!-- Header Section -->
+    <div class="header-section">
+        <h1 class="header-title">
+            <i class="mdi mdi-delete-alert"></i>
+            Xác nhận xóa tài khoản
+        </h1>
+        <p class="header-subtitle">Thao tác này không thể hoàn tác</p>
+    </div>
+
+    <!-- Warning Container -->
+    <div class="warning-container">
+        <div class="warning-icon">
+            <i class="mdi mdi-alert-circle"></i>
         </div>
-        <a class="btn btn-secondary" asp-action="Manage">Quay Lại</a>
-    </form>
+        <div class="warning-text">
+            <h3 class="warning-title">Cảnh báo quan trọng!</h3>
+            <p class="warning-message">
+                Bạn đang thực hiện xóa tài khoản quản lý. Hành động này sẽ xóa vĩnh viễn tất cả dữ liệu liên quan và không thể khôi phục.
+            </p>
+        </div>
+    </div>
+
+    <!-- Account Information Card -->
+    <div class="account-card">
+        <div class="card-header">
+            <div class="avatar-container">
+                @if (!string.IsNullOrEmpty(Model.Avartar))
+                {
+                    <img src="@Url.Content("~/contents/Images/Admin/" + Model.Avartar)"
+                         class="avatar-image" alt="Avatar">
+                }
+                else
+                {
+                    <i class="mdi mdi-account"></i>
+                }
+            </div>
+            <div class="user-info">
+                <h2 class="user-name">@Model.FullName</h2>
+                <p class="user-role">@(Model.Role?.Name ?? "Chưa phân quyền")</p>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">
+                        <i class="mdi mdi-account"></i>
+                        Tên tài khoản
+                    </div>
+                    <div class="info-value">@Model.UserName</div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">
+                        <i class="mdi mdi-email"></i>
+                        Email
+                    </div>
+                    <div class="info-value">@Model.Email</div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">
+                        <i class="mdi mdi-phone"></i>
+                        Số điện thoại
+                    </div>
+                    <div class="info-value">@(Model.Phone ?? "Chưa cập nhật")</div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">
+                        <i class="mdi mdi-calendar"></i>
+                        Ngày sinh
+                    </div>
+                    <div class="info-value">
+                        @(Model.Birthday.HasValue
+                            ? Model.Birthday.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN"))
+                            : "Chưa cập nhật")
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">
+                        <i class="mdi mdi-shield-account"></i>
+                        Chức vụ
+                    </div>
+                    <div class="info-value">@(Model.Role?.Name ?? "Chưa phân quyền")</div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">
+                        <i class="mdi mdi-toggle-switch"></i>
+                        Trạng thái
+                    </div>
+                    <div class="info-value">
+                        @if (Model.Status == 1)
+                        {
+                            <span class="status-badge status-active">
+                                <i class="mdi mdi-check-circle"></i>
+                                Hoạt động
+                            </span>
+                        }
+                        else if (Model.Status == 2)
+                        {
+                            <span class="status-badge status-inactive">
+                                <i class="mdi mdi-close-circle"></i>
+                                Ngừng hoạt động
+                            </span>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Actions Container -->
+    <div class="actions-container">
+        <h3 class="actions-title">
+            <i class="mdi mdi-help-circle"></i>
+            Bạn có chắc chắn muốn xóa tài khoản này?
+        </h3>
+
+        <div class="danger-zone">
+            <h4 class="danger-title">
+                <i class="mdi mdi-skull"></i
+            </h4>
+            <p class="danger-text">
+                Sau khi xóa, tài khoản này sẽ bị xóa vĩnh viễn khỏi hệ thống.
+                Tất cả dữ liệu liên quan sẽ không thể khôi phục.
+            </p>
+        </div>
+
+        <form asp-action="DeleteQL" id="deleteForm">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-actions">
+                <a class="btn btn-secondary" asp-action="Manage">
+                    <i class="mdi mdi-arrow-left"></i>
+                    Hủy bỏ
+                </a>
+                <button type="submit" class="btn btn-danger" id="deleteBtn">
+                    <i class="mdi mdi-delete"></i>
+                    Xác nhận xóa
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('deleteForm');
+        var deleteBtn = document.getElementById('deleteBtn');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Double confirmation
+            var confirmed = confirm('Bạn có THỰC SỰ chắc chắn muốn xóa tài khoản "' + '@Model.FullName' + '"?\n\nHành động này KHÔNG THỂ hoàn tác!');
+
+            if (confirmed) {
+                var finalConfirm = confirm('Xác nhận lần cuối: Xóa tài khoản "' + '@Model.FullName' + '"?');
+
+                if (finalConfirm) {
+                    deleteBtn.innerHTML = '<i class="mdi mdi-loading mdi-spin"></i> Đang xóa...';
+                    deleteBtn.disabled = true;
+                    form.classList.add('loading');
+
+                    // Submit form after a short delay to show loading state
+                    setTimeout(function() {
+                        form.submit();
+                    }, 500);
+                }
+            }
+        });
+
+        // Add warning on page unload if user tries to leave
+        var hasSubmitted = false;
+
+        form.addEventListener('submit', function() {
+            hasSubmitted = true;
+        });
+
+        window.addEventListener('beforeunload', function(e) {
+            if (!hasSubmitted) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    });
+</script>

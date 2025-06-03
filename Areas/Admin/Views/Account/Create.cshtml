@@ -1,85 +1,882 @@
-﻿@model Account
-@{
-    ViewData["Title"] = "Create";
+﻿@* @model Account *@
+@* @{ *@
+@*     ViewData["Title"] = "Create"; *@
 
-}
-<div class="col-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">THÊM KHÁCH HÀNG</h4>
-            <p class="card-description"> Nhập thông tin  </p>
-            <form class="forms-sample" asp-action="Create" method="post" enctype="multipart/form-data">
-                <div class="form-group  flex-grow-1 mx-4">
-                    <div id="image-preview">
-                        <img id="preview" src="#" alt="" style="width: 200px; height: 200px; border-radius: 20px; display: none;">
-                        <br />
-                        <label asp-for="Avartar" class="control-label"></label>
-                        <input type="file" name="fAvatar" asp-for="Avartar" class="form-control-file" onchange="previewImage(this)" />
-                    </div>
-                    <span asp-validation-for="Avartar" class="text-danger"></span>
-                </div>
+@* } *@
+@* <div class="col-12 grid-margin stretch-card"> *@
+@*     <div class="card"> *@
+@*         <div class="card-body"> *@
+@*             <h4 class="card-title">THÊM KHÁCH HÀNG</h4> *@
+@*             <p class="card-description"> Nhập thông tin  </p> *@
+@*             <form class="forms-sample" asp-action="Create" method="post" enctype="multipart/form-data"> *@
+@*                 <div class="form-group  flex-grow-1 mx-4"> *@
+@*                     <div id="image-preview"> *@
+@*                         <img id="preview" src="#" alt="" style="width: 200px; height: 200px; border-radius: 20px; display: none;"> *@
+@*                         <br /> *@
+@*                         <label asp-for="Avartar" class="control-label"></label> *@
+@*                         <input type="file" name="fAvatar" asp-for="Avartar" class="form-control-file" onchange="previewImage(this)" /> *@
+@*                     </div> *@
+@*                     <span asp-validation-for="Avartar" class="text-danger"></span> *@
+@*                 </div> *@
 
-                <div class="form-group">
-                    <label>Tài khoản</label>
-                    <input type="" class="form-control" asp-for="UserName" placeholder="Tài khoản" required>
-                </div> 
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" class="form-control" asp-for="Email" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <label>SĐT</label>
-                    <input type="number" class="form-control" asp-for="Phone" placeholder="SĐT" required>
-                </div> <div class="form-group">
-                    <label>Họ Tên</label>
-                    <input class="form-control" asp-for="FullName" placeholder="Họ Tên" required>
-                </div>
-                <div class="form-group">
-                    <label>Ngày Sinh</label>
-                    <input class="form-control" asp-for="Birthday"type="date" placeholder="Ngày Sinh" required>
-                </div>
-                <div class="form-group">
-                    <label>Giới tính </label>
-                    <select class="form-control" asp-for="Gender" placeholder="" required>
-                        <option value="1" selected>Nam</option>
-                        <option value="2">Nữ</option>
+@*                 <div class="form-group"> *@
+@*                     <label>Tài khoản</label> *@
+@*                     <input type="" class="form-control" asp-for="UserName" placeholder="Tài khoản" required> *@
+@*                 </div>  *@
+@*                 <div class="form-group"> *@
+@*                     <label>Email</label> *@
+@*                     <input type="email" class="form-control" asp-for="Email" placeholder="Email" required> *@
+@*                 </div> *@
+@*                 <div class="form-group"> *@
+@*                     <label>SĐT</label> *@
+@*                     <input type="number" class="form-control" asp-for="Phone" placeholder="SĐT" required> *@
+@*                 </div> <div class="form-group"> *@
+@*                     <label>Họ Tên</label> *@
+@*                     <input class="form-control" asp-for="FullName" placeholder="Họ Tên" required> *@
+@*                 </div> *@
+@*                 <div class="form-group"> *@
+@*                     <label>Ngày Sinh</label> *@
+@*                     <input class="form-control" asp-for="Birthday"type="date" placeholder="Ngày Sinh" required> *@
+@*                 </div> *@
+@*                 <div class="form-group"> *@
+@*                     <label>Giới tính </label> *@
+@*                     <select class="form-control" asp-for="Gender" placeholder="" required> *@
+@*                         <option value="1" selected>Nam</option> *@
+@*                         <option value="2">Nữ</option> *@
 
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Trạng Thái </label>
-                    <select class="form-control" asp-for="Status" placeholder="" required>
-                        <option value="1" selected>Hoạt động</option>
-                        <option value="2">Ngừng hoạt động</option>
+@*                     </select> *@
+@*                 </div> *@
+@*                 <div class="form-group"> *@
+@*                     <label>Trạng Thái </label> *@
+@*                     <select class="form-control" asp-for="Status" placeholder="" required> *@
+@*                         <option value="1" selected>Hoạt động</option> *@
+@*                         <option value="2">Ngừng hoạt động</option> *@
 
-                    </select>
-                </div>
+@*                     </select> *@
+@*                 </div> *@
 
-                <button type="submit" class="btn btn-gradient-primary me-2">Thêm Mới</button>
+@*                 <button type="submit" class="btn btn-gradient-primary me-2">Thêm Mới</button> *@
               
-                    <a asp-action="Index" class="btn btn-light">Trở về</a>
+@*                     <a asp-action="Index" class="btn btn-light">Trở về</a> *@
               
-            </form>
+@*             </form> *@
           
-        </div>
+@*         </div> *@
        
+@*     </div> *@
+@* </div> *@
+
+@* @section scripts { *@
+@*     <script> *@
+@*         function previewImage(input) { *@
+@*             var preview = document.getElementById('preview'); *@
+@*             var imagePreview = document.getElementById('image-preview'); *@
+@*             if (input.files && input.files[0]) { *@
+@*                 var reader = new FileReader(); *@
+@*                 reader.onload = function (e) { *@
+@*                     preview.setAttribute('src', e.target.result); *@
+@*                     preview.style.display = 'block'; *@
+@*                     imagePreview.style.display = 'block'; *@
+@*                 } *@
+@*                 reader.readAsDataURL(input.files[0]); *@
+@*             } *@
+@*         } *@
+@*     </script> *@
+@* } *@
+
+
+
+
+
+
+
+
+
+@model Account
+
+@{
+    ViewData["Title"] = "Thêm tài khoản mới";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    var AccountTypeId = ViewBag.AccountTypeId;
+}
+
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .create-page {
+        padding: 2rem;
+        margin: 0 auto;
+    }
+
+    .page-header {
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 0.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .page-subtitle {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin: 0;
+    }
+
+    
+    .create-container {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 2rem;
+    }
+
+    .avatar-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        height: fit-content;
+        position: sticky;
+        top: 2rem;
+    }
+
+    .avatar-section {
+        text-align: center;
+    }
+
+    .avatar-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .avatar-upload-area {
+        width: 200px;
+        height: 200px;
+        border: 2px dashed #d2d2d7;
+        border-radius: 12px;
+        margin: 0 auto 1.5rem;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: #f8f9fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+        .avatar-upload-area:hover {
+            border-color: #007aff;
+            background: #f0f9ff;
+        }
+
+        .avatar-upload-area.has-image {
+            border-style: solid;
+            border-color: #10b981;
+        }
+
+    .upload-placeholder {
+        text-align: center;
+        color: #86868b;
+    }
+
+    .upload-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        color: #d1d5db;
+    }
+
+    .upload-text {
+        font-size: 0.875rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .upload-hint {
+        font-size: 0.75rem;
+        color: #9ca3af;
+    }
+
+    .avatar-preview {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .file-input {
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .upload-info {
+        font-size: 0.75rem;
+        color: #86868b;
+        text-align: center;
+        background: #f0f9ff;
+        border: 1px solid #bae6fd;
+        border-radius: 6px;
+        padding: 0.75rem;
+    }
+
+    .form-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    .form-icon {
+        width: 48px;
+        height: 48px;
+        background: #10b981;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .form-info {
+        flex: 1;
+    }
+
+    .form-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 0.25rem 0;
+    }
+
+    .form-description {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin: 0;
+    }
+
+    .validation-summary {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        color: #dc2626;
+        font-size: 0.875rem;
+    }
+
+    .form-sections {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .form-section {
+        border: 1px solid #f3f4f6;
+        border-radius: 8px;
+        padding: 1.5rem;
+        background: #fafbfc;
+    }
+
+    .section-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #1d1d1f;
+        font-size: 0.875rem;
+    }
+
+    .required {
+        color: #dc2626;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+        background-color: #fff;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #007aff;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+
+        .form-control.is-invalid {
+            border-color: #dc2626;
+        }
+
+    .text-danger {
+        color: #dc2626;
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    .input-group {
+        position: relative;
+    }
+
+    .input-icon {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #86868b;
+        font-size: 0.875rem;
+        z-index: 1;
+    }
+
+    .input-group .form-control {
+        padding-left: 2.5rem;
+    }
+
+    .help-text {
+        font-size: 0.75rem;
+        color: #86868b;
+        margin-top: 0.25rem;
+    }
+
+    .password-generator {
+        background: #f0f9ff;
+        border: 1px solid #bae6fd;
+        border-radius: 6px;
+        padding: 0.75rem;
+        margin-top: 0.5rem;
+    }
+
+    .generator-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #0369a1;
+        font-size: 0.75rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+
+    .generator-btn {
+        background: #007aff;
+        color: white;
+        border: none;
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+        .generator-btn:hover {
+            background: #0056b3;
+        }
+
+    .status-preview {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        background: #f8f9fa;
+        border-radius: 6px;
+    }
+
+    .status-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+
+    .status-active .status-indicator {
+        background: #10b981;
+    }
+
+    .status-inactive .status-indicator {
+        background: #ef4444;
+    }
+
+    .status-text {
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #f3f4f6;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-cancel {
+        background: #f5f5f7;
+        color: #1d1d1f;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-cancel:hover {
+            background: #e8e8ed;
+            border-color: #9ca3af;
+        }
+
+    .btn-create {
+        background: #10b981;
+        color: white;
+    }
+
+        .btn-create:hover {
+            background: #059669;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-create:disabled {
+            background: #d1d5db;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+    
+</style>
+
+<div class="create-page">
+   
+
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="fas fa-user-plus"></i>
+            Thêm tài khoản mới
+        </h1>
+        <p class="page-subtitle">Tạo tài khoản khách hàng mới trong hệ thống</p>
+    </div>
+
+    <div class="create-container">
+        <!-- Avatar Card -->
+        <div class="avatar-card">
+            <div class="avatar-section">
+                <h3 class="avatar-title">
+                    <i class="fas fa-camera"></i>
+                    Ảnh đại diện
+                </h3>
+
+                <div class="avatar-upload-area" onclick="document.getElementById('avatarInput').click()">
+                    <input type="file" name="fAvatar" asp-for="Avartar" id="avatarInput" class="file-input" onchange="previewImage(this)" accept="image/*" />
+
+                    <div class="upload-placeholder" id="uploadPlaceholder">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <div class="upload-text">Nhấp để chọn ảnh</div>
+                        <div class="upload-hint">hoặc kéo thả vào đây</div>
+                    </div>
+                </div>
+
+                <div class="upload-info">
+                    <i class="fas fa-info-circle me-1"></i>
+                    Định dạng: JPG, PNG<br>
+                    Kích thước tối đa: 5MB
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Card -->
+        <div class="form-card">
+            <div class="form-header">
+                <div class="form-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="form-info">
+                    <h3 class="form-title">Thông tin tài khoản</h3>
+                    <p class="form-description">Nhập đầy đủ thông tin để tạo tài khoản mới</p>
+                </div>
+            </div>
+
+            <form asp-action="Create" method="post" enctype="multipart/form-data" id="createForm">
+                <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+                <div class="form-sections">
+                    <!-- Account Information -->
+                    <div class="form-section">
+                        <h4 class="section-title">
+                            <i class="fas fa-user-cog"></i>
+                            Thông tin đăng nhập
+                        </h4>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label asp-for="UserName" class="form-label">
+                                    <i class="fas fa-at me-1"></i>
+                                    Tên đăng nhập <span class="required">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <i class="fas fa-at input-icon"></i>
+                                    <input asp-for="UserName" class="form-control" placeholder="Nhập tên đăng nhập..." required />
+                                </div>
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                                <div class="help-text">Tên đăng nhập phải duy nhất và không thể thay đổi</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Email" class="form-label">
+                                    <i class="fas fa-envelope me-1"></i>
+                                    Email <span class="required">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <i class="fas fa-envelope input-icon"></i>
+                                    <input asp-for="Email" class="form-control" type="email" placeholder="Nhập địa chỉ email..." required />
+                                </div>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label class="form-label">
+                                    <i class="fas fa-key me-1"></i>
+                                    Mật khẩu tạm thời
+                                </label>
+                                <div class="password-generator">
+                                    <div class="generator-header">
+                                        <i class="fas fa-magic"></i>
+                                        Mật khẩu mặc định sẽ được tạo tự động
+                                    </div>
+                                    <button type="button" class="generator-btn" onclick="generatePassword()">
+                                        <i class="fas fa-refresh me-1"></i>
+                                        Tạo mật khẩu mới
+                                    </button>
+                                    <div class="help-text">Khách hàng sẽ được yêu cầu đổi mật khẩu khi đăng nhập lần đầu</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h4 class="section-title">
+                            <i class="fas fa-user"></i>
+                            Thông tin cá nhân
+                        </h4>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label asp-for="FullName" class="form-label">
+                                    <i class="fas fa-user me-1"></i>
+                                    Họ và tên <span class="required">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <i class="fas fa-user input-icon"></i>
+                                    <input asp-for="FullName" class="form-control" placeholder="Nhập họ và tên..." required />
+                                </div>
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Phone" class="form-label">
+                                    <i class="fas fa-phone me-1"></i>
+                                    Số điện thoại <span class="required">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <i class="fas fa-phone input-icon"></i>
+                                    <input asp-for="Phone" class="form-control" placeholder="Nhập số điện thoại..." required />
+                                </div>
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Birthday" class="form-label">
+                                    <i class="fas fa-birthday-cake me-1"></i>
+                                    Ngày sinh
+                                </label>
+                                <div class="input-group">
+                                    <i class="fas fa-calendar input-icon"></i>
+                                    <input asp-for="Birthday" class="form-control" type="date" />
+                                </div>
+                                <span asp-validation-for="Birthday" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Gender" class="form-label">
+                                    <i class="fas fa-venus-mars me-1"></i>
+                                    Giới tính
+                                </label>
+                                <select asp-for="Gender" class="form-control">
+                                    <option value="">-- Chọn giới tính --</option>
+                                    <option value="1">Nam</option>
+                                    <option value="2">Nữ</option>
+                                </select>
+                                <span asp-validation-for="Gender" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Settings -->
+                    <div class="form-section">
+                        <h4 class="section-title">
+                            <i class="fas fa-cog"></i>
+                            Cài đặt tài khoản
+                        </h4>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label asp-for="AccountTypeId" class="form-label">
+                                    <i class="fas fa-crown me-1"></i>
+                                    Loại tài khoản
+                                </label>
+                                <select asp-for="AccountTypeId" asp-items="AccountTypeId" class="form-control">
+                                    <option value="">-- Chọn loại tài khoản --</option>
+                                </select>
+                                <span asp-validation-for="AccountTypeId" class="text-danger"></span>
+                                <div class="help-text">Loại tài khoản xác định quyền hạn và ưu đãi</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Point" class="form-label">
+                                    <i class="fas fa-star me-1"></i>
+                                    Điểm tích lũy ban đầu
+                                </label>
+                                <div class="input-group">
+                                    <i class="fas fa-star input-icon"></i>
+                                    <input asp-for="Point" class="form-control" type="number" min="0" value="0" placeholder="0" />
+                                </div>
+                                <span asp-validation-for="Point" class="text-danger"></span>
+                                <div class="help-text">Điểm tích lũy ban đầu cho tài khoản mới</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Status" class="form-label">
+                                    <i class="fas fa-toggle-on me-1"></i>
+                                    Trạng thái tài khoản
+                                </label>
+                                <select asp-for="Status" class="form-control" onchange="updateStatusPreview(this.value)">
+                                    <option value="1" selected>Hoạt động</option>
+                                    <option value="2">Ngừng hoạt động</option>
+                                </select>
+                                <span asp-validation-for="Status" class="text-danger"></span>
+                                <div class="status-preview status-active" id="statusPreview">
+                                    <div class="status-indicator"></div>
+                                    <span class="status-text">Tài khoản sẽ được kích hoạt ngay</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <a asp-action="Index" class="btn btn-cancel">
+                        <i class="fas fa-arrow-left"></i>
+                        Hủy bỏ
+                    </a>
+
+                    <button type="submit" class="btn btn-create" id="createBtn">
+                        <i class="fas fa-plus"></i>
+                        Tạo tài khoản
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-@section scripts {
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form validation
+            const form = document.getElementById('createForm');
+            const createBtn = document.getElementById('createBtn');
+
+            form.addEventListener('submit', function(e) {
+                // Show loading state
+                createBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Đang tạo...';
+                createBtn.disabled = true;
+
+                // Reset button after 3 seconds if form doesn't submit
+                setTimeout(() => {
+                    createBtn.innerHTML = '<i class="fas fa-plus me-2"></i>Tạo tài khoản';
+                    createBtn.disabled = false;
+                }, 3000);
+            });
+
+            // Auto-focus first input
+            const firstInput = form.querySelector('input[type="text"]');
+            if (firstInput) {
+                firstInput.focus();
+            }
+        });
+
+        // Image preview function
         function previewImage(input) {
-            var preview = document.getElementById('preview');
-            var imagePreview = document.getElementById('image-preview');
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    preview.setAttribute('src', e.target.result);
-                    preview.style.display = 'block';
-                    imagePreview.style.display = 'block';
+            const file = input.files[0];
+            const uploadArea = input.closest('.avatar-upload-area');
+            const placeholder = document.getElementById('uploadPlaceholder');
+
+            if (file) {
+                // Validate file size (5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('Kích thước file không được vượt quá 5MB');
+                    input.value = '';
+                    return;
                 }
-                reader.readAsDataURL(input.files[0]);
+
+                // Validate file type
+                if (!file.type.startsWith('image/')) {
+                    alert('Vui lòng chọn file ảnh (JPG, PNG)');
+                    input.value = '';
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Create preview image
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.className = 'avatar-preview';
+                    img.alt = 'Avatar Preview';
+
+                    // Replace placeholder with image
+                    uploadArea.innerHTML = '';
+                    uploadArea.appendChild(input); // Keep the input
+                    uploadArea.appendChild(img);
+                    uploadArea.classList.add('has-image');
+                };
+                reader.readAsDataURL(file);
             }
         }
+
+        // Status preview function
+        function updateStatusPreview(status) {
+            const preview = document.getElementById('statusPreview');
+            const text = preview.querySelector('.status-text');
+
+            if (status == '1') {
+                preview.className = 'status-preview status-active';
+                text.textContent = 'Tài khoản sẽ được kích hoạt ngay';
+            } else {
+                preview.className = 'status-preview status-inactive';
+                text.textContent = 'Tài khoản sẽ bị tạm khóa';
+            }
+        }
+
+        // Generate password function
+        function generatePassword() {
+            alert('Mật khẩu mặc định sẽ được tạo tự động khi tạo tài khoản.\nKhách hàng sẽ nhận được email hướng dẫn đăng nhập.');
+        }
+
+        // Phone number formatting
+        document.querySelector('input[name="Phone"]')?.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 10) {
+                value = value.substring(0, 10);
+            }
+            e.target.value = value;
+        });
+
+        // Username validation
+        document.querySelector('input[name="UserName"]')?.addEventListener('input', function(e) {
+            // Remove spaces and special characters
+            e.target.value = e.target.value.replace(/[^a-zA-Z0-9_]/g, '').toLowerCase();
+        });
+
+        // Points validation
+        document.querySelector('input[name="Point"]')?.addEventListener('input', function(e) {
+            if (e.target.value < 0) {
+                e.target.value = 0;
+            }
+        });
+
+        // Drag and drop functionality
+        const uploadArea = document.querySelector('.avatar-upload-area');
+
+        uploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#007aff';
+            this.style.background = '#f0f9ff';
+        });
+
+        uploadArea.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#d2d2d7';
+            this.style.background = '#f8f9fa';
+        });
+
+        uploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#d2d2d7';
+            this.style.background = '#f8f9fa';
+
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                const input = document.getElementById('avatarInput');
+                input.files = files;
+                previewImage(input);
+            }
+        });
     </script>
 }

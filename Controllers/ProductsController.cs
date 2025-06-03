@@ -83,7 +83,10 @@ namespace JDshop.Controllers
 
         public IActionResult Details(int id)
         {
-            var product = _context.Products.Include(x => x.Images).FirstOrDefault(p => p.Id == id);
+            var product = _context.Products.Include(x => x.Images)
+                .Include(x => x.ProductSizeColors).ThenInclude(x => x.Color)
+                .Include(x => x.ProductSizeColors).ThenInclude(x => x.Size)
+                .FirstOrDefault(p => p.Id == id);
             return View(product);
         }
 

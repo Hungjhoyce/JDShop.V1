@@ -1,78 +1,397 @@
-﻿@model Account
+﻿@* @model Account *@
 
-<h1>XEM CHI TIẾT</h1>
+@* <h1>XEM CHI TIẾT</h1> *@
 
-<div>
+@* <div> *@
 
-    <hr />
-    <br />
-    <dl class="row">
-        <dt class="col-sm-2">
+@*     <hr /> *@
+@*     <br /> *@
+@*     <dl class="row"> *@
+@*         <dt class="col-sm-2"> *@
 
-            Họ và tên
-        </dt>
-        <dd class="col-sm-10">
-            @Model.FullName
-        </dd>
-        <dt class="col-sm-2">
+@*             Họ và tên *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Model.FullName *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
 
-            Ngày sinh
-        </dt>
-        <dd class="col-sm-10">
-            @(Model.Birthday.HasValue
-                ? Model.Birthday.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN"))
-                : "")
-        </dd>
-        @* <dd class="col-sm-10">
-            @Model.Birthday
-        </dd> *@
-        <dt class="col-sm-2">
+@*             Ngày sinh *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @(Model.Birthday.HasValue *@
+@*                 ? Model.Birthday.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN")) *@
+@*                 : "") *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
 
-            Email
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Email
-        </dd>
-        <dt class="col-sm-2">
+@*             Email *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Model.Email *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
 
-            Tài khoản
-        </dt>
-        <dd class="col-sm-10">
-            @Model.UserName
-        </dd>
+@*             Tài khoản *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Model.UserName *@
+@*         </dd> *@
 
         
-        <dt class="col-sm-2">
+@*         <dt class="col-sm-2"> *@
 
-            Chức vụ
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Role?.Name
-        </dd>
+@*             Chức vụ *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Model.Role?.Name *@
+@*         </dd> *@
 
-        <dt class="col-sm-2">
+@*         <dt class="col-sm-2"> *@
 
-            TRẠNG THÁI
-        </dt>
+@*             TRẠNG THÁI *@
+@*         </dt> *@
 
-        @if (Model.Status == 1)
-        {
-            <dd class="col-sm-10">
-                Hoạt động
-            </dd>
-        }@if (Model.Status == 2)
-        {
-            <dd class="col-sm-10">
-                Ngừng hoạt động
-            </dd>
+@*         @if (Model.Status == 1) *@
+@*         { *@
+@*             <dd class="col-sm-10"> *@
+@*                 Hoạt động *@
+@*             </dd> *@
+@*         }@if (Model.Status == 2) *@
+@*         { *@
+@*             <dd class="col-sm-10"> *@
+@*                 Ngừng hoạt động *@
+@*             </dd> *@
+@*         } *@
+@*     </dl> *@
+@*     <br /> *@
+
+@* </div> *@
+@* <div> *@
+@*     <div style="float: left; padding-right:10px"> *@
+@*         <a class="btn btn-primary" asp-action="EditQL" asp-route-id="@Model?.Id">Sửa</a> *@
+@*     </div> *@
+@*     <a class="btn btn-secondary" asp-action="Manage">Quay Lại</a> *@
+@* </div> *@
+
+
+
+
+
+
+
+
+@model Account
+
+@{
+    ViewData["Title"] = "Chi tiết tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    body {
+        background-color: #f3f4f6;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .details-container {
+        padding: 2rem;
+        margin: 0 auto;
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0;
+    }
+
+    .page-subtitle {
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin: 0;
+    }
+
+    .account-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+    }
+
+    .card-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .account-icon {
+        width: 48px;
+        height: 48px;
+        background: #3b82f6;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .card-info {
+        flex: 1;
+    }
+
+    .account-name {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0 0 0.25rem 0;
+    }
+
+    .card-subtitle {
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin: 0;
+    }
+
+    .account-details {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .detail-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+        .detail-row:last-child {
+            border-bottom: none;
         }
-    </dl>
-    <br />
 
-</div>
-<div>
-    <div style="float: left; padding-right:10px">
-        <a class="btn btn-primary" asp-action="EditQL" asp-route-id="@Model?.Id">Sửa</a>
+    .detail-icon {
+        width: 20px;
+        color: #6b7280;
+        font-size: 0.875rem;
+        text-align: center;
+        flex-shrink: 0;
+    }
+
+    .detail-label {
+        font-size: 0.875rem;
+        color: #6b7280;
+        min-width: 120px;
+        flex-shrink: 0;
+        font-weight: 500;
+    }
+
+    .detail-value {
+        font-size: 0.875rem;
+        color: #1f2937;
+        flex: 1;
+        font-weight: 500;
+    }
+
+    .empty-value {
+        color: #9ca3af;
+        font-style: italic;
+    }
+
+    .status-badge {
+        background: #d1fae5;
+        color: #065f46;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        display: inline-block;
+    }
+
+    .status-inactive {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+
+    .role-badge {
+        background: #dbeafe;
+        color: #1e40af;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        display: inline-block;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        margin-top: 2rem;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-primary {
+        background: #3b82f6;
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+
+    .btn-secondary {
+        background: #f3f4f6;
+        color: #374151 !important;
+        border: 1px solid #d1d5db;
+    }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+    
+</style>
+
+<div class="details-container">
+    <div class="page-header">
+        <h1 class="page-title">Chi tiết tài khoản</h1>
+        <p class="page-subtitle">Xem thông tin chi tiết tài khoản</p>
     </div>
-    <a class="btn btn-secondary" asp-action="Manage">Quay Lại</a>
+
+    <div class="account-card">
+        <div class="card-header">
+            <div class="account-icon">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="card-info">
+                <h3 class="account-name">@(Model.FullName ?? Model.UserName)</h3>
+                <p class="card-subtitle">Thông tin chi tiết tài khoản người dùng</p>
+            </div>
+        </div>
+
+        <div class="account-details">
+            <div class="detail-row">
+                <i class="fas fa-user detail-icon"></i>
+                <span class="detail-label">Họ và tên</span>
+                <span class="detail-value">
+                    @if (!string.IsNullOrEmpty(Model.FullName))
+                    {
+                        @Model.FullName
+                    }
+                    else
+                    {
+                        <span class="empty-value">Chưa cập nhật</span>
+                    }
+                </span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-birthday-cake detail-icon"></i>
+                <span class="detail-label">Ngày sinh</span>
+                <span class="detail-value">
+                    @if (Model.Birthday.HasValue)
+                    {
+                        @Model.Birthday.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN"))
+                    }
+                    else
+                    {
+                        <span class="empty-value">Chưa cập nhật</span>
+                    }
+                </span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-envelope detail-icon"></i>
+                <span class="detail-label">Email</span>
+                <span class="detail-value">
+                    @if (!string.IsNullOrEmpty(Model.Email))
+                    {
+                        @Model.Email
+                    }
+                    else
+                    {
+                        <span class="empty-value">Chưa cập nhật</span>
+                    }
+                </span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-at detail-icon"></i>
+                <span class="detail-label">Tài khoản</span>
+                <span class="detail-value">@Model.UserName</span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-user-tag detail-icon"></i>
+                <span class="detail-label">Chức vụ</span>
+                <span class="detail-value">
+                    @if (!string.IsNullOrEmpty(Model.Role?.Name))
+                    {
+                        <span class="role-badge">@Model.Role.Name</span>
+                    }
+                    else
+                    {
+                        <span class="empty-value">Chưa phân quyền</span>
+                    }
+                </span>
+            </div>
+
+            <div class="detail-row">
+                <i class="fas fa-toggle-on detail-icon"></i>
+                <span class="detail-label">Trạng thái</span>
+                <span class="detail-value">
+                    @if (Model.Status == 1)
+                    {
+                        <span class="status-badge">Hoạt động</span>
+                    }
+                    else if (Model.Status == 2)
+                    {
+                        <span class="status-badge status-inactive">Ngừng hoạt động</span>
+                    }
+                    else
+                    {
+                        <span class="empty-value">Không xác định</span>
+                    }
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <a class="btn btn-secondary" asp-action="Manage">
+            <i class="fas fa-arrow-left"></i>
+            Quay lại
+        </a>
+
+        <a class="btn btn-primary" asp-action="EditQL" asp-route-id="@Model?.Id">
+            <i class="fas fa-edit"></i>
+            Sửa
+        </a>
+    </div>
 </div>

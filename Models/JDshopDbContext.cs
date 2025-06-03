@@ -243,6 +243,12 @@ public partial class JDshopDbContext : DbContext
             entity.HasOne(d => d.Category).WithMany(p => p.ProductTypes)
                 .HasForeignKey(d => d.CategoryId)
                 .HasConstraintName("FK_ProductTypes_Category");
+            
+            entity.HasOne(d => d.Product).WithMany()
+                .HasForeignKey(d => d.ProductId)
+                .HasConstraintName("FK_ProductTypes_Product");
+            
+
         });
 
         modelBuilder.Entity<ProductsInventory>(entity =>

@@ -1,48 +1,683 @@
-﻿@model IEnumerable<JDshop.Models.Size>
+﻿@* @model IEnumerable<JDshop.Models.Size> *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Index"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+@* <div class="page-header"> *@
+@*     <h3 style="font-family:Helvetica;" class="page-title"> Quản lý Size </h3> *@
+@*     <nav aria-label="breadcrumb"> *@
+
+@*     </nav> *@
+@* </div> *@
+
+@* <div class="col-lg-12 grid-margin stretch-card"> *@
+@*     <div class="card"> *@
+@*         <div class="card-body"> *@
+@*             <p> *@
+@*                 <a asp-action="Create" class="btn btn-success mb-2">Thêm</a> *@
+@*             </p> *@
+@*             <table class="table"> *@
+@*                 <thead> *@
+@*                     <tr> *@
+@*                         <th> *@
+@*                             Size *@
+@*                         </th> *@
+@*                         <th></th> *@
+@*                     </tr> *@
+@*                 </thead> *@
+@*                 <tbody> *@
+@*                     @foreach (var item in Model) *@
+@*                     { *@
+@*                         <tr> *@
+@*                             <td> *@
+@*                                 @Html.DisplayFor(modelItem => item.Size1) *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 <a asp-action="Details" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-eye" style="color:#19b6ff;font-size:25px;"></i>  </a> *@
+@*                                 <a asp-action="Edit" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-square-edit-outline" style="color:#ffd83b;font-size:25px;"></i></a> *@
+@*                                 <a asp-action="Delete" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-delete" style="color:#e75555;font-size:25px;"></i></a> *@
+@*                             </td> *@
+@*                         </tr> *@
+@*                     } *@
+@*                 </tbody> *@
+@*             </table> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+
+
+
+
+
+
+@model IEnumerable<JDshop.Models.Size>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Quản lý kích thước";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-<div class="page-header">
-    <h3 style="font-family:Helvetica;" class="page-title"> Quản lý Size </h3>
-    <nav aria-label="breadcrumb">
 
-    </nav>
-</div>
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-<div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <p>
-                <a asp-action="Create" class="btn btn-success mb-2">Thêm</a>
-            </p>
-            <table class="table">
+    .page-container {
+        padding: 2rem;
+        margin: 0 auto;
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .page-subtitle {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin-top: 0.25rem;
+    }
+
+    .header-actions {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    .stats-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.25rem;
+    }
+
+        .stat-icon.total {
+            background: #8b5cf6;
+        }
+
+        .stat-icon.popular {
+            background: #f59e0b;
+        }
+
+        .stat-icon.categories {
+            background: #10b981;
+        }
+
+    .stat-label {
+        font-size: 0.875rem;
+        color: #86868b;
+        font-weight: 500;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1d1d1f;
+    }
+
+    .table-container {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-header {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-bottom: 1px solid #e5e7eb;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .table-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .search-box {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    .search-input {
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        width: 250px;
+    }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #007aff;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+
+    .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .custom-table th {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            color: #1d1d1f;
+            font-size: 0.875rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .custom-table td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 0.875rem;
+            color: #1d1d1f;
+        }
+
+        .custom-table tr:hover {
+            background: #f9fafb;
+        }
+
+    .size-display {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .size-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        color: white;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .size-info {
+        flex: 1;
+    }
+
+    .size-name {
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 0.25rem;
+    }
+
+    .size-category {
+        font-size: 0.75rem;
+        color: #86868b;
+        background: #f3f4f6;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        display: inline-block;
+    }
+
+    .actions-cell {
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .action-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        text-decoration: none;
+    }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+    .btn-view {
+        background: #dbeafe;
+        color: #1d4ed8;
+    }
+
+        .btn-view:hover {
+            background: #bfdbfe;
+        }
+
+    .btn-edit {
+        background: #fef3c7;
+        color: #d97706;
+    }
+
+        .btn-edit:hover {
+            background: #fde68a;
+        }
+
+    .btn-delete {
+        background: #fee2e2;
+        color: #dc2626;
+    }
+
+        .btn-delete:hover {
+            background: #fecaca;
+        }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-success {
+        background: #10b981;
+        color: white;
+    }
+
+        .btn-success:hover {
+            background: #059669;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+        }
+
+    .btn-outline {
+        background: white;
+        color: #1d1d1f;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-outline:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+        }
+
+    .empty-state {
+        text-align: center;
+        padding: 3rem;
+        color: #86868b;
+    }
+
+    .empty-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #d1d5db;
+    }
+
+    .size-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .size-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s;
+        text-align: center;
+    }
+
+        .size-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .size-card .size-badge {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            font-size: 1.125rem;
+        }
+
+    .view-toggle {
+        display: flex;
+        gap: 0.5rem;
+        background: #f3f4f6;
+        padding: 0.25rem;
+        border-radius: 8px;
+    }
+
+    .toggle-btn {
+        padding: 0.5rem 1rem;
+        border: none;
+        background: transparent;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+    }
+
+        .toggle-btn.active {
+            background: white;
+            color: #007aff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+
+</style>
+
+<div class="page-container">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">
+                <i class="fas fa-expand-arrows-alt"></i>
+                Quản lý kích thước
+            </h1>
+            <p class="page-subtitle">Quản lý danh sách kích thước sản phẩm</p>
+        </div>
+        <div class="header-actions">
+            <div class="view-toggle">
+                <button class="toggle-btn active" onclick="switchView('table')">
+                    <i class="fas fa-list"></i>
+                    Bảng
+                </button>
+                <button class="toggle-btn" onclick="switchView('grid')">
+                    <i class="fas fa-th"></i>
+                    Lưới
+                </button>
+            </div>
+            <a asp-action="Create" class="btn btn-success">
+                <i class="fas fa-plus"></i>
+                Thêm size
+            </a>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="stats-cards">
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon total">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </div>
+                <div>
+                    <div class="stat-label">Tổng kích thước</div>
+                    <div class="stat-value">@Model.Count()</div>
+                </div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon popular">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <div class="stat-label">Size phổ biến</div>
+                    <div class="stat-value">@(Model.Any() ? Model.First().Size1 : "Chưa có")</div>
+                </div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon categories">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <div>
+                    <div class="stat-label">Loại size</div>
+                    <div class="stat-value">@GetSizeCategories(Model).Count()</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grid View -->
+    <div id="gridView" class="size-grid" style="display: none;">
+        @foreach (var item in Model)
+        {
+            <div class="size-card">
+                <div class="size-badge">@item.Size1</div>
+                <div class="size-name">Size @item.Size1</div>
+                <div class="size-category">@GetSizeCategory(item.Size1)</div>
+                <div class="action-buttons" style="margin-top: 1rem;">
+                    <a asp-action="Details" asp-route-id="@item.Id" class="action-btn btn-view" title="Xem chi tiết">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="action-btn btn-edit" title="Chỉnh sửa">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="action-btn btn-delete" title="Xóa">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Table View -->
+    <div id="tableView" class="table-container">
+        <div class="table-header">
+            <h3 class="table-title">
+                <i class="fas fa-list"></i>
+                Danh sách kích thước
+            </h3>
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Tìm kiếm kích thước..." id="searchInput">
+            </div>
+        </div>
+
+        @if (Model.Any())
+        {
+            <table class="custom-table">
                 <thead>
                     <tr>
                         <th>
-                            Size
-                            @* @Html.DisplayNameFor(model => model.Size1) *@
+                            <i class="fas fa-expand-arrows-alt me-1"></i>
+                            Kích thước
                         </th>
-                        <th></th>
+                        <th>
+                            <i class="fas fa-layer-group me-1"></i>
+                            Phân loại
+                        </th>
+                        <th>
+                            <i class="fas fa-info-circle me-1"></i>
+                            Mô tả
+                        </th>
+                        <th>
+                            <i class="fas fa-cogs me-1"></i>
+                            Thao tác
+                        </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tableBody">
                     @foreach (var item in Model)
                     {
-                        <tr>
+                        <tr data-size="@item.Size1.ToLower()">
                             <td>
-                                @Html.DisplayFor(modelItem => item.Size1)
+                                <div class="size-display">
+                                    <div class="size-badge">@item.Size1</div>
+                                    <div class="size-info">
+                                        <div class="size-name">Size @item.Size1</div>
+                                    </div>
+                                </div>
                             </td>
                             <td>
-                                <a asp-action="Details" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-eye" style="color:#19b6ff;font-size:25px;"></i>  </a>
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-square-edit-outline" style="color:#ffd83b;font-size:25px;"></i></a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-delete" style="color:#e75555;font-size:25px;"></i></a>
+                                <span class="size-category">@GetSizeCategory(item.Size1)</span>
+                            </td>
+                            <td>
+                                <span class="text-muted">@GetSizeDescription(item.Size1)</span>
+                            </td>
+                            <td class="actions-cell">
+                                <div class="action-buttons">
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="action-btn btn-view" title="Xem chi tiết">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="action-btn btn-edit" title="Chỉnh sửa">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="action-btn btn-delete" title="Xóa">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-        </div>
+        }
+        else
+        {
+            <div class="empty-state">
+                <div class="empty-icon">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </div>
+                <h3>Chưa có kích thước nào</h3>
+                <p>Bắt đầu bằng cách thêm kích thước đầu tiên</p>
+                <a asp-action="Create" class="btn btn-success">
+                    <i class="fas fa-plus"></i>
+                    Thêm kích thước
+                </a>
+            </div>
+        }
     </div>
 </div>
+
+@functions {
+    string GetSizeCategory(string size)
+    {
+        if (new[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" }.Contains(size.ToUpper()))
+            return "Quần áo";
+        if (new[] { "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45" }.Contains(size))
+            return "Giày dép";
+        if (size.All(char.IsDigit))
+            return "Số";
+        return "Khác";
+    }
+
+    string GetSizeDescription(string size)
+    {
+        var descriptions = new Dictionary<string, string>
+        {
+            {"XS", "Extra Small - Rất nhỏ"},
+            {"S", "Small - Nhỏ"},
+            {"M", "Medium - Vừa"},
+            {"L", "Large - Lớn"},
+            {"XL", "Extra Large - Rất lớn"},
+            {"XXL", "Double Extra Large"},
+            {"XXXL", "Triple Extra Large"}
+        };
+
+        return descriptions.ContainsKey(size.ToUpper()) ? descriptions[size.ToUpper()] : $"Kích thước {size}";
+    }
+
+    List<string> GetSizeCategories(IEnumerable<JDshop.Models.Size> sizes)
+    {
+        return sizes.Select(s => GetSizeCategory(s.Size1)).Distinct().ToList();
+    }
+}
+
+@section Scripts {
+    <script>
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#tableBody tr');
+
+            rows.forEach(row => {
+                const sizeName = row.getAttribute('data-size');
+                if (sizeName.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // View toggle functionality
+        function switchView(viewType) {
+            const tableView = document.getElementById('tableView');
+            const gridView = document.getElementById('gridView');
+            const toggleBtns = document.querySelectorAll('.toggle-btn');
+
+            toggleBtns.forEach(btn => btn.classList.remove('active'));
+
+            if (viewType === 'table') {
+                tableView.style.display = 'block';
+                gridView.style.display = 'none';
+                document.querySelector('.toggle-btn[onclick="switchView(\'table\')"]').classList.add('active');
+            } else {
+                tableView.style.display = 'none';
+                gridView.style.display = 'grid';
+                document.querySelector('.toggle-btn[onclick="switchView(\'grid\')"]').classList.add('active');
+            }
+        }
+
+        // Confirm delete
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (!confirm('Bạn có chắc chắn muốn xóa kích thước này không?')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+}

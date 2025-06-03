@@ -1,67 +1,404 @@
-﻿@model Account
+﻿@* @model Account *@
+@* @{ *@
+@*     ViewData["Title"] = "Create"; *@
+@*     var RoleId = ViewBag.Id; *@
+@* } *@
+@* <div class="col-12 grid-margin stretch-card"> *@
+@*     <div class="card"> *@
+@*         <div class="card-body"> *@
+@*             <h4 class="card-title">THÊM QUẢN LÝ</h4> *@
+@*             <p class="card-description"> Nhập thông tin  </p> *@
+@*             <form class="forms-sample" asp-action="CreateQL" method="post" enctype="multipart/form-data"> *@
+@*                 <div class="form-group  flex-grow-1 mx-4"> *@
+@*                     <div id="image-preview"> *@
+@*                         <img id="preview" src="#" alt="" style="width: 200px; height: 200px; border-radius: 20px; display: none;"> *@
+@*                         <br /> *@
+@*                         <label asp-for="Avartar" class="control-label"></label> *@
+@*                         <input type="file" name="fAvatar" asp-for="Avartar" class="form-control-file" onchange="previewImage(this)" /> *@
+@*                     </div> *@
+@*                     <span asp-validation-for="Avartar" class="text-danger"></span> *@
+@*                 </div> *@
+@*                 <div class="form-group"> *@
+@*                     <label>Tài khoản</label> *@
+@*                     <input type="" class="form-control" asp-for="UserName" placeholder="Tài khoản" required> *@
+@*                 </div> *@
+@*                 <div class="form-group"> *@
+@*                     <label>Email</label> *@
+@*                     <input type="email" class="form-control" asp-for="Email" placeholder="Email" required> *@
+@*                 </div> *@
+@*                 <div class="form-group"> *@
+@*                     <label>SĐT</label> *@
+@*                     <input type="number" class="form-control" asp-for="Phone" placeholder="SĐT" required> *@
+@*                 </div> <div class="form-group"> *@
+@*                     <label>Họ Tên</label> *@
+@*                     <input class="form-control" asp-for="FullName" placeholder="Họ Tên" required> *@
+@*                 </div> *@
+@*                 <div class="form-group"> *@
+@*                     <label>Ngày Sinh</label> *@
+@*                     <input class="form-control" asp-for="Birthday" type="date" placeholder="Ngày Sinh" required> *@
+@*                 </div> *@
+@*                 <div class="form-group"> *@
+@*                     <label asp-for="RoleId" class="form-label">Chức vụ <span></span></label> *@
+@*                     <select asp-for="RoleId" asp-items="RoleId" class="form-select" required> *@
+@*                         <option value="">-- Chọn chức vụ --</option> *@
+@*                     </select> *@
+@*                 </div> *@
+@*                 <div class="form-group"> *@
+@*                     <label>Giới tính </label> *@
+@*                     <select class="form-control" asp-for="Gender" placeholder="" required> *@
+@*                         <option value="1" selected>Nam</option> *@
+@*                         <option value="2">Nữ</option> *@
+
+@*                     </select> *@
+@*                 </div> *@
+@*                 <div class="form-group"> *@
+@*                     <label>Trạng Thái </label> *@
+@*                     <select class="form-control" asp-for="Status" placeholder="" required> *@
+@*                         <option value="1" selected>Hoạt động</option> *@
+@*                         <option value="2">Ngừng hoạt động</option> *@
+
+@*                     </select> *@
+@*                 </div> *@
+
+@*                 <button type="submit" class="btn btn-gradient-primary me-2">Thêm mới</button> *@
+@*                 <a asp-action="Manage" class="btn btn-light">Trở về</a> *@
+@*             </form> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+@* @section scripts { *@
+@*     <script> *@
+@*         function previewImage(input) { *@
+@*             var preview = document.getElementById('preview'); *@
+@*             var imagePreview = document.getElementById('image-preview'); *@
+@*             if (input.files && input.files[0]) { *@
+@*                 var reader = new FileReader(); *@
+@*                 reader.onload = function (e) { *@
+@*                     preview.setAttribute('src', e.target.result); *@
+@*                     preview.style.display = 'block'; *@
+@*                     imagePreview.style.display = 'block'; *@
+@*                 } *@
+@*                 reader.readAsDataURL(input.files[0]); *@
+@*             } *@
+@*         } *@
+@*     </script> *@
+@* } *@
+
+
+
+
+
+
+
+
+@model Account
 @{
     ViewData["Title"] = "Create";
     var RoleId = ViewBag.Id;
 }
+
+<style>
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        border: none;
+    }
+
+    .card-header {
+        /* background: linear-gradient(to right, #4e73df, #36b9cc); */
+        color: white;
+        padding: 20px;
+        border-radius: 10px 10px 0 0;
+        border: none;
+    }
+
+    .card-title {
+        font-size: 20px;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .card-subtitle {
+        font-size: 14px;
+        opacity: 0.8;
+        margin-top: 5px;
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: 500;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        padding: 10px 15px;
+        transition: all 0.3s;
+    }
+
+        .form-control:focus {
+            border-color: #4e73df;
+            box-shadow: 0 0 0 3px rgba(78, 115, 223, 0.1);
+        }
+
+    .form-select {
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        padding: 10px 15px;
+        width: 100%;
+        transition: all 0.3s;
+    }
+
+        .form-select:focus {
+            border-color: #4e73df;
+            box-shadow: 0 0 0 3px rgba(78, 115, 223, 0.1);
+        }
+
+    .btn {
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s;
+    }
+
+    .btn-primary {
+        background: linear-gradient(to right, #4e73df, #36b9cc);
+        border: none;
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right, #3a5fc8, #2a9aaa);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 115, 223, 0.3);
+        }
+
+    .btn-light {
+        background: #f8f9fc;
+        border: 1px solid #e0e0e0;
+        color: #5a5c69;
+    }
+
+        .btn-light:hover {
+            background: #eaecf4;
+        }
+
+    .avatar-container {
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 20px;
+        border: 2px dashed #e0e0e0;
+        border-radius: 10px;
+        background: #f8f9fc;
+        transition: all 0.3s;
+    }
+
+        .avatar-container:hover {
+            border-color: #4e73df;
+            background: #eaecf4;
+        }
+
+    .avatar-preview {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin: 0 auto 15px;
+        border: 5px solid white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        object-fit: cover;
+        background: #e0e0e0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 50px;
+        color: #b0b0b0;
+    }
+
+        .avatar-preview img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: none;
+        }
+
+    .file-upload {
+        position: relative;
+        overflow: hidden;
+        margin: 10px auto;
+        width: 200px;
+    }
+
+    .file-upload-btn {
+        background: #4e73df;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-weight: 500;
+        display: block;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .file-upload input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        cursor: pointer;
+        display: block;
+    }
+
+    .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -10px;
+        margin-left: -10px;
+    }
+
+    .form-col {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 30px;
+        gap: 10px;
+    }
+
+    .text-danger {
+        color: #e74a3b;
+        font-size: 13px;
+        margin-top: 5px;
+    }
+
+    .required:after {
+        content: " *";
+        color: #e74a3b;
+    }
+
+</style>
+
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">THÊM TÀI KHOẢN QUẢN LÝ</h4>
+            <p class="card-subtitle">Vui lòng nhập đầy đủ thông tin bên dưới</p>
+        </div>
         <div class="card-body">
-            <h4 class="card-title">THÊM QUẢN LÝ</h4>
-            <p class="card-description"> Nhập thông tin  </p>
             <form class="forms-sample" asp-action="CreateQL" method="post" enctype="multipart/form-data">
-                <div class="form-group  flex-grow-1 mx-4">
-                    <div id="image-preview">
-                        <img id="preview" src="#" alt="" style="width: 200px; height: 200px; border-radius: 20px; display: none;">
-                        <br />
-                        <label asp-for="Avartar" class="control-label"></label>
-                        <input type="file" name="fAvatar" asp-for="Avartar" class="form-control-file" onchange="previewImage(this)" />
+                <!-- Avatar Upload -->
+                <div class="avatar-container">
+                    <div class="avatar-preview">
+                        <i class="mdi mdi-account" id="avatar-icon"></i>
+                        <img id="preview" src="#" alt="">
+                    </div>
+                    <div class="file-upload">
+                        <button type="button" class="file-upload-btn">
+                            <i class="mdi mdi-camera"></i> Chọn ảnh đại diện
+                        </button>
+                        <input type="file" name="fAvatar" asp-for="Avartar" class="form-control-file" onchange="previewImage(this)">
                     </div>
                     <span asp-validation-for="Avartar" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label>Tài khoản</label>
-                    <input type="" class="form-control" asp-for="UserName" placeholder="Tài khoản" required>
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" class="form-control" asp-for="Email" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <label>SĐT</label>
-                    <input type="number" class="form-control" asp-for="Phone" placeholder="SĐT" required>
-                </div> <div class="form-group">
-                    <label>Họ Tên</label>
-                    <input class="form-control" asp-for="FullName" placeholder="Họ Tên" required>
-                </div>
-                <div class="form-group">
-                    <label>Ngày Sinh</label>
-                    <input class="form-control" asp-for="Birthday" type="date" placeholder="Ngày Sinh" required>
-                </div>
-                <div class="form-group">
-                    <label asp-for="RoleId" class="form-label">Chức vụ <span></span></label>
-                    <select asp-for="RoleId" asp-items="RoleId" class="form-select" required>
-                        <option value="">-- Chọn chức vụ --</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Giới tính </label>
-                    <select class="form-control" asp-for="Gender" placeholder="" required>
-                        <option value="1" selected>Nam</option>
-                        <option value="2">Nữ</option>
 
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Trạng Thái </label>
-                    <select class="form-control" asp-for="Status" placeholder="" required>
-                        <option value="1" selected>Hoạt động</option>
-                        <option value="2">Ngừng hoạt động</option>
+                <!-- Form Fields -->
+                <div class="form-row">
+                    <!-- Left Column -->
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label required">Tài khoản</label>
+                            <input type="text" class="form-control" asp-for="UserName" placeholder="Nhập tên tài khoản" required>
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
 
-                    </select>
+                        <div class="form-group">
+                            <label class="form-label required">Email</label>
+                            <input type="email" class="form-control" asp-for="Email" placeholder="Nhập địa chỉ email" required>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Số điện thoại</label>
+                            <input type="tel" class="form-control" asp-for="Phone" placeholder="Nhập số điện thoại" required>
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Họ và tên</label>
+                            <input type="text" class="form-control" asp-for="FullName" placeholder="Nhập họ và tên" required>
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label required">Ngày sinh</label>
+                            <input type="date" class="form-control" asp-for="Birthday" required>
+                            <span asp-validation-for="Birthday" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="RoleId" class="form-label required">Chức vụ</label>
+                            <select asp-for="RoleId" asp-items="RoleId" class="form-select" required>
+                                <option value="">-- Chọn chức vụ --</option>
+                            </select>
+                            <span asp-validation-for="RoleId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Giới tính</label>
+                            <select class="form-select" asp-for="Gender" required>
+                                <option value="">-- Chọn giới tính --</option>
+                                <option value="1">Nam</option>
+                                <option value="2">Nữ</option>
+                            </select>
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Trạng thái</label>
+                            <select class="form-select" asp-for="Status" required>
+                                <option value="">-- Chọn trạng thái --</option>
+                                <option value="1" selected>Hoạt động</option>
+                                <option value="2">Ngừng hoạt động</option>
+                            </select>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
 
-                <button type="submit" class="btn btn-gradient-primary me-2">Thêm mới</button>
-                <a asp-action="Manage" class="btn btn-light">Trở về</a>
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <a asp-action="Manage" class="btn btn-light">
+                        <i class="mdi mdi-arrow-left"></i> Trở về
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="mdi mdi-content-save"></i> Thêm mới
+                    </button>
+                </div>
             </form>
         </div>
     </div>
@@ -71,16 +408,66 @@
     <script>
         function previewImage(input) {
             var preview = document.getElementById('preview');
-            var imagePreview = document.getElementById('image-preview');
+            var avatarIcon = document.getElementById('avatar-icon');
+
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-                reader.onload = function (e) {
+
+                reader.onload = function(e) {
                     preview.setAttribute('src', e.target.result);
                     preview.style.display = 'block';
-                    imagePreview.style.display = 'block';
+                    avatarIcon.style.display = 'none';
                 }
+
                 reader.readAsDataURL(input.files[0]);
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Phone number validation
+            var phoneInput = document.querySelector('input[name="Phone"]');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function() {
+                    // Remove non-numeric characters
+                    this.value = this.value.replace(/\D/g, '');
+
+                    // Limit to 10 digits
+                    if (this.value.length > 10) {
+                        this.value = this.value.slice(0, 10);
+                    }
+                });
+            }
+
+            // Form validation
+            var form = document.querySelector('.forms-sample');
+            form.addEventListener('submit', function(e) {
+                var requiredFields = form.querySelectorAll('[required]');
+                var isValid = true;
+
+                requiredFields.forEach(function(field) {
+                    if (!field.value.trim()) {
+                        field.style.borderColor = '#e74a3b';
+                        isValid = false;
+                    } else {
+                        field.style.borderColor = '#e0e0e0';
+                    }
+                });
+
+                if (!isValid) {
+                    e.preventDefault();
+                    alert('Vui lòng điền đầy đủ thông tin bắt buộc!');
+                }
+            });
+
+            // Real-time validation
+            var inputs = document.querySelectorAll('.form-control, .form-select');
+            inputs.forEach(function(input) {
+                input.addEventListener('input', function() {
+                    if (this.hasAttribute('required') && this.value.trim()) {
+                        this.style.borderColor = '#4e73df';
+                    }
+                });
+            });
+        });
     </script>
 }

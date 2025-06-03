@@ -1,92 +1,680 @@
-﻿@using System.Globalization
+﻿@* @using System.Globalization *@
+@* @model IEnumerable<JDshop.Models.ReceiptProduct> *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Index"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+@* <div class="page-header"> *@
+@*     <h3 style="font-family:Helvetica;" class="page-title"> Quản lý nhập sản phẩm </h3> *@
+@*     <nav aria-label="breadcrumb"> *@
+
+@*     </nav> *@
+@* </div> *@
+
+@* <div class="col-lg-12 grid-margin stretch-card"> *@
+@*     <div class="card"> *@
+@*         <div class="card-body"> *@
+@*             <p> *@
+@*                 <a asp-action="Create" class="btn btn-success mb-2">Thêm</a> *@
+@*             </p> *@
+@*             <table class="table"> *@
+@*                 <thead> *@
+@*                     <tr> *@
+@*                         <th> *@
+@*                             Mã Sản phẩm Màu Size *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             Số lượng *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             Đơn giá *@
+@*                         </th> *@
+
+@*                         <th> *@
+@*                             Ngày tạo *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             Trạng thái *@
+@*                         </th> *@
+
+@*                         <th></th> *@
+@*                     </tr> *@
+@*                 </thead> *@
+@*                 <tbody> *@
+@*                     @foreach (var item in Model) *@
+@*                     { *@
+@*                         <tr> *@
+@*                             <td> *@
+@*                                 @Html.DisplayFor(modelItem => item.ProductSizeColor.Code) *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 @Html.DisplayFor(modelItem => item.Quantity) *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 @string.Format(new CultureInfo("vi-VN"), "{0:C0}", item.Price) *@
+@*                             </td> *@
+
+@*                             <td> *@
+@*                                 @(item.CreateDay.HasValue *@
+@*                                     ? item.CreateDay.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN")) *@
+@*                                     : "") *@
+@*                             </td> *@
+@*                             @if (item.Status == 1) *@
+@*                             { *@
+@*                                 <td> *@
+@*                                     Đã Nhập *@
+@*                                 </td> *@
+@*                             } *@
+@*                             else *@
+@*                             { *@
+@*                                 <td> *@
+@*                                     Ngừng hoạt động *@
+@*                                 </td> *@
+@*                             } *@
+@*                             <td> *@
+@*                                 <a asp-action="Details" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-eye" style="color:#19b6ff;font-size:25px;"></i>  </a> *@
+@*                             </td> *@
+@*                         </tr> *@
+@*                     } *@
+@*                 </tbody> *@
+@*             </table> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+
+
+
+
+
+
+@using System.Globalization
 @model IEnumerable<JDshop.Models.ReceiptProduct>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Quản lý nhập sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-<div class="page-header">
-    <h3 style="font-family:Helvetica;" class="page-title"> Quản lý nhập sản phẩm </h3>
-    <nav aria-label="breadcrumb">
 
-    </nav>
-</div>
+<style>
+    .page-container {
+        padding: 1.5rem;
+    }
 
-<div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <p>
-                <a asp-action="Create" class="btn btn-success mb-2">Thêm</a>
-            </p>
-            <table class="table">
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #f3f4f6;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .page-subtitle {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+    .header-actions {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    .stats-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        background: white;
+        border-radius: 8px;
+        padding: 1.5rem;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.25rem;
+    }
+
+        .stat-icon.total {
+            background: #3b82f6;
+        }
+
+        .stat-icon.active {
+            background: #10b981;
+        }
+
+        .stat-icon.value {
+            background: #f59e0b;
+        }
+
+    .stat-label {
+        font-size: 0.875rem;
+        color: #6b7280;
+        font-weight: 500;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1f2937;
+    }
+
+    .table-container {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e5e7eb;
+    }
+
+    .table-header {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-bottom: 1px solid #e5e7eb;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .table-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .search-filter {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    .search-input {
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        width: 250px;
+    }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+    .filter-select {
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        background: white;
+    }
+
+    .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .custom-table th {
+            background: #f8f9fa;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.875rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .custom-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 0.875rem;
+            color: #1f2937;
+        }
+
+        .custom-table tr:hover {
+            background: #f9fafb;
+        }
+
+    .code-badge {
+        background: #e3f2fd;
+        color: #1976d2;
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        font-family: monospace;
+    }
+
+    .quantity-badge {
+        background: #f0f9ff;
+        color: #0369a1;
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
+        font-weight: 500;
+        text-align: center;
+        min-width: 60px;
+        display: inline-block;
+    }
+
+    .price-value {
+        font-weight: 600;
+        color: #059669;
+        font-size: 0.875rem;
+    }
+
+    .status-badge {
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-align: center;
+        min-width: 80px;
+        display: inline-block;
+    }
+
+    .status-active {
+        background: #d1fae5;
+        color: #065f46;
+    }
+
+    .status-inactive {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+
+    .date-text {
+        color: #6b7280;
+        font-size: 0.875rem;
+    }
+
+    .actions-cell {
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .action-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        text-decoration: none;
+    }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+    .btn-view {
+        background: #dbeafe;
+        color: #1d4ed8;
+    }
+
+        .btn-view:hover {
+            background: #bfdbfe;
+        }
+
+    .btn-edit {
+        background: #fef3c7;
+        color: #d97706;
+    }
+
+        .btn-edit:hover {
+            background: #fde68a;
+        }
+
+    .btn-delete {
+        background: #fee2e2;
+        color: #dc2626;
+    }
+
+        .btn-delete:hover {
+            background: #fecaca;
+        }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: 1px solid;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-success {
+        background: #10b981;
+        color: white;
+        border-color: #10b981;
+    }
+
+        .btn-success:hover {
+            background: #059669;
+            border-color: #059669;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+        }
+
+    .btn-outline {
+        background: white;
+        color: #374151;
+        border-color: #d1d5db;
+    }
+
+        .btn-outline:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+        }
+
+    .empty-state {
+        text-align: center;
+        padding: 3rem;
+        color: #6b7280;
+    }
+
+    .empty-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #d1d5db;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+        padding: 1rem;
+    }
+
+</style>
+
+<div class="page-container">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">
+                <i class="fas fa-box-open"></i>
+                Quản lý nhập sản phẩm
+            </h1>
+            <p class="page-subtitle">Quản lý thông tin nhập kho và theo dõi tồn kho sản phẩm</p>
+        </div>
+        <div class="header-actions">
+            <a asp-action="Create" class="btn btn-success">
+                <i class="fas fa-plus"></i>
+                Thêm phiếu nhập
+            </a>
+            <button class="btn btn-outline" onclick="exportData()">
+                <i class="fas fa-download"></i>
+                Xuất Excel
+            </button>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="stats-cards">
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon total">
+                    <i class="fas fa-receipt"></i>
+                </div>
+                <div>
+                    <div class="stat-label">Tổng phiếu nhập</div>
+                    <div class="stat-value">@Model.Count()</div>
+                </div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon active">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div>
+                    <div class="stat-label">Đã nhập kho</div>
+                    <div class="stat-value">@Model.Count(x => x.Status == 1)</div>
+                </div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon value">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div>
+                    <div class="stat-label">Tổng giá trị</div>
+                    <div class="stat-value">@string.Format(new CultureInfo("vi-VN"), "{0:C0}", Model.Sum(x => x.Price * x.Quantity))</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Container -->
+    <div class="table-container">
+        <div class="table-header">
+            <h3 class="table-title">
+                <i class="fas fa-list"></i>
+                Danh sách phiếu nhập
+            </h3>
+            <div class="search-filter">
+                <input type="text" class="search-input" placeholder="Tìm kiếm theo mã sản phẩm..." id="searchInput">
+                <select class="filter-select" id="statusFilter">
+                    <option value="">Tất cả trạng thái</option>
+                    <option value="1">Đã nhập</option>
+                    <option value="0">Ngừng hoạt động</option>
+                </select>
+            </div>
+        </div>
+
+        @if (Model.Any())
+        {
+            <table class="custom-table">
                 <thead>
                     <tr>
                         <th>
-                            Mã Sản phẩm Màu Size
-                            @* @Html.DisplayNameFor(model => model.ProductSizeColor) *@
+                            <i class="fas fa-barcode me-1"></i>
+                            Mã sản phẩm
                         </th>
                         <th>
+                            <i class="fas fa-cubes me-1"></i>
                             Số lượng
-                            @* @Html.DisplayNameFor(model => model.Quantity) *@
                         </th>
                         <th>
+                            <i class="fas fa-money-bill me-1"></i>
                             Đơn giá
-                            @* @Html.DisplayNameFor(model => model.Price) *@
                         </th>
-
                         <th>
+                            <i class="fas fa-calendar me-1"></i>
                             Ngày tạo
-                            @* @Html.DisplayNameFor(model => model.CreateDay) *@
                         </th>
                         <th>
+                            <i class="fas fa-info-circle me-1"></i>
                             Trạng thái
-                            @* @Html.DisplayNameFor(model => model.Status) *@
                         </th>
-
-                        <th></th>
+                        <th>
+                            <i class="fas fa-cogs me-1"></i>
+                            Thao tác
+                        </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tableBody">
                     @foreach (var item in Model)
                     {
-                        <tr>
+                        <tr data-status="@item.Status" data-code="@(item.ProductSizeColor?.Code ?? "")">
                             <td>
-                                @Html.DisplayFor(modelItem => item.ProductSizeColor.Code)
+                                @if (!string.IsNullOrEmpty(item.ProductSizeColor?.Code))
+                                {
+                                    <span class="code-badge">@item.ProductSizeColor.Code</span>
+                                }
+                                else
+                                {
+                                    <span style="color: #9ca3af;">Chưa có mã</span>
+                                }
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Quantity)
+                                <span class="quantity-badge">@item.Quantity</span>
                             </td>
                             <td>
-                                @string.Format(new CultureInfo("vi-VN"), "{0:C0}", item.Price)
+                                <span class="price-value">@string.Format(new CultureInfo("vi-VN"), "{0:C0}", item.Price)</span>
                             </td>
-
                             <td>
-                                @(item.CreateDay.HasValue
-                                    ? item.CreateDay.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN"))
-                                    : "")
+                                <span class="date-text">
+                                    @(item.CreateDay.HasValue
+                                        ? item.CreateDay.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN"))
+                                        : "Chưa có ngày")
+                                </span>
                             </td>
-                            @* <td>
-                                @Html.DisplayFor(modelItem => item.CreateDay)
-                            </td> *@
-                            @if (item.Status == 1)
-                            {
-                                <td>
-                                    Đã Nhập
-                                </td>
-                            }
-                            else
-                            {
-                                <td>
-                                    Ngừng hoạt động
-                                </td>
-                            }
                             <td>
-                                <a asp-action="Details" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-eye" style="color:#19b6ff;font-size:25px;"></i>  </a>
+                                @if (item.Status == 1)
+                                {
+                                    <span class="status-badge status-active">
+                                        <i class="fas fa-check me-1"></i>
+                                        Đã nhập
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="status-badge status-inactive">
+                                        <i class="fas fa-times me-1"></i>
+                                        Ngừng hoạt động
+                                    </span>
+                                }
+                            </td>
+                            <td class="actions-cell">
+                                <div class="action-buttons">
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="action-btn btn-view" title="Xem chi tiết">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="action-btn btn-edit" title="Chỉnh sửa">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="action-btn btn-delete" title="Xóa">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-        </div>
+        }
+        else
+        {
+            <div class="empty-state">
+                <div class="empty-icon">
+                    <i class="fas fa-inbox"></i>
+                </div>
+                <h3>Chưa có phiếu nhập nào</h3>
+                <p>Bắt đầu bằng cách tạo phiếu nhập đầu tiên</p>
+                <a asp-action="Create" class="btn btn-success">
+                    <i class="fas fa-plus"></i>
+                    Tạo phiếu nhập
+                </a>
+            </div>
+        }
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            filterTable();
+        });
+
+        // Status filter
+        document.getElementById('statusFilter').addEventListener('change', function() {
+            filterTable();
+        });
+
+        function filterTable() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            const rows = document.querySelectorAll('#tableBody tr');
+
+            rows.forEach(row => {
+                const code = row.getAttribute('data-code').toLowerCase();
+                const status = row.getAttribute('data-status');
+
+                const matchesSearch = code.includes(searchTerm);
+                const matchesStatus = statusFilter === '' || status === statusFilter;
+
+                if (matchesSearch && matchesStatus) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Export functionality
+        function exportData() {
+            // Implement export logic here
+            alert('Chức năng xuất Excel sẽ được triển khai');
+        }
+
+        // Confirm delete
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (!confirm('Bạn có chắc chắn muốn xóa phiếu nhập này không?')) {
+                    e.preventDefault();
+                }
+            });
+        });
+
+        // Auto-refresh every 30 seconds
+        setInterval(function() {
+            // You can implement auto-refresh logic here if needed
+        }, 30000);
+    </script>
+}

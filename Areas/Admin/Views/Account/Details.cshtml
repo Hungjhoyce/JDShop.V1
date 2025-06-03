@@ -1,77 +1,717 @@
-﻿@model Account
+﻿@* @model Account *@
 
-<h1>XEM CHI TIẾT</h1>
+@* <h1>XEM CHI TIẾT</h1> *@
 
-<div>
+@* <div> *@
 
-    <hr />
-    <br />
-    <dl class="row">
-        <dt class="col-sm-2">
+@*     <hr /> *@
+@*     <br /> *@
+@*     <dl class="row"> *@
+@*         <dt class="col-sm-2"> *@
 
-            Họ và tên
-        </dt>
-        <dd class="col-sm-10">
-            @Model.FullName
-        </dd>
-        <dt class="col-sm-2">
+@*             Họ và tên *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Model.FullName *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
 
-            Ngày sinh
-        </dt>
+@*             Ngày sinh *@
+@*         </dt> *@
 
-        <dd class="col-sm-10">
-            @(Model.Birthday.HasValue
-                ? Model.Birthday.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN"))
-                : "")
-        </dd>
-       @*  <dd class="col-sm-10">
-            @Model.Birthday
-        </dd> *@
-        <dt class="col-sm-2">
+@*         <dd class="col-sm-10"> *@
+@*             @(Model.Birthday.HasValue *@
+@*                 ? Model.Birthday.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN")) *@
+@*                 : "") *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
 
-            Email
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Email
-        </dd>
-        <dt class="col-sm-2">
+@*             Email *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Model.Email *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
 
-           Tài khoản
-        </dt>
-        <dd class="col-sm-10">
-            @Model.UserName
-        </dd>
-        <dt class="col-sm-2">
+@*            Tài khoản *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Model.UserName *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
 
-            Loại tài khoản
-        </dt>
-        <dd class="col-sm-10">
-            @Model.AccountType?.Name
-        </dd>
+@*             Loại tài khoản *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Model.AccountType?.Name *@
+@*         </dd> *@
 
-        <dt class="col-sm-2">
+@*         <dt class="col-sm-2"> *@
 
-            TRẠNG THÁI
-        </dt>
+@*             TRẠNG THÁI *@
+@*         </dt> *@
 
-        @if (Model.Status == 1)
-        {
-            <dd class="col-sm-10">
-                Hoạt động
-            </dd>
-        }@if (Model.Status == 2)
-        {
-            <dd class="col-sm-10">
-                Ngừng hoạt động
-            </dd>
+@*         @if (Model.Status == 1) *@
+@*         { *@
+@*             <dd class="col-sm-10"> *@
+@*                 Hoạt động *@
+@*             </dd> *@
+@*         }@if (Model.Status == 2) *@
+@*         { *@
+@*             <dd class="col-sm-10"> *@
+@*                 Ngừng hoạt động *@
+@*             </dd> *@
+@*         } *@
+@*     </dl> *@
+@*     <br /> *@
+
+@* </div> *@
+@* <div> *@
+@*     <div style="float: left; padding-right:10px"> *@
+@*         <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Sửa</a> *@
+@*     </div> *@
+@*     <a class="btn btn-secondary" asp-action="Index">Quay Lại</a> *@
+@* </div> *@
+
+
+
+
+
+@model Account
+
+@{
+    ViewData["Title"] = "Chi tiết tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .details-page {
+        padding: 2rem;
+        margin: 0 auto;
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .page-subtitle {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin-top: 0.25rem;
+    }
+
+    .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        color: #86868b;
+        margin-bottom: 1rem;
+    }
+
+        .breadcrumb a {
+            color: #007aff;
+            text-decoration: none;
         }
-    </dl>
-    <br />
 
-</div>
-<div>
-    <div style="float: left; padding-right:10px">
-        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Sửa</a>
+            .breadcrumb a:hover {
+                text-decoration: underline;
+            }
+
+    .details-container {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 2rem;
+    }
+
+    .profile-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        height: fit-content;
+        position: sticky;
+        top: 2rem;
+    }
+
+    .profile-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .user-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2.5rem;
+        font-weight: 700;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .user-name {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 0.5rem;
+    }
+
+    .user-username {
+        font-family: 'Monaco', 'Menlo', monospace;
+        background: #f3f4f6;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        color: #1d1d1f;
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+
+    .status-section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+    }
+
+    .status-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .status-label {
+        font-size: 0.875rem;
+        color: #86868b;
+        font-weight: 500;
+    }
+
+    .status-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .status-active {
+        background: #d1fae5;
+        color: #065f46;
+    }
+
+    .status-inactive {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+
+    .status-icon {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: currentColor;
+    }
+
+    .account-type-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .type-standard {
+        background: #f3f4f6;
+        color: #374151;
+    }
+
+    .type-premium {
+        background: #fef3c7;
+        color: #d97706;
+    }
+
+    .type-vip {
+        background: #ede9fe;
+        color: #7c3aed;
+    }
+
+    .points-display {
+        background: #fef3c7;
+        border: 1px solid #fed7aa;
+        border-radius: 8px;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .points-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #d97706;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .points-label {
+        font-size: 0.75rem;
+        color: #d97706;
+        margin-top: 0.25rem;
+    }
+
+    .info-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    .card-icon {
+        width: 48px;
+        height: 48px;
+        background: #007aff;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .card-info {
+        flex: 1;
+    }
+
+    .card-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 0.25rem 0;
+    }
+
+    .card-description {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin: 0;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid #007aff;
+    }
+
+    .info-icon {
+        width: 40px;
+        height: 40px;
+        background: #007aff;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.125rem;
+        flex-shrink: 0;
+    }
+
+    .info-content {
+        flex: 1;
+    }
+
+    .info-label {
+        font-size: 0.75rem;
+        color: #86868b;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.25rem;
+    }
+
+    .info-value {
+        font-size: 1rem;
+        color: #1d1d1f;
+        font-weight: 600;
+        word-break: break-all;
+    }
+
+    .empty-value {
+        color: #86868b;
+        font-style: italic;
+        font-weight: 400;
+    }
+
+    .activity-section {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .activity-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .activity-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .activity-stat {
+        background: #f0f9ff;
+        border: 1px solid #bae6fd;
+        border-radius: 8px;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .stat-value {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #0369a1;
+        margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+        color: #0369a1;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-primary {
+        background: #007aff;
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+        }
+
+    .btn-secondary {
+        background: #f5f5f7;
+        color: #1d1d1f !important;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-secondary:hover {
+            background: #e8e8ed;
+            border-color: #9ca3af;
+        }
+
+    .btn-danger {
+        background: #dc2626;
+        color: white;
+    }
+
+        .btn-danger:hover {
+            background: #b91c1c;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+
+    
+</style>
+
+<div class="details-page">
+
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">
+                <i class="fas fa-user"></i>
+                Chi tiết tài khoản
+            </h1>
+            <p class="page-subtitle">Xem thông tin chi tiết về tài khoản khách hàng</p>
+        </div>
     </div>
-    <a class="btn btn-secondary" asp-action="Index">Quay Lại</a>
+
+    <div class="details-container">
+        <!-- Profile Card -->
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="user-avatar">
+                    @(Model.FullName?.Substring(0, 1).ToUpper() ?? "?")
+                </div>
+                <div class="user-name">@(Model.FullName ?? "Chưa có tên")</div>
+                <div class="user-username">@@@Model.UserName</div>
+            </div>
+
+            <div class="status-section">
+                <div class="status-item">
+                    <span class="status-label">Trạng thái</span>
+                    @if (Model.Status == 1)
+                    {
+                        <span class="status-badge status-active">
+                            <span class="status-icon"></span>
+                            Hoạt động
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="status-badge status-inactive">
+                            <span class="status-icon"></span>
+                            Ngừng hoạt động
+                        </span>
+                    }
+                </div>
+
+                <div class="status-item">
+                    <span class="status-label">Loại tài khoản</span>
+                    @{
+                        var accountType = Model.AccountType?.Name ?? "Standard";
+                        var typeClass = accountType.ToLower() switch
+                        {
+                            "premium" => "type-premium",
+                            "vip" => "type-vip",
+                            _ => "type-standard"
+                        };
+                    }
+                    <span class="account-type-badge @typeClass">@accountType</span>
+                </div>
+            </div>
+
+            <div class="points-display">
+                <div class="points-value">
+                    <i class="fas fa-star"></i>
+                    @(Model.Point?.ToString("N0") ?? "0")
+                </div>
+                <div class="points-label">Điểm tích lũy</div>
+            </div>
+        </div>
+
+        <!-- Information Card -->
+        <div class="info-card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="card-info">
+                    <h3 class="card-title">Thông tin cá nhân</h3>
+                    <p class="card-description">Chi tiết thông tin tài khoản và liên hệ</p>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">Họ và tên</div>
+                        <div class="info-value">
+                            @if (!string.IsNullOrEmpty(Model.FullName))
+                            {
+                                @Model.FullName
+                            }
+                            else
+                            {
+                                <span class="empty-value">Chưa cập nhật</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">Ngày sinh</div>
+                        <div class="info-value">
+                            @if (Model.Birthday.HasValue)
+                            {
+                                @Model.Birthday.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN"))
+                            }
+                            else
+                            {
+                                <span class="empty-value">Chưa cập nhật</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">Email</div>
+                        <div class="info-value">
+                            @if (!string.IsNullOrEmpty(Model.Email))
+                            {
+                                @Model.Email
+                            }
+                            else
+                            {
+                                <span class="empty-value">Chưa cập nhật</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">Số điện thoại</div>
+                        <div class="info-value">
+                            @if (!string.IsNullOrEmpty(Model.Phone))
+                            {
+                                @Model.Phone
+                            }
+                            else
+                            {
+                                <span class="empty-value">Chưa cập nhật</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-at"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">Tên đăng nhập</div>
+                        <div class="info-value">@Model.UserName</div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">ID tài khoản</div>
+                        <div class="info-value">#@Model.Id</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity Section -->
+            <div class="activity-section">
+                <h3 class="activity-title">
+                    <i class="fas fa-chart-line"></i>
+                    Thống kê hoạt động
+                </h3>
+                <div class="activity-stats">
+                    <div class="activity-stat">
+                        <div class="stat-value">@(Model.Point ?? 0)</div>
+                        <div class="stat-label">Điểm tích lũy</div>
+                    </div>
+                    <div class="activity-stat">
+                        <div class="stat-value">0</div>
+                        <div class="stat-label">Đơn hàng</div>
+                    </div>
+                    <div class="activity-stat">
+                        <div class="stat-value">0</div>
+                        <div class="stat-label">Đánh giá</div>
+                    </div>
+                    <div class="activity-stat">
+                        <div class="stat-value">
+                            @if (Model.Status == 1)
+                            {
+                                <span style="color: #10b981;">Hoạt động</span>
+                            }
+                            else
+                            {
+                                <span style="color: #ef4444;">Tạm khóa</span>
+                            }
+                        </div>
+                        <div class="stat-label">Trạng thái</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    Quay lại
+                </a>
+
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">
+                    <i class="fas fa-edit"></i>
+                    Chỉnh sửa
+                </a>
+
+                <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">
+                    <i class="fas fa-trash"></i>
+                    Xóa tài khoản
+                </a>
+            </div>
+        </div>
+    </div>
 </div>

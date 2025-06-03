@@ -1,93 +1,552 @@
-﻿@using System.Globalization
+﻿@* @using System.Globalization *@
+@* @model IEnumerable<JDshop.Models.Product> *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Index"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <div class="page-header"> *@
+@*     <h3 style="font-family:Helvetica;" class="page-title"> Quản lý sản phẩm </h3> *@
+@*     <nav aria-label="breadcrumb"> *@
+
+@*     </nav> *@
+@* </div> *@
+
+@* <div class="col-lg-12 grid-margin stretch-card"> *@
+@*     <div class="card"> *@
+@*         <div class="card-body"> *@
+@*             <p> *@
+@*                 <a asp-action="Create" class="btn btn-success mb-2">Thêm</a> *@
+@*             </p> *@
+@*             <table class="table"> *@
+@*                 <thead> *@
+@*                     <tr> *@
+
+@*                         <th> *@
+@*                            Hình ảnh *@
+@*                         </th>   <th> *@
+@*                             Tên sản phẩm *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             Mô tả *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             Đơn giá *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             Trạng thái *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             Sản phẩm theo loại *@
+@*                         </th> *@
+@*                         <th></th> *@
+@*                     </tr> *@
+@*                 </thead> *@
+
+@*                 <tbody> *@
+@*                     @foreach (var item in Model) *@
+@*                     { *@
+@*                         <tr> *@
+@*                             <td> *@
+@*                                 <img src="@Url.Content("~/contents/Images/Product/" + item.Images.FirstOrDefault()?.Url)" style="width: 80px; height: 80px; border-radius: 20px;" alt="" id="output"> *@
+@*                             </td>  <td> *@
+@*                                 @Html.DisplayFor(modelItem => item.Name) *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 @Html.DisplayFor(modelItem => item.Description) *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 @string.Format(new CultureInfo("vi-VN"), "{0:C0}", item.Price) *@
+@*                             </td> *@
+@*                             @if (item.Status == 1) *@
+@*                             { *@
+@*                                 <td> *@
+@*                                     Còn hoạt động *@
+@*                                 </td> *@
+@*                             } *@
+@*                             else *@
+@*                             { *@
+@*                                 <td> *@
+@*                                     Ngừng hoạt động *@
+@*                                 </td> *@
+@*                             } *@
+@*                             <td> *@
+@*                                 @Html.DisplayFor(modelItem => item.ProductType.Name) *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 <a asp-action="Details" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-eye" style="color:#19b6ff;font-size:25px;"></i>  </a> *@
+@*                                 <a asp-action="Edit" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-square-edit-outline" style="color:#ffd83b;font-size:25px;"></i></a> *@
+@*                                 <a asp-action="Delete" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-delete" style="color:#e75555;font-size:25px;"></i></a> *@
+@*                             </td> *@
+@*                         </tr> *@
+@*                     } *@
+@*                 </tbody> *@
+@*             </table> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+
+
+
+
+@using System.Globalization
 @model IEnumerable<JDshop.Models.Product>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Quản lý sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="page-header">
-    <h3 style="font-family:Helvetica;" class="page-title"> Quản lý sản phẩm </h3>
-    <nav aria-label="breadcrumb">
+<style>
+    .page-header {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-    </nav>
+    .page-title {
+        margin: 0;
+        color: #2c3e50;
+        font-size: 1.75rem;
+        font-weight: 600;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .content-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .card-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid #ecf0f1;
+        background: #f8f9fa;
+    }
+
+    .search-filter-section {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .search-box {
+        flex: 1;
+        min-width: 250px;
+    }
+
+        .search-box input {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            width: 100%;
+        }
+
+    .filter-select {
+        min-width: 150px;
+    }
+
+        .filter-select select {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 0.5rem;
+            width: 100%;
+        }
+
+    .btn-primary {
+        background-color: #3498db;
+        border-color: #3498db;
+        border-radius: 6px;
+        padding: 0.5rem 1.5rem;
+        font-weight: 500;
+    }
+
+    .btn-success {
+        background-color: #27ae60;
+        border-color: #27ae60;
+        border-radius: 6px;
+        padding: 0.5rem 1.5rem;
+        font-weight: 500;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .products-table {
+        margin: 0;
+        width: 100%;
+    }
+
+        .products-table th {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+            padding: 1rem 0.75rem;
+            font-weight: 600;
+            color: #2c3e50;
+            white-space: nowrap;
+        }
+
+        .products-table td {
+            padding: 1rem 0.75rem;
+            vertical-align: middle;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .products-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+    .product-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 8px;
+        object-fit: cover;
+        border: 2px solid #ecf0f1;
+    }
+
+    .product-name {
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 0.25rem;
+    }
+
+    .product-description {
+        color: #7f8c8d;
+        font-size: 0.875rem;
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .product-price {
+        font-weight: 600;
+        color: #27ae60;
+        font-size: 1rem;
+    }
+
+    .status-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-align: center;
+        min-width: 100px;
+        display: inline-block;
+    }
+
+    .status-active {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .status-inactive {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .product-type {
+        background-color: #e3f2fd;
+        color: #1976d2;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    .action-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+    .btn-view {
+        background-color: #e3f2fd;
+        color: #1976d2;
+    }
+
+    .btn-edit {
+        background-color: #fff3e0;
+        color: #f57c00;
+    }
+
+    .btn-delete {
+        background-color: #ffebee;
+        color: #d32f2f;
+    }
+
+    .stats-row {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .stat-item {
+        background: white;
+        padding: 1rem;
+        border-radius: 6px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        flex: 1;
+        min-width: 150px;
+        text-align: center;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    .stat-label {
+        color: #7f8c8d;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 3rem;
+        color: #7f8c8d;
+    }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #bdc3c7;
+        }
+
+</style>
+
+<div class="page-header">
+    <h3 class="page-title">
+        <i class="fas fa-box me-2"></i>
+        Quản lý sản phẩm
+    </h3>
+    <a asp-action="Create" class="btn btn-success">
+        <i class="fas fa-plus me-1"></i>
+        Thêm sản phẩm mới
+    </a>
 </div>
 
-<div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <p>
-                <a asp-action="Create" class="btn btn-success mb-2">Thêm</a>
-            </p>
-            <table class="table">
+<!-- Statistics Row -->
+<div class="stats-row">
+    <div class="stat-item">
+        <div class="stat-number">@Model.Count()</div>
+        <div class="stat-label">Tổng sản phẩm</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">@Model.Count(p => p.Status == 1)</div>
+        <div class="stat-label">Đang hoạt động</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">@Model.Count(p => p.Status == 0)</div>
+        <div class="stat-label">Ngừng hoạt động</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">@Model.GroupBy(p => p.ProductType?.Name).Count()</div>
+        <div class="stat-label">Loại sản phẩm</div>
+    </div>
+</div>
+
+<div class="content-card">
+    <div class="card-header">
+        <div class="search-filter-section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm..." class="form-control">
+            </div>
+            <div class="filter-select">
+                <select id="statusFilter" class="form-select">
+                    <option value="">Tất cả trạng thái</option>
+                    <option value="1">Đang hoạt động</option>
+                    <option value="0">Ngừng hoạt động</option>
+                </select>
+            </div>
+            <div class="filter-select">
+                <select id="typeFilter" class="form-select">
+                    <option value="">Tất cả loại</option>
+                    @foreach (var type in Model.Select(p => p.ProductType?.Name).Distinct().Where(t => !string.IsNullOrEmpty(t)))
+                    {
+                        <option value="@type">@type</option>
+                    }
+                </select>
+            </div>
+            <button class="btn btn-primary" onclick="clearFilters()">
+                <i class="fas fa-refresh me-1"></i>
+                Làm mới
+            </button>
+        </div>
+    </div>
+
+    <div class="table-container">
+        @if (Model.Any())
+        {
+            <table class="table products-table" id="productsTable">
                 <thead>
                     <tr>
-
-                        <th>
-                           Hình ảnh
-                        </th>   <th>
-                            Tên sản phẩm
-                            @* @Html.DisplayNameFor(model => model.Name) *@
-                        </th>
-                        <th>
-                            Mô tả
-                            @* @Html.DisplayNameFor(model => model.Description) *@
-                        </th>
-                        <th>
-                            Đơn giá
-                            @* @Html.DisplayNameFor(model => model.Price) *@
-                        </th>
-                        <th>
-                            Trạng thái
-                            @* @Html.DisplayNameFor(model => model.Status) *@
-                        </th>
-                        <th>
-                            Sản phẩm theo loại
-                            @* @Html.DisplayNameFor(model => model.ProductType) *@
-                        </th>
-                        <th></th>
+                        <th>Hình ảnh</th>
+                        <th>Thông tin sản phẩm</th>
+                        <th>Đơn giá</th>
+                        <th>Trạng thái</th>
+                        <th>Loại sản phẩm</th>
+                        <th>Thao tác</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
+                        <tr data-status="@item.Status" data-type="@item.ProductType?.Name" data-name="@item.Name.ToLower()">
                             <td>
-                                <img src="@Url.Content("~/contents/Images/Product/" + item.Images.FirstOrDefault()?.Url)" style="width: 80px; height: 80px; border-radius: 20px;" alt="" id="output">
-                            </td>  <td>
-                                @Html.DisplayFor(modelItem => item.Name)
+                                @if (item.Images?.Any() == true)
+                                {
+                                    <img src="@Url.Content("~/contents/Images/Product/" + item.Images.FirstOrDefault()?.Url)"
+                                         class="product-image"
+                                         alt="@item.Name"
+                                         onerror="this.src='/images/no-image.png'">
+                                }
+                                else
+                                {
+                                    <div class="product-image d-flex align-items-center justify-content-center bg-light">
+                                        <i class="fas fa-image text-muted"></i>
+                                    </div>
+                                }
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Description)
+                                <div class="product-name">@item.Name</div>
+                                <div class="product-description" title="@item.Description">
+                                    @(string.IsNullOrEmpty(item.Description) ? "Chưa có mô tả" : item.Description)
+                                </div>
                             </td>
                             <td>
-                                @string.Format(new CultureInfo("vi-VN"), "{0:C0}", item.Price)
-                            </td>
-                            @if (item.Status == 1)
-                            {
-                                <td>
-                                    Còn hoạt động
-                                </td>
-                            }
-                            else
-                            {
-                                <td>
-                                    Ngừng hoạt động
-                                </td>
-                            }
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ProductType.Name)
+                                <span class="product-price">
+                                    @string.Format(new CultureInfo("vi-VN"), "{0:C0}", item.Price)
+                                </span>
                             </td>
                             <td>
-                                <a asp-action="Details" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-eye" style="color:#19b6ff;font-size:25px;"></i>  </a>
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-square-edit-outline" style="color:#ffd83b;font-size:25px;"></i></a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-delete" style="color:#e75555;font-size:25px;"></i></a>
+                                @if (item.Status == 1)
+                                {
+                                    <span class="status-badge status-active">
+                                        <i class="fas fa-check-circle me-1"></i>
+                                        Đang hoạt động
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="status-badge status-inactive">
+                                        <i class="fas fa-times-circle me-1"></i>
+                                        Ngừng hoạt động
+                                    </span>
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.ProductType?.Name))
+                                {
+                                    <span class="product-type">@item.ProductType.Name</span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Chưa phân loại</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="action-btn btn-view" title="Xem chi tiết">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="action-btn btn-edit" title="Chỉnh sửa">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="action-btn btn-delete" title="Xóa"
+                                       onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-        </div>
+        }
+        else
+        {
+            <div class="empty-state">
+                <i class="fas fa-box-open"></i>
+                <h4>Chưa có sản phẩm nào</h4>
+                <p>Hãy thêm sản phẩm đầu tiên để bắt đầu quản lý cửa hàng của bạn.</p>
+                <a asp-action="Create" class="btn btn-success mt-3">
+                    <i class="fas fa-plus me-1"></i>
+                    Thêm sản phẩm đầu tiên
+                </a>
+            </div>
+        }
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const statusFilter = document.getElementById('statusFilter');
+        const typeFilter = document.getElementById('typeFilter');
+        const table = document.getElementById('productsTable');
+
+        function filterTable() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const typeValue = typeFilter.value;
+            const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+            for (let row of rows) {
+                const name = row.getAttribute('data-name') || '';
+                const status = row.getAttribute('data-status') || '';
+                const type = row.getAttribute('data-type') || '';
+
+                const matchesSearch = name.includes(searchTerm);
+                const matchesStatus = !statusValue || status === statusValue;
+                const matchesType = !typeValue || type === typeValue;
+
+                if (matchesSearch && matchesStatus && matchesType) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            }
+        }
+
+        searchInput.addEventListener('input', filterTable);
+        statusFilter.addEventListener('change', filterTable);
+        typeFilter.addEventListener('change', filterTable);
+
+        window.clearFilters = function() {
+            searchInput.value = '';
+            statusFilter.value = '';
+            typeFilter.value = '';
+            filterTable();
+        };
+    });
+</script>

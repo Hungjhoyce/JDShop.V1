@@ -32,7 +32,7 @@ public static class DbFake
             {
                 Id = 1,
                 UserName = "jdshop.admin",
-                Password = "hunghoang123", // 123123
+                Password = "4297f44b13955235245b2497399d7a93", // 123123
                 Email = "admin@jdshop.com",
                 FullName = "Admin JDShop",
                 Phone = "0123456789",
@@ -46,7 +46,7 @@ public static class DbFake
             {
                 Id = 2,
                 UserName = "customer1",
-                Password = "hunghoang123", // 123456
+                Password = "4297f44b13955235245b2497399d7a93", // 123123
                 Email = "khachang1@gmail.com",
                 FullName = "Khách Hàng 1",
                 Phone = "0987654321",

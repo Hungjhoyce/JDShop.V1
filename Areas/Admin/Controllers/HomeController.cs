@@ -7,7 +7,7 @@ using JDshop.Models;
 namespace JDshop.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin, Nhân Viên")]
     public class HomeController : Controller
     {
         private JDshopDbContext _context; public static string? image;
@@ -35,12 +35,41 @@ namespace JDshop.Areas.Admin.Controllers
             int tongdonhang =  DonDoanhThu.Count() + donhuy.Count();
             int soLuong = User.Count();
 
+
+            var donHangGanDay = await _context.Orders
+                .Include(o => o.Account)
+                .Where(o => o.Status != 1) // tránh đơn đã huỷ nếu cần
+                .OrderByDescending(o => o.CreateDay)
+                .Take(5)
+                .ToListAsync();
+
+            ViewBag.DonHangGanDay = donHangGanDay;
+
+            var hoatDongGanDay = new List<string>();
+
+            foreach (var order in donHangGanDay)
+            {
+                var hoatDong = order.Status switch
+                {
+                    2 => $"Đơn hàng #{order.Id} đang xử lý",
+                    3 => $"Đơn hàng #{order.Id} đã giao thành công",
+                    4 => $"Đơn hàng #{order.Id} đang giao",
+                    5 => $"Đơn hàng #{order.Id} đã bị huỷ",
+                    _ => $"Đơn hàng #{order.Id} đang chờ xác nhận"
+                };
+
+                hoatDongGanDay.Add(hoatDong);
+            }
+
+            ViewBag.HoatDongGanDay = hoatDongGanDay;
+
             ViewBag.User = soLuong;
             ViewBag.DoanhThu = tongTien;
             ViewBag.Sanpham = soluongSP;
             ViewBag.DonHuy = donhuy.Count();
             ViewBag.TongDonHang = tongdonhang;
             ViewBag.MaGiamGia = Giamgia.Count();
+            ViewBag.DonDoanhThu = DonDoanhThu;
 
             return View();
         }

@@ -1,73 +1,146 @@
-﻿@model JDshop.Models.CollectionProduct
+﻿@* @model JDshop.Models.CollectionProduct *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Delete"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>XOÁ SẢN PHẨM BỘ SƯU TẬP</h1> *@
+
+@* <h3>Bạn có chắc là muốn xóa không?</h3> *@
+@* <div> *@
+@*     <h4>Sản phẩm Bộ sưu tập</h4> *@
+@*     <hr /> *@
+@*     <dl class="row"> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Trạng thái *@
+@*         </dt> *@
+@*         @if (Model.Status == true) *@
+@*         { *@
+@*             <dd class="col-sm-10"> *@
+@*                 Còn hoạt động *@
+@*             </dd> *@
+@*         } *@
+@*         else *@
+@*         { *@
+@*             <dd class="col-sm-10"> *@
+@*                 Ngừng hoạt động *@
+@*             </dd> *@
+
+@*         } *@
+@*         <dt class = "col-sm-2"> *@
+@*             Ngày tạo *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @{ *@
+@*                 DateTime parsedDate; *@
+@*                 var formattedDate = Model.Cdt; *@
+@*             } *@
+@*             @formattedDate *@
+@*         </dd> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Bộ sưu tập *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Collection.Name) *@
+@*         </dd> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Tên sản phẩm *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Product.Name) *@
+@*         </dd> *@
+@*     </dl> *@
+
+@*     <div style="float: left; padding-right:10px"> *@
+@*         <a class="btn btn-secondary" asp-action="Index">Quay Lại</a> *@
+@*     </div> *@
+@*     <form asp-action="Delete"> *@
+
+@*         <input type="hidden" asp-for="Id" /> *@
+@*         <input type="submit" value="Xóa" class="btn btn-danger" /> *@
+@*     </form> *@
+@* </div> *@
+
+
+
+
+
+
+
+
+
+@model JDshop.Models.CollectionProduct
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Xóa sản phẩm bộ sưu tập";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>XOÁ SẢN PHẨM BỘ SƯU TẬP</h1>
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0"><i class="fas fa-trash-alt me-2"></i>Xóa sản phẩm bộ sưu tập</h5>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>Cảnh báo:</strong> Bạn có chắc chắn muốn xóa sản phẩm này khỏi bộ sưu tập? Hành động này không thể hoàn tác.
+                    </div>
 
-<h3>Bạn có chắc là muốn xóa không?</h3>
-<div>
-    <h4>Sản phẩm Bộ sưu tập</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            Trạng thái
-            @* @Html.DisplayNameFor(model => model.Status) *@
-        </dt>
-        @if (Model.Status == true)
-        {
-            <dd class="col-sm-10">
-                Còn hoạt động
-            </dd>
-        }
-        else
-        {
-            <dd class="col-sm-10">
-                Ngừng hoạt động
-            </dd>
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <h6 class="mb-0">Thông tin sản phẩm</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-3 fw-bold">Tên sản phẩm:</div>
+                                <div class="col-md-9">@Html.DisplayFor(model => model.Product.Name)</div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-3 fw-bold">Bộ sưu tập:</div>
+                                <div class="col-md-9">@Html.DisplayFor(model => model.Collection.Name)</div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-3 fw-bold">Trạng thái:</div>
+                                <div class="col-md-9">
+                                    @if (Model.Status == true)
+                                    {
+                                        <span class="badge bg-success">Còn hoạt động</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">Ngừng hoạt động</span>
+                                    }
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 fw-bold">Ngày tạo:</div>
+                                <div class="col-md-9">
+                                    @{
+                                        var formattedDate = Model.Cdt;
+                                    }
+                                    @formattedDate
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        }
-        @* <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd> *@
-        <dt class = "col-sm-2">
-            Ngày tạo
-            @* @Html.DisplayNameFor(model => model.Cdt) *@
-        </dt>
-        <dd class="col-sm-10">
-            @{
-                DateTime parsedDate;
-                var formattedDate = Model.Cdt;
-            }
-            @formattedDate
-        </dd>
-       @*  <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cdt)
-        </dd> *@
-        <dt class = "col-sm-2">
-            Bộ sưu tập
-            @* @Html.DisplayNameFor(model => model.Collection) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Collection.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            Tên sản phẩm
-            @* @Html.DisplayNameFor(model => model.Product) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Product.Name)
-        </dd>
-    </dl>
-
-    <div style="float: left; padding-right:10px">
-        <a class="btn btn-secondary" asp-action="Index">Quay Lại</a>
+                    <div class="d-flex justify-content-end mt-4">
+                        <a class="btn btn-secondary me-2" asp-action="Index">
+                            <i class="fas fa-arrow-left me-1"></i> Quay lại
+                        </a>
+                        <form asp-action="Delete" onsubmit="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi bộ sưu tập?');">
+                            <input type="hidden" asp-for="Id" />
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash-alt me-1"></i> Xóa
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <form asp-action="Delete">
-
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Xóa" class="btn btn-danger" />
-    </form>
 </div>

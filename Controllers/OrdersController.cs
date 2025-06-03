@@ -228,21 +228,36 @@ namespace JDshop.Controllers
             var maKH = makhclaim.Value;
             var giohang = await _context.Orders
                 .Include(x => x.Account).ThenInclude(x => x.Addresses)
+                .Include(x => x.Discount)
                 .FirstOrDefaultAsync(x => x.AccountId == int.Parse(maKH) && x.Status == 1);
 
             if (giohang == null)
             {
                 _notyfService.Warning("Bạn chưa có sản phẩm nào trong giỏ hàng");
-
                 return RedirectToAction("Index", "Home");
-
             }
+
+            if (giohang.Discount != null)
+            {
+                giohang.Discount.UseNumber = (giohang.Discount.UseNumber ?? 0) + 1;
+                
+                if (giohang.Discount.UseNumber >= giohang.Discount.Quantity)
+                {
+                    giohang.Discount.Status = 2;
+                }
+            }
+
             var orderItems = _context.OrderItems
-               .Include(x => x.ProductSizeColor)
-                   .ThenInclude(x => x.ProductInventory).Include(x => x.ProductSizeColor)
-                   .ThenInclude(x => x.Product)
-               .Where(x => x.OrderId == giohang.Id)
-               .ToList();
+                .Include(x => x.ProductSizeColor)
+                    .ThenInclude(x => x.ProductInventory)
+                .Include(x => x.ProductSizeColor)
+                    .ThenInclude(x => x.Product)
+                .Include(x => x.ProductSizeColor)
+                    .ThenInclude(x => x.Color)
+                .Include(x => x.ProductSizeColor)
+                    .ThenInclude(x => x.Size)
+                .Where(x => x.OrderId == giohang.Id)
+                .ToList();
 
             foreach (var item in orderItems)
             {
@@ -292,19 +307,62 @@ namespace JDshop.Controllers
 
             _notyfService.Success("Đặt hàng thành công");
             var address = _context.Addresses.FirstOrDefault(x => x.Id == Address);
-            // Gửi email thông báo đặt hàng thành công
-            var email = giohang.Account.Email; // Lấy email từ tài khoản
-            var emailSubject = "Đặt hàng thành công";
-            var emailBody = $@"
-                <h1>Cảm ơn bạn đã đặt hàng!</h1>
-                <p>Đơn hàng của bạn đã được đặt thành công với thông tin như sau:</p>
-                <p><strong>Tổng cộng:</strong> {total} VNĐ</p>
-                <p><strong>Địa chỉ giao hàng:</strong> {address.Street} -{address.Ward} -{address.District} -{address.City}-{address.Country} </p>
-                <p>Chúng tôi sẽ xử lý đơn hàng của bạn trong thời gian sớm nhất.</p>
-                <p>Trân trọng,<br>Đội ngũ hỗ trợ khách hàng</p>
-            ";
 
-            await SendEmailAsync(email, emailSubject, emailBody); 
+// Gửi email thông báo đặt hàng thành công
+var email = giohang.Account.Email;
+var emailSubject = "Đặt hàng thành công";
+
+// Tạo bảng HTML chứa thông tin sản phẩm
+string productTable = "<table border='1' cellpadding='5' cellspacing='0' style='border-collapse:collapse; width:100%'>" +
+                      "<tr style='background-color: #f8f9fa;'>" +
+                      "<th>Sản phẩm</th>" +
+                      "<th>Kích cỡ</th>" +
+                      "<th>Màu sắc</th>" +
+                      "<th>Số lượng</th>" +
+                      "<th>Đơn giá</th>" +
+                      "<th>Thành tiền</th></tr>";
+
+foreach (var item in orderItems)
+{
+    var product = item.ProductSizeColor.Product;
+    var color = item.ProductSizeColor.Color?.Color1 ?? "N/A";
+    var size = item.ProductSizeColor.Size?.Size1 ?? "N/A";
+    var quantity = item.Quantity;
+    var unitPrice = item.ProductSizeColor.Product?.Price;
+    var totalPrice = unitPrice * quantity;
+
+    productTable += $"<tr>" +
+                    $"<td>{product.Name}</td>" +
+                    $"<td>{size}</td>" +
+                    $"<td>{color}</td>" +
+                    $"<td style='text-align: center;'>{quantity}</td>" +
+                    $"<td style='text-align: right;'>{unitPrice:N0} VNĐ</td>" +
+                    $"<td style='text-align: right;'>{totalPrice:N0} VNĐ</td>" +
+                    $"</tr>";
+}
+productTable += "</table>";
+
+var emailBody = $@"
+    <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>
+        <h2 style='color: #333;'>Cảm ơn bạn đã đặt hàng!</h2>
+        <p>Đơn hàng của bạn đã được đặt thành công với thông tin như sau:</p>
+        
+        <div style='background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0;'>
+            <p><strong>Mã đơn hàng:</strong> #{giohang.Id}</p>
+            <p><strong>Tổng cộng:</strong> {giohang.Total:N0} VNĐ</p>
+            <p><strong>Địa chỉ giao hàng:</strong><br/> 
+            {address.Street}, {address.Ward}, {address.District}, {address.City}, {address.Country}</p>
+        </div>
+
+        <h3 style='color: #333; margin-top: 20px;'>Chi tiết sản phẩm:</h3>
+        {productTable}
+        <br/>
+        <p>Chúng tôi sẽ xử lý đơn hàng của bạn trong thời gian sớm nhất.</p>
+        <p style='color: #666;'>Trân trọng,<br/>Đội ngũ hỗ trợ khách hàng</p>
+    </div>";
+
+await SendEmailAsync(email, emailSubject, emailBody);
+ 
 
             return RedirectToAction("Index", "Home");
         }
@@ -324,17 +382,17 @@ namespace JDshop.Controllers
 
             using var smtp = new MailKit.Net.Smtp.SmtpClient();
             smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-            smtp.Authenticate("khangchannel19@gmail.com", "jnal cnyl mlit izco");
+            smtp.Authenticate("hung.jhoyce@gmail.com", "getp xtqh muxs saur");
             await smtp.SendAsync(message);
             smtp.Disconnect(true);
         }
 
 
           [Authorize]
-  public async Task< IActionResult> PaymentCallBack()
+  public async Task<IActionResult> PaymentCallBack()
   {
       var response = _vnPayService.PaymentExecute(Request.Query);
-      if (response == null || response.VnPayResponseCode !=  "00")
+      if (response == null || response.VnPayResponseCode != "00")
       {
           var makhClaim = User.Claims.FirstOrDefault(c => c.Type == "Id");
 
@@ -346,14 +404,23 @@ namespace JDshop.Controllers
 
           var maKH = makhClaim.Value;
           var giohang = await _context.Orders
-              .Include(x => x.Account).Include(x => x.Payments).OrderByDescending(x => x.CreateDay)
+              .Include(x => x.Account)
+              .Include(x => x.Payments)
+              .Include(x => x.Discount)
+              .OrderByDescending(x => x.CreateDay)
               .FirstOrDefaultAsync(x => x.AccountId == int.Parse(maKH) && x.Status == 2);
+
+          if (giohang.Discount != null)
+          {
+              giohang.Discount.UseNumber = Math.Max(0, (giohang.Discount.UseNumber ?? 0) - 1);
+              giohang.Discount.Status = 1;
+              giohang.DiscountId = null;
+          }
+
           giohang.Total = null;
           giohang.CreateDay = null;
           giohang.AddressId = null;
-          giohang.Discount = null;
           giohang.Status = 1;
-        
           _context.Payments.RemoveRange(giohang.Payments);
           await _context.SaveChangesAsync();
           _notyfService.Error($"Lỗi thanh toán VNPAY: {response.VnPayResponseCode}");
@@ -363,5 +430,59 @@ namespace JDshop.Controllers
       _notyfService.Success("Thanh toán thành công");
       return RedirectToAction("Index", "Home");
   }
+
+        [HttpGet]
+        public async Task<IActionResult> ApplyDiscount(string code)
+        {
+            try
+            {
+                // Get current user's ID
+                var makhclaim = User.Claims.FirstOrDefault(c => c.Type == "Id");
+                if (makhclaim == null)
+                {
+                    return Json(new { success = false, message = "Vui lòng đăng nhập để sử dụng mã giảm giá" });
+                }
+                var maKH = int.Parse(makhclaim.Value);
+
+                // Get current active order
+                var order = await _context.Orders
+                    .FirstOrDefaultAsync(x => x.AccountId == maKH && x.Status == 1);
+
+                if (order == null)
+                {
+                    return Json(new { success = false, message = "Không tìm thấy đơn hàng" });
+                }
+
+                // Kiểm tra mã giảm giá có tồn tại và còn hiệu lực không
+                var discount = await _context.Discounts
+                    .FirstOrDefaultAsync(d => d.Code == code && d.Status == 1);
+
+                if (discount == null)
+                {
+                    return Json(new { success = false, message = "Mã giảm giá không tồn tại hoặc đã hết hạn" });
+                }
+
+                // Kiểm tra số lượng còn lại
+                if (discount.Quantity <= discount.UseNumber)
+                {
+                    return Json(new { success = false, message = "Mã giảm giá đã hết lượt sử dụng" });
+                }
+
+                // Apply discount to order
+                order.DiscountId = discount.Id;
+                await _context.SaveChangesAsync();
+
+                // Trả về thông tin giảm giá
+                return Json(new { 
+                    success = true, 
+                    discountAmount = discount.DiscountPercent,
+                    message = "Áp dụng mã giảm giá thành công"
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Có lỗi xảy ra: " + ex.Message });
+            }
+        }
     }
 }

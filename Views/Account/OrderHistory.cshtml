@@ -1,0 +1,774 @@
+@* @model List<Order> *@
+@* @{ *@
+@*     ViewData["Title"] = "Lịch sử mua hàng"; *@
+@* } *@
+
+@* <style> *@
+@*     body { *@
+@*         margin-top: 20px; *@
+@*         color: #333; *@
+@*         text-align: left; *@
+@*         background-color: #f8f9fa; *@
+@*     } *@
+
+@*     .main-body { *@
+@*         padding: 30px; *@
+@*         margin-top: 100px; *@
+@*         border-radius: 10px; *@
+@*         background-color: #ffffff; *@
+@*         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); *@
+@*     } *@
+
+@*     .card { *@
+@*         border-radius: 10px; *@
+@*         overflow: hidden; *@
+@*     } *@
+
+@*     .card-body { *@
+@*         padding: 25px; *@
+@*     } *@
+
+@*     h3 { *@
+@*         color: #007bff; *@
+@*         font-weight: bold; *@
+@*     } *@
+
+@*     h5 { *@
+@*         font-family: 'Muli', sans-serif; *@
+@*         margin-bottom: 10px; *@
+@*     } *@
+@* </style> *@
+
+@* <div class="container"> *@
+@*     <div class="main-body"> *@
+@*         <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px; background-color:white !important"> *@
+@*             <div class="container"> *@
+@*                 <div class="row g-2"> *@
+@*                     <h1 style="text-align:center"> *@
+@*                         Lịch sử mua hàng *@
+@*                     </h1> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+
+@*         <div class="card mb-3"> *@
+@*             <div class="card-body"> *@
+@*                 <div class="row" style="margin-bottom:10px; background-color: #f8f9fa; padding: 10px; border-radius: 10px;"> *@
+@*                     <div class="col-sm-1"> *@
+@*                         <h5 class="mb-0">STT</h5> *@
+@*                     </div> *@
+@*                     <div class="col-sm-2"> *@
+@*                         <h5 class="mb-0">Họ tên</h5> *@
+@*                     </div> *@
+@*                     <div class="col-sm-2"> *@
+@*                         <h5 class="mb-0">Địa chỉ giao hàng</h5> *@
+@*                     </div>  *@
+@*                     <div class="col-sm-1"> *@
+@*                         <h5 class="mb-0">Ngày đặt hàng</h5> *@
+@*                     </div>  *@
+@*                     <div class="col-sm-2"> *@
+@*                         <h5 class="mb-0">Số lượng sản phẩm</h5> *@
+@*                     </div> *@
+@*                     <div class="col-sm-2"> *@
+@*                         <h5 class="mb-0">Tổng tiền</h5> *@
+@*                     </div> *@
+@*                     <div class="col-sm-2"> *@
+@*                         <h5 class="mb-0">Trạng thái</h5> *@
+@*                     </div> *@
+@*                 </div> *@
+@*                 @{ *@
+@*                     int stt = 1; *@
+@*                 } *@
+@*                 @foreach (var item in Model) *@
+@*                 { *@
+@*                     <div class="row" style="padding:10px; background-color: #ffffff; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);"> *@
+@*                         <div class="col-sm-1"> *@
+@*                             <h5 class="mb-0">@stt</h5> *@
+@*                         </div> *@
+@*                         <div class="col-sm-2"> *@
+@*                             <h5 class="mb-0">@item.Account.FullName</h5> *@
+@*                         </div> *@
+@*                         <div class="col-sm-2"> *@
+@*                             <h5 class="mb-0"> *@
+@*                                 @item.Account.Addresses.FirstOrDefault().Street *@
+@*                                 @item.Account.Addresses.FirstOrDefault().Ward *@
+@*                                 @item.Account.Addresses.FirstOrDefault().District *@
+@*                                 @item.Account.Addresses.FirstOrDefault().City *@
+@*                                 @item.Account.Addresses.FirstOrDefault().Country *@
+@*                             </h5> *@
+@*                         </div> *@
+@*                         <div class="col-sm-1"> *@
+@*                             <h5 class="mb-0">@item.CreateDay</h5> *@
+@*                         </div> *@
+@*                         <div class="col-sm-2"> *@
+@*                             @{ *@
+@*                                 int ssp = 1; *@
+@*                             } *@
+@*                             @foreach (var item1 in item.OderItems) *@
+@*                             { *@
+@*                                 <h5 class="mb-0" style="font-family: 'Muli'; color:#F65005 !important"> *@
+@*                                     @ssp X  <div class="d-flex align-items-center"> *@
+@*                                         <img src="@Url.Content("~/contents/Images/Product/" + item1.ProductSizeColor.Product.Images.FirstOrDefault().Url)" *@
+@*                                              alt="@item1.ProductSizeColor.Product.Name" *@
+@*                                              style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px; margin-right: 10px;"> *@
+@*                                         <span>@item1.ProductSizeColor.Product.Name</span> *@
+@*                                     </div> *@
+@*                                 </h5> *@
+@*                                 ssp++; *@
+@*                             } *@
+@*                         </div> *@
+@*                         <div class="col-sm-2"> *@
+@*                             <h5 class="mb-0"> *@
+@*                                 @string.Format("{0:N0}", @item.Total) VNĐ *@
+@*                             </h5> *@
+@*                         </div> *@
+@*                         <div class="col-sm-2"> *@
+@*                             @if (item.Status == 2) *@
+@*                             { *@
+@*                                 <h5 class="mb-0">Chờ Admin xác nhận</h5> *@
+@*                                 <a class="btn btn-secondary rounded-pill py-sm-1 px-sm-3" asp-route-id="@item.Id" asp-action="CanOrderby">Hủy đơn</a> *@
+@*                             } *@
+@*                             else if (item.Status == 3) *@
+@*                             { *@
+@*                                 <h5 class="mb-0">Đang vận chuyển</h5> *@
+@*                             } *@
+@*                             else if (item.Status == 4) *@
+@*                             { *@
+@*                                 <h5 class="mb-0">Đã nhận</h5> *@
+@*                             } *@
+@*                             else if (item.Status == 5) *@
+@*                             { *@
+@*                                 <h5 class="mb-0">Đã hủy</h5> *@
+@*                             } *@
+@*                         </div> *@
+@*                         <hr /> *@
+@*                     </div> *@
+@*                     stt++; *@
+@*                 } *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </div>  *@
+
+
+
+
+
+
+
+
+
+
+
+
+
+@model List<Order>
+@{
+    ViewData["Title"] = "Lịch sử mua hàng";
+}
+
+<style>
+    /* Order History Styles */
+    body {
+        background-color: #f8f9fa;
+        color: #333;
+    }
+
+    .order-history-container {
+        padding: 40px 0;
+    }
+
+    .page-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 30px 0;
+        margin-bottom: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+        .page-header h1 {
+            color: #fff;
+            font-weight: 700;
+            margin: 0;
+            text-align: center;
+            font-size: 28px;
+        }
+
+    .order-card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        margin-bottom: 25px;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .order-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+    .order-header {
+        padding: 15px 20px;
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .order-id {
+        font-weight: 600;
+        color: #333;
+        font-size: 16px;
+    }
+
+    .order-date {
+        color: #666;
+        font-size: 14px;
+    }
+
+    .order-body {
+        padding: 20px;
+    }
+
+    .order-info {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    .info-group {
+        flex: 1;
+        min-width: 200px;
+        margin-bottom: 15px;
+        padding-right: 15px;
+    }
+
+    .info-label {
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .info-value {
+        font-size: 15px;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .order-products {
+        margin-top: 20px;
+    }
+
+    .product-list {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+    }
+
+        .product-list.show {
+            max-height: 1000px;
+        }
+
+    .product-item {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+        .product-item:last-child {
+            border-bottom: none;
+        }
+
+    .product-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 5px;
+        object-fit: cover;
+        margin-right: 15px;
+        border: 1px solid #eee;
+    }
+
+    .product-details {
+        flex: 1;
+    }
+
+    .product-name {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    .product-variant {
+        font-size: 12px;
+        color: #666;
+    }
+
+    .product-price {
+        font-size: 14px;
+        font-weight: 600;
+        color: #ca1515;
+    }
+
+    .product-quantity {
+        font-size: 14px;
+        font-weight: 500;
+        background-color: #f8f9fa;
+        padding: 3px 8px;
+        border-radius: 4px;
+        margin-left: 10px;
+    }
+
+    .order-footer {
+        padding: 15px 20px;
+        background-color: #f8f9fa;
+        border-top: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .order-total {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .order-total-value {
+        color: #ca1515;
+    }
+
+    .order-status {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 600;
+        text-align: center;
+        min-width: 120px;
+    }
+
+    .status-pending {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+
+    .status-shipping {
+        background-color: #cce5ff;
+        color: #004085;
+    }
+
+    .status-delivered {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .status-cancelled {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .btn-cancel {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 6px 15px;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+        .btn-cancel:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+
+    .btn-details {
+        background-color: transparent;
+        color: #007bff;
+        border: 1px solid #007bff;
+        padding: 6px 15px;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+        .btn-details:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-details i {
+            transition: transform 0.3s;
+        }
+
+        .btn-details.active i {
+            transform: rotate(180deg);
+        }
+
+    .empty-orders {
+        text-align: center;
+        padding: 50px 0;
+    }
+
+        .empty-orders i {
+            font-size: 60px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .empty-orders h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .empty-orders p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+    .btn-shop {
+        background-color: #ca1515;
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 50px;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .btn-shop:hover {
+            background-color: #b01212;
+            transform: translateY(-2px);
+        }
+
+    .address-text {
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+        .address-text:hover {
+            white-space: normal;
+            overflow: visible;
+        }
+
+    /* Timeline styles */
+    .order-timeline {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px dashed #eee;
+    }
+
+    .timeline {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #e9ecef;
+            z-index: 1;
+        }
+
+    .timeline-item {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        width: 25%;
+    }
+
+    .timeline-dot {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #e9ecef;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 10px;
+        border: 2px solid #fff;
+    }
+
+        .timeline-dot i {
+            color: #fff;
+            font-size: 14px;
+        }
+
+    .timeline-text {
+        font-size: 12px;
+        color: #666;
+    }
+
+    .timeline-item.active .timeline-dot {
+        background-color: #28a745;
+    }
+
+    .timeline-item.active .timeline-text {
+        color: #28a745;
+        font-weight: 600;
+    }
+
+    .timeline-item.cancelled .timeline-dot {
+        background-color: #dc3545;
+    }
+
+    .timeline-item.cancelled .timeline-text {
+        color: #dc3545;
+        font-weight: 600;
+    }
+</style>
+
+<div class="container order-history-container">
+    <div class="page-header">
+        <div class="container">
+            <h1><i class="fa fa-history"></i> Lịch sử mua hàng</h1>
+        </div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var order in Model.OrderByDescending(x => x.CreateDay))
+        {
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="order-id">
+                        <i class="fa fa-shopping-bag"></i> Đơn hàng #@order.Id
+                    </div>
+                    <div class="order-date">
+                        <i class="fa fa-calendar"></i> Ngày đặt: @order.CreateDay
+                    </div>
+                </div>
+
+                <div class="order-body">
+                    <div class="order-info">
+                        <div class="info-group">
+                            <span class="info-label">Khách hàng</span>
+                            <div class="info-value">
+                                <i class="fa fa-user"></i> @order.Account.FullName
+                            </div>
+                        </div>
+
+                        <div class="info-group">
+                            <span class="info-label">Địa chỉ giao hàng</span>
+                            <div class="info-value address-text" title="@order.Account.Addresses.FirstOrDefault().Street, @order.Account.Addresses.FirstOrDefault().Ward, @order.Account.Addresses.FirstOrDefault().District, @order.Account.Addresses.FirstOrDefault().City, @order.Account.Addresses.FirstOrDefault().Country">
+                                <i class="fa fa-map-marker"></i>
+                                @order.Account.Addresses.FirstOrDefault().Street,
+                                @order.Account.Addresses.FirstOrDefault().Ward,
+                                @order.Account.Addresses.FirstOrDefault().District,
+                                @order.Account.Addresses.FirstOrDefault().City,
+                                @order.Account.Addresses.FirstOrDefault().Country
+                            </div>
+                        </div>
+
+                        <div class="info-group">
+                            <span class="info-label">Tổng tiền</span>
+                            <div class="info-value">
+                                <i class="fa fa-money"></i> @string.Format("{0:N0}", order.Total) VNĐ
+                            </div>
+                        </div>
+
+                        <div class="info-group">
+                            <span class="info-label">Trạng thái</span>
+                            <div>
+                                @if (order.Status == 2)
+                                {
+                                    <span class="order-status status-pending">Chờ xác nhận</span>
+                                }
+                                else if (order.Status == 3)
+                                {
+                                    <span class="order-status status-shipping">Đang vận chuyển</span>
+                                }
+                                else if (order.Status == 4)
+                                {
+                                    <span class="order-status status-delivered">Đã nhận hàng</span>
+                                }
+                                else if (order.Status == 5)
+                                {
+                                    <span class="order-status status-cancelled">Đã hủy</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Timeline -->
+                    <div class="order-timeline">
+                        <ul class="timeline">
+                            <li class="timeline-item @(order.Status >= 2 ? "active" : "")">
+                                <div class="timeline-dot">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div class="timeline-text">Đặt hàng</div>
+                            </li>
+                            <li class="timeline-item @(order.Status >= 3 ? "active" : "") @(order.Status == 5 ? "cancelled" : "")">
+                                <div class="timeline-dot">
+                                    @if (order.Status == 5)
+                                    {
+                                        <i class="fa fa-times"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-check"></i>
+                                    }
+                                </div>
+                                <div class="timeline-text">Xác nhận</div>
+                            </li>
+                            <li class="timeline-item @(order.Status >= 3 ? "active" : "") @(order.Status == 5 ? "cancelled" : "")">
+                                <div class="timeline-dot">
+                                    @if (order.Status == 5)
+                                    {
+                                        <i class="fa fa-times"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-check"></i>
+                                    }
+                                </div>
+                                <div class="timeline-text">Vận chuyển</div>
+                            </li>
+                            <li class="timeline-item @(order.Status == 4 ? "active" : "") @(order.Status == 5 ? "cancelled" : "")">
+                                <div class="timeline-dot">
+                                    @if (order.Status == 5)
+                                    {
+                                        <i class="fa fa-times"></i>
+                                    }
+                                    else if (order.Status == 4)
+                                    {
+                                        <i class="fa fa-check"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-clock-o"></i>
+                                    }
+                                </div>
+                                <div class="timeline-text">Đã nhận</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="order-products">
+                        <button class="btn-details" onclick="toggleProducts(this, 'products-@order.Id')">
+                            <i class="fa fa-chevron-down"></i> Chi tiết sản phẩm (@order.OderItems.Count)
+                        </button>
+
+                        <div id="products-@order.Id" class="product-list">
+                            @foreach (var item in order.OderItems)
+                            {
+                                <div class="product-item">
+                                    @{
+                                        var productImage = item?.ProductSizeColor?.Product?.Images?.FirstOrDefault()?.Url ?? "default-product.jpg";
+                                        var productName = item?.ProductSizeColor?.Product?.Name ?? "Sản phẩm không xác định";
+                                        var productSize = item?.ProductSizeColor?.Size?.Size1 ?? "N/A";
+                                        var productColor = item?.ProductSizeColor?.Color?.Color1 ?? "N/A";
+                                        var productPrice = item?.ProductSizeColor?.Product?.Price ?? 0;
+                                    }
+                                    <img src="@Url.Content("~/contents/Images/Product/" + productImage)"
+                                         alt="@productName"
+                                         class="product-image"
+                                         onerror="this.src='@Url.Content("~/contents/Images/Product/default-product.jpg")'">
+
+                                    <div class="product-details">
+                                        <div class="product-name">@productName</div>
+                                        <div class="product-variant">
+                                            Size: @productSize |
+                                            Màu: @productColor
+                                        </div>
+                                        <div>
+                                            <span class="product-price">@string.Format("{0:N0}", productPrice) VNĐ</span>
+                                            <span class="product-quantity">x@(item.Quantity)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-footer">
+                    <div class="order-total">
+                        Tổng thanh toán: <span class="order-total-value">@string.Format("{0:N0}", order.Total) VNĐ</span>
+                    </div>
+
+                    <div>
+                        @if (order.Status == 2)
+                        {
+                            <a class="btn-cancel" asp-route-id="@order.Id" asp-action="CanOrderby" onclick="return confirm('Bạn có chắc chắn muốn hủy đơn hàng này?')">
+                                <i class="fa fa-times"></i> Hủy đơn hàng
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="empty-orders">
+            <i class="fa fa-shopping-bag"></i>
+            <h3>Bạn chưa có đơn hàng nào</h3>
+            <p>Hãy mua sắm và quay lại đây để xem lịch sử đơn hàng của bạn</p>
+            <a href="/Products" class="btn-shop">Mua sắm ngay</a>
+        </div>
+    }
+</div>
+
+<script>
+    function toggleProducts(button, productListId) {
+        const productList = document.getElementById(productListId);
+        productList.classList.toggle('show');
+        button.classList.toggle('active');
+    }
+
+    // Hiệu ứng hover cho địa chỉ
+    document.addEventListener('DOMContentLoaded', function() {
+        const addressTexts = document.querySelectorAll('.address-text');
+        addressTexts.forEach(address => {
+            address.addEventListener('mouseenter', function() {
+                this.style.whiteSpace = 'normal';
+                this.style.overflow = 'visible';
+                this.style.backgroundColor = '#f8f9fa';
+                this.style.padding = '5px';
+                this.style.borderRadius = '4px';
+                this.style.position = 'absolute';
+                this.style.zIndex = '10';
+                this.style.maxWidth = '300px';
+            });
+
+            address.addEventListener('mouseleave', function() {
+                this.style.whiteSpace = 'nowrap';
+                this.style.overflow = 'hidden';
+                this.style.textOverflow = 'ellipsis';
+                this.style.backgroundColor = 'transparent';
+                this.style.padding = '0';
+                this.style.position = 'static';
+                this.style.maxWidth = '200px';
+            });
+        });
+    });
+</script>

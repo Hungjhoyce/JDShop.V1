@@ -274,28 +274,6 @@ namespace JDShop.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductTypes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryId = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<byte>(type: "tinyint", nullable: true),
-                    CDT = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "(getdate())")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductTypes", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProductTypes_Category",
-                        column: x => x.CategoryId,
-                        principalTable: "Category",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Payments",
                 columns: table => new
                 {
@@ -323,28 +301,6 @@ namespace JDShop.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Price = table.Column<double>(type: "float", nullable: true),
-                    Status = table.Column<byte>(type: "tinyint", nullable: true),
-                    ProductTypeId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Products_ProductTypes",
-                        column: x => x.ProductTypeId,
-                        principalTable: "ProductTypes",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "CollectionProduct",
                 columns: table => new
                 {
@@ -363,11 +319,6 @@ namespace JDShop.Migrations
                         column: x => x.CollectionId,
                         principalTable: "Collection",
                         principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_CollectionProduct_Products",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -383,10 +334,46 @@ namespace JDShop.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Images", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Order_Items",
+                columns: table => new
+                {
+                    OrderId = table.Column<int>(type: "int", nullable: false),
+                    ProductSize_ColorId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Order_Items", x => new { x.OrderId, x.ProductSize_ColorId });
                     table.ForeignKey(
-                        name: "FK_Images_Products",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
+                        name: "FK_Oder_Items_Oders",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<double>(type: "float", nullable: true),
+                    Status = table.Column<byte>(type: "tinyint", nullable: true),
+                    ProductTypeId = table.Column<int>(type: "int", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_Category_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Category",
                         principalColumn: "Id");
                 });
 
@@ -428,25 +415,30 @@ namespace JDShop.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Order_Items",
+                name: "ProductTypes",
                 columns: table => new
                 {
-                    OrderId = table.Column<int>(type: "int", nullable: false),
-                    ProductSize_ColorId = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CategoryId = table.Column<int>(type: "int", nullable: true),
+                    ProductId = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<byte>(type: "tinyint", nullable: true),
+                    CDT = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "(getdate())")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Order_Items", x => new { x.OrderId, x.ProductSize_ColorId });
+                    table.PrimaryKey("PK_ProductTypes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Oder_Items_Oders",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
+                        name: "FK_ProductTypes_Category",
+                        column: x => x.CategoryId,
+                        principalTable: "Category",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Oder_Items_ProductSize_Colors",
-                        column: x => x.ProductSize_ColorId,
-                        principalTable: "ProductSize_Colors",
+                        name: "FK_ProductTypes_Product",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
                         principalColumn: "Id");
                 });
 
@@ -537,8 +529,8 @@ namespace JDShop.Migrations
                 columns: new[] { "Id", "Address", "CDT", "Email", "Name", "Phone", "Status" },
                 values: new object[,]
                 {
-                    { 1, "123 Ha Noi", new DateTime(2025, 5, 23, 13, 33, 42, 83, DateTimeKind.Local).AddTicks(1336), "supplier@jdshop.com", "JDShop Supplier", "0123456789", true },
-                    { 2, "456 Quang Ninh", new DateTime(2025, 5, 23, 13, 33, 42, 83, DateTimeKind.Local).AddTicks(1353), "fashion@supplier.com", "Fashion Supplier", "0987654321", true }
+                    { 1, "123 Ha Noi", new DateTime(2025, 5, 28, 0, 4, 12, 722, DateTimeKind.Local).AddTicks(6379), "supplier@jdshop.com", "JDShop Supplier", "0123456789", true },
+                    { 2, "456 Quang Ninh", new DateTime(2025, 5, 28, 0, 4, 12, 722, DateTimeKind.Local).AddTicks(6396), "fashion@supplier.com", "Fashion Supplier", "0987654321", true }
                 });
 
             migrationBuilder.InsertData(
@@ -546,8 +538,8 @@ namespace JDShop.Migrations
                 columns: new[] { "Id", "AccountTypeId", "Avartar", "Birthday", "Email", "FullName", "Gender", "Password", "Phone", "Point", "RoleId", "Status", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 3, null, new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@jdshop.com", "Admin JDShop", (byte)1, "hunghoang123", "0123456789", null, 1, (byte)1, "jdshop.admin" },
-                    { 2, 1, null, new DateTime(1995, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "khachang1@gmail.com", "Khách Hàng 1", (byte)2, "hunghoang123", "0987654321", 100, 2, (byte)1, "customer1" }
+                    { 1, 3, null, new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@jdshop.com", "Admin JDShop", (byte)1, "4297f44b13955235245b2497399d7a93", "0123456789", null, 1, (byte)1, "jdshop.admin" },
+                    { 2, 1, null, new DateTime(1995, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "khachang1@gmail.com", "Khách Hàng 1", (byte)2, "4297f44b13955235245b2497399d7a93", "0987654321", 100, 2, (byte)1, "customer1" }
                 });
 
             migrationBuilder.InsertData(
@@ -555,26 +547,26 @@ namespace JDShop.Migrations
                 columns: new[] { "Id", "CDT", "Description", "Name", "Status", "SupplierId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 5, 23, 13, 33, 42, 83, DateTimeKind.Local).AddTicks(1384), "Các loại áo dành cho nữ", "Áo nữ", true, 1 },
-                    { 2, new DateTime(2025, 5, 23, 13, 33, 42, 83, DateTimeKind.Local).AddTicks(1388), "Các loại áo dành cho nam", "Áo nam", true, 1 }
+                    { 1, new DateTime(2025, 5, 28, 0, 4, 12, 722, DateTimeKind.Local).AddTicks(6427), "Các loại áo dành cho nữ", "Áo nữ", true, 1 },
+                    { 2, new DateTime(2025, 5, 28, 0, 4, 12, 722, DateTimeKind.Local).AddTicks(6430), "Các loại áo dành cho nam", "Áo nam", true, 1 }
                 });
 
             migrationBuilder.InsertData(
                 table: "ProductTypes",
-                columns: new[] { "Id", "CategoryId", "CDT", "Description", "Name", "Status" },
+                columns: new[] { "Id", "CategoryId", "CDT", "Description", "Name", "ProductId", "Status" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2025, 5, 23, 13, 33, 42, 83, DateTimeKind.Local).AddTicks(1412), "Áo thun dành cho nữ", "Áo thun nữ", (byte)1 },
-                    { 2, 2, new DateTime(2025, 5, 23, 13, 33, 42, 83, DateTimeKind.Local).AddTicks(1414), "Áo sơ mi dành cho nam", "Áo sơ mi nam", (byte)1 }
+                    { 1, 1, new DateTime(2025, 5, 28, 0, 4, 12, 722, DateTimeKind.Local).AddTicks(6455), "Áo thun dành cho nữ", "Áo thun nữ", null, (byte)1 },
+                    { 2, 2, new DateTime(2025, 5, 28, 0, 4, 12, 722, DateTimeKind.Local).AddTicks(6459), "Áo sơ mi dành cho nam", "Áo sơ mi nam", null, (byte)1 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "Description", "Name", "Price", "ProductTypeId", "Status" },
+                columns: new[] { "Id", "CategoryId", "Description", "Name", "Price", "ProductTypeId", "Status" },
                 values: new object[,]
                 {
-                    { 1, "Áo thun nữ form rộng basic", "Áo thun nữ basic", 199000.0, 1, (byte)1 },
-                    { 2, "Áo sơ mi nam dài tay", "Áo sơ mi nam công sở", 299000.0, 2, (byte)1 }
+                    { 1, null, "Áo thun nữ form rộng basic", "Áo thun nữ basic", 199000.0, 1, (byte)1 },
+                    { 2, null, "Áo sơ mi nam dài tay", "Áo sơ mi nam công sở", 299000.0, 2, (byte)1 }
                 });
 
             migrationBuilder.InsertData(
@@ -647,6 +639,11 @@ namespace JDShop.Migrations
                 column: "PaymentMethodsId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Products_CategoryId",
+                table: "Products",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_ProductTypeId",
                 table: "Products",
                 column: "ProductTypeId");
@@ -677,14 +674,55 @@ namespace JDShop.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProductTypes_ProductId",
+                table: "ProductTypes",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Receipt_Products_ProductSize_ColorId",
                 table: "Receipt_Products",
                 column: "ProductSize_ColorId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_CollectionProduct_Products",
+                table: "CollectionProduct",
+                column: "ProductId",
+                principalTable: "Products",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Images_Products",
+                table: "Images",
+                column: "ProductId",
+                principalTable: "Products",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Oder_Items_ProductSize_Colors",
+                table: "Order_Items",
+                column: "ProductSize_ColorId",
+                principalTable: "ProductSize_Colors",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Products_ProductTypes",
+                table: "Products",
+                column: "ProductTypeId",
+                principalTable: "ProductTypes",
+                principalColumn: "Id");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Category_Suppliers",
+                table: "Category");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_ProductTypes_Product",
+                table: "ProductTypes");
+
             migrationBuilder.DropTable(
                 name: "Address");
 
@@ -728,9 +766,6 @@ namespace JDShop.Migrations
                 name: "Colors");
 
             migrationBuilder.DropTable(
-                name: "Products");
-
-            migrationBuilder.DropTable(
                 name: "Products_Inventorys");
 
             migrationBuilder.DropTable(
@@ -743,13 +778,16 @@ namespace JDShop.Migrations
                 name: "Roles");
 
             migrationBuilder.DropTable(
+                name: "Suppliers");
+
+            migrationBuilder.DropTable(
+                name: "Products");
+
+            migrationBuilder.DropTable(
                 name: "ProductTypes");
 
             migrationBuilder.DropTable(
                 name: "Category");
-
-            migrationBuilder.DropTable(
-                name: "Suppliers");
         }
     }
 }

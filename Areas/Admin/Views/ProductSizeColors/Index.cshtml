@@ -1,90 +1,659 @@
-﻿@model IEnumerable<JDshop.Models.ProductSizeColor>
+﻿@* @model IEnumerable<JDshop.Models.ProductSizeColor> *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Index"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+@* <div class="page-header"> *@
+@*     <h3 style="font-family:Helvetica;" class="page-title"> Quản lý sản phẩm - Màu - Size </h3> *@
+@*     <nav aria-label="breadcrumb"> *@
+
+@*     </nav> *@
+@* </div> *@
+
+@* <div class="col-lg-12 grid-margin stretch-card"> *@
+@*     <div class="card"> *@
+@*         <div class="card-body"> *@
+@*             <p> *@
+@*                 <a asp-action="Create" class="btn btn-success mb-2">Thêm</a> *@
+@*             </p> *@
+@*             <table class="table"> *@
+@*                 <thead> *@
+@*                     <tr> *@
+@*                         <th> *@
+@*                             Mã Code *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             Màu *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             Tên sản phẩm *@
+@*                         </th> *@
+
+@*                         <th> *@
+@*                             Size *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             Số lượng *@
+@*                         </th> *@
+@*                         <th> *@
+@*                             Số lượng bán *@
+@*                         </th> *@
+@*                         <th></th> *@
+@*                     </tr> *@
+@*                 </thead> *@
+@*                 <tbody> *@
+@*                     @foreach (var item in Model) *@
+@*                     { *@
+@*                         <tr> *@
+@*                             <td> *@
+@*                                 @Html.DisplayFor(modelItem => item.Code) *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 @Html.DisplayFor(modelItem => item.Color.Color1) *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 <div class="d-flex align-items-center"> *@
+@*                                     <img src="@Url.Content("~/contents/Images/Product/" + item.Product.Images.FirstOrDefault().Url)" *@
+@*                                          alt="@item.Product.Name" *@
+@*                                          style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px; margin-right: 10px;"> *@
+@*                                     <span>@item.Product.Name</span> *@
+@*                                 </div> *@
+@*                             </td> *@
+
+@*                             <td> *@
+@*                                 @Html.DisplayFor(modelItem => item.Size.Size1) *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 @Html.DisplayFor(modelItem => item.ProductInventory.Quantity) *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 @Html.DisplayFor(modelItem => item.ProductInventory.QuantitySold) *@
+@*                             </td> *@
+@*                             <td> *@
+@*                                 <a asp-action="Details" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-eye" style="color:#19b6ff;font-size:25px;"></i>  </a> *@
+@*                                 <a asp-action="Edit" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-square-edit-outline" style="color:#ffd83b;font-size:25px;"></i></a> *@
+@*                                 <a asp-action="Delete" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-delete" style="color:#e75555;font-size:25px;"></i></a> *@
+@*                             </td> *@
+@*                         </tr> *@
+@*                     } *@
+@*                 </tbody> *@
+@*             </table> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+
+
+
+
+
+@model IEnumerable<JDshop.Models.ProductSizeColor>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Quản lý sản phẩm - Màu - Size";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-<div class="page-header">
-    <h3 style="font-family:Helvetica;" class="page-title"> Quản lý sản phẩm - Màu - Size </h3>
-    <nav aria-label="breadcrumb">
 
-    </nav>
+<style>
+    .page-header {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    .page-title {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.75rem;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .content-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    }
+
+    .card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #ecf0f1;
+    background: #f8f9fa;
+    }
+
+    .search-filter-section {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    }
+
+    .search-box {
+    flex: 1;
+    min-width: 250px;
+    }
+
+    .search-box input {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    font-size: 0.875rem;
+    }
+
+    .filter-select {
+    min-width: 150px;
+    }
+
+    .filter-select select {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.5rem;
+    width: 100%;
+    font-size: 0.875rem;
+    }
+
+    .btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    }
+
+    .btn-success {
+    background-color: #27ae60;
+    border-color: #27ae60;
+    border-radius: 6px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    }
+
+    .stats-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    }
+
+    .stat-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+    }
+
+    .stat-number {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    }
+
+    .stat-label {
+    color: #7f8c8d;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    }
+
+    .table-container {
+    overflow-x: auto;
+    }
+
+    .products-table {
+    margin: 0;
+    width: 100%;
+    font-size: 0.875rem;
+    }
+
+    .products-table th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    padding: 1rem 0.75rem;
+    font-weight: 600;
+    color: #2c3e50;
+    white-space: nowrap;
+    }
+
+    .products-table td {
+    padding: 1rem 0.75rem;
+    vertical-align: middle;
+    border-bottom: 1px solid #ecf0f1;
+    }
+
+    .products-table tr:hover {
+    background-color: #f8f9fa;
+    }
+
+    .product-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    }
+
+    .product-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 2px solid #ecf0f1;
+    flex-shrink: 0;
+    }
+
+    .product-name {
+    font-weight: 500;
+    color: #2c3e50;
+    }
+
+    .code-badge {
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    font-family: monospace;
+    }
+
+    .color-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    }
+
+    .color-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ecf0f1;
+    flex-shrink: 0;
+    }
+
+    .color-name {
+    font-weight: 500;
+    color: #2c3e50;
+    }
+
+    .size-badge {
+    background: #fff3e0;
+    color: #f57c00;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-align: center;
+    min-width: 40px;
+    display: inline-block;
+    }
+
+    .quantity-display {
+    text-align: center;
+    }
+
+    .quantity-number {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1rem;
+    }
+
+    .quantity-label {
+    font-size: 0.75rem;
+    color: #7f8c8d;
+    margin-top: 0.25rem;
+    }
+
+    .low-stock {
+    color: #e74c3c;
+    }
+
+    .out-of-stock {
+    color: #c0392b;
+    background: #ffebee;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    }
+
+    .action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    }
+
+    .action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 0.875rem;
+    }
+
+    .action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .btn-view {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    }
+
+    .btn-edit {
+    background-color: #fff3e0;
+    color: #f57c00;
+    }
+
+    .btn-delete {
+    background-color: #ffebee;
+    color: #d32f2f;
+    }
+
+    .empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #7f8c8d;
+    }
+
+    .empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #bdc3c7;
+    }
+
+</style>
+
+<div class="page-header">
+    <h3 class="page-title">
+        <i class="fas fa-palette me-2"></i>
+        Quản lý sản phẩm - Màu - Size
+    </h3>
+    <a asp-action="Create" class="btn btn-success">
+        <i class="fas fa-plus me-1"></i>
+        Thêm mới
+    </a>
 </div>
 
-<div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <p>
-                <a asp-action="Create" class="btn btn-success mb-2">Thêm</a>
-            </p>
-            <table class="table">
+<!-- Statistics Row -->
+<div class="stats-row">
+    <div class="stat-item">
+        <div class="stat-number">@Model.Count()</div>
+        <div class="stat-label">Tổng biến thể</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">@Model.Where(x => x.ProductInventory?.Quantity > 0).Count()</div>
+        <div class="stat-label">Còn hàng</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">@Model.Where(x => x.ProductInventory?.Quantity == 0).Count()</div>
+        <div class="stat-label">Hết hàng</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">@Model.Sum(x => x.ProductInventory?.Quantity ?? 0)</div>
+        <div class="stat-label">Tổng số lượng</div>
+    </div>
+</div>
+
+<div class="content-card">
+    <div class="card-header">
+        <div class="search-filter-section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm theo tên sản phẩm, mã code..." class="form-control">
+            </div>
+            <div class="filter-select">
+                <select id="colorFilter" class="form-select">
+                    <option value="">Tất cả màu</option>
+                    @foreach (var color in Model.Select(p => p.Color?.Color1).Distinct().Where(c => !string.IsNullOrEmpty(c)))
+                    {
+                        <option value="@color">@color</option>
+                    }
+                </select>
+            </div>
+            <div class="filter-select">
+                <select id="sizeFilter" class="form-select">
+                    <option value="">Tất cả size</option>
+                    @foreach (var size in Model.Select(p => p.Size?.Size1).Distinct().Where(s => !string.IsNullOrEmpty(s)))
+                    {
+                        <option value="@size">@size</option>
+                    }
+                </select>
+            </div>
+            <div class="filter-select">
+                <select id="stockFilter" class="form-select">
+                    <option value="">Tất cả</option>
+                    <option value="in-stock">Còn hàng</option>
+                    <option value="low-stock">Sắp hết</option>
+                    <option value="out-of-stock">Hết hàng</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" onclick="clearFilters()">
+                <i class="fas fa-refresh me-1"></i>
+                Làm mới
+            </button>
+        </div>
+    </div>
+
+    <div class="table-container">
+        @if (Model.Any())
+        {
+            <table class="table products-table" id="productsTable">
                 <thead>
                     <tr>
-                        <th>
-                            Mã Code
-                            @* @Html.DisplayNameFor(model => model.Code) *@
-                        </th>
-                        <th>
-                            Màu
-                           @*  @Html.DisplayNameFor(model => model.Color) *@
-                        </th>
-                        <th>
-                            Tên sản phẩm
-                            @* @Html.DisplayNameFor(model => model.Product) *@
-                        </th>
-
-                        <th>
-                            Size
-                            @* @Html.DisplayNameFor(model => model.Size) *@
-                        </th>
-                        <th>
-                            Số lượng
-                            @* @Html.DisplayNameFor(model => model.ProductInventory.Quantity) *@
-                        </th>
-                        <th>
-                            Số lượng bán
-                            @* @Html.DisplayNameFor(model => model.ProductInventory.QuantitySold) *@
-                        </th>
-                        <th></th>
+                        <th>Mã Code</th>
+                        <th>Màu sắc</th>
+                        <th>Sản phẩm</th>
+                        <th>Size</th>
+                        <th>Tồn kho</th>
+                        <th>Đã bán</th>
+                        <th>Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
+                        <tr data-code="@item.Code?.ToLower()"
+                        data-color="@item.Color?.Color1"
+                        data-size="@item.Size?.Size1"
+                        data-product="@item.Product?.Name?.ToLower()"
+                        data-stock="@(item.ProductInventory?.Quantity ?? 0)">
                             <td>
-                                @Html.DisplayFor(modelItem => item.Code)
+                                @if (!string.IsNullOrEmpty(item.Code))
+                                {
+                                    <span class="code-badge">@item.Code</span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">N/A</span>
+                                }
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Color.Color1)
+                                @if (!string.IsNullOrEmpty(item.Color?.Color1))
+                                {
+                                    <div class="color-display">
+                                        <div class="color-swatch" style="background-color: @GetColorHex(item.Color.Color1);"></div>
+                                        <span class="color-name">@item.Color.Color1</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Chưa có màu</span>
+                                }
                             </td>
                             <td>
-                                <div class="d-flex align-items-center">
-                                    <img src="@Url.Content("~/contents/Images/Product/" + item.Product.Images.FirstOrDefault().Url)"
-                                         alt="@item.Product.Name"
-                                         style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px; margin-right: 10px;">
-                                    <span>@item.Product.Name</span>
+                                <div class="product-info">
+                                    @if (item.Product?.Images?.Any() == true)
+                                    {
+                                        <img src="@Url.Content("~/contents/Images/Product/" + item.Product.Images.FirstOrDefault().Url)"
+                                        class="product-image"
+                                        alt="@item.Product.Name"
+                                        onerror="this.src='/images/no-image.png'">
+                                    }
+                                    else
+                                    {
+                                        <div class="product-image d-flex align-items-center justify-content-center bg-light">
+                                            <i class="fas fa-image text-muted"></i>
+                                        </div>
+                                    }
+                                    <span class="product-name">@(item.Product?.Name ?? "Chưa có tên")</span>
                                 </div>
                             </td>
-
                             <td>
-                                @Html.DisplayFor(modelItem => item.Size.Size1)
+                                @if (!string.IsNullOrEmpty(item.Size?.Size1))
+                                {
+                                    <span class="size-badge">@item.Size.Size1</span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">N/A</span>
+                                }
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.ProductInventory.Quantity)
+                                <div class="quantity-display">
+                                    @{
+                                        var quantity = item.ProductInventory?.Quantity ?? 0;
+                                        var quantitySold = item.ProductInventory.QuantitySold ?? 0;
+                                        var totalQuantity = quantity - quantitySold;
+                                        var cssClass = quantity == 0 ? "out-of-stock" : quantity < 10 ? "low-stock" : "";
+                                    }
+                                    <div class="quantity-number @cssClass">@totalQuantity</div>
+                                    <div class="quantity-label">
+                                        @if (quantity == 0)
+                                        {
+                                            <span>Hết hàng</span>
+                                        }
+                                        else if (quantity < 10)
+                                        {
+                                            <span>Sắp hết</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Còn hàng</span>
+                                        }
+                                    </div>
+                                </div>
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.ProductInventory.QuantitySold)
+                                <div class="quantity-display">
+                                    <div class="quantity-number">@(item.ProductInventory?.QuantitySold ?? 0)</div>
+                                    <div class="quantity-label">Đã bán</div>
+                                </div>
                             </td>
                             <td>
-                                <a asp-action="Details" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-eye" style="color:#19b6ff;font-size:25px;"></i>  </a>
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-square-edit-outline" style="color:#ffd83b;font-size:25px;"></i></a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="action-icon"> <i class="mdi mdi-delete" style="color:#e75555;font-size:25px;"></i></a>
+                                <div class="action-buttons">
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="action-btn btn-view" title="Xem chi tiết">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="action-btn btn-edit" title="Chỉnh sửa">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="action-btn btn-delete" title="Xóa"
+                                       onclick="return confirm('Bạn có chắc chắn muốn xóa biến thể này?')">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-        </div>
+        }
+        else
+        {
+            <div class="empty-state">
+                <i class="fas fa-palette"></i>
+                <h4>Chưa có biến thể sản phẩm nào</h4>
+                <p>Hãy thêm biến thể đầu tiên để quản lý màu sắc và kích thước sản phẩm.</p>
+                <a asp-action="Create" class="btn btn-success mt-3">
+                    <i class="fas fa-plus me-1"></i>
+                    Thêm biến thể đầu tiên
+                </a>
+            </div>
+        }
     </div>
 </div>
+
+@functions {
+    string GetColorHex(string colorName)
+    {
+        // Simple color mapping - you can expand this
+        var colorMap = new Dictionary<string, string>
+        {
+            {"đỏ", "#ff0000"}, {"xanh", "#0000ff"}, {"vàng", "#ffff00"},
+            {"đen", "#000000"}, {"trắng", "#ffffff"}, {"xám", "#808080"},
+            {"hồng", "#ffc0cb"}, {"tím", "#800080"}, {"cam", "#ffa500"},
+            {"nâu", "#a52a2a"}, {"xanh lá", "#008000"}
+        };
+
+        return colorMap.ContainsKey(colorName.ToLower()) ? colorMap[colorName.ToLower()] : "#cccccc";
+    }
+}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const colorFilter = document.getElementById('colorFilter');
+        const sizeFilter = document.getElementById('sizeFilter');
+        const stockFilter = document.getElementById('stockFilter');
+        const table = document.getElementById('productsTable');
+
+        function filterTable() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const colorValue = colorFilter.value;
+            const sizeValue = sizeFilter.value;
+            const stockValue = stockFilter.value;
+            const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+            for (let row of rows) {
+                const code = row.getAttribute('data-code') || '';
+                const product = row.getAttribute('data-product') || '';
+                const color = row.getAttribute('data-color') || '';
+                const size = row.getAttribute('data-size') || '';
+                const stock = parseInt(row.getAttribute('data-stock')) || 0;
+
+                const matchesSearch = code.includes(searchTerm) || product.includes(searchTerm);
+                const matchesColor = !colorValue || color === colorValue;
+                const matchesSize = !sizeValue || size === sizeValue;
+
+                let matchesStock = true;
+                if (stockValue === 'in-stock') matchesStock = stock > 10;
+                else if (stockValue === 'low-stock') matchesStock = stock > 0 && stock <= 10;
+                else if (stockValue === 'out-of-stock') matchesStock = stock === 0;
+
+                if (matchesSearch && matchesColor && matchesSize && matchesStock) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            }
+        }
+
+        searchInput.addEventListener('input', filterTable);
+        colorFilter.addEventListener('change', filterTable);
+        sizeFilter.addEventListener('change', filterTable);
+        stockFilter.addEventListener('change', filterTable);
+
+        window.clearFilters = function() {
+            searchInput.value = '';
+            colorFilter.value = '';
+            sizeFilter.value = '';
+            stockFilter.value = '';
+            filterTable();
+        };
+    });
+</script>
+
+

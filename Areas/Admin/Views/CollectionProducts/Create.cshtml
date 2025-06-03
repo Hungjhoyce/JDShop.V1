@@ -1,45 +1,646 @@
-﻿@model JDshop.Models.CollectionProduct
+﻿@* @model JDshop.Models.CollectionProduct *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Create"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>THÊM</h1> *@
+
+@* <h4>Sản phẩm Bộ sưu tập</h4> *@
+@* <hr /> *@
+@* <div class="row"> *@
+@*     <div class="col-md-4"> *@
+@*         <form asp-action="Create"> *@
+@*             <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="ProductId" class="control-label">Tên sản phẩm</label> *@
+@*                 <select asp-for="ProductId" class="form-control" asp-items="ViewBag.ProductId"></select> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="CollectionId" class="control-label">Bộ sưu tập</label> *@
+@*                 <select asp-for="CollectionId" class="form-control" asp-items="ViewBag.CollectionId"></select> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label>Trạng Thái</label> *@
+@*                 <select class="form-control" asp-for="Status" placeholder="" required> *@
+@*                     <option value="True" selected>Hoạt động</option> *@
+@*                     <option value="False">Ngừng hoạt động</option> *@
+
+@*                 </select> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <button type="submit" class="btn btn-gradient-primary me-2">Thêm mới</button> *@
+@*                 <a asp-action="Index" class="btn btn-light">Trở về</a> *@
+@*             </div> *@
+@*         </form> *@
+@*     </div> *@
+@* </div> *@
+
+
+@* @section Scripts { *@
+@*     @{ *@
+@*         await Html.RenderPartialAsync("_ValidationScriptsPartial"); *@
+@*     } *@
+@* } *@
+
+
+
+
+
+
+
+
+
+@model JDshop.Models.CollectionProduct
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Thêm sản phẩm bộ sưu tập";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>THÊM</h1>
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-<h4>Sản phẩm Bộ sưu tập</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ProductId" class="control-label">Tên sản phẩm</label>
-                <select asp-for="ProductId" class="form-control" asp-items="ViewBag.ProductId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="CollectionId" class="control-label">Bộ sưu tập</label>
-                <select asp-for="CollectionId" class="form-control" asp-items="ViewBag.CollectionId"></select>
-            </div>
-            <div class="form-group">
-                <label>Trạng Thái</label>
-                <select class="form-control" asp-for="Status" placeholder="" required>
-                    <option value="True" selected>Hoạt động</option>
-                    <option value="False">Ngừng hoạt động</option>
+    .main-container {
+        background-color: #f5f5f7;
+        min-height: 100vh;
+        padding: 2rem;
+    }
 
-                </select>
+    .header-section {
+        margin-bottom: 2rem;
+    }
+
+    .header-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .header-subtitle {
+        color: #86868b;
+        margin: 0.25rem 0 0 0;
+        font-size: 0.95rem;
+    }
+
+    .form-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+    }
+
+    .form-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        border: 1px solid #f0f0f0;
+        overflow: hidden;
+    }
+
+    .card-header {
+        background: #f9f9f9;
+        padding: 1.5rem;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #1d1d1f;
+        font-size: 0.95rem;
+    }
+
+    .required-indicator {
+        color: #ff3b30;
+        margin-left: 0.25rem;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.2s ease;
+        background: white;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #007aff;
+            box-shadow: 0 0 0 3px rgba(0,122,255,0.1);
+        }
+
+    .text-danger {
+        color: #ff3b30;
+        font-size: 0.85rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 0.95rem;
+    }
+
+    .btn-success {
+        background: #30d158;
+        color: white;
+    }
+
+        .btn-success:hover {
+            background: #28bd4d;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(48,209,88,0.3);
+        }
+
+    .btn-secondary {
+        background: #f0f0f0;
+        color: #1d1d1f !important;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+            text-decoration: none;
+            color: #1d1d1f;
+        }
+
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .preview-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        border: 1px solid #f0f0f0;
+        overflow: hidden;
+        height: fit-content;
+    }
+
+    .preview-header {
+        background: #f0f8ff;
+        padding: 1.5rem;
+        border-bottom: 1px solid #007aff;
+    }
+
+    .preview-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #007aff;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .preview-body {
+        padding: 1.5rem;
+    }
+
+    .preview-item {
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: #f9f9f9;
+        border-radius: 8px;
+        border-left: 4px solid #007aff;
+    }
+
+    .preview-label {
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .preview-value {
+        color: #86868b;
+        font-size: 0.95rem;
+        margin: 0;
+    }
+
+        .preview-value.selected {
+            color: #007aff;
+            font-weight: 500;
+        }
+
+    .status-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .status-active {
+        background: #d1f2eb;
+        color: #00875a;
+    }
+
+    .status-inactive {
+        background: #ffebe6;
+        color: #de350b;
+    }
+
+    .help-text {
+        font-size: 0.8rem;
+        color: #86868b;
+        margin-top: 0.25rem;
+    }
+
+    .validation-message {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+        color: #ff3b30;
+        font-size: 0.85rem;
+    }
+
+        .validation-message i {
+            font-size: 1rem;
+        }
+
+    .info-box {
+        background: #f0f8ff;
+        border: 1px solid #007aff;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .info-title {
+        font-weight: 600;
+        color: #007aff;
+        margin: 0 0 0.5rem 0;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .info-text {
+        color: #86868b;
+        font-size: 0.85rem;
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    .quick-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .stat-item {
+        background: #f9f9f9;
+        padding: 1rem;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #007aff;
+        margin: 0;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+        color: #86868b;
+        margin: 0.25rem 0 0 0;
+    }
+</style>
+
+<div class="main-container">
+    <!-- Header Section -->
+    <div class="header-section">
+
+        <h1 class="header-title">
+            <i class="mdi mdi-plus-circle"></i>
+            Thêm sản phẩm vào bộ sưu tập
+        </h1>
+        <p class="header-subtitle">Thêm sản phẩm mới vào bộ sưu tập</p>
+    </div>
+
+    <div class="form-container">
+        <!-- Main Form -->
+        <div class="form-card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="mdi mdi-form-select"></i>
+                    Thông tin sản phẩm bộ sưu tập
+                </h2>
             </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-gradient-primary me-2">Thêm mới</button>
-                <a asp-action="Index" class="btn btn-light">Trở về</a>
+            <div class="card-body">
+                <div class="info-box">
+                    <div class="info-title">
+                        <i class="mdi mdi-information"></i>
+                        Hướng dẫn
+                    </div>
+                    <p class="info-text">
+                        Chọn sản phẩm và bộ sưu tập để tạo liên kết. Đảm bảo sản phẩm chưa tồn tại trong bộ sưu tập được chọn.
+                    </p>
+                </div>
+
+                <form asp-action="Create" id="createForm">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="mdi mdi-package-variant"></i>
+                            Tên sản phẩm <span class="required-indicator">*</span>
+                        </label>
+                        <select asp-for="ProductId" class="form-control" asp-items="ViewBag.ProductId" id="productSelect" required>
+                            <option value="">-- Chọn sản phẩm --</option>
+                        </select>
+                        <span asp-validation-for="ProductId" class="text-danger"></span>
+                        <div class="help-text">Chọn sản phẩm muốn thêm vào bộ sưu tập</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="mdi mdi-folder-multiple"></i>
+                            Bộ sưu tập <span class="required-indicator">*</span>
+                        </label>
+                        <select asp-for="CollectionId" class="form-control" asp-items="ViewBag.CollectionId" id="collectionSelect" required>
+                            <option value="">-- Chọn bộ sưu tập --</option>
+                        </select>
+                        <span asp-validation-for="CollectionId" class="text-danger"></span>
+                        <div class="help-text">Chọn bộ sưu tập chứa sản phẩm này</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="mdi mdi-toggle-switch"></i>
+                            Trạng thái <span class="required-indicator">*</span>
+                        </label>
+                        <select class="form-control" asp-for="Status" id="statusSelect" required>
+                            <option value="True" selected>Hoạt động</option>
+                            <option value="False">Ngừng hoạt động</option>
+                        </select>
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                        <div class="help-text">Trạng thái hiển thị của sản phẩm trong bộ sưu tập</div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success" id="submitBtn">
+                            <i class="mdi mdi-plus"></i>
+                            Thêm mới
+                        </button>
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="mdi mdi-arrow-left"></i>
+                            Quay lại
+                        </a>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
+
+        <!-- Preview Sidebar -->
+        <div class="preview-card">
+            <div class="preview-header">
+                <h3 class="preview-title">
+                    <i class="mdi mdi-eye"></i>
+                    Xem trước
+                </h3>
+            </div>
+            <div class="preview-body">
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalProducts">0</div>
+                        <div class="stat-label">Sản phẩm</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalCollections">0</div>
+                        <div class="stat-label">Bộ sưu tập</div>
+                    </div>
+                </div>
+
+                <div class="preview-item">
+                    <div class="preview-label">
+                        <i class="mdi mdi-package-variant"></i>
+                        Sản phẩm được chọn
+                    </div>
+                    <div class="preview-value" id="selectedProduct">
+                        Chưa chọn sản phẩm
+                    </div>
+                </div>
+
+                <div class="preview-item">
+                    <div class="preview-label">
+                        <i class="mdi mdi-folder-multiple"></i>
+                        Bộ sưu tập được chọn
+                    </div>
+                    <div class="preview-value" id="selectedCollection">
+                        Chưa chọn bộ sưu tập
+                    </div>
+                </div>
+
+                <div class="preview-item">
+                    <div class="preview-label">
+                        <i class="mdi mdi-toggle-switch"></i>
+                        Trạng thái
+                    </div>
+                    <div class="preview-value" id="selectedStatus">
+                        <span class="status-badge status-active">
+                            <i class="mdi mdi-check-circle"></i>
+                            Hoạt động
+                        </span>
+                    </div>
+                </div>
+
+                <div class="preview-item">
+                    <div class="preview-label">
+                        <i class="mdi mdi-calendar"></i>
+                        Ngày tạo
+                    </div>
+                    <div class="preview-value" id="createdDate">
+                        Hôm nay
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var productSelect = document.getElementById('productSelect');
+            var collectionSelect = document.getElementById('collectionSelect');
+            var statusSelect = document.getElementById('statusSelect');
+            var selectedProduct = document.getElementById('selectedProduct');
+            var selectedCollection = document.getElementById('selectedCollection');
+            var selectedStatus = document.getElementById('selectedStatus');
+            var totalProducts = document.getElementById('totalProducts');
+            var totalCollections = document.getElementById('totalCollections');
+            var createdDate = document.getElementById('createdDate');
+
+            // Set current date
+            var today = new Date();
+            createdDate.textContent = today.toLocaleDateString('vi-VN') + ' ' + today.toLocaleTimeString('vi-VN', {hour: '2-digit', minute: '2-digit'});
+
+            // Count options
+            function updateStats() {
+                var productCount = productSelect.options.length - 1; // Exclude placeholder
+                var collectionCount = collectionSelect.options.length - 1; // Exclude placeholder
+
+                totalProducts.textContent = productCount;
+                totalCollections.textContent = collectionCount;
+            }
+
+            // Update preview when selections change
+            function updatePreview() {
+                // Update product preview
+                if (productSelect.value) {
+                    var productText = productSelect.options[productSelect.selectedIndex].text;
+                    selectedProduct.textContent = productText;
+                    selectedProduct.classList.add('selected');
+                } else {
+                    selectedProduct.textContent = 'Chưa chọn sản phẩm';
+                    selectedProduct.classList.remove('selected');
+                }
+
+                // Update collection preview
+                if (collectionSelect.value) {
+                    var collectionText = collectionSelect.options[collectionSelect.selectedIndex].text;
+                    selectedCollection.textContent = collectionText;
+                    selectedCollection.classList.add('selected');
+                } else {
+                    selectedCollection.textContent = 'Chưa chọn bộ sưu tập';
+                    selectedCollection.classList.remove('selected');
+                }
+
+                // Update status preview
+                var statusValue = statusSelect.value;
+                if (statusValue === 'True') {
+                    selectedStatus.innerHTML = '<span class="status-badge status-active"><i class="mdi mdi-check-circle"></i>Hoạt động</span>';
+                } else {
+                    selectedStatus.innerHTML = '<span class="status-badge status-inactive"><i class="mdi mdi-close-circle"></i>Ngừng hoạt động</span>';
+                }
+            }
+
+            // Form validation
+            function validateForm() {
+                var isValid = true;
+                var errors = [];
+
+                if (!productSelect.value) {
+                    errors.push('Vui lòng chọn sản phẩm');
+                    isValid = false;
+                }
+
+                if (!collectionSelect.value) {
+                    errors.push('Vui lòng chọn bộ sưu tập');
+                    isValid = false;
+                }
+
+                if (!statusSelect.value) {
+                    errors.push('Vui lòng chọn trạng thái');
+                    isValid = false;
+                }
+
+                return { isValid: isValid, errors: errors };
+            }
+
+            // Add event listeners
+            productSelect.addEventListener('change', updatePreview);
+            collectionSelect.addEventListener('change', updatePreview);
+            statusSelect.addEventListener('change', updatePreview);
+
+            // Form submission handling
+            document.getElementById('createForm').addEventListener('submit', function(e) {
+                var validation = validateForm();
+
+                if (!validation.isValid) {
+                    e.preventDefault();
+                    alert('Vui lòng điền đầy đủ thông tin:\n' + validation.errors.join('\n'));
+                    return;
+                }
+
+                var submitBtn = document.getElementById('submitBtn');
+                submitBtn.innerHTML = '<i class="mdi mdi-loading mdi-spin"></i> Đang thêm...';
+                submitBtn.disabled = true;
+            });
+
+            // Initial updates
+            updateStats();
+            updatePreview();
+
+            // Add smooth animations
+            var cards = document.querySelectorAll('.form-card, .preview-card');
+            cards.forEach(function(card, index) {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+
+                setTimeout(function() {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+
+            // Add focus effects
+            var formControls = document.querySelectorAll('.form-control');
+            formControls.forEach(function(control) {
+                control.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'scale(1.02)';
+                });
+
+                control.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
 }

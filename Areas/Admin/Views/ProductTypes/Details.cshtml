@@ -1,77 +1,357 @@
-﻿@model JDshop.Models.ProductType
+﻿@* @model JDshop.Models.ProductType *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Details"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>XEM CHI TIẾT</h1> *@
+
+@* <div> *@
+@*     <h4>Sản phẩm theo loại</h4> *@
+@*     <hr /> *@
+@*     <dl class="row"> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Tên sản phẩm *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Name) *@
+@*         </dd> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Mô tả *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Description) *@
+@*         </dd> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Trạng thái *@
+@*         </dt> *@
+@*         @if (Model.Status == 1) *@
+@*         { *@
+@*             <dd class="col-sm-10"> *@
+@*                 Còn hoạt động *@
+@*             </dd> *@
+@*         } *@
+@*         else *@
+@*         { *@
+@*             <dd class="col-sm-10"> *@
+@*                 Ngừng hoạt động *@
+@*             </dd> *@
+
+@*         } *@
+
+@*         <dt class = "col-sm-2"> *@
+@*             Ngày tạo *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @(Model.Cdt.HasValue *@
+@*                 ? Model.Cdt.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN")) *@
+@*                 : "") *@
+@*         </dd> *@
+@*         <dt class = "col-sm-2"> *@
+@*             Loại sản phẩm *@
+@*         </dt> *@
+@*         <dd class = "col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Category.Name) *@
+@*         </dd> *@
+@*     </dl> *@
+@* </div> *@
+@* <div> *@
+@*     <div style="float: left; padding-right:10px"> *@
+@*         <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Sửa</a> *@
+@*     </div> *@
+@*     <a class="btn btn-secondary" asp-action="Index">Quay Lại</a> *@
+@* </div> *@
+
+
+
+
+
+
+
+@model JDshop.Models.ProductType
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Chi tiết loại sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>XEM CHI TIẾT</h1>
+<style>
+    .details-container {
+        margin: 0 auto;
+        padding: 2rem;
+    }
 
-<div>
-    <h4>Sản phẩm theo loại</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            Tên sản phẩm
-            @* @Html.DisplayNameFor(model => model.Name) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            Mô tả
-            @* @Html.DisplayNameFor(model => model.Description) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            Trạng thái
-            @* @Html.DisplayNameFor(model => model.Status) *@
-        </dt>
-        @if (Model.Status == 1)
-        {
-            <dd class="col-sm-10">
-                Còn hoạt động
-            </dd>
+    .page-header {
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0;
+    }
+
+    .page-subtitle {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+    .product-type-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .product-type-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    .product-type-icon {
+        width: 48px;
+        height: 48px;
+        background: #8b5cf6;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .product-type-info {
+        flex: 1;
+    }
+
+    .product-type-name {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0;
+    }
+
+    .product-type-description {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin: 0.25rem 0 0 0;
+    }
+
+    .details-list {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .detail-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .detail-icon {
+        width: 20px;
+        color: #6b7280;
+        font-size: 0.875rem;
+    }
+
+    .detail-label {
+        color: #374151;
+        font-size: 0.875rem;
+        min-width: 120px;
+    }
+
+    .detail-value {
+        color: #1f2937;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .status-badge {
+        background: #dcfce7;
+        color: #166534;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .status-inactive {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+
+    .category-badge {
+        background: #dbeafe;
+        color: #1d4ed8;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        margin-top: 2rem;
+    }
+
+    .btn {
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: 1px solid;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-primary {
+        background: #3b82f6;
+        color: white;
+        border-color: #3b82f6;
+    }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            border-color: #2563eb;
         }
-        else
-        {
-            <dd class="col-sm-10">
-                Ngừng hoạt động
-            </dd>
 
+    .btn-secondary {
+        background: white;
+        color: #374151 !important;
+        border-color: #d1d5db;
+    }
+
+        .btn-secondary:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
         }
 
-        <dt class = "col-sm-2">
-            Ngày tạo
-            @* @Html.DisplayNameFor(model => model.Cdt) *@
-        </dt>
-        <dd class="col-sm-10">
-            @(Model.Cdt.HasValue
-                ? Model.Cdt.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN"))
-                : "")
-        </dd>
-        @* <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cdt)
-        </dd> *@
-        <dt class = "col-sm-2">
-            Loại sản phẩm
-            @* @Html.DisplayNameFor(model => model.Category) *@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category.Name)
-        </dd>
-    </dl>
-</div>
-<div>
-    <div style="float: left; padding-right:10px">
-        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Sửa</a>
+    .btn-danger {
+        background: #dc2626;
+        color: white;
+        border-color: #dc2626;
+    }
+
+        .btn-danger:hover {
+            background: #b91c1c;
+            border-color: #b91c1c;
+        }
+
+    
+</style>
+
+<div class="details-container">
+    <div class="page-header">
+        <h1 class="page-title">Chi tiết loại sản phẩm</h1>
+        <p class="page-subtitle">Xem thông tin chi tiết của loại sản phẩm</p>
     </div>
-    <a class="btn btn-secondary" asp-action="Index">Quay Lại</a>
+
+    <div class="product-type-card">
+        <div class="product-type-header">
+            <div class="product-type-icon">
+                <i class="fas fa-layer-group"></i>
+            </div>
+            <div class="product-type-info">
+                <h2 class="product-type-name">@Model.Name</h2>
+                <p class="product-type-description">Thông tin chi tiết loại sản phẩm</p>
+            </div>
+        </div>
+
+        <div class="details-list">
+            <div class="detail-item">
+                <i class="fas fa-tag detail-icon"></i>
+                <span class="detail-label">Tên loại sản phẩm</span>
+                <span class="detail-value">@Model.Name</span>
+            </div>
+
+            <div class="detail-item">
+                <i class="fas fa-align-left detail-icon"></i>
+                <span class="detail-label">Mô tả</span>
+                <span class="detail-value">
+                    @if (!string.IsNullOrEmpty(Model.Description))
+                    {
+                        @Model.Description
+                    }
+                    else
+                    {
+                        <span style="color: #9ca3af;">Chưa có mô tả</span>
+                    }
+                </span>
+            </div>
+
+            <div class="detail-item">
+                <i class="fas fa-toggle-on detail-icon"></i>
+                <span class="detail-label">Trạng thái</span>
+                <span class="detail-value">
+                    @if (Model.Status == 1)
+                    {
+                        <span class="status-badge">Hoạt động</span>
+                    }
+                    else
+                    {
+                        <span class="status-badge status-inactive">Ngừng hoạt động</span>
+                    }
+                </span>
+            </div>
+
+            <div class="detail-item">
+                <i class="fas fa-calendar detail-icon"></i>
+                <span class="detail-label">Ngày tạo</span>
+                <span class="detail-value">
+                    @if (Model.Cdt.HasValue)
+                    {
+                        @Model.Cdt.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN"))
+                    }
+                    else
+                    {
+                        <span style="color: #9ca3af;">Chưa có thông tin</span>
+                    }
+                </span>
+            </div>
+
+            <div class="detail-item">
+                <i class="fas fa-folder detail-icon"></i>
+                <span class="detail-label">Danh mục</span>
+                <span class="detail-value">
+                    @if (!string.IsNullOrEmpty(Model.Category?.Name))
+                    {
+                        <span class="category-badge">@Model.Category.Name</span>
+                    }
+                    else
+                    {
+                        <span style="color: #9ca3af;">Chưa phân loại</span>
+                    }
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i>
+            Quay lại
+        </a>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">
+            <i class="fas fa-edit"></i>
+            Chỉnh sửa
+        </a>
+        <a asp-action="Delete" asp-route-id="@Model?.Id" class="btn btn-danger">
+            <i class="fas fa-trash"></i>
+            Xóa
+        </a>
+    </div>
 </div>
-@* <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
- *@

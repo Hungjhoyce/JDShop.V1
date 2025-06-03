@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\LayoutAdmin\\assets\\css\\style.css.map"
     },
     {
+      "Id": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\css\\stylenew.css",
+      "PackagePath": "staticwebassets\\LayoutAdmin\\assets\\css\\stylenew.css"
+    },
+    {
       "Id": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\LayoutAdmin\\assets\\fonts\\Ubuntu\\Ubuntu-Bold.eot",
       "PackagePath": "staticwebassets\\LayoutAdmin\\assets\\fonts\\Ubuntu\\Ubuntu-Bold.eot"
     },
@@ -623,6 +627,10 @@
     {
       "Id": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\css\\style.css",
       "PackagePath": "staticwebassets\\User\\css\\style.css"
+    },
+    {
+      "Id": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\css\\stylenew.css",
+      "PackagePath": "staticwebassets\\User\\css\\stylenew.css"
     },
     {
       "Id": "D:\\Study\\CDTN\\JDShop\\JDShop\\wwwroot\\User\\fonts\\ElegantIcons.eot",

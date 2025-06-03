@@ -1,4 +1,4 @@
-﻿@model JDshop.Models.Category
+﻿@* @model JDshop.Models.Category
 
 @{
     ViewData["Title"] = "Details";
@@ -13,21 +13,18 @@
     <dl class="row">
         <dt class = "col-sm-2">
             Tên loại sản phẩm
-            @* @Html.DisplayNameFor(model => model.Name) *@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class = "col-sm-2">
             Mô tả
-            @* @Html.DisplayNameFor(model => model.Description) *@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class = "col-sm-2">
             Trạng thái
-            @* @Html.DisplayNameFor(model => model.Status) *@
         </dt>
         @if (Model.Status == true)
         {
@@ -44,19 +41,14 @@
         }
         <dt class = "col-sm-2">
             Ngày tạo
-            @* @Html.DisplayNameFor(model => model.Cdt) *@
         </dt>
         <dd class="col-sm-10">
             @(Model.Cdt.HasValue
                 ? Model.Cdt.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN"))
                 : "")
         </dd>
-        @* <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cdt)
-        </dd> *@
         <dt class = "col-sm-2">
             Nhà cung cấp
-            @* @Html.DisplayNameFor(model => model.Supplier) *@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Supplier.Name)
@@ -68,4 +60,340 @@
         <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Sửa</a>
     </div>
     <a class="btn btn-secondary" asp-action="Index">Quay Lại</a>
+</div> *@
+
+
+
+
+
+
+
+@model JDshop.Models.Category
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+.content-wrapper {
+    padding: 32px;
+    background-color: #f8fafc;
+    min-height: calc(100vh - 64px);
+}
+
+.page-header {
+    margin-bottom: 32px;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 8px 0;
+}
+
+.page-subtitle {
+    color: #6b7280;
+    font-size: 16px;
+    margin: 0;
+}
+
+.details-container {
+    margin: 0 auto;
+}
+
+.details-card {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: #f9fafb;
+    padding: 24px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.header-icon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.header-icon svg {
+    width: 28px;
+    height: 28px;
+    color: white;
+}
+
+.header-content h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 4px 0;
+}
+
+.header-content p {
+    color: #6b7280;
+    margin: 0;
+    font-size: 14px;
+}
+
+.card-body {
+    padding: 24px;
+}
+
+.details-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.detail-item {
+    display: flex;
+    padding: 16px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    width: 200px;
+    flex-shrink: 0;
+    font-weight: 500;
+    color: #374151;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detail-value {
+    flex: 1;
+    color: #111827;
+    font-size: 14px;
+    word-break: break-word;
+}
+
+.detail-icon {
+    width: 16px;
+    height: 16px;
+    color: #6b7280;
+    flex-shrink: 0;
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.status-active {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.status-inactive {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.supplier-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background-color: #f3f4f6;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #374151;
+    width: fit-content;
+}
+
+.supplier-icon {
+    width: 16px;
+    height: 16px;
+    color: #6b7280;
+}
+
+.card-actions {
+    padding: 20px 24px;
+    background-color: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 1px solid;
+}
+
+.btn-primary {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2563eb;
+    border-color: #2563eb;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background-color: white;
+    border-color: #d1d5db;
+    color: #374151 !important;
+}
+
+.btn-secondary:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+    color: #374151;
+    text-decoration: none;
+}
+
+</style>
+
+<div class="content-wrapper">
+    <div class="details-container">
+
+        <div class="page-header">
+            <h1 class="page-title">Chi tiết loại sản phẩm</h1>
+            <p class="page-subtitle">Thông tin chi tiết của loại sản phẩm trong hệ thống</p>
+        </div>
+
+        <div class="details-card">
+            <div class="card-header">
+                <div class="header-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                </div>
+                <div class="header-content">
+                    <h2>@Html.DisplayFor(model => model.Name)</h2>
+                    <p>Thông tin loại sản phẩm</p>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <div class="detail-label">
+                            <svg class="detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                            </svg>
+                            Tên loại sản phẩm
+                        </div>
+                        <div class="detail-value">
+                            @Html.DisplayFor(model => model.Name)
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">
+                            <svg class="detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            Mô tả
+                        </div>
+                        <div class="detail-value">
+                            @Html.DisplayFor(model => model.Description)
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">
+                            <svg class="detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Trạng thái
+                        </div>
+                        <div class="detail-value">
+                            @if (Model.Status == true)
+                            {
+                                <span class="status-badge status-active">Hoạt động</span>
+                            }
+                            else
+                            {
+                                <span class="status-badge status-inactive">Ngừng hoạt động</span>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">
+                            <svg class="detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 4v10m6-10v10m-6-4h6"></path>
+                            </svg>
+                            Ngày tạo
+                        </div>
+                        <div class="detail-value">
+                            @(Model.Cdt.HasValue
+                                ? Model.Cdt.Value.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo("vi-VN"))
+                                : "Chưa có thông tin")
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">
+                            <svg class="detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                            Nhà cung cấp
+                        </div>
+                        <div class="detail-value">
+                            <div class="supplier-info">
+                                <svg class="supplier-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                </svg>
+                                @Html.DisplayFor(model => model.Supplier.Name)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-actions">
+                <a asp-action="Index" class="btn btn-secondary">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Quay lại
+                </a>
+                <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                    </svg>
+                    Chỉnh sửa
+                </a>
+            </div>
+        </div>
+    </div>
 </div>

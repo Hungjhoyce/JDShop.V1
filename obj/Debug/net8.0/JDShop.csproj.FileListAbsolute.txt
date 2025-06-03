@@ -286,3 +286,5 @@ D:\Study\CDTN\JDShop\JDShop\obj\Debug\net8.0\refint\JDShop.dll
 D:\Study\CDTN\JDShop\JDShop\obj\Debug\net8.0\JDShop.pdb
 D:\Study\CDTN\JDShop\JDShop\obj\Debug\net8.0\JDShop.genruntimeconfig.cache
 D:\Study\CDTN\JDShop\JDShop\obj\Debug\net8.0\ref\JDShop.dll
+D:\Study\CDTN\JDShop\JDShop\obj\Debug\net8.0\JDShop.sourcelink.json
+D:\Study\CDTN\JDShop\JDShop\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

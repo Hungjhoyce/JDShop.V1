@@ -7,7 +7,7 @@ using JDshop.Models;
 namespace JDshop.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Nhân Viên")]
     public class ProductTypesController : Controller
     {
         private readonly JDshopDbContext _context;
@@ -19,12 +19,34 @@ namespace JDshop.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var JDshopDbContext = _context.ProductTypes.Include(p => p.Category);
-            return View(await JDshopDbContext.ToListAsync());
+
+            var JDshopDbContext = _context.ProductTypes.Include(p => p.Category).Include(p => p.Product);
+            //var result = await JDshopDbContext
+            //    .Select(
+            //        p => new ProductType {
+            //            Id = p.Id,
+            //            Name = p.Name,
+            //            Category = p.Category,
+            //            Status = p.Status,
+            //            Description = p.Description,
+            //            Cdt = p.Cdt,
+            //            Product = _context.Products.FirstOrDefault(x => x.Id == p.ProductId)
+            //        }
+
+            //     )
+            //    .ToListAsync();
+
+            var result = await _context.ProductTypes
+                .Include(p => p.Product)
+                .ToListAsync();
+
+            return View(JDshopDbContext);
         }
+
 
         public async Task<IActionResult> Details(int? id)
         {
+             
             if (id == null)
             {
                 return NotFound();
@@ -33,6 +55,13 @@ namespace JDshop.Areas.Admin.Controllers
             var productType = await _context.ProductTypes
                 .Include(p => p.Category)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+            if(productType is not null)
+            {
+                var product = await _context.Products.FirstOrDefaultAsync(m => m.Id == productType.ProductId);
+                productType.Product = product;
+            }
+
             if (productType == null)
             {
                 return NotFound();
@@ -44,6 +73,7 @@ namespace JDshop.Areas.Admin.Controllers
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories.Where(x => x.Status == true), "Id", "Name");
+            ViewData["ProductId"] = new SelectList(_context.Products.Where(x => x.Status == 1), "Id", "Name");
             return View();
         }
 
@@ -72,6 +102,8 @@ namespace JDshop.Areas.Admin.Controllers
                 return NotFound();
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories.Where(x => x.Status == true), "Id", "Name", productType.CategoryId);
+            ViewData["ProductId"] = new SelectList(_context.Products.Where(x => x.Status == 1), "Id", "Name", productType.ProductId);
+
             return View(productType);
         }
 

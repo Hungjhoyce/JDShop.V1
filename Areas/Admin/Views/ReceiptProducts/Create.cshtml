@@ -1,50 +1,439 @@
-﻿@model JDshop.Models.ReceiptProduct
+﻿@* @model JDshop.Models.ReceiptProduct *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Create"; *@
+@*     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; *@
+@* } *@
+
+@* <h1>THÊM</h1> *@
+
+@* <h4>Phiếu nhập hàng</h4> *@
+@* <hr /> *@
+@* <div class="row"> *@
+@*     <div class="col-md-4"> *@
+@*         <form asp-action="Create"> *@
+@*             <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="ProductSizeColorId" class="control-label">Mã Sản phẩm Màu Size</label> *@
+@*                 <select asp-for="ProductSizeColorId" class="form-control" asp-items="ViewBag.ProductSizeColorId"></select> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Quantity" class="control-label">Số lượng</label> *@
+@*                 <input asp-for="Quantity" class="form-control" min="0" /> *@
+@*                 <span asp-validation-for="Quantity" class="text-danger"></span> *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Price" class="control-label">Giá nhập</label> *@
+@*                 <input asp-for="Price" class="form-control" /> *@
+@*                 <span asp-validation-for="Price" class="text-danger"></span> *@
+@*             </div> *@
+
+@*             <div class="form-group"> *@
+@*                 <button type="submit" class="btn btn-gradient-primary me-2">Thêm mới</button> *@
+@*                 <a asp-action="Index" class="btn btn-light">Trở về</a> *@
+@*             </div> *@
+@*         </form> *@
+@*     </div> *@
+@* </div> *@
+@* @section Scripts { *@
+@*     @{ *@
+@*         await Html.RenderPartialAsync("_ValidationScriptsPartial"); *@
+@*     } *@
+@* } *@
+
+
+
+
+
+
+
+@using System.Globalization
+@model JDshop.Models.ReceiptProduct
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Thêm phiếu nhập mới";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>THÊM</h1>
+<style>
+    body {
+        background-color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-<h4>Phiếu nhập hàng</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ProductSizeColorId" class="control-label">Mã Sản phẩm Màu Size</label>
-                <select asp-for="ProductSizeColorId" class="form-control" asp-items="ViewBag.ProductSizeColorId"></select>
+    .create-page {
+        padding: 2rem;
+        margin: 0 auto;
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0;
+    }
+
+    .page-subtitle {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin: 0;
+    }
+
+    .form-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    .form-icon {
+        width: 48px;
+        height: 48px;
+        background: #10b981;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .form-info {
+        flex: 1;
+    }
+
+    .form-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin: 0 0 0.25rem 0;
+    }
+
+    .form-description {
+        font-size: 0.875rem;
+        color: #86868b;
+        margin: 0;
+    }
+
+    .validation-summary {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        color: #dc2626;
+        font-size: 0.875rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #1d1d1f;
+        font-size: 0.875rem;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+        background-color: #fff;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #007aff;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+
+        .form-control.is-invalid {
+            border-color: #dc2626;
+        }
+
+    .text-danger {
+        color: #dc2626;
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    .form-select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2386868b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.5rem center;
+        background-repeat: no-repeat;
+        background-size: 1.5em 1.5em;
+        padding-right: 2.5rem;
+    }
+
+    .help-text {
+        font-size: 0.75rem;
+        color: #86868b;
+        margin-top: 0.25rem;
+    }
+
+    .total-preview {
+        background: #f0f9ff;
+        border: 1px solid #bae6fd;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .total-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+        color: #0369a1;
+        font-weight: 600;
+    }
+
+    .total-value {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #0369a1;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #f3f4f6;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+    }
+
+    .btn-cancel {
+        background: #f5f5f7;
+        color: #1d1d1f !important;
+        border: 1px solid #d2d2d7;
+    }
+
+        .btn-cancel:hover {
+            background: #e8e8ed;
+        }
+
+    .btn-create {
+        background: #10b981;
+        color: white;
+    }
+
+        .btn-create:hover {
+            background: #059669;
+        }
+
+    
+</style>
+
+<div class="create-page">
+    <div class="page-header">
+        <h1 class="page-title">Thêm phiếu nhập mới</h1>
+        <p class="page-subtitle">Tạo phiếu nhập hàng vào kho</p>
+    </div>
+
+    <div class="form-card">
+        <div class="form-header">
+            <div class="form-icon">
+                <i class="fas fa-plus"></i>
             </div>
+            <div class="form-info">
+                <h3 class="form-title">Phiếu nhập hàng</h3>
+                <p class="form-description">Nhập thông tin chi tiết phiếu nhập</p>
+            </div>
+        </div>
+
+        <form asp-action="Create" id="createForm">
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
             <div class="form-group">
-                <label asp-for="Quantity" class="control-label">Số lượng</label>
-                <input asp-for="Quantity" class="form-control" min="0" />
+                <label class="form-label">
+                    <i class="fas fa-barcode me-1"></i>
+                    Sản phẩm
+                </label>
+                <select asp-for="ProductSizeColorId" class="form-control form-select" asp-items="ViewBag.ProductSizeColorId" onchange="updatePreview()">
+                    <option value="">-- Chọn sản phẩm --</option>
+                </select>
+                <span asp-validation-for="ProductSizeColorId" class="text-danger"></span>
+                <div class="help-text">Chọn mã sản phẩm cần nhập kho</div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Quantity" class="form-label">
+                    <i class="fas fa-cubes me-1"></i>
+                    Số lượng
+                </label>
+                <input asp-for="Quantity" class="form-control" type="number" min="1" placeholder="Nhập số lượng..." oninput="updatePreview()" />
                 <span asp-validation-for="Quantity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label">Giá nhập</label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+                <div class="help-text">Số lượng sản phẩm cần nhập kho</div>
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-gradient-primary me-2">Thêm mới</button>
-                <a asp-action="Index" class="btn btn-light">Trở về</a>
+                <label asp-for="Price" class="form-label">
+                    <i class="fas fa-money-bill me-1"></i>
+                    Đơn giá nhập
+                </label>
+                <input asp-for="Price" class="form-control" type="number" min="0" step="1000" placeholder="Nhập đơn giá..." oninput="updatePreview()" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+                <div class="help-text">Giá nhập của từng sản phẩm (VNĐ)</div>
             </div>
-            @* <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div> *@
+
+            <div class="form-group">
+                <label class="form-label">
+                    <i class="fas fa-calendar me-1"></i>
+                    Ngày tạo
+                </label>
+                <input asp-for="CreateDay" class="form-control" type="date" />
+                <span asp-validation-for="CreateDay" class="text-danger"></span>
+                <div class="help-text">Ngày tạo phiếu nhập (mặc định là hôm nay)</div>
+            </div>
+
+            <div class="total-preview">
+                <div class="total-header">
+                    <i class="fas fa-calculator"></i>
+                    Tổng giá trị phiếu nhập:
+                </div>
+                <div class="total-value" id="totalValue">0 ₫</div>
+            </div>
+
+            <div class="action-buttons">
+                <a asp-action="Index" class="btn btn-cancel">
+                    <i class="fas fa-arrow-left"></i>
+                    Hủy bỏ
+                </a>
+
+                <button type="submit" class="btn btn-create">
+                    <i class="fas fa-plus"></i>
+                    Tạo phiếu nhập
+                </button>
+            </div>
         </form>
     </div>
 </div>
 
-@* <div>
-    <a asp-action="Index">Back to List</a>
-</div>
- *@
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        // Calculate total value in real-time
+        function updatePreview() {
+            const quantity = document.querySelector('input[name="Quantity"]').value || 0;
+            const price = document.querySelector('input[name="Price"]').value || 0;
+            const total = quantity * price;
+
+            const formatter = new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND',
+                minimumFractionDigits: 0
+            });
+
+            document.getElementById('totalValue').textContent = formatter.format(total);
+        }
+
+        // Form validation
+        document.getElementById('createForm').addEventListener('submit', function(e) {
+            const productId = document.querySelector('select[name="ProductSizeColorId"]').value;
+            const quantity = document.querySelector('input[name="Quantity"]').value;
+            const price = document.querySelector('input[name="Price"]').value;
+
+            if (!productId) {
+                alert('Vui lòng chọn sản phẩm.');
+                e.preventDefault();
+                return;
+            }
+
+            if (!quantity || quantity <= 0) {
+                alert('Vui lòng nhập số lượng hợp lệ.');
+                e.preventDefault();
+                return;
+            }
+
+            if (!price || price <= 0) {
+                alert('Vui lòng nhập đơn giá hợp lệ.');
+                e.preventDefault();
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Đang tạo...';
+            submitBtn.disabled = true;
+
+            // Reset button after 3 seconds if form doesn't submit
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 3000);
+        });
+
+        // Set default date to today
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.querySelector('input[name="CreateDay"]');
+            if (!dateInput.value) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.value = today;
+            }
+
+            // Initialize preview
+            updatePreview();
+        });
+
+        // Format number inputs
+        document.querySelector('input[name="Price"]').addEventListener('blur', function() {
+            if (this.value) {
+                this.value = Math.round(this.value);
+            }
+        });
+
+        document.querySelector('input[name="Quantity"]').addEventListener('blur', function() {
+            if (this.value) {
+                this.value = Math.round(this.value);
+            }
+        });
+
+        // Auto-focus first input
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('select[name="ProductSizeColorId"]').focus();
+        });
+    </script>
 }
